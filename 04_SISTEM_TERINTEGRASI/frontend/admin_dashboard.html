@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <div class="w-64 bg-slate-900 text-white flex flex-col">
+        <div class="p-6 border-b border-slate-800">
+            <h1 class="text-xl font-bold">PT. KMU</h1>
+            <p class="text-xs text-slate-400 mt-1">Sistem Pengadaan Terintegrasi</p>
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="#" onclick="switchTab('vendors')" class="block px-4 py-2.5 bg-blue-600 rounded-lg text-sm font-medium text-white">Dashboard Vendor</a>
+            <a href="#" onclick="switchTab('po')" class="block px-4 py-2.5 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg text-sm font-medium transition-colors">Tender & Generate PO</a>
+        </nav>
+        <div class="p-4 border-t border-slate-800">
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm">KS</div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium">Kasie Pengadaan</p>
+                    <p class="text-xs text-slate-400">Admin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top header -->
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-8 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-800">Manajemen Database Vendor</h2>
+            <div class="flex items-center space-x-4">
+                <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span> AI Guardian Active
+                </div>
+            </div>
+        </header>
+
+        <!-- Content scrollable -->
+        <main class="flex-1 overflow-y-auto p-8">
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm font-medium text-gray-500">Total Vendor Aktif</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2" id="stat_active">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm font-medium text-gray-500">Menunggu Approval</p>
+                    <p class="text-3xl font-bold text-amber-500 mt-2" id="stat_pending">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm font-medium text-gray-500">Ditolak / Revisi</p>
+                    <p class="text-3xl font-bold text-rose-500 mt-2" id="stat_rejected">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+                    <p class="text-sm font-medium text-blue-800">SLA Approval</p>
+                    <p class="text-3xl font-bold text-blue-600 mt-2">100%</p>
+                    <p class="text-xs text-blue-500 mt-1">Sesuai aturan <5 hari</p>
+                </div>
+            </div>
+
+            <!-- Vendor Tab -->
+            <div id="tab-vendors">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                        <h3 class="font-semibold text-gray-800">Daftar Pendaftaran Vendor Baru</h3>
+                        <div class="flex space-x-2">
+                            <select id="filter_status" class="text-sm border-gray-300 rounded-md shadow-sm" onchange="loadVendors()">
+                                <option value="">Semua Status</option>
+                                <option value="submitted">Menunggu Approval (Submitted)</option>
+                                <option value="approved">Aktif (Approved)</option>
+                                <option value="rejected">Ditolak</option>
+                            </select>
+                            <button onclick="loadVendors()" class="p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-white text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    <th class="px-6 py-4">ID Vendor</th>
+                                    <th class="px-6 py-4">Perusahaan</th>
+                                    <th class="px-6 py-4">Kategori</th>
+                                    <th class="px-6 py-4">Tanggal Daftar</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vendorTableBody" class="divide-y divide-gray-100">
+                                <!-- Rows will be injected here via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Empty state -->
+                    <div id="emptyState" class="hidden py-12 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada data</h3>
+                        <p class="mt-1 text-sm text-gray-500">Tidak ada vendor yang sesuai dengan filter.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PO Generation Tab -->
+            <div id="tab-po" class="hidden">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                        <h3 class="font-semibold text-gray-800">Generate Purchase Order (PO) dari PP yang Disetujui</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-600 mb-6">Berikut adalah daftar Permintaan Pembelian (PP) yang sudah mendapatkan "Final Approval" dari management. Pilih vendor untuk diubah menjadi PO.</p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                        <th class="px-4 py-3">No. PP</th>
+                                        <th class="px-4 py-3">SBU</th>
+                                        <th class="px-4 py-3">Judul</th>
+                                        <th class="px-4 py-3">Nilai</th>
+                                        <th class="px-4 py-3">Pilih Vendor (Pemenang Tender)</th>
+                                        <th class="px-4 py-3 text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="approvedReqTableBody" class="divide-y divide-gray-100">
+                                    <!-- JS inject -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function loadVendors() {
+            const filter = document.getElementById('filter_status').value;
+            const url = filter ? `http://127.0.0.1:8000/api/vendors?status=${filter}` : 'http://127.0.0.1:8000/api/vendors';
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const tbody = document.getElementById('vendorTableBody');
+                tbody.innerHTML = '';
+                
+                if(data.data.length === 0) {
+                    document.getElementById('emptyState').classList.remove('hidden');
+                } else {
+                    document.getElementById('emptyState').classList.add('hidden');
+                    
+                    let activeCount = 0, pendingCount = 0, rejectedCount = 0;
+
+                    data.data.forEach(v => {
+                        // Counters
+                        if(v.vendor_status === 'approved') activeCount++;
+                        if(v.vendor_status === 'submitted') pendingCount++;
+                        if(v.vendor_status === 'rejected') rejectedCount++;
+
+                        // Status Badge styling
+                        let statusBadge = '';
+                        if(v.vendor_status === 'approved') {
+                            statusBadge = '<span class="px-2 py-1 bg-green-100 text-green-800 rounded-md text-xs font-medium">Aktif</span>';
+                        } else if(v.vendor_status === 'submitted') {
+                            statusBadge = '<span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-md text-xs font-medium">Menunggu</span>';
+                        } else {
+                            statusBadge = '<span class="px-2 py-1 bg-rose-100 text-rose-800 rounded-md text-xs font-medium">Ditolak</span>';
+                        }
+
+                        const dateStr = new Date(v.registration_date).toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' });
+
+                        const row = `
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 font-mono text-sm text-gray-600">${v.vendor_id}</td>
+                                <td class="px-6 py-4">
+                                    <div class="font-medium text-gray-900">${v.company_name}</div>
+                                    <div class="text-xs text-gray-500">PIC: ${v.contact_person_name} (${v.contact_person_phone})</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded text-xs font-medium uppercase tracking-wider">${v.vendor_category}</span>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-500">${dateStr}</td>
+                                <td class="px-6 py-4">${statusBadge}</td>
+                                <td class="px-6 py-4 text-right">
+                                    ${v.vendor_status === 'submitted' ? `
+                                        <button onclick="updateStatus('${v.vendor_id}', 'approved')" class="text-green-600 hover:text-green-900 bg-green-50 hover:bg-green-100 p-2 rounded mr-1" title="Approve">✓</button>
+                                        <button onclick="updateStatus('${v.vendor_id}', 'rejected')" class="text-rose-600 hover:text-rose-900 bg-rose-50 hover:bg-rose-100 p-2 rounded" title="Reject">✕</button>
+                                    ` : `
+                                        <button class="text-gray-400 cursor-not-allowed bg-gray-50 p-2 rounded" disabled>Terkunci</button>
+                                    `}
+                                </td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+
+                    // Update stats if we are not filtering
+                    if(!filter) {
+                        document.getElementById('stat_active').innerText = activeCount;
+                        document.getElementById('stat_pending').innerText = pendingCount;
+                        document.getElementById('stat_rejected').innerText = rejectedCount;
+                    }
+                }
+            } catch (err) {
+                console.error("Gagal load data", err);
+            }
+        }
+
+        async function updateStatus(vendorId, newStatus) {
+            if(!confirm(`Anda yakin ingin mengubah status ${vendorId} menjadi ${newStatus}?`)) return;
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/vendors/${vendorId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                
+                if (response.ok) {
+                    loadVendors();
+                } else {
+                    alert('Gagal update status');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // --- TABS & PO GENERATION LOGIC ---
+        function switchTab(tabId) {
+            document.getElementById('tab-vendors').classList.add('hidden');
+            document.getElementById('tab-po').classList.add('hidden');
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            
+            if(tabId === 'po') {
+                loadApprovedRequisitions();
+            }
+        }
+
+        async function loadApprovedRequisitions() {
+            try {
+                // Get approved requisitions
+                const res1 = await fetch('http://127.0.0.1:8000/api/requisitions?status=approved_final');
+                const dataReq = await res1.json();
+                
+                // Get active vendors to populate dropdowns
+                const res2 = await fetch('http://127.0.0.1:8000/api/vendors?status=approved');
+                const dataVendors = await res2.json();
+                let vendorOptions = '<option value="">-- Pilih Vendor --</option>';
+                dataVendors.data.forEach(v => {
+                    vendorOptions += `<option value="${v.vendor_id}">${v.company_name}</option>`;
+                });
+
+                const tbody = document.getElementById('approvedReqTableBody');
+                tbody.innerHTML = '';
+                
+                dataReq.data.forEach(req => {
+                    const row = `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-mono text-xs text-gray-500">${req.req_number}</td>
+                            <td class="px-4 py-3 text-sm">${req.sbu_name}</td>
+                            <td class="px-4 py-3 text-sm font-medium">${req.title}</td>
+                            <td class="px-4 py-3 text-sm">Rp ${req.total_amount.toLocaleString('id-ID')}</td>
+                            <td class="px-4 py-3">
+                                <select id="vendor_select_${req.id}" class="w-full text-sm border-gray-300 rounded focus:ring-blue-500">
+                                    ${vendorOptions}
+                                </select>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <button onclick="generatePO(${req.id}, ${req.total_amount})" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded">Terbitkan PO</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+                
+                if(dataReq.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-gray-500">Tidak ada PP yang siap dibuatkan PO.</td></tr>';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function generatePO(reqId, amount) {
+            const vendorSelect = document.getElementById(`vendor_select_${reqId}`);
+            if(!vendorSelect.value) {
+                alert("Harap pilih vendor pemenang tender terlebih dahulu!");
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/purchase-orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ req_id: reqId, vendor_id: vendorSelect.value, total_amount: amount })
+                });
+                
+                const result = await response.json();
+                if(response.ok) {
+                    alert(`SUKSES: ${result.message}\n${result.po_number}`);
+                    loadApprovedRequisitions(); // refresh
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Load data on start
+        window.addEventListener('DOMContentLoaded', loadVendors);
+    </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+# Mind Map: MODULE_2_VENDOR_MANAGEMENT
+
+- MODULE 2: Vendor Management (Registration, KSO, Database)
+  - VENDOR REGISTRATION
+    - Self-Service Portal
+      - Vendor creates account
+      - Login credentials
+      - Profile setup
+    - Information Capture
+      - Company name & address
+      - Contact person & phone
+      - Tax ID (NPWP)
+      - Business license (SIUP)
+      - Bank account info
+    - Document Upload
+      - Company registration
+      - Tax certificate
+      - Business license
+      - Financial statements (3 years)
+      - References/Previous contracts
+    - Initial Review
+      - Document completeness check
+      - Format verification
+      - Validity check
+      - Request for clarification if needed
+  - VENDOR QUALIFICATION & APPROVAL
+    - Legal Checklist
+      - ✓ Tax ID valid
+      - ✓ Business license current
+      - ✓ No blacklist status
+      - ✓ Financial health acceptable
+      - ✓ References verified
+    - Technical Qualification
+      - Product/Service expertise
+      - Equipment & facilities
+      - Quality certifications
+      - Compliance with standards
+    - Financial Qualification
+      - Financial stability assessment
+      - Bank references
+      - Payment history
+      - Capacity to deliver
+    - Approval Decision
+      - Qualified: Activate in master DB
+      - Conditional: Request more info
+      - Not qualified: Reject with reason
+    - Notification
+      - Email to vendor (approved/rejected)
+      - Portal status update
+  - VENDOR MASTER DATABASE
+    - Data Fields
+      - Vendor ID (auto)
+      - Company name
+      - Category (Barang/Jasa/Konstruksi/Konsultan)
+      - Contact details
+      - Bank account
+      - Tax ID
+      - Status (Active/Inactive/Blacklist)
+    - Categories
+      - Daan Umum: Goods suppliers
+      - Daan Jasa Konstruksi: Construction
+      - Daan Jasa Konsultan: Consultants
+      - Daan Jasa Pemborongan: Services
+      - KSO Suppliers: Lab/Farmasi/BMHP
+    - Data Management
+      - Auto-update from portal
+      - Manual updates by Kasie
+      - Regular review & cleanup
+      - Audit trail of changes
+    - Visibility
+      - Procurement: All active vendors
+      - Tender: Filter by category
+      - Finance: Payment tracking
+      - SBU: View for direct request
+  - CATEGORY MANAGEMENT
+    - Daan Umum (Goods)
+      - Medical supplies
+      - Office equipment
+      - Utilities & maintenance
+      - Food & beverages
+      - Consumables
+    - Daan Jasa Konstruksi
+      - Building construction
+      - Renovation
+      - Civil works
+    - Daan Jasa Konsultan
+      - Management consulting
+      - Technical consultation
+      - Training services
+    - Daan Jasa Swakelola
+      - In-house service execution
+      - Equipment rental
+    - KSO Suppliers (Special)
+      - Lab consumables
+      - Pharmacy supplies
+      - Medical devices (BMHP)
+  - KSO (KONTRAK SUPLAI OBAT/ALKES) SETUP
+    - KSO Types
+      - Lab: Consumables & reagents
+      - Farmasi: Medicines & drugs
+      - BMHP: Medical devices (alkes)
+    - Contract Setup
+      - Vendor selection (tender/direct)
+      - Contract negotiation
+      - Price list agreed
+      - Delivery schedule
+      - Payment terms (usually 30 days)
+    - KSO Terms
+      - Quantity commitment (minimum)
+      - Price lock period
+      - Delivery SLA
+      - Quality guarantees
+      - Damage/defect policy
+    - Vendor Portal Feature
+      - Self-reporting of deliveries
+      - Consumption tracking
+      - Obligation fulfillment
+      - Invoice submission
+    - Multi-KSO Strategy
+      - Lab: 2-3 vendors per category
+      - Pharmacy: Main + backup
+      - BMHP: Specialized vendors
+      - Load balancing based on consumption
+  - VENDOR PERFORMANCE TRACKING
+    - 7-Dimension Scoring
+      - 1. Harga (Price competitiveness)
+      - 2. Kualitas (Product quality)
+      - 3. Pengiriman (On-time delivery)
+      - 4. Compliance (SPO adherence)
+      - 5. Keuangan (Financial reliability)
+      - 6. Respons (Response time)
+      - 7. Partnership (Collaboration)
+    - Data Collection
+      - Invoice data
+      - Delivery tracking
+      - Quality reports
+      - Complaints log
+      - KSO reporting (self)
+    - Monthly Scoring
+      - Collect performance data
+      - Score each dimension (1-5)
+      - Calculate weighted score
+      - Generate scorecard
+    - Quarterly Review
+      - Trend analysis
+      - Improvement identification
+      - Discussion with vendor
+      - Corrective action plan if needed
+  - VENDOR DECISIONS & ACTIONS
+    - Renewal Decision
+      - Score >80%: Auto-renewal
+      - Score 60-80%: Improvement plan
+      - Score <60%: Replacement consideration
+    - Contract Actions
+      - Extend contract (12+ months)
+      - Renegotiate price
+      - Adjust volumes
+      - Add new categories
+    - Corrective Actions
+      - Performance improvement plan
+      - Cost reduction negotiation
+      - Quality certification requirement
+    - Termination/Blacklist
+      - Non-performance (repeated)
+      - Quality failures
+      - Compliance violations
+      - Financial instability
+      - Proper notice & documentation
+  - INTEGRATION & COMMUNICATION
+    - Systems Connected
+      - Vendor portal (self-service)
+      - Procurement platform
+      - Finance (payment tracking)
+      - Warehouse (stock tracking)
+    - Data Flow
+      - Registration → Master DB
+      - Performance data → Scoring
+      - KSO data → Portal
+      - Reports → Stakeholders
+    - Vendor Communication
+      - Email notifications
+      - Portal announcements
+      - Performance scorecards
+      - Contract updates
+    - Reporting
+      - Vendor roster report
+      - Performance rankings
+      - Category analysis
+      - Compliance status
+  - SUCCESS METRICS
+    - Vendor Count
+      - Active vendors: 200+
+      - By category: Distributed
+      - New vendors: Regular intake
+    - Performance
+      - Avg quality score: >85%
+      - On-time delivery: >95%
+      - Compliance: 100%
+    - Cost Impact
+      - Better vendor selection
+      - Fewer quality issues
+      - Reduced disputes
+      - Annual savings: Rp 4.2B
+    - System Benefit
+      - Transparent vendor database
+      - Consistent scoring
+      - Data-driven decisions

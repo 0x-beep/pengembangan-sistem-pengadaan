@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Portal — PT. Medik Jaya</title>
+    <meta name="description" content="Vendor Self-Service Portal">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for Radar Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
+        .card { 
+            background-color: #ffffff; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-content { padding: 1.25rem; flex: 1; }
+        
+        /* Timeline specific */
+        .timeline-step { display: flex; align-items: center; font-size: 0.75rem; }
+        .timeline-dot { width: 12px; height: 12px; border-radius: 50%; z-index: 10; }
+        .timeline-line { height: 2px; flex: 1; margin: 0 4px; }
+        .dot-done { background-color: #10b981; }
+        .dot-pending { background-color: #cbd5e1; }
+        .line-done { background-color: #10b981; }
+        .line-pending { background-color: #cbd5e1; }
+    </style>
+</head>
+<body class="antialiased h-screen flex flex-col overflow-hidden">
+
+    <!-- Header (External Portal Theme) -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0 shadow-sm z-10">
+        <div class="flex items-center gap-4">
+            <div class="bg-blue-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl shadow-md">K</div>
+            <div>
+                <h1 class="font-black text-slate-800 text-lg tracking-tight">KMU Vendor Portal</h1>
+                <p class="text-xs text-slate-500 font-medium">B2B Self-Service Platform</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-bell text-slate-400 hover:text-blue-600 transition cursor-pointer text-xl relative">
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold border-2 border-white">2</span>
+                </i>
+            </div>
+            <div class="h-8 w-px bg-slate-200"></div>
+            <div class="flex items-center gap-3 cursor-pointer">
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-bold text-slate-800" id="vendorName">PT. Medik Jaya</p>
+                    <p class="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-1.5 py-0.5 rounded uppercase" id="vendorTier">A-Grade Partner</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center text-slate-500">
+                    <i class="fas fa-building"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-slate-50 p-6">
+        <div class="max-w-7xl mx-auto space-y-6">
+            
+            <!-- Alert Banner -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3 items-start shadow-sm">
+                <i class="fas fa-info-circle text-blue-600 mt-0.5"></i>
+                <div>
+                    <h3 class="font-bold text-blue-900 text-sm">Selamat Datang di Portal Vendor KMU</h3>
+                    <p class="text-blue-800 text-xs mt-1">Unggah dokumen Surat Jalan (SJPH) dan BAPB tepat waktu untuk menjaga Skor 7-Dimensi Anda. Keterlambatan akan memotong skor <span class="font-bold">Responsiveness</span> secara otomatis.</p>
+                </div>
+            </div>
+
+            <!-- Top Row: Performance & Tasks -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Performance Radar -->
+                <div class="card lg:col-span-1">
+                    <div class="card-header">
+                        <span class="text-slate-800"><i class="fas fa-chart-pie text-blue-600 mr-2"></i>My Performance Score</span>
+                        <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded">LIVE AI EVALUATION</span>
+                    </div>
+                    <div class="card-content flex flex-col items-center">
+                        <div class="text-center mb-4">
+                            <span class="text-4xl font-black text-slate-800" id="overallScore">0.0</span><span class="text-slate-400 font-bold">/100</span>
+                        </div>
+                        <div class="w-full max-w-[250px] aspect-square relative">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                        <p id="feedbackText" class="text-xs text-slate-500 text-center mt-4 bg-slate-100 p-3 rounded-lg border border-slate-200"></p>
+                    </div>
+                </div>
+
+                <!-- Task & Document Hub -->
+                <div class="card lg:col-span-2">
+                    <div class="card-header">
+                        <span class="text-slate-800"><i class="fas fa-file-upload text-rose-500 mr-2"></i>Task & Document Hub</span>
+                        <span class="text-xs text-slate-500 font-normal">SLA Countdown Active</span>
+                    </div>
+                    <div class="card-content">
+                        <p class="text-xs text-slate-500 mb-4">Dokumen yang memerlukan tindakan (Unggah / Tanda Tangan):</p>
+                        <div class="space-y-3" id="taskList">
+                            <!-- Injected via JS -->
+                            <div class="text-center py-8 text-slate-400"><i class="fas fa-spinner fa-spin text-2xl"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            </div>
+
+            <!-- Middle Row: E-Katalog Rencana Investasi (Terbuka) -->
+            <div class="card bg-gradient-to-br from-blue-900 to-indigo-900 border-none shadow-lg text-white">
+                <div class="p-4 border-b border-blue-800/50 flex justify-between items-center">
+                    <span class="font-bold"><i class="fas fa-book-open text-blue-300 mr-2"></i>E-Katalog Kebutuhan Investasi 1 Tahun (Terbuka)</span>
+                    <span class="bg-blue-500/30 text-blue-200 text-[10px] font-bold px-2 py-1 rounded">EXPRESS INTEREST</span>
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-blue-200 mb-4">Daftar rencana pengadaan KMU yang bersifat Terbuka. Vendor dapat menekan tombol "Express Interest" untuk menerima notifikasi saat bulan realisasi tiba.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Item 1 -->
+                        <div class="bg-blue-950/50 border border-blue-800/50 rounded-lg p-4 flex flex-col hover:bg-blue-900/50 transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-rose-500/20 text-rose-300 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-500/30"><i class="fas fa-briefcase-medical mr-1"></i> Barang Medis</span>
+                                <span class="text-xs font-bold text-slate-300">Target: <span class="text-white">Agt 2026</span></span>
+                            </div>
+                            <h4 class="font-bold text-sm mb-1">Pengadaan Reagen Kimia Klinik Semester 2</h4>
+                            <p class="text-[10px] text-blue-300 mb-3 flex-1">Suplai rutin reagen kimia klinik untuk laboratorium sentral RS PKT Bontang (6 Bulan).</p>
+                            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg transition shadow-sm" onclick="alert('Interest tersimpan! Anda akan dinotifikasi pada bulan Agustus 2026 saat proses tender/input dimulai.')">
+                                <i class="fas fa-star mr-1"></i> Express Interest
+                            </button>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="bg-blue-950/50 border border-blue-800/50 rounded-lg p-4 flex flex-col hover:bg-blue-900/50 transition">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="bg-purple-500/20 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded border border-purple-500/30"><i class="fas fa-user-tie mr-1"></i> Jasa Outsourcing</span>
+                                <span class="text-xs font-bold text-slate-300">Target: <span class="text-white">Nov 2026</span></span>
+                            </div>
+                            <h4 class="font-bold text-sm mb-1">Penyediaan Jasa Keamanan (Security) 2027</h4>
+                            <p class="text-[10px] text-blue-300 mb-3 flex-1">Pengadaan 45 tenaga keamanan bersertifikat Gada Pratama untuk seluruh titik layanan KMU.</p>
+                            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg transition shadow-sm" onclick="alert('Interest tersimpan! Anda akan dinotifikasi pada bulan November 2026.')">
+                                <i class="fas fa-star mr-1"></i> Express Interest
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Payment Tracker -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="text-slate-800"><i class="fas fa-money-check-alt text-emerald-500 mr-2"></i>Payment Tracker Pipeline</span>
+                </div>
+                <div class="card-content overflow-x-auto">
+                    <table class="w-full text-left min-w-[800px]">
+                        <thead>
+                            <tr class="text-xs text-slate-500 border-b border-slate-200">
+                                <th class="pb-3 font-semibold w-1/4">Invoice & Amount</th>
+                                <th class="pb-3 font-semibold w-2/4 text-center">Milestone Status</th>
+                                <th class="pb-3 font-semibold w-1/4 text-right">Est. Payment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentList" class="divide-y divide-slate-100">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:8000/api';
+        let chartInstance = null;
+
+        const fmtM = n => 'Rp ' + (n/1000000).toFixed(0) + ' Juta';
+
+        async function fetchVendorData() {
+            try {
+                const res = await fetch(`${API_URL}/vendor-portal-data`);
+                if(res.ok) {
+                    const data = await res.json();
+                    renderPortal(data.data);
+                }
+            } catch (err) {
+                console.error("Fetch error", err);
+            }
+        }
+
+        function renderPortal(data) {
+            // Header
+            document.getElementById('vendorName').textContent = data.vendor_info.name;
+            document.getElementById('vendorTier').textContent = data.vendor_info.tier;
+
+            // Performance
+            document.getElementById('overallScore').textContent = data.performance.overall_score;
+            document.getElementById('feedbackText').innerHTML = `<strong>💡 AI Insight:</strong> ${data.performance.feedback}`;
+            renderRadarChart(data.performance.radar);
+
+            // Tasks
+            const taskHtml = data.tasks.map(t => `
+                <div class="border border-slate-200 rounded-lg p-4 flex justify-between items-center hover:border-blue-300 hover:shadow-sm transition bg-white">
+                    <div class="flex gap-4 items-center">
+                        <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center flex-shrink-0">
+                            <i class="fas ${t.status.includes('SIGNATURE') ? 'fa-file-signature' : 'fa-cloud-upload-alt'}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">${t.title}</h4>
+                            <div class="flex gap-3 text-xs text-slate-500 mt-1">
+                                <span class="font-mono bg-slate-100 px-1.5 rounded">${t.po_number}</span>
+                                <span class="text-rose-600 font-semibold"><i class="fas fa-clock mr-1"></i>Due: ${t.deadline}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow-sm" onclick="alert('Membuka dialog unggah...')">
+                            ${t.status.includes('SIGNATURE') ? 'Tanda Tangan' : 'Upload Dokumen'}
+                        </button>
+                        <span class="text-[9px] text-rose-500 font-medium">${t.penalty_warning}</span>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('taskList').innerHTML = taskHtml;
+
+            // Payments
+            const payHtml = data.payments.map(p => {
+                // Generate timeline visual
+                const totalSteps = p.timeline.length;
+                let timelineHtml = '<div class="flex items-center w-full justify-center px-4 py-2">';
+                
+                p.timeline.forEach((step, idx) => {
+                    const isDone = step.includes('(Done)');
+                    const text = step.replace('(Done)', '').replace('(Pending)', '').trim();
+                    
+                    // Dot
+                    timelineHtml += `<div class="relative group cursor-help">
+                        <div class="timeline-dot ${isDone ? 'dot-done' : 'dot-pending'}"></div>
+                        <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] whitespace-nowrap font-medium ${isDone ? 'text-emerald-600' : 'text-slate-400'}">${text}</div>
+                    </div>`;
+                    
+                    // Line
+                    if(idx < totalSteps - 1) {
+                        const nextIsDone = p.timeline[idx+1].includes('(Done)');
+                        timelineHtml += `<div class="timeline-line ${nextIsDone ? 'line-done' : 'line-pending'}"></div>`;
+                    }
+                });
+                timelineHtml += '</div>';
+
+                return `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="py-4">
+                        <div class="font-bold text-sm text-slate-800">${p.invoice}</div>
+                        <div class="font-mono text-xs text-slate-500 mt-0.5">${fmtM(p.amount)}</div>
+                    </td>
+                    <td class="py-4">
+                        ${timelineHtml}
+                    </td>
+                    <td class="py-4 text-right">
+                        <div class="text-sm font-bold ${p.est_payment === 'TBD' ? 'text-slate-400' : 'text-emerald-600'}">${p.est_payment}</div>
+                        <div class="text-[10px] text-slate-400 mt-0.5 uppercase tracking-wider font-bold">${p.status}</div>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+            document.getElementById('paymentList').innerHTML = payHtml;
+        }
+
+        function renderRadarChart(radarData) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            const labels = Object.keys(radarData);
+            const dataPts = Object.values(radarData);
+
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Skor Anda',
+                        data: dataPts,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(37, 99, 235, 1)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.05)' },
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            pointLabels: {
+                                font: { size: 9, family: 'Inter', weight: '600' },
+                                color: (ctx) => {
+                                    // Highlight Responsiveness since it's the weak point in demo
+                                    return ctx.label === 'Responsiveness' ? '#ef4444' : '#64748b';
+                                }
+                            },
+                            ticks: { display: false, min: 0, max: 100 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Init
+        fetchVendorData();
+        setInterval(fetchVendorData, 5000); // Poll every 5s
+
+    </script>
+</body>
+</html>

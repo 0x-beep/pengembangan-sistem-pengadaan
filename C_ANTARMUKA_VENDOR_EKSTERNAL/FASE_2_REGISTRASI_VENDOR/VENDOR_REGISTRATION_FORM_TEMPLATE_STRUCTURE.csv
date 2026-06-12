@@ -1,0 +1,143 @@
+PT KMU VENDOR REGISTRATION FORM - EXCEL TEMPLATE
+Version 1.0
+Created: 2025-06-04
+
+INSTRUCTIONS FOR VENDORS:
+1. Download this Excel file
+2. Fill in ALL fields marked with * (Required)
+3. Save file with your company name: "VENDOR_REGISTRATION_[YourCompanyName].xlsx"
+4. Email to: vendor-registration@kmu.co.id
+5. Keep a copy for your records
+
+IT IMPORT INSTRUCTIONS:
+- Each row represents one field
+- Field Name column = database column name
+- Field Value column = data entered by vendor
+- Type column = data type for validation
+- Required column = if mandatory field
+
+---
+
+SECTION 1: COMPANY INFORMATION
+* = Required field
+
+Field Name,Field Label,Field Type,Required,Field Value,Database Column
+company_name,Company Name *,TEXT,YES,,vendors.company_name
+company_name_short,Company Short Name,TEXT,NO,,vendors.company_name_short
+business_license_number,Business License (SIU) *,TEXT,YES,,vendors.sio
+tax_id_npwp,Tax ID (NPWP) *,TEXT,YES,,vendors.npwp
+company_registration_date,Company Registration Date *,DATE,YES,,vendors.registration_date
+years_in_business,Years in Business *,NUMBER,YES,,calculated_field
+annual_revenue_last_year,Annual Revenue Last Year (IDR) *,NUMBER,YES,,vendors.metadata.annual_revenue
+
+SECTION 2: VENDOR TYPE & CATEGORY
+vendor_type,Vendor Type (Barang/Jasa) *,DROPDOWN,YES,,vendors.vendor_type
+vendor_category,Vendor Category *,DROPDOWN,YES,,vendors.vendor_category
+primary_service_type,Primary Service Type *,TEXT,YES,,vendors.metadata.primary_service
+secondary_service_types,Secondary Service Types,TEXT,NO,,vendors.metadata.secondary_services
+
+SECTION 3: CONTACT INFORMATION
+phone_main,Main Phone *,TEXT,YES,,vendors.phone
+phone_mobile,Mobile Phone *,TEXT,YES,,vendors.metadata.phone_mobile
+email_company,Company Email *,EMAIL,YES,,vendors.email
+website,Website,URL,NO,,vendors.website
+office_address_street,Office Street Address *,TEXT,YES,,vendors.address_street
+office_address_city,Office City *,DROPDOWN,YES,,vendors.address_city
+office_address_province,Office Province *,TEXT,YES,,vendors.address_province
+office_address_postal_code,Office Postal Code *,TEXT,YES,,vendors.address_postal_code
+
+SECTION 4: KEY CONTACT PERSON
+contact_person_name,Contact Person Name *,TEXT,YES,,vendors.contact_person_name
+contact_person_title,Contact Person Title *,TEXT,YES,,vendors.contact_person_title
+contact_person_phone,Contact Person Phone *,TEXT,YES,,vendors.contact_person_phone
+contact_person_email,Contact Person Email *,EMAIL,YES,,vendors.contact_person_email
+
+SECTION 5: BANKING INFORMATION
+bank_name,Bank Name *,TEXT,YES,,vendors.bank_name
+bank_account_number,Bank Account Number *,TEXT,YES,,vendors.bank_account_number
+bank_account_holder,Bank Account Holder *,TEXT,YES,,vendors.bank_account_holder
+bank_account_type,Account Type *,DROPDOWN,YES,,vendors.metadata.bank_account_type
+
+SECTION 6: OPERATIONAL CAPABILITY
+warehouse_location,Warehouse Location *,TEXT,YES,,vendors.metadata.warehouse_location
+warehouse_address,Warehouse Address *,TEXT,YES,,vendors.metadata.warehouse_address
+warehouse_size_sqm,Warehouse Size (m²),NUMBER,NO,,vendors.metadata.warehouse_size
+can_serve_balikpapan,Can Serve Balikpapan? * (MANDATORY),CHECKBOX,YES,,vendors.metadata.can_serve_balikpapan
+balikpapan_delivery_days,Balikpapan Delivery Days *,NUMBER,YES,,vendors.metadata.balikpapan_delivery_days
+can_serve_bontang,Can Serve Bontang?,CHECKBOX,NO,,vendors.metadata.can_serve_bontang
+bontang_delivery_days,Bontang Delivery Days,NUMBER,NO,,vendors.metadata.bontang_delivery_days
+can_serve_samarinda,Can Serve Samarinda?,CHECKBOX,NO,,vendors.metadata.can_serve_samarinda
+can_serve_kutai_timur,Can Serve Kutai Timur?,CHECKBOX,NO,,vendors.metadata.can_serve_kutai_timur
+has_delivery_vehicles,Has Delivery Vehicles? *,CHECKBOX,YES,,vendors.metadata.has_delivery_vehicles
+number_of_vehicles,Number of Vehicles,NUMBER,NO,,vendors.metadata.number_of_vehicles
+inventory_management_system,Inventory System *,DROPDOWN,YES,,vendors.metadata.inventory_system
+
+SECTION 7: CUSTOMER SERVICE
+customer_service_available,Has Customer Service? *,CHECKBOX,YES,,vendors.metadata.has_customer_service
+customer_service_hours,Service Hours *,TEXT,YES,,vendors.metadata.service_hours
+emergency_contact_available,Emergency Contact Available? *,CHECKBOX,YES,,vendors.metadata.has_emergency_contact
+response_time_hours,Response Time (Hours) *,NUMBER,YES,,vendors.metadata.response_time_hours
+
+SECTION 8: FINANCIAL INFORMATION
+working_capital_idr,Working Capital (IDR) *,NUMBER,YES,,vendors.metadata.working_capital
+has_bank_credit_line,Has Bank Credit Line?,CHECKBOX,NO,,vendors.metadata.has_credit_line
+credit_line_amount_idr,Credit Line Amount (IDR),NUMBER,NO,,vendors.metadata.credit_line_amount
+financial_statements_attached,Financial Statements Attached? *,CHECKBOX,YES,,vendors.metadata.financial_docs_attached
+
+SECTION 9: INSURANCE & CERTIFICATIONS
+has_liability_insurance,Has Liability Insurance? *,CHECKBOX,YES,,vendors.metadata.has_liability_insurance
+liability_insurance_amount,Liability Insurance Amount (IDR) *,NUMBER,YES,,vendors.metadata.liability_insurance_amount
+has_transit_insurance,Has Transit Insurance? *,CHECKBOX,YES,,vendors.metadata.has_transit_insurance
+has_iso_certification,Has ISO Certification?,CHECKBOX,NO,,vendors.metadata.has_iso_certification
+iso_types,ISO Types,TEXT,NO,,vendors.metadata.iso_types
+has_product_certification,Has Product Certification?,CHECKBOX,NO,,vendors.metadata.has_product_certification
+product_certification_details,Product Certification Details,TEXT,NO,,vendors.metadata.product_certifications
+
+SECTION 10: REFERENCES
+customer_reference_1,Customer Reference 1 *,TEXT,YES,,vendors.metadata.customer_ref_1
+customer_reference_2,Customer Reference 2 *,TEXT,YES,,vendors.metadata.customer_ref_2
+customer_reference_3,Customer Reference 3 *,TEXT,YES,,vendors.metadata.customer_ref_3
+supplier_reference_1,Supplier Reference 1,TEXT,NO,,vendors.metadata.supplier_ref_1
+supplier_reference_2,Supplier Reference 2,TEXT,NO,,vendors.metadata.supplier_ref_2
+
+SECTION 11: COMPLIANCE DECLARATIONS
+years_in_current_industry,Years in Current Industry *,NUMBER,YES,,vendors.metadata.industry_experience
+have_legal_issues,Have Legal Issues?,CHECKBOX,NO,,vendors.metadata.has_legal_issues
+legal_issues_details,Legal Issues Details,TEXTAREA,NO,,vendors.metadata.legal_issues_detail
+declaration_truthfulness,Declaration of Truthfulness *,CHECKBOX,YES,,vendors.metadata.declaration_truthfulness
+
+SECTION 12: DOCUMENTS CHECKLIST
+doc_business_license,Business License (SIU) Attached *,CHECKBOX,YES,,vendors.metadata.doc_business_license
+doc_tax_id,Tax ID (NPWP) Attached *,CHECKBOX,YES,,vendors.metadata.doc_tax_id
+doc_company_registration,Company Registration Attached *,CHECKBOX,YES,,vendors.metadata.doc_company_registration
+doc_bank_reference,Bank Reference Letter Attached *,CHECKBOX,YES,,vendors.metadata.doc_bank_reference
+doc_financial_statements,Financial Statements Attached *,CHECKBOX,YES,,vendors.metadata.doc_financial_statements
+doc_insurance,Insurance Certificates Attached *,CHECKBOX,YES,,vendors.metadata.doc_insurance
+doc_certifications,Product/ISO Certifications Attached,CHECKBOX,NO,,vendors.metadata.doc_certifications
+doc_warehouse_photos,Warehouse Photos Attached,CHECKBOX,NO,,vendors.metadata.doc_warehouse_photos
+
+SECTION 13: SUBMISSION INFORMATION
+submission_date,Submission Date *,DATE,YES,,activity_log.action_date
+submitting_person_name,Submitting Person Name *,TEXT,YES,,vendors.metadata.submitted_by_name
+submitting_person_title,Submitting Person Title *,TEXT,YES,,vendors.metadata.submitted_by_title
+submitting_person_phone,Submitting Person Phone *,TEXT,YES,,vendors.metadata.submitted_by_phone
+submitting_person_email,Submitting Person Email *,EMAIL,YES,,vendors.metadata.submitted_by_email
+
+SECTION 14: SIGNATURE
+authorized_signatory,Authorized Signatory *,TEXT,YES,,vendors.metadata.authorized_signatory
+signature_date,Signature Date *,DATE,YES,,vendors.metadata.signature_date
+company_seal,Company Seal Applied,CHECKBOX,NO,,vendors.metadata.has_company_seal
+
+DROPDOWN OPTIONS:
+vendor_type: barang, jasa
+vendor_category: alkes, farmasi, umum, bahan_habis_pakai, bahan_medis_habis_pakai, sewa, proyek_pembangunan, renovasi, layanan_profesional
+office_address_city: Balikpapan, Bontang, Samarinda, Kutai Timur, Jakarta, Surabaya, Other
+bank_account_type: Current Account, Savings Account
+inventory_management_system: Digital System, Manual Tracking, Spreadsheet
+
+NOTES FOR IT:
+- Import this CSV into database using "Field Name" as column header
+- "Database Column" shows where data should be stored
+- Type column indicates data validation rules
+- All Required=YES fields must be filled before form is valid
+- Vendor ID and Application Reference are auto-generated by system

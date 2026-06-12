@@ -1,0 +1,167 @@
+# Mind Map: MASTER_MINDMAP_2_9_PHASES_PROCUREMENT
+
+- 9 Fase Siklus Pengadaan PT. KMU
+  - FASE 1: Perencanaan & Anggaran
+    - Inputs
+      - SBU Kebutuhan
+      - RAB (Rencana Anggaran Biaya)
+      - RKAP (Rencana Kerja)
+    - Activities
+      - Validasi Kebutuhan
+      - Budget Review
+      - Approval Direksi
+    - Outputs
+      - Budget Ceiling
+      - Approved Plan
+    - Sistem
+      - Finance System
+      - Planning Tool
+    - SLA: 7 hari
+  - FASE 2: Registrasi & Database Vendor
+    - Inputs
+      - Vendor Registration Form
+      - Legal Documents
+      - Financial Statements
+    - Activities
+      - Vendor Register
+      - Legal Checklist
+      - Database Upload
+      - Qualification Review
+    - Outputs
+      - Vendor Master DB
+      - Active Vendor List
+    - Sistem
+      - Vendor Portal
+      - Master Database
+    - SLA: 14 hari
+  - FASE 3: Permintaan Pengadaan (PP)
+    - Inputs
+      - PP (Permintaan Pembelian)
+      - IMT (Inventory Request)
+      - SPPJ (Surat Permintaan Jasa)
+    - Activities
+      - Create PP/IMT/SPPJ
+      - Validation by AI
+      - Approval Workflow
+    - Outputs
+      - Approved PP
+      - Ready for Tender
+    - Sistem
+      - E-Procurement
+      - AI Guardian
+    - SLA: 2 hari
+  - FASE 4: Pelaksanaan Pengadaan
+    - Path A: Tender
+      - SPPH (Surat Permintaan Penawaran)
+      - SJPH (Surat Jawaban Penawaran)
+      - Bid Evaluation
+      - Winner Selection
+    - Path B: Direct Appointment
+      - Vendor Selection
+      - Price Negotiation
+      - Final Approval
+    - Outputs
+      - Selected Vendor
+      - Final Price
+      - Ready for PO/SPK
+    - Sistem
+      - E-Procurement
+      - Vendor Scoring
+    - SLA: 14 hari (Tender)
+    - SLA: 5 hari (Direct)
+  - FASE 5: Kontrak & Portal KSO
+    - Daan Umum
+      - PO (Purchase Order)
+      - Contract Terms
+    - Daan Jasa
+      - SPK (Surat Perintah Kerja)
+      - PKS (Perjanjian Kerja Sama)
+    - KSO Setup
+      - Lab Contract
+      - Farmasi Contract
+      - BMHP Setup
+    - Vendor Portal
+      - Self-reporting
+      - KSO Obligations
+      - Document Upload
+    - SLA: 7 hari
+  - FASE 6: Penerimaan & Verifikasi
+    - Activities
+      - Goods Arrival
+      - BAPB (Berita Acara)
+      - QC & Inspection
+      - 3-Way Match
+    - Verifikasi
+      - PO vs BAPB
+      - Invoice Match
+      - Quantity Check
+      - Quality Check
+    - Outputs
+      - BAPB Signed
+      - Approved for Payment
+    - SLA: 7 hari
+  - FASE 7: Pembayaran & Invoice
+    - Invoice Processing
+      - Invoice Receipt
+      - 3-Way Match Final
+      - GL Posting
+    - Payment
+      - DP (Down Payment)
+      - Final Payment
+      - Check/Transfer
+    - Recording
+      - Finance Record
+      - Vendor Receipt
+    - SLA: 30 hari
+  - FASE 8: Evaluasi Vendor
+    - Scoring (7 Dimensi)
+      - Harga (Price)
+      - Kualitas (Quality)
+      - Delivery
+      - Compliance
+      - Financial Health
+      - Response Time
+      - Partnership
+    - Decision
+      - Renewal
+      - Improvement
+      - Blacklist
+    - Outputs
+      - Vendor Scorecard
+      - Ranking
+    - Frequency: Monthly
+  - FASE 9: Pelaporan & Analitik
+    - Monthly Reports
+      - Procurement Volume
+      - Vendor Performance
+      - Budget Execution
+    - Quarterly Analysis
+      - Trend Analysis
+      - Spend Analysis
+      - Risk Assessment
+    - Annual Reports
+      - KPI Summary
+      - Vendor Ranking
+      - Strategic Insights
+    - Outputs
+      - Dashboard (Command Center)
+      - Executive Reports
+      - SPI Compliance Reports
+    - Continuous
+  - CYCLE SUMMARY
+    - Total Cycle: 60-90 hari (Tender)
+    - Direct Appointment: 30-45 hari
+    - Key Documents
+      - PP, IMT, SPPJ, SPPH, SJPH
+      - PO, SPK, PKS, BAPB
+      - Invoice, Payment
+    - Key Stakeholders
+      - SBU (requestor)
+      - Dept. Pengadaan (processor)
+      - Finance (payment)
+      - Vendor (supplier)
+      - SPI (auditor)
+    - AI Guardian Coverage
+      - All 9 phases
+      - Real-time validation
+      - Compliance checking

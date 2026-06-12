@@ -1,0 +1,276 @@
+# Mind Map: MODULE_4_AI_COMPLIANCE_GUARDIAN
+
+- MODULE 4: AI Penjaga Kepatuhan SPO
+  - SYSTEM OVERVIEW
+    - Purpose
+      - Real-time SPO enforcement
+      - Compliance validation at every step
+      - Guidance system for users
+      - Audit trail for SPI
+    - Scope
+      - All 9 phases of procurement
+      - All document types (PP, SPPH, PO, etc)
+      - All procurement pathways
+      - Both Daan Umum & Daan Jasa
+    - AI Provider
+      - Deepseek API (recommended)
+      - Document processing
+      - Rule validation
+      - Guidance generation
+    - Performance Target
+      - Response time: <500ms
+      - Accuracy: >95%
+      - Compliance rate: 100%
+      - Uptime: 99.5%
+  - SPO KNOWLEDGE BASE
+    - SPO Sources
+      - Pedoman Pengadaan KMU (official)
+      - GLOSARIUM_ISTILAH_KMU
+      - Historical decisions & precedents
+      - Permenkes requirements
+      - LKPP guidelines
+    - SPO Digitization
+      - Extract key rules from documents
+      - Structure rules in database
+      - Create rule engine format
+      - Regular updates & maintenance
+    - Vector Database
+      - Embed SPO rules as vectors
+      - Semantic search capability
+      - Fast retrieval (similarity)
+      - Link to source documents
+    - Rule Categories
+      - Authorization rules
+      - Sequence rules
+      - Document rules
+      - Vendor rules
+      - Financial rules
+  - DOCUMENT PROCESSING
+    - Input Documents
+      - PP (Permintaan Pembelian)
+      - SPPH (Surat Permintaan Penawaran)
+      - SJPH (Surat Jawaban Penawaran)
+      - PO (Purchase Order)
+      - SPK/PKS (Contracts)
+      - BAPB (Receipt)
+      - Invoice
+    - Processing Steps
+      - 1. Upload document
+      - 2. OCR/extract text
+      - 3. Parse structure
+      - 4. Extract key fields
+      - 5. Validate format
+      - 6. Compare with SPO
+    - Data Extraction
+      - Amount
+      - Vendor
+      - Specification
+      - Timeline
+      - Approvers
+      - Cost center
+    - Output
+      - Extracted data (JSON)
+      - Confidence score
+      - Issues found (if any)
+      - Recommendations
+  - PROCEDURE VALIDATION ENGINE
+    - 6-Step Validation
+      - Step 1: Document completeness
+      - Step 2: Required approvals
+      - Step 3: Authorization matrix
+      - Step 4: Amount thresholds
+      - Step 5: Vendor status
+      - Step 6: Timeline/SLA
+    - Step 1: Completeness
+      - All required fields present
+      - Supporting docs attached
+      - Data format correct
+      - Legible & signed (if needed)
+    - Step 2: Approvals
+      - Check approval sequence
+      - Verify all levels present
+      - Signature validation
+      - Approval authority confirmation
+    - Step 3: Authorization Matrix
+      - Check amount vs authority
+      - Daan Umum rules applied
+      - Daan Jasa rules applied
+      - Special category rules (KSO)
+    - Step 4: Thresholds
+      - Amount within approval limit
+      - Amount within budget
+      - No over-spending
+      - Cost center valid
+    - Step 5: Vendor Status
+      - Vendor in master database
+      - Vendor not blacklisted
+      - Vendor qualified for category
+      - Vendor SPA (if needed)
+    - Step 6: Timeline/SLA
+      - Action within SLA
+      - Milestone dates achievable
+      - No past dates
+      - Reasonable timeline
+  - RULE IMPLEMENTATION DETAILS
+    - Authorization Rules
+      - IF amount ≤ 10M THEN Kasie + Manager
+      - IF 10M < amount ≤ 25M THEN + GM
+      - IF 25M < amount ≤ 50M THEN + Dir Ops
+      - IF amount > 50M THEN + Dir Utama
+      - Special: Daan Jasa different thresholds
+    - Sequence Rules
+      - Must have PP before SPPH
+      - Must have SPPH before quotes
+      - Must have quotes before PO
+      - Must have BAPB before payment
+    - Document Rules
+      - PO must reference SPPH number
+      - BAPB must match PO
+      - Invoice must match BAPB
+      - All signatures present
+    - Vendor Rules
+      - Only approved vendors
+      - Vendor matches category
+      - No repeated violations
+      - SPA/Insurance current
+    - Financial Rules
+      - Budget available
+      - Amount matches quotes
+      - No unauthorized changes
+      - Price within HPS range
+  - CHATBOT GUIDANCE SYSTEM
+    - User Interface
+      - Chat widget on platform
+      - Natural language input
+      - Mobile accessible
+      - Available 24/7
+    - Question Types
+      - SPO procedure: How do I...?
+      - Approval process: Who approves...?
+      - Document types: What is BAPB?
+      - Vendor rules: Can I use...?
+      - Timeline: How long for...?
+    - Guidance Examples
+      - Q: Bagaimana cara membuat PO?
+      - A: Pertama buat PP, tunggu approval, lalu buat SPPH, terima quotes, pilih vendor, buat PO, kirim ke vendor...
+      - Q: Siapa yang harus approve PO 50 Juta?
+      - A: Kasie + Manager + GM + Direktur Ops. Semua harus approve sesuai urutan.
+    - RAG System
+      - Question → Vector search
+      - Find relevant SPO rules
+      - Context retrieval
+      - Generate answer
+      - Cite sources
+    - Learning
+      - Track FAQ
+      - Improve responses
+      - Add new questions
+  - REAL-TIME ALERTS & COMPLIANCE
+    - Alert Types
+      - ERROR: Compliance violation
+      - WARNING: Potential issue
+      - INFO: Guidance suggestion
+      - SUCCESS: Valid action
+    - Alert Triggers
+      - Missing required info
+      - Insufficient authority
+      - Budget exceeded
+      - Vendor blacklisted
+      - SLA exceeded
+      - Document incomplete
+    - Alert Actions
+      - Display in UI (red/yellow)
+      - Block submission (errors)
+      - Allow with warning (warnings)
+      - Auto-suggest fixes
+      - Escalate to supervisor
+    - Compliance Tracking
+      - Count violations
+      - Track patterns
+      - User training triggers
+      - Performance scoring
+  - AUDIT TRAIL & REPORTING
+    - Audit Logging
+      - Every validation action logged
+      - User identification
+      - Timestamp
+      - Document version
+      - Rules applied
+      - Result (pass/fail)
+    - Compliance Reports
+      - Monthly compliance rate
+      - Violation types breakdown
+      - User performance
+      - Department comparison
+      - Trend analysis
+    - SPI Integration
+      - Audit trail export to SPI
+      - Compliance dashboard
+      - Exception reporting
+      - Risk scoring
+    - Evidence Preservation
+      - All decisions documented
+      - Validation logic traceable
+      - Source rule referenced
+      - Ready for auditor review
+  - ANALYTICS & INSIGHTS
+    - Compliance Metrics
+      - Overall compliance: 95%+
+      - By department
+      - By procurement type
+      - Trend (improvement/decline)
+    - Common Issues
+      - Most frequent violations
+      - Root cause analysis
+      - Training needs identification
+      - Process improvement ideas
+    - Risk Scoring
+      - User risk profile
+      - Department risk
+      - Transaction risk
+      - Alert priority
+    - Dashboard
+      - Real-time compliance metrics
+      - Alert heatmap
+      - Performance trends
+      - Comparative analysis
+  - INTEGRATION WITH PLATFORM
+    - Validation Points
+      - On document submission
+      - Before approval
+      - At workflow step
+      - Real-time as user types
+    - Data Flow
+      - Document → AI processing
+      - Rules check → Validation
+      - Alert → User notification
+      - Compliance → Audit log
+    - Workflow Integration
+      - Block invalid actions
+      - Suggest corrections
+      - Highlight issues
+      - Allow overrides (with audit)
+    - Performance
+      - Sub-500ms response
+      - Parallel processing
+      - Caching for speed
+      - Failover protection
+  - SUCCESS METRICS
+    - Compliance Achievement
+      - SPO adherence: 100% (target)
+      - Violation rate: <1%
+      - User compliance training: Done
+    - Efficiency
+      - Faster approval cycle
+      - Fewer rework/corrections
+      - Less audit findings
+      - Reduced processing time
+    - Financial Impact
+      - Error prevention: Rp 7.3B/year
+      - Audit efficiency: 80% faster
+      - Risk reduction: 95%
+    - User Satisfaction
+      - Clear guidance available
+      - System easy to use
+      - Support responsive
+      - Training effective

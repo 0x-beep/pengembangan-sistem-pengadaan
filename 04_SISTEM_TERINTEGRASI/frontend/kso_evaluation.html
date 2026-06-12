@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penilaian Kinerja KSO (Raport Vendor) - PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="antialiased text-gray-900">
+    <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+            <div class="bg-teal-700 px-8 py-6 text-white flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold">Input Raport Kinerja Vendor (KSO)</h1>
+                    <p class="text-teal-100 mt-1">Sistem Evaluasi - Modul 2</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm font-medium">Petugas QC / User Lab</p>
+                </div>
+            </div>
+
+            <form id="evalForm" class="p-8 space-y-8">
+                <!-- Identitas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Vendor (Pilih yang aktif)</label>
+                        <select id="vendor_id" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500">
+                            <!-- JS Inject -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nomor PO (Purchase Order)</label>
+                        <input type="text" id="po_number" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" placeholder="PO-202606-001">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama Petugas Penilai (Lab/QC)</label>
+                        <input type="text" id="evaluator_name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" placeholder="dr. Sarah / Tim QC">
+                    </div>
+                </div>
+
+                <hr class="border-gray-200">
+
+                <!-- Skor -->
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Penilaian Metrik Kinerja (Skala 0 - 100)</h2>
+                    <div class="space-y-6">
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center justify-between">
+                            <div class="w-2/3">
+                                <h4 class="font-medium text-gray-900">Ketepatan Waktu Pengiriman (Delivery)</h4>
+                                <p class="text-xs text-gray-500 mt-1">Apakah barang KSO/reagen datang sesuai SLA? 100 = Tepat waktu, 50 = Terlambat 1 minggu, 0 = Gagal kirim.</p>
+                            </div>
+                            <div class="w-1/4">
+                                <input type="number" id="score_delivery" min="0" max="100" required class="w-full px-4 py-2 text-xl font-bold text-center border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" placeholder="100">
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center justify-between">
+                            <div class="w-2/3">
+                                <h4 class="font-medium text-gray-900">Kualitas Barang & Mesin (Quality)</h4>
+                                <p class="text-xs text-gray-500 mt-1">Apakah mesin sering rusak? Reagen sesuai standar? 100 = Sangat Baik, 0 = Banyak cacat.</p>
+                            </div>
+                            <div class="w-1/4">
+                                <input type="number" id="score_quality" min="0" max="100" required class="w-full px-4 py-2 text-xl font-bold text-center border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" placeholder="100">
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 flex items-center justify-between">
+                            <div class="w-2/3">
+                                <h4 class="font-medium text-gray-900">Aftersales & Responsiveness</h4>
+                                <p class="text-xs text-gray-500 mt-1">Bila ada kendala teknis, seberapa cepat vendor mengirim teknisi/mengganti barang? 100 = Sangat responsif.</p>
+                            </div>
+                            <div class="w-1/4">
+                                <input type="number" id="score_response" min="0" max="100" required class="w-full px-4 py-2 text-xl font-bold text-center border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" placeholder="100">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Catatan Tambahan / Keluhan</label>
+                    <textarea id="remarks" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500" placeholder="Catatan evaluasi kualitatif..."></textarea>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg shadow transition-colors">
+                        Simpan Evaluasi & Update Raport
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        async function loadVendors() {
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/vendors?status=approved');
+                const data = await res.json();
+                const select = document.getElementById('vendor_id');
+                select.innerHTML = '<option value="">-- Pilih Vendor --</option>';
+                data.data.forEach(v => {
+                    select.innerHTML += `<option value="${v.vendor_id}">${v.vendor_id} - ${v.company_name}</option>`;
+                });
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        document.getElementById('evalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const payload = {
+                vendor_id: document.getElementById('vendor_id').value,
+                po_number: document.getElementById('po_number').value,
+                evaluator_name: document.getElementById('evaluator_name').value,
+                score_delivery: parseInt(document.getElementById('score_delivery').value),
+                score_quality: parseInt(document.getElementById('score_quality').value),
+                score_response: parseInt(document.getElementById('score_response').value),
+                remarks: document.getElementById('remarks').value
+            };
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/kso-evaluations/qc', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                if(response.ok) {
+                    if(result.deviation) {
+                        alert('Peringatan: Terdapat DEVIASI besar antara klaim vendor dan penilaian Anda. Laporan ditandai (Disputed).');
+                    } else {
+                        alert('Evaluasi QC berhasil disimpan!');
+                    }
+                    e.target.reset();
+                    document.getElementById('po_number').innerHTML = '<option value="">Pilih PO...</option>';
+                } else {
+                    alert('Gagal: ' + result.detail);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan jaringan');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', loadVendors);
+    </script>
+</body>
+</html>

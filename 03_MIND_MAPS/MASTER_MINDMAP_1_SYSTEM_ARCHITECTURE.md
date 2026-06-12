@@ -1,0 +1,94 @@
+# Mind Map: MASTER_MINDMAP_1_SYSTEM_ARCHITECTURE
+
+- Platform Digitalisasi Pengadaan PT. KMU
+  - LAPISAN 1: Manajemen & Tata Kelola
+    - E-Procurement Platform
+      - Tender Management
+      - Quote Processing
+      - PO Generation
+      - Vendor Scoring
+    - Workflow & Approval
+      - Authorization Matrix
+      - Approval Routing
+      - SLA Tracking
+      - Escalation Rules
+    - Compliance Engine
+      - SPO Validation
+      - Rule Engine
+      - Audit Trail
+      - Reporting
+  - LAPISAN 2: Operasional Pengadaan
+    - Vendor Management
+      - Registration
+      - Qualification
+      - Master Database
+      - Performance Tracking
+    - Catalog & Inventory
+      - Product Database
+      - Stock Levels
+      - SKU Management
+      - Pricing
+    - Contract Lifecycle
+      - PKS (Contracts)
+      - SPK (Work Orders)
+      - KSO Management
+      - Renewal Tracking
+  - LAPISAN 3: Integrasi Sistem
+    - SIMRS Integration
+      - Bidding Data
+      - Inventory Updates
+      - Stock Confirmation
+    - Finance/ERP
+      - GL Posting
+      - Invoice Processing
+      - Payment Execution
+      - Budget Tracking
+    - Other Systems
+      - Warehouse
+      - HR/Payroll
+      - Komite Anggaran
+  - LAPISAN 4: Analitik & Transparansi
+    - Command Center Dashboard
+      - Real-time KPIs
+      - Vendor Status
+      - Financial Metrics
+      - Alerts & Escalations
+    - Analytics & Insights
+      - Spend Analysis
+      - Vendor Benchmarking
+      - Trend Analysis
+      - Forecasting
+    - Audit Trail & SPI
+      - Complete Traceability
+      - Compliance Reports
+      - Exception Logs
+      - SPI Integration
+  - LAPISAN 5: Infrastruktur & Keamanan
+    - Cloud Infrastructure
+      - Servers (GCP/AWS)
+      - Database
+      - Storage
+      - Backup & DR
+    - Security & Access
+      - SSO / LDAP
+      - Role-Based Access
+      - Encryption
+      - Audit Logging
+    - API & Integration
+      - REST APIs
+      - Webhooks
+      - Data Sync
+      - Mobile Apps
+  - 🤖 AI PENJAGA SPO (Cross-Layer)
+    - Real-time SPO Validation
+      - Document Processing
+      - Rule Engine
+      - Compliance Checking
+    - Guidance & Alerts
+      - Chatbot Q&A
+      - Violation Detection
+      - Auto-alerts
+    - Analytics
+      - Compliance Metrics
+      - Risk Scoring
+      - Insights

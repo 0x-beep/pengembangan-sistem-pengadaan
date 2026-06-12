@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Tender — Fase 4 PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .modal-enter { animation: modalIn 0.3s ease-out forwards; }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Unified Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+        <!-- Logo -->
+        <div class="p-6 border-b border-slate-800 shrink-0">
+            <h1 class="text-xl font-black text-white flex items-center gap-2">
+                <i class="fas fa-hospital text-blue-500"></i>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">KMU</span>
+                <span class="text-xs font-medium bg-blue-600 text-white px-2 py-0.5 rounded ml-1">v2.0</span>
+            </h1>
+        </div>
+<div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- FASE 1 & E-KATALOG -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-book text-slate-600"></i> Fase 1: Perencanaan
+                </div>
+                <div class="space-y-1">
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-book-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">E-Katalog Investasi</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FASE 4 -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-layer-group text-slate-600"></i> Fase 4: Pelaksanaan
+                </div>
+                <div class="space-y-1">
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-check-double w-5 text-center"></i>
+                        <span class="text-sm font-medium">Approval Matrix</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white shadow-md shadow-blue-900/20">
+                        <i class="fas fa-file-contract w-5 text-center"></i>
+                        <span class="text-sm font-medium">Manajemen Tender</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FASE 8 & KEUANGAN -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-star text-slate-600"></i> Fase 8: Evaluasi & Realisasi
+                </div>
+                <div class="space-y-1">
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-bar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Raport Vendor</span>
+                    </a>
+                    <a href="kso_evaluasi_wasit.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale-right w-5 text-center"></i>
+                        <span class="text-sm font-medium">Wasit Deviasi KSO</span>
+                        <span class="ml-auto bg-red-500/20 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-red-500/30">!</span>
+                    </a>
+                    <a href="kso_management_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-microscope w-5 text-center"></i>
+                        <span class="text-sm font-medium">Pengelolaan KSO (Ops)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LAPISAN AI -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">SOP Guardian</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- COMMAND CENTER -->
+            <div class="px-3">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-3 flex items-center gap-2">
+                    Command Center
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="KPI Dashboard">
+                        <i class="fas fa-tv w-6 text-center"></i>
+                        <span class="text-sm font-medium">KPI Dashboard</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LINTAS DEPARTEMEN -->
+            <div class="px-3 mt-4">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-3 flex items-center gap-2">
+                    Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Keuangan (Finance)">
+                        <i class="fas fa-wallet w-6 text-center"></i>
+                        <span class="text-sm font-medium">Keuangan (Finance)</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="SPI & Audit">
+                        <i class="fas fa-shield-alt w-6 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Legal & Kontrak">
+                        <i class="fas fa-balance-scale w-6 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="KSU / Kerjasama Usaha">
+                        <i class="fas fa-handshake w-6 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Direksi (BOD)">
+                        <i class="fas fa-chart-line w-6 text-center"></i>
+                        <span class="text-sm font-medium">Direksi (BOD)</span>
+                    </a>
+                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Bagian Umum (GA)">
+                        <i class="fas fa-building w-6 text-center"></i>
+                        <span class="text-sm font-medium">Bagian Umum (GA)</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- VENDOR (EXTERNAL) -->
+            <div class="px-3 mt-4 mb-4">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-3 flex items-center gap-2">
+                    Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Vendor Portal">
+                        <i class="fas fa-store w-6 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- User Profile -->
+        <div class="p-4 border-t border-slate-800 bg-[#0F172A]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-white">Kasim Ganteng</p>
+                    <p class="text-[10px] text-slate-500">Kasie Pengadaan Barang</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden bg-slate-50 relative">
+        <!-- Header -->
+        <header class="bg-white border-b border-slate-200 px-8 py-5 shrink-0 shadow-sm flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800">Manajemen Tender / Lelang</h2>
+                <p class="text-xs text-slate-500 mt-1">Fase 4: Penerbitan, Penawaran, dan Tabulasi Evaluasi</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="loadTenders()" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-slate-600 transition flex items-center gap-1.5">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <button onclick="openModal('tenderModal')" class="text-sm font-medium px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-sm transition flex items-center gap-2">
+                    <i class="fas fa-plus"></i> Buat Tender Baru
+                </button>
+            </div>
+        </header>
+
+        <!-- Filters -->
+        <div class="px-8 py-4 bg-white border-b border-slate-200 flex items-center gap-4">
+            <select id="filterStatus" onchange="loadTenders()" class="text-sm border border-slate-300 rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500">
+                <option value="">Semua Status</option>
+                <option value="draft">Draft</option>
+                <option value="published">Sedang Berjalan (Published)</option>
+                <option value="closed">Ditutup (Evaluasi)</option>
+                <option value="awarded">Selesai (Awarded)</option>
+            </select>
+            <select id="filterCategory" onchange="loadTenders()" class="text-sm border border-slate-300 rounded-lg px-3 py-1.5 focus:outline-none focus:border-blue-500">
+                <option value="">Semua Kategori</option>
+                <option value="alkes">Alat Kesehatan</option>
+                <option value="obat">Obat & Farmasi</option>
+                <option value="bmhp">BMHP</option>
+                <option value="jasa">Jasa & Pemeliharaan</option>
+                <option value="investasi">Investasi / CAPEX</option>
+            </select>
+        </div>
+
+        <!-- Table Content -->
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">No. Tender</th>
+                                <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Judul & Kategori</th>
+                                <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Pagu Anggaran</th>
+                                <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider">Batas Waktu</th>
+                                <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">Status</th>
+                                <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tenderTable" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="6" class="px-6 py-8 text-center text-slate-400 text-sm">
+                                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>Memuat data tender...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- CREATE TENDER MODAL -->
+        <div id="tenderModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+            <div class="bg-white w-full max-w-2xl rounded-2xl shadow-xl flex flex-col max-h-[90vh] modal-enter">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
+                    <h3 class="text-lg font-bold text-slate-800">Buat Tender Baru</h3>
+                    <button onclick="closeModal('tenderModal')" class="text-slate-400 hover:text-slate-600"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                <div class="p-6 overflow-y-auto flex-1">
+                    <form id="formTender" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Judul Pengadaan <span class="text-red-500">*</span></label>
+                            <input type="text" id="t_title" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Contoh: Pengadaan Reagen Hematologi Q3">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Kategori <span class="text-red-500">*</span></label>
+                                <select id="t_category" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                                    <option value="alkes">Alat Kesehatan</option>
+                                    <option value="obat">Obat & Farmasi</option>
+                                    <option value="bmhp">BMHP (Bahan Medis Habis Pakai)</option>
+                                    <option value="jasa">Jasa & Pemeliharaan</option>
+                                    <option value="investasi">Investasi / CAPEX</option>
+                                    <option value="it">IT & Sistem</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Pagu Anggaran Maks. (Rp) <span class="text-red-500">*</span></label>
+                                <input type="number" id="t_budget" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Contoh: 150000000">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Batas Akhir Penawaran <span class="text-red-500">*</span></label>
+                                <input type="date" id="t_close" required class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Target Pengiriman (Opsional)</label>
+                                <input type="date" id="t_delivery" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Deskripsi & Syarat Ringkas</label>
+                            <textarea id="t_desc" rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Jelaskan kebutuhan pengadaan secara singkat..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-end gap-3 shrink-0 rounded-b-2xl">
+                    <button onclick="closeModal('tenderModal')" class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition">Batal</button>
+                    <button onclick="submitTender()" class="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition shadow-sm">Simpan sebagai Draft</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const fmtRp = n => 'Rp ' + new Intl.NumberFormat('id-ID').format(Math.round(n || 0));
+
+        function statusBadge(s) {
+            const m = {
+                'draft': ['Draft', 'slate', 'fa-file-alt'],
+                'published': ['Berjalan', 'blue', 'fa-broadcast-tower'],
+                'closed': ['Evaluasi', 'orange', 'fa-gavel'],
+                'awarded': ['Selesai', 'emerald', 'fa-check-circle'],
+                'cancelled': ['Dibatalkan', 'red', 'fa-ban'],
+            };
+            const [lbl, col, icon] = m[s] || [s, 'slate', 'fa-info-circle'];
+            return `<span class="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full bg-${col}-50 text-${col}-700 border border-${col}-200"><i class="fas ${icon} text-[10px]"></i> ${lbl}</span>`;
+        }
+
+        async function loadTenders() {
+            const st = document.getElementById('filterStatus').value;
+            const ct = document.getElementById('filterCategory').value;
+            let url = 'http://127.0.0.1:8000/api/tenders?';
+            if (st) url += `status=${st}&`;
+            if (ct) url += `category=${ct}&`;
+
+            const tb = document.getElementById('tenderTable');
+            tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-slate-400 text-sm"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>Memuat...</td></tr>`;
+
+            try {
+                const res = await fetch(url);
+                const json = await res.json();
+                if (!json.data || json.data.length === 0) {
+                    tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-slate-500">Tidak ada data tender yang sesuai filter.</td></tr>`;
+                    return;
+                }
+
+                tb.innerHTML = json.data.map(t => `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm font-bold text-slate-800 font-mono bg-slate-100 px-2 py-1 rounded">${t.tender_number}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <p class="text-sm font-bold text-slate-800 line-clamp-1">${t.title}</p>
+                            <span class="text-[10px] uppercase font-bold text-blue-600 tracking-wider">${t.category}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm font-medium text-slate-700">${fmtRp(t.budget_max)}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="text-sm text-slate-600"><i class="far fa-calendar-alt text-slate-400 mr-1"></i> ${t.bid_closing_date || '-'}</span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                            ${statusBadge(t.status)}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right">
+                            <div class="relative inline-block text-left group">
+                                <button class="text-slate-400 hover:text-blue-600 transition px-2 py-1">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <!-- Dropdown actions -->
+                                <div class="absolute right-0 mt-1 w-48 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-20">
+                                    <div class="py-1">
+                                        ${t.status === 'draft' ? `<button onclick="changeStatus('${t.tender_number}', 'published')" class="block w-full text-left px-4 py-2 text-xs text-blue-600 hover:bg-slate-50 font-semibold"><i class="fas fa-globe mr-2"></i> Publish ke Vendor</button>` : ''}
+                                        ${t.status === 'published' ? `<button onclick="changeStatus('${t.tender_number}', 'closed')" class="block w-full text-left px-4 py-2 text-xs text-orange-600 hover:bg-slate-50 font-semibold"><i class="fas fa-gavel mr-2"></i> Tutup & Evaluasi</button>` : ''}
+                                        ${t.status === 'closed' ? `<button onclick="changeStatus('${t.tender_number}', 'awarded')" class="block w-full text-left px-4 py-2 text-xs text-emerald-600 hover:bg-slate-50 font-semibold"><i class="fas fa-award mr-2"></i> Tentukan Pemenang (Award)</button>` : ''}
+                                        ${!['awarded', 'cancelled'].includes(t.status) ? `<button onclick="changeStatus('${t.tender_number}', 'cancelled')" class="block w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-slate-50 font-semibold"><i class="fas fa-ban mr-2"></i> Batalkan Tender</button>` : ''}
+                                        <hr class="border-slate-100 my-1">
+                                        <button class="block w-full text-left px-4 py-2 text-xs text-slate-600 hover:bg-slate-50"><i class="fas fa-eye mr-2"></i> Lihat Detail</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-red-500 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i> Gagal terhubung ke server backend.</td></tr>`;
+            }
+        }
+
+        async function changeStatus(id, newStatus) {
+            if(!confirm(`Yakin mengubah tender ${id} menjadi status: ${newStatus.toUpperCase()}?`)) return;
+            try {
+                const res = await fetch(`http://127.0.0.1:8000/api/tenders/${id}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                if(res.ok) {
+                    loadTenders();
+                } else {
+                    const err = await res.json();
+                    alert("Error: " + err.detail);
+                }
+            } catch (e) {
+                alert("Gagal terhubung ke backend.");
+            }
+        }
+
+        async function submitTender() {
+            const data = {
+                title: document.getElementById('t_title').value,
+                category: document.getElementById('t_category').value,
+                budget_max: parseFloat(document.getElementById('t_budget').value),
+                bid_closing_date: document.getElementById('t_close').value,
+                expected_delivery_date: document.getElementById('t_delivery').value,
+                description: document.getElementById('t_desc').value
+            };
+
+            if(!data.title || !data.budget_max || !data.bid_closing_date) {
+                alert("Harap lengkapi semua field yang wajib (*).");
+                return;
+            }
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/tenders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if(res.ok) {
+                    closeModal('tenderModal');
+                    document.getElementById('formTender').reset();
+                    loadTenders();
+                } else {
+                    alert("Gagal menyimpan tender.");
+                }
+            } catch (e) {
+                alert("Gagal terhubung ke backend.");
+            }
+        }
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        window.onload = loadTenders;
+    </script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raport Vendor 7 Dimensi — Fase 8 PT. KMU</title>
+    <meta name="description" content="Raport evaluasi komprehensif vendor KSO berdasarkan 7 dimensi kinerja">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+        .card-in { animation: fadeIn 0.4s ease forwards; }
+        .dim-bar { transition: width 0.8s cubic-bezier(.4,0,.2,1); }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Unified Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+        <!-- Logo -->
+        <div class="p-6 border-b border-slate-800 shrink-0">
+            <h1 class="text-xl font-black text-white flex items-center gap-2">
+                <i class="fas fa-hospital text-blue-500"></i>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">KMU</span>
+                <span class="text-xs font-medium bg-blue-600 text-white px-2 py-0.5 rounded ml-1">v2.0</span>
+            </h1>
+        </div>
+<div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- FASE 1 & E-KATALOG -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-book text-slate-600"></i> Fase 1: Perencanaan
+                </div>
+                <div class="space-y-1">
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-book-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">E-Katalog Investasi</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FASE 4 -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-layer-group text-slate-600"></i> Fase 4: Pelaksanaan
+                </div>
+                <div class="space-y-1">
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-check-double w-5 text-center"></i>
+                        <span class="text-sm font-medium">Approval Matrix</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-contract w-5 text-center"></i>
+                        <span class="text-sm font-medium">Manajemen Tender</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FASE 8 & KEUANGAN -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-star text-slate-600"></i> Fase 8: Evaluasi & Realisasi
+                </div>
+                <div class="space-y-1">
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-600 text-white shadow-md shadow-blue-900/20">
+                        <i class="fas fa-chart-bar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Raport Vendor</span>
+                    </a>
+                    <a href="kso_evaluasi_wasit.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale-right w-5 text-center"></i>
+                        <span class="text-sm font-medium">Wasit Deviasi KSO</span>
+                        <span class="ml-auto bg-red-500/20 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full border border-red-500/30">!</span>
+                    </a>
+                    <a href="kso_management_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-microscope w-5 text-center"></i>
+                        <span class="text-sm font-medium">Pengelolaan KSO (Ops)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LAPISAN AI -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">SOP Guardian</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- COMMAND CENTER -->
+            <div class="px-3">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-3 flex items-center gap-2">
+                    Command Center
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="KPI Dashboard">
+                        <i class="fas fa-tv w-6 text-center"></i>
+                        <span class="text-sm font-medium">KPI Dashboard</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- LINTAS DEPARTEMEN -->
+            <div class="px-3 mt-4">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-3 flex items-center gap-2">
+                    Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Keuangan (Finance)">
+                        <i class="fas fa-wallet w-6 text-center"></i>
+                        <span class="text-sm font-medium">Keuangan (Finance)</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="SPI & Audit">
+                        <i class="fas fa-shield-alt w-6 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Legal & Kontrak">
+                        <i class="fas fa-balance-scale w-6 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="KSU / Kerjasama Usaha">
+                        <i class="fas fa-handshake w-6 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Direksi (BOD)">
+                        <i class="fas fa-chart-line w-6 text-center"></i>
+                        <span class="text-sm font-medium">Direksi (BOD)</span>
+                    </a>
+                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Bagian Umum (GA)">
+                        <i class="fas fa-building w-6 text-center"></i>
+                        <span class="text-sm font-medium">Bagian Umum (GA)</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- VENDOR (EXTERNAL) -->
+            <div class="px-3 mt-4 mb-4">
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 px-3 flex items-center gap-2">
+                    Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Vendor Portal">
+                        <i class="fas fa-store w-6 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- User Profile -->
+        <div class="p-4 border-t border-slate-800 bg-[#0F172A]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-white">Kasim Ganteng</p>
+                    <p class="text-[10px] text-slate-500">Kasie Pengadaan Barang</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden bg-slate-50">
+        <!-- Header -->
+        <header class="bg-white border-b border-slate-200 px-8 py-5 shrink-0 shadow-sm flex items-center justify-between no-print">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800">Raport Evaluasi Vendor — 7 Dimensi</h2>
+                <p class="text-xs text-slate-500 mt-1">Fase 8: Evaluasi Kinerja Vendor KSO berdasarkan Blueprint KMU</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="window.print()" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-slate-600 transition flex items-center gap-1.5">
+                    <i class="fas fa-print text-slate-400"></i> Cetak Raport
+                </button>
+                <button onclick="loadScorecard()" class="text-xs px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition flex items-center gap-1.5">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </header>
+
+        <!-- Bobot Legenda -->
+        <div class="bg-white border-b border-slate-200 px-8 py-3 flex items-center gap-6 text-xs text-slate-500 no-print">
+            <span class="font-bold text-slate-700">Bobot Dimensi:</span>
+            <span><span class="font-bold text-slate-800">Delivery</span> 20%</span>
+            <span><span class="font-bold text-slate-800">Quality</span> 20%</span>
+            <span><span class="font-bold text-slate-800">Responsiveness</span> 15%</span>
+            <span><span class="font-bold text-slate-800">Pricing</span> 15%</span>
+            <span><span class="font-bold text-slate-800">Compliance</span> 15%</span>
+            <span><span class="font-bold text-slate-800">Financial</span> 10%</span>
+            <span><span class="font-bold text-slate-800">Relationship</span> 5%</span>
+        </div>
+
+        <!-- Scrollable Content -->
+        <main class="flex-1 overflow-y-auto p-6 space-y-5" id="mainContent">
+            <div class="flex items-center justify-center h-48">
+                <div class="text-center">
+                    <i class="fas fa-spinner fa-spin text-slate-300 text-3xl mb-4"></i>
+                    <p class="text-slate-400 text-sm">Memuat data raport vendor...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const DIMS = [
+            { key: 'avg_delivery',     label: 'Delivery',       icon: 'fa-truck',          weight: 20, color: 'blue' },
+            { key: 'avg_quality',      label: 'Quality',        icon: 'fa-check-circle',   weight: 20, color: 'emerald' },
+            { key: 'avg_response',     label: 'Responsiveness', icon: 'fa-bolt',           weight: 15, color: 'cyan' },
+            { key: 'avg_pricing',      label: 'Pricing & Terms',icon: 'fa-tag',            weight: 15, color: 'indigo' },
+            { key: 'avg_compliance',   label: 'Compliance',     icon: 'fa-clipboard-check',weight: 15, color: 'violet' },
+            { key: 'avg_financial',    label: 'Financial Health',icon: 'fa-coins',         weight: 10, color: 'amber' },
+            { key: 'avg_relationship', label: 'Relationship',   icon: 'fa-handshake',      weight: 5,  color: 'rose' },
+        ];
+
+        function setApiStatus(ok) {
+            const dot = document.getElementById('apiDot');
+            const lbl = document.getElementById('apiLabel');
+            if (ok) {
+                dot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
+                lbl.textContent = 'API: CONNECTED';
+                lbl.className = 'text-[10px] text-emerald-400 font-bold uppercase tracking-wider';
+            } else {
+                dot.className = 'w-2 h-2 rounded-full bg-red-500';
+                lbl.textContent = 'API: OFFLINE';
+                lbl.className = 'text-[10px] text-red-400 font-bold uppercase tracking-wider';
+            }
+        }
+
+        function stars(n) {
+            return Array.from({length: 5}, (_, i) =>
+                `<i class="fas fa-star text-sm ${i < Math.round(n) ? 'text-amber-400' : 'text-slate-200'}"></i>`
+            ).join('');
+        }
+
+        function badge(b, c) {
+            return `<span class="inline-flex items-center text-[11px] font-bold px-3 py-1 rounded-full bg-${c}-50 text-${c}-700 border border-${c}-200">${b}</span>`;
+        }
+
+        function dimBar(val, color) {
+            const v = Math.round(val || 0);
+            const barColor = {
+                blue: '#3b82f6', emerald: '#10b981', cyan: '#06b6d4',
+                indigo: '#6366f1', violet: '#8b5cf6', amber: '#f59e0b', rose: '#f43f5e',
+            }[color] || '#3b82f6';
+            return `
+                <div class="flex items-center gap-3">
+                    <div class="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full rounded-full dim-bar" style="width:${v}%; background:${barColor}"></div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-700 w-7 text-right">${v}</span>
+                </div>
+            `;
+        }
+
+        function renderCard(v, idx) {
+            const rankColors = ['text-amber-500', 'text-slate-500', 'text-orange-600'];
+            const rankIcons  = ['fa-trophy', 'fa-medal', 'fa-award'];
+            return `
+                <div class="card-in bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" style="animation-delay:${idx*80}ms">
+                    <!-- Card Header -->
+                    <div class="px-6 pt-6 pb-4 border-b border-slate-100 flex items-start justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center shrink-0 relative">
+                                <span class="text-lg font-black">${(v.company_name_short || v.company_name || '?')[0]}</span>
+                                ${idx < 3 ? `<div class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center">
+                                    <i class="fas ${rankIcons[idx]} text-white text-[9px]"></i>
+                                </div>` : ''}
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900 leading-tight">${v.company_name}</h3>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <div>${stars(v.star_rating)}</div>
+                                    <span class="text-xs text-slate-500 font-semibold">${v.star_rating}/5.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-2">
+                            ${badge(v.badge, v.badge_color)}
+                            <div class="flex items-center gap-1">
+                                <span class="text-3xl font-black text-slate-900">${v.weighted_score}</span>
+                                <span class="text-sm text-slate-400 font-medium">/100</span>
+                            </div>
+                            <span class="text-[10px] text-slate-400">${v.total_evaluations} evaluasi · ${v.total_disputes || 0} dispute · ${v.total_penalties || 0} penalti</span>
+                        </div>
+                    </div>
+
+                    <!-- 7 Dimensions Grid -->
+                    <div class="px-6 py-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        ${DIMS.map(d => {
+                            const val = v[d.key];
+                            const score = Math.round(val || 0);
+                            const isLow = score < 70;
+                            return `
+                                <div class="space-y-1.5">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-6 h-6 rounded-md bg-${d.color}-50 flex items-center justify-center">
+                                                <i class="fas ${d.icon} text-${d.color}-600 text-[10px]"></i>
+                                            </div>
+                                            <span class="text-xs font-semibold text-slate-700">${d.label}</span>
+                                            <span class="text-[9px] text-slate-400 font-bold">${d.weight}%</span>
+                                        </div>
+                                        ${isLow ? `<span class="text-[9px] font-bold text-orange-500 bg-orange-50 px-1.5 py-0.5 rounded-full border border-orange-200">PERLU PERHATIAN</span>` : ''}
+                                    </div>
+                                    ${dimBar(val, d.color)}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <!-- Score Progress Overall -->
+                    <div class="px-6 pb-5">
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-slate-600 uppercase tracking-wider">Skor Total Tertimbang</span>
+                                <span class="text-sm font-black text-slate-900">${v.weighted_score}%</span>
+                            </div>
+                            <div class="h-3 bg-white rounded-full border border-slate-200 overflow-hidden">
+                                <div class="h-full rounded-full dim-bar ${v.weighted_score >= 85 ? 'bg-emerald-500' : v.weighted_score >= 70 ? 'bg-blue-500' : v.weighted_score >= 55 ? 'bg-yellow-500' : 'bg-red-500'}"
+                                     style="width:${v.weighted_score}%"></div>
+                            </div>
+                            <div class="flex justify-between mt-1.5 text-[9px] text-slate-400">
+                                <span>0 — At Risk</span>
+                                <span>55 — Needs Improvement</span>
+                                <span>70 — Good</span>
+                                <span>85 — Excellent →</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadScorecard() {
+            document.getElementById('mainContent').innerHTML = `
+                <div class="flex items-center justify-center h-48">
+                    <div class="text-center">
+                        <i class="fas fa-spinner fa-spin text-slate-300 text-3xl mb-4"></i>
+                        <p class="text-slate-400 text-sm">Memuat data raport vendor...</p>
+                    </div>
+                </div>`;
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/vendor-scorecard');
+                const data = await res.json();
+                setApiStatus(true);
+                if (!data.data || data.data.length === 0) {
+                    document.getElementById('mainContent').innerHTML = `<div class="text-center py-16 text-slate-400"><i class="fas fa-chart-bar text-4xl mb-4"></i><p>Belum ada data evaluasi vendor.</p></div>`;
+                    return;
+                }
+                document.getElementById('mainContent').innerHTML = data.data.map((v, i) => renderCard(v, i)).join('');
+                // Trigger bars animation
+                setTimeout(() => {
+                    document.querySelectorAll('.dim-bar').forEach(el => {
+                        el.style.width = el.style.width; // re-trigger
+                    });
+                }, 50);
+            } catch (e) {
+                setApiStatus(false);
+                document.getElementById('mainContent').innerHTML = `
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-10 text-center">
+                        <i class="fas fa-server text-red-400 text-4xl mb-4"></i>
+                        <h3 class="text-lg font-bold text-red-800 mb-2">Backend tidak aktif</h3>
+                        <p class="text-sm text-red-600">Jalankan <code class="bg-red-100 px-2 py-0.5 rounded font-mono">START_SISTEM_PENGADAAN.bat</code> lalu refresh halaman ini.</p>
+                    </div>`;
+            }
+        }
+
+        window.onload = loadScorecard;
+    </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+# Mind Map: MODULE_3_VENDOR_PORTAL
+
+- MODULE 3: Vendor Portal (Self-reporting, Obligations)
+  - PORTAL ACCESS & AUTHENTICATION
+    - Login Mechanism
+      - Username (email)
+      - Password + 2FA
+      - Session management
+      - Timeout protection
+    - Vendor Dashboard
+      - Home: Quick stats
+      - Profile: Company info
+      - Contracts: Active KSOs
+      - Obligations: To-do items
+      - Reports: History & analytics
+    - User Management
+      - Multiple users per vendor
+      - Role-based access (Admin/User)
+      - Permission control
+      - Activity logging
+    - Security
+      - SSL encryption
+      - Data privacy
+      - Audit trail
+      - Compliance with standards
+  - SELF-REPORTING INTERFACE
+    - KSO Delivery Reporting
+      - Date of delivery
+      - Products delivered
+      - Quantity per item
+      - Quality status (OK/Issue)
+      - Recipient confirmation
+    - Consumables Tracking
+      - Lab: Reagents used
+      - Pharmacy: Medicines dispensed
+      - BMHP: Devices allocated
+      - Stock level after
+    - Performance Data
+      - On-time delivery: Y/N
+      - Quality issues: Y/N (details)
+      - Quantity discrepancies
+      - Special circumstances
+    - Document Upload
+      - Delivery proof (photo/scan)
+      - Receipt confirmation
+      - Quality certificate
+      - Test reports (if applicable)
+    - Form Validation
+      - AI checks completeness
+      - Flag inconsistencies
+      - Request clarification
+      - Accept & record
+  - OBLIGATION MANAGEMENT & TRACKING
+    - Contract Obligations
+      - Minimum delivery frequency
+      - Quality standards
+      - Price lock terms
+      - Documentation requirements
+      - SLA compliance
+    - System-Generated Tasks
+      - Monthly reporting due
+      - Quality certificate renewal
+      - Financial statement update
+      - Insurance verification
+      - Compliance checklist
+    - Dashboard View
+      - Open obligations (to-do)
+      - Due dates & countdown
+      - Completion status
+      - Late items (red flag)
+      - Historical record
+    - Notifications
+      - Email reminder (7 days before)
+      - Urgent alert (1 day before)
+      - Overdue notification
+      - Completion confirmation
+    - Tracking & Enforcement
+      - System tracks completion
+      - AI flags overdue items
+      - Escalation to Kasie
+      - Impact on performance score
+  - INVOICE SUBMISSION & TRACKING
+    - Invoice Creation
+      - Template available on portal
+      - Auto-fill vendor details
+      - Manual entry: Items & amounts
+      - Invoice date & PO reference
+    - Invoice Data
+      - Invoice number (vendor)
+      - Items delivered
+      - Quantities & unit prices
+      - Total amount
+      - Payment terms
+      - Tax information
+    - Supporting Documents
+      - Delivery receipt (BAPB)
+      - Packing slip
+      - Quality certificate
+      - Bank account details
+    - Submission & Tracking
+      - Submit via portal
+      - System confirmation email
+      - Finance receives notification
+      - Status tracking in vendor portal
+    - Payment Status
+      - Pending review
+      - Under 3-way match
+      - Approved for payment
+      - Payment processed
+      - Paid confirmation
+  - COMMUNICATION & SUPPORT
+    - Announcements
+      - System maintenance notice
+      - Policy changes
+      - New requirements
+      - Best practices
+    - Q&A Support
+      - FAQ section
+      - Video tutorials
+      - User guides
+      - Contact info (Kasie, Finance)
+    - Messaging
+      - Vendor → Kasie messages
+      - Issue reporting
+      - Clarification requests
+      - Status inquiries
+    - Escalation
+      - Unresolved issues
+      - Urgent requests
+      - Escalate to Manager
+      - Documentation & follow-up
+  - VENDOR DASHBOARD & ANALYTICS
+    - Performance Scorecard
+      - Current score (by dimension)
+      - Trend (monthly)
+      - Benchmark (vs category avg)
+      - Ranking (position among peers)
+    - Order History
+      - Active POs/Contracts
+      - Historical deliveries
+      - Invoice status
+      - Payment history
+    - Reports
+      - Monthly delivery summary
+      - Revenue report
+      - Performance trends
+      - Compliance status
+    - Insights
+      - Improvement opportunities
+      - Peer benchmarking
+      - Recommendations from system
+  - DOCUMENT MANAGEMENT
+    - Document Types
+      - Contracts (KSO, PO, SPK)
+      - Certificates (ISO, Quality)
+      - Insurance documentation
+      - Financial statements
+      - Compliance certificates
+    - Upload & Storage
+      - Secure file upload
+      - File type validation
+      - Version control
+      - Expiry tracking
+    - Notifications
+      - Certificate expiry alert (30 days)
+      - Required renewal reminders
+      - Overdue document warning
+    - Visibility
+      - Vendor can access own docs
+      - Kasie/Finance can view
+      - Audit trail of access
+  - MOBILE ACCESS
+    - Mobile App
+      - iOS & Android
+      - Same functionality as web
+      - Offline capability (limited)
+      - Push notifications
+    - Use Cases
+      - Quick status check
+      - Obligation tracking
+      - Document uploads (photo)
+      - Receive alerts
+    - Benefits
+      - Convenient access in field
+      - Real-time notifications
+      - Faster reporting
+  - INTEGRATION WITH PROCUREMENT
+    - Data Exchange
+      - PO data sent to vendor
+      - Delivery reported back
+      - Performance data collected
+      - Invoice linked to PO
+    - Workflow
+      - PO issuance → Vendor notification
+      - Delivery report → Finance alert
+      - Invoice → 3-way match
+      - Payment confirmation → Vendor notification
+    - Real-time Sync
+      - KSO stock levels
+      - Consumption data
+      - Pending deliveries
+      - Outstanding invoices
+  - COMPLIANCE & SECURITY
+    - Data Security
+      - Encryption in transit
+      - Encryption at rest
+      - Access control
+      - Regular backups
+    - Audit Trail
+      - All actions logged
+      - User identification
+      - Timestamp recorded
+      - Changes tracked
+    - Compliance Rules
+      - Mandatory fields
+      - Required documents
+      - Approval workflows
+      - SLA enforcement
+    - Privacy
+      - Vendor data protected
+      - Confidential info secured
+      - Restricted access
+      - GDPR/Local compliance

@@ -1,0 +1,177 @@
+# Mind Map: MODULE_1_PROCUREMENT_PLATFORM
+
+- MODULE 1: Procurement Platform (Tender → Quote → PO → Payment)
+  - REQUISITION FLOW
+    - SBU Creates Request
+      - Daan Umum: PP (Permintaan Pembelian)
+      - Daan Barang Investasi: IMT (Inventory Material Request)
+      - Daan Jasa: SPPJ (Surat Permintaan Pekerjaan Jasa)
+    - Information Capture
+      - Item/Service description
+      - Quantity & Specification
+      - Required delivery date
+      - Budget code & amount
+      - Cost center
+    - AI Validation
+      - Budget availability check
+      - Approval authority validation
+      - Specification compliance
+      - Historical price check
+    - Approval Workflow
+      - SBU Head approval
+      - Budget manager review
+      - Finance pre-check
+      - Ready for tender
+  - APPROVAL WORKFLOW
+    - Authority Matrix (Daan Umum)
+      - ≤10M: Kasie + Manager
+      - >10-25M: + GM
+      - >25-50M: + Direktur Ops
+      - >50-100M: + Direktur Utama
+    - Authority Matrix (Daan Jasa)
+      - 1-25M: Kasie + Manager
+      - >25-100M: + GM
+      - >100M-1B: + Direktur Ops
+      - >1B: + Direktur Utama (+ 5% bank guarantee)
+    - Approval Rules
+      - Sequential approval required
+      - No skipping authority levels
+      - Time-based escalation
+      - Override approval trail
+    - System Enforcement
+      - AI validates approval authority
+      - System blocks if insufficient authority
+      - Audit trail of all approvals
+  - TENDER PROCESS
+    - Tender Preparation
+      - SPPH (Surat Permintaan Penawaran) creation
+      - HPS (Harga Perkiraan Sementara) calculation
+      - Specification finalization
+      - Timeline setting
+    - Vendor Invitation
+      - Select vendors from master database
+      - Send SPPH via system
+      - Email notification to vendors
+      - Portal access for quote submission
+    - Quote Collection
+      - SJPH (Surat Jawaban Penawaran) submission
+      - Quote deadline management
+      - Document verification
+      - Completeness check
+    - Bid Tabulation
+      - Quote compilation
+      - Price comparison
+      - Format validation
+      - AI-assisted evaluation
+    - SLA: 14 hari (typical)
+  - DIRECT APPOINTMENT (Alternative)
+    - Criteria for Direct
+      - Emergency situations
+      - Single source availability
+      - Specialized services
+      - Prev vendor continuation
+    - Process
+      - Vendor selection
+      - Quotation request
+      - Price negotiation
+      - Final approval
+    - Documentation
+      - Justification memo
+      - Approval from authority
+      - Final quote
+    - SLA: 5 hari (faster)
+  - VENDOR SCORING & SELECTION
+    - Scoring Criteria
+      - Harga (Price): 25%
+      - Kualitas (Quality): 20%
+      - Delivery/Maintenance: 20%
+      - User Need Fulfillment: 20%
+      - Brand/Certification: 15%
+    - Scoring Process
+      - Create evaluation form
+      - Assign scoring panel
+      - Individual scoring
+      - Consensus discussion
+      - Final scoring
+    - Scoring System
+      - 1-5 point scale
+      - Weighted calculation
+      - Total score ranking
+    - Winner Selection
+      - Highest score vendor selected
+      - Price acceptability check (vs HPS)
+      - Final approval
+    - Output: Winning vendor + final price
+  - PO GENERATION & ISSUANCE
+    - PO Preparation
+      - Vendor details (from master DB)
+      - Item specifications
+      - Quantity & unit price
+      - Total amount
+      - Delivery requirements
+      - Payment terms
+    - PO Content
+      - PO number (auto-generated)
+      - Vendor name & address
+      - Delivery address (SBU location)
+      - Item line items
+      - Terms & conditions
+      - Payment schedule
+    - Approvals
+      - Kasie review
+      - Manager approval
+      - Finance final check
+      - System sign-off
+    - Issuance
+      - PO PDF generation
+      - Vendor notification
+      - Vendor portal update
+      - Finance recording (commitment)
+    - Output: Signed PO + vendor acknowledgment
+  - SLA TRACKING
+    - Cycle SLAs
+      - PP approval: 2 hours
+      - Tender: 14 days
+      - Direct: 5 days
+      - PO generation: 1 day
+    - Monitoring
+      - Real-time timer in system
+      - Escalation alerts at 80% time used
+      - Dashboard visibility
+    - Reporting
+      - SLA compliance rate
+      - Bottleneck analysis
+      - Performance trends
+  - INTEGRATION POINTS
+    - Systems Connected
+      - Finance (budget check)
+      - Vendor Master DB
+      - Warehouse (delivery address)
+      - SIMRS (integration)
+    - Data Flow
+      - Budget data in
+      - Vendor data in
+      - PO data out to Finance
+      - Delivery tracking
+    - Notifications
+      - Email to SBU on approval
+      - Email to vendor on PO issuance
+      - Portal update for all parties
+  - KEY SUCCESS FACTORS
+    - Data Quality
+      - Complete vendor master DB
+      - Accurate specifications
+      - Correct budget codes
+    - Process Discipline
+      - Follow approval matrix
+      - Complete documentation
+      - Timely actions
+    - AI Guardian Role
+      - Validate specifications
+      - Check authority
+      - Suggest improvements
+      - Alert on issues
+    - Stakeholder Engagement
+      - SBU cooperation
+      - Vendor responsiveness
+      - Finance coordination

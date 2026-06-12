@@ -1,0 +1,43 @@
+# Mind Map – A_INTERNAL_DEPT_PENGADAAN
+
+- FASE_4_PELAKSANAAN_PENGADAAN/
+  - PROCUREMENT_PLATFORM_BLUEPRINT_v2.0.md
+- FASE_8_EVALUASI_VENDOR/
+  - COMPREHENSIVE_VENDOR_EVALUATION_REPORTING_SYSTEM.md
+  - Template_Skoring_Pengadaan.xlsx
+- LAPISAN_AI_PENJAGA_SPO/
+  - AI_PROCEDURE_COMPLIANCE_GUARDIAN.md
+  - SOP_UPLOAD_GUIDE.md
+  - SPO dan Pedoman/
+    - Pedoman Rev/
+      - PEDOMA PENGADAAN PT KMU Rev.pdf
+      - Pedoman Pengadaan rev1.docx.pdf
+    - SPO Pengadaan 2026/
+      - Daan Jasa - SPO Pengadaan Jasa Evaluasi Vendor.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Konstruksi Swakelola.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Konstruksi.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Konsultan.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Pemborongan Pekerjaan (Out Sourching).pdf
+      - Daan Jasa - SPO Pengadaan Jasa Penunjukan Langsung.pdf
+      - Daan Umum - SOP AANWIJZING.pdf
+      - Daan Umum - SOP BIDDING TABULASI.pdf
+      - Daan Umum - SOP EVALUASI VENDOR PENGADAAN UMUM.pdf
+      - Daan Umum - SOP PENGADAAN UMUM DAN INVESTASI.pdf
+    - SPO Pengadaan 2026 Rev1/
+      - Alur Pengadaan Barang dan Investasi.pdf
+      - Daan Jasa - SPO Evaluasi Vendor Pengadaan Jasa.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Konstruksi.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Konsultan.pdf
+      - Daan Jasa - SPO Pengadaan Jasa Pemborongan Pekerjaan (Out Sourching).pdf
+      - Daan Jasa -SPO Pengadaan Jasa Swakelola.pdf
+      - SPO DAAN Aanwijding rev1.pdf
+      - SPO DAAN Disentralisasi.pdf
+      - SPO DAAN Investasi & Non Investasi rev1.pdf
+      - SPO DAAN Sentralisasi.pdf
+      - SPO Daan Bidding Tabulasi rev1.pdf
+    - pedoman pengadaan.pdf
+- LAPISAN_COMMAND_CENTER/
+  - COMMAND_CENTER_DASHBOARD_SPEC.md
+- TEKNIS_IMPLEMENTASI/
+  - 001-database-init.sql
+  - IMPLEMENTATION_CODE_READY.md

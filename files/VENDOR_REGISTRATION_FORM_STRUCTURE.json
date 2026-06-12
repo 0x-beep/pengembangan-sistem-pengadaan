@@ -1,0 +1,544 @@
+{
+  "form_metadata": {
+    "form_name": "PT KMU Registrasi Vendor KMU Form",
+    "form_version": "1.0",
+    "form_type": "Registrasi Vendor KMU",
+    "created_date": "2025-06-04",
+    "valid_for_regions": ["Balikpapan", "Bontang", "Samarinda", "Kutai Timur", "Bengalon"]
+  },
+  "form_instructions": {
+    "submission_method": "Upload Excel file OR submit PDF fillable form",
+    "required_fields": "All fields marked with * are required",
+    "document_submission": "Upload separate documents as PDF files",
+    "deadline": "Complete within 1 week of application start",
+    "contact": "vendor-registration@kmu.co.id"
+  },
+  "section_1_company_information": {
+    "company_name": {
+      "field_type": "text",
+      "required": true,
+      "max_length": 255,
+      "placeholder": "PT Medik Jaya Indonesia",
+      "database_column": "vendors.company_name"
+    },
+    "company_name_short": {
+      "field_type": "text",
+      "required": false,
+      "max_length": 50,
+      "placeholder": "PT Medik Jaya",
+      "database_column": "vendors.company_name_short"
+    },
+    "business_license_number_siu": {
+      "field_type": "text",
+      "required": true,
+      "max_length": 50,
+      "placeholder": "SIU-123456",
+      "database_column": "vendors.sio"
+    },
+    "tax_id_npwp": {
+      "field_type": "text",
+      "required": true,
+      "max_length": 20,
+      "placeholder": "12.345.678.9-012.345",
+      "database_column": "vendors.npwp"
+    },
+    "company_registration_date": {
+      "field_type": "date",
+      "required": true,
+      "database_column": "vendors.registration_date"
+    },
+    "years_in_business": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "5",
+      "database_column": "calculated_field"
+    },
+    "annual_revenue_last_year_idr": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "5000000000",
+      "database_column": "vendors.metadata.annual_revenue"
+    }
+  },
+  "section_2_vendor_type_category": {
+    "vendor_type": {
+      "field_type": "dropdown",
+      "required": true,
+      "options": ["barang", "jasa"],
+      "database_column": "vendors.vendor_type"
+    },
+    "vendor_category": {
+      "field_type": "dropdown",
+      "required": true,
+      "options": [
+        "alkes",
+        "farmasi",
+        "umum",
+        "bahan_habis_pakai",
+        "bahan_medis_habis_pakai",
+        "sewa",
+        "proyek_pembangunan",
+        "renovasi",
+        "layanan_profesional"
+      ],
+      "database_column": "vendors.vendor_category"
+    },
+    "primary_service_type": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Medical Equipment Supply",
+      "database_column": "vendors.metadata.primary_service"
+    },
+    "secondary_service_types": {
+      "field_type": "text",
+      "required": false,
+      "placeholder": "Maintenance, Spare Parts",
+      "database_column": "vendors.metadata.secondary_services"
+    }
+  },
+  "section_3_contact_information": {
+    "phone_main": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "021-123-4567",
+      "database_column": "vendors.phone"
+    },
+    "phone_mobile": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "0812-3456-7890",
+      "database_column": "vendors.metadata.phone_mobile"
+    },
+    "email_company": {
+      "field_type": "email",
+      "required": true,
+      "placeholder": "sales@medikjaya.co.id",
+      "database_column": "vendors.email"
+    },
+    "website": {
+      "field_type": "url",
+      "required": false,
+      "placeholder": "www.medikjaya.co.id",
+      "database_column": "vendors.website"
+    },
+    "office_address_street": {
+      "field_type": "text",
+      "required": true,
+      "max_length": 255,
+      "placeholder": "Jl. Sudirman No. 123",
+      "database_column": "vendors.address_street"
+    },
+    "office_address_city": {
+      "field_type": "dropdown",
+      "required": true,
+      "options": ["Balikpapan", "Bontang", "Samarinda", "Kutai Timur", "Jakarta", "Surabaya", "Other"],
+      "database_column": "vendors.address_city"
+    },
+    "office_address_province": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Kalimantan Timur",
+      "database_column": "vendors.address_province"
+    },
+    "office_address_postal_code": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "75123",
+      "database_column": "vendors.address_postal_code"
+    }
+  },
+  "section_4_key_contact_person": {
+    "contact_person_name": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Budi Santoso",
+      "database_column": "vendors.contact_person_name"
+    },
+    "contact_person_title": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Sales Manager",
+      "database_column": "vendors.contact_person_title"
+    },
+    "contact_person_phone": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "0812-3456-7890",
+      "database_column": "vendors.contact_person_phone"
+    },
+    "contact_person_email": {
+      "field_type": "email",
+      "required": true,
+      "placeholder": "budi@medikjaya.co.id",
+      "database_column": "vendors.contact_person_email"
+    }
+  },
+  "section_5_banking_information": {
+    "bank_name": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Bank Mandiri",
+      "database_column": "vendors.bank_name"
+    },
+    "bank_account_number": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "1234567890123456",
+      "database_column": "vendors.bank_account_number"
+    },
+    "bank_account_holder": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "PT Medik Jaya Indonesia",
+      "database_column": "vendors.bank_account_holder"
+    },
+    "bank_account_type": {
+      "field_type": "dropdown",
+      "required": true,
+      "options": ["Current Account", "Savings Account"],
+      "database_column": "vendors.metadata.bank_account_type"
+    }
+  },
+  "section_6_operational_capability": {
+    "warehouse_location": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Balikpapan",
+      "database_column": "vendors.metadata.warehouse_location"
+    },
+    "warehouse_address": {
+      "field_type": "text",
+      "required": true,
+      "max_length": 255,
+      "placeholder": "Jl. Industri No. 45, Balikpapan",
+      "database_column": "vendors.metadata.warehouse_address"
+    },
+    "warehouse_size_sqm": {
+      "field_type": "number",
+      "required": false,
+      "placeholder": "500",
+      "database_column": "vendors.metadata.warehouse_size"
+    },
+    "can_serve_balikpapan": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.can_serve_balikpapan",
+      "note": "MANDATORY - Cannot register without this"
+    },
+    "balikpapan_delivery_days": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "1",
+      "max": 2,
+      "database_column": "vendors.metadata.balikpapan_delivery_days"
+    },
+    "can_serve_bontang": {
+      "field_type": "checkbox",
+      "required": false,
+      "database_column": "vendors.metadata.can_serve_bontang"
+    },
+    "bontang_delivery_days": {
+      "field_type": "number",
+      "required": false,
+      "placeholder": "2",
+      "database_column": "vendors.metadata.bontang_delivery_days"
+    },
+    "can_serve_samarinda": {
+      "field_type": "checkbox",
+      "required": false,
+      "database_column": "vendors.metadata.can_serve_samarinda"
+    },
+    "can_serve_kutai_timur": {
+      "field_type": "checkbox",
+      "required": false,
+      "database_column": "vendors.metadata.can_serve_kutai_timur"
+    },
+    "has_delivery_vehicles": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.has_delivery_vehicles"
+    },
+    "number_of_vehicles": {
+      "field_type": "number",
+      "required": false,
+      "placeholder": "3",
+      "database_column": "vendors.metadata.number_of_vehicles"
+    },
+    "inventory_management_system": {
+      "field_type": "dropdown",
+      "required": true,
+      "options": ["Digital System", "Manual Tracking", "Spreadsheet"],
+      "database_column": "vendors.metadata.inventory_system"
+    }
+  },
+  "section_7_customer_service": {
+    "customer_service_available": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.has_customer_service"
+    },
+    "customer_service_hours": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "8 AM - 5 PM Mon-Fri",
+      "database_column": "vendors.metadata.service_hours"
+    },
+    "emergency_contact_available": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.has_emergency_contact"
+    },
+    "response_time_hours": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "4",
+      "database_column": "vendors.metadata.response_time_hours"
+    }
+  },
+  "section_8_financial_information": {
+    "working_capital_idr": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "1000000000",
+      "database_column": "vendors.metadata.working_capital"
+    },
+    "has_bank_credit_line": {
+      "field_type": "checkbox",
+      "required": false,
+      "database_column": "vendors.metadata.has_credit_line"
+    },
+    "credit_line_amount_idr": {
+      "field_type": "number",
+      "required": false,
+      "placeholder": "2000000000",
+      "database_column": "vendors.metadata.credit_line_amount"
+    },
+    "financial_statements_attached": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.financial_docs_attached",
+      "note": "Last 2 years"
+    }
+  },
+  "section_9_insurance_certifications": {
+    "has_liability_insurance": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.has_liability_insurance"
+    },
+    "liability_insurance_amount_idr": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "1000000000",
+      "database_column": "vendors.metadata.liability_insurance_amount"
+    },
+    "has_transit_insurance": {
+      "field_type": "checkbox",
+      "required": true,
+      "database_column": "vendors.metadata.has_transit_insurance"
+    },
+    "has_iso_certification": {
+      "field_type": "checkbox",
+      "required": false,
+      "database_column": "vendors.metadata.has_iso_certification"
+    },
+    "iso_types": {
+      "field_type": "text",
+      "required": false,
+      "placeholder": "ISO 13485, ISO 9001",
+      "database_column": "vendors.metadata.iso_types"
+    },
+    "has_product_certification": {
+      "field_type": "checkbox",
+      "required": false,
+      "database_column": "vendors.metadata.has_product_certification"
+    },
+    "product_certification_details": {
+      "field_type": "text",
+      "required": false,
+      "placeholder": "Medical Device Certification KEMKES",
+      "database_column": "vendors.metadata.product_certifications"
+    }
+  },
+  "section_10_references": {
+    "customer_reference_1": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Company name, contact person, phone, years relationship",
+      "database_column": "vendors.metadata.customer_ref_1"
+    },
+    "customer_reference_2": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Company name, contact person, phone, years relationship",
+      "database_column": "vendors.metadata.customer_ref_2"
+    },
+    "customer_reference_3": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Company name, contact person, phone, years relationship",
+      "database_column": "vendors.metadata.customer_ref_3"
+    },
+    "supplier_reference_1": {
+      "field_type": "text",
+      "required": false,
+      "placeholder": "Manufacturer/Distributor name, contact, relationship",
+      "database_column": "vendors.metadata.supplier_ref_1"
+    },
+    "supplier_reference_2": {
+      "field_type": "text",
+      "required": false,
+      "placeholder": "Manufacturer/Distributor name, contact, relationship",
+      "database_column": "vendors.metadata.supplier_ref_2"
+    }
+  },
+  "section_11_compliance_declarations": {
+    "years_in_current_industry": {
+      "field_type": "number",
+      "required": true,
+      "placeholder": "5",
+      "database_column": "vendors.metadata.industry_experience"
+    },
+    "have_legal_issues": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Checking this means: YES we have/had legal issues",
+      "database_column": "vendors.metadata.has_legal_issues"
+    },
+    "legal_issues_details": {
+      "field_type": "textarea",
+      "required": false,
+      "placeholder": "Describe any legal issues, fines, or disputes",
+      "database_column": "vendors.metadata.legal_issues_detail"
+    },
+    "declaration_truthfulness": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "I declare all information is true and complete",
+      "database_column": "vendors.metadata.declaration_truthfulness"
+    }
+  },
+  "section_12_documents_checklist": {
+    "document_business_license": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Business License (SIU) attached",
+      "database_column": "vendors.metadata.doc_business_license"
+    },
+    "document_tax_id": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Tax ID (NPWP) attached",
+      "database_column": "vendors.metadata.doc_tax_id"
+    },
+    "document_company_registration": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Company Registration attached",
+      "database_column": "vendors.metadata.doc_company_registration"
+    },
+    "document_bank_reference": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Bank Reference Letter attached",
+      "database_column": "vendors.metadata.doc_bank_reference"
+    },
+    "document_financial_statements": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Financial Statements (last 2 years) attached",
+      "database_column": "vendors.metadata.doc_financial_statements"
+    },
+    "document_insurance": {
+      "field_type": "checkbox",
+      "required": true,
+      "label": "Insurance Certificates attached",
+      "database_column": "vendors.metadata.doc_insurance"
+    },
+    "document_certifications": {
+      "field_type": "checkbox",
+      "required": false,
+      "label": "Product/ISO Certifications attached",
+      "database_column": "vendors.metadata.doc_certifications"
+    },
+    "document_warehouse_photos": {
+      "field_type": "checkbox",
+      "required": false,
+      "label": "Warehouse photos attached",
+      "database_column": "vendors.metadata.doc_warehouse_photos"
+    }
+  },
+  "section_13_submission_info": {
+    "submission_date": {
+      "field_type": "date",
+      "required": true,
+      "default": "today",
+      "database_column": "activity_log.action_date"
+    },
+    "submitting_person_name": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Full name of person submitting",
+      "database_column": "vendors.metadata.submitted_by_name"
+    },
+    "submitting_person_title": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Director, Owner, Manager",
+      "database_column": "vendors.metadata.submitted_by_title"
+    },
+    "submitting_person_phone": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "0812-3456-7890",
+      "database_column": "vendors.metadata.submitted_by_phone"
+    },
+    "submitting_person_email": {
+      "field_type": "email",
+      "required": true,
+      "placeholder": "email@company.co.id",
+      "database_column": "vendors.metadata.submitted_by_email"
+    }
+  },
+  "section_14_signature": {
+    "company_authorized_signatory": {
+      "field_type": "text",
+      "required": true,
+      "placeholder": "Name of authorized signer (Director/Owner)",
+      "database_column": "vendors.metadata.authorized_signatory"
+    },
+    "signature_date": {
+      "field_type": "date",
+      "required": true,
+      "database_column": "vendors.metadata.signature_date"
+    },
+    "company_seal": {
+      "field_type": "checkbox",
+      "required": false,
+      "label": "Company seal/stamp applied (for physical copies)",
+      "database_column": "vendors.metadata.has_company_seal"
+    }
+  },
+  "system_fields_auto_generated": {
+    "vendor_id": {
+      "description": "Generated automatically by system",
+      "format": "VND-001, VND-002, etc",
+      "database_column": "vendors.vendor_id"
+    },
+    "application_reference_number": {
+      "description": "Generated automatically",
+      "format": "APP-2025-06-001",
+      "database_column": "vendors.metadata.application_ref"
+    },
+    "application_status": {
+      "description": "Initial status",
+      "value": "Submitted",
+      "database_column": "vendors.vendor_status"
+    },
+    "registration_date": {
+      "description": "Date form submitted",
+      "auto_filled": true,
+      "database_column": "vendors.registration_date"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+# Mind Map: MASTER_MINDMAP_3_STAKEHOLDER_ECOSYSTEM
+
+- Stakeholder Ecosystem - Pengadaan KMU
+  - 🎯 DIREKSI (Strategic Leadership)
+    - Direktur Utama
+      - Role: Final Approval >100M
+      - Interest: Strategic Value, ROI
+      - Input: Command Center Dashboard
+      - Output: Major Decisions
+    - Direktur Operasi & Pengembangan
+      - Role: Approval 25-100M
+      - Interest: Operational Efficiency
+      - Input: Status Reports, Alerts
+      - Output: Approvals, Directives
+    - Direktur Keuangan
+      - Role: Finance Oversight
+      - Interest: Budget, Cash Flow
+      - Input: Financial Reports
+      - Output: Payment Approval, Budget Control
+  - 📋 DEPT. PENGADAAN (Core)
+    - Kasie Pengadaan Barang
+      - Role: Manage Goods Procurement
+      - Approval: ≤25M (with Manager)
+      - Activities: Tender, PO, Vendor Selection
+      - Tools: E-Procurement, AI Guardian
+    - Kasie Pengadaan Jasa
+      - Role: Manage Services
+      - Approval: ≤25M (with Manager)
+      - Activities: Konsultan, Konstruksi, Pemborongan, Swakelola
+      - Tools: E-Procurement, Contract Management
+    - Manager Pengadaan
+      - Role: Supervisor, Approval 10-25M
+      - Activities: Review, Validation, Escalation
+      - Tools: Dashboard, Approval Workflow
+    - Staff Pengadaan
+      - Role: Operational Execution
+      - Activities: Tender Prep, Bid Evaluation, PO Generation
+      - Tools: E-Procurement, AI Guidance
+  - 🏥 SBU & UNIT KERJA (Requestors)
+    - RSUD/Bedah/ICU/etc
+      - Role: Request goods/services
+      - Activities: Create PP, Specify needs
+      - Input: Budget allocation
+      - Output: PP, Receive goods
+    - Lab/Farmasi/BMHP
+      - Role: Request + KSO Management
+      - Activities: PP creation, KSO setup, Self-reporting
+      - Special: Consumables tracking via Vendor Portal
+    - Warehouse/Logistics
+      - Role: Receive & Store
+      - Activities: BAPB, Quality Check, Inventory Update
+    - Quality Control
+      - Role: Inspection & Verification
+      - Activities: QC, BAPB sign-off
+  - ⚖️ GOVERNANCE & CONTROL
+    - Komite Anggaran
+      - Role: Budget Review & Approval
+      - Activities: Budget ceiling, Special approvals
+      - Input: Budget reports
+    - SPI (Satuan Pengawasan Internal)
+      - Role: Internal Audit & Compliance
+      - Activities: Audit, Compliance checking, Risk assessment
+      - Input: Audit trail, Compliance reports
+      - Tool: AI Guardian Audit Trail
+    - Legal & Compliance
+      - Role: Contract review, Legal check
+      - Activities: PKS review, Risk assessment
+  - 💰 FINANCE & SUPPORT
+    - Finance Department
+      - Role: Payment processing
+      - Activities: Invoice verification, GL posting, Payment execution
+      - Tool: 3-Way Match system
+    - Accounting
+      - Role: Record keeping
+      - Activities: AR/AP, Budget tracking
+    - HR/Admin
+      - Role: Support functions
+      - Activities: Vendor onboarding, Training
+    - IT Department
+      - Role: System maintenance
+      - Activities: Platform management, Support
+  - 🌐 EXTERNAL STAKEHOLDERS
+    - VENDORS (Suppliers)
+      - Categories: Barang, Jasa, Konstruksi, Konsultan
+      - Role: Supply goods/services
+      - Activities: Register, Quote, Deliver, Invoice, KSO Reporting
+      - Portal: Vendor Portal (Self-Service)
+      - KSO: Lab, Farmasi, BMHP contracts
+    - REGULATORY BODIES
+      - BPK (Badan Pemeriksa Keuangan)
+      - Kemenkeu (Ministry of Finance)
+      - Permenkes (Health Ministry)
+      - LKPP (Procurement Policy)
+    - PARTNERS & INTEGRATIONS
+      - Bank (Payment processing)
+      - Insurance (Vendor coverage)
+      - Consultants (Support)
+  - 🔗 SYSTEM INTEGRATIONS
+    - Finance Systems
+      - ERP / Finance System
+      - GL Accounting
+      - Budget Module
+    - Operational Systems
+      - SIMRS (Hospital System)
+      - Warehouse / Inventory
+      - HR / Payroll
+    - Communication
+      - Email Notifications
+      - SMS Alerts
+      - Dashboard Updates
+    - Reporting
+      - BI Tools
+      - Export Functions
+      - API Integrations
+  - STAKEHOLDER SUMMARY
+    - Internal: 14+ stakeholders
+      - Direksi (3)
+      - Dept. Pengadaan (4)
+      - SBU/Units (5+)
+      - Governance (3)
+      - Finance/Support (4+)
+    - External: Vendors + Regulators
+    - Key Principle: Role-Based Access
+      - Different views for different users
+      - Approval workflow based on amount
+      - Transparency for all stakeholders
+    - Communication
+      - Real-time notifications
+      - Status visibility
+      - Escalation alerts

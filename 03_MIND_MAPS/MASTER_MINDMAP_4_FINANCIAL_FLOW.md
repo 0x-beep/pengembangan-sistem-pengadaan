@@ -1,0 +1,169 @@
+# Mind Map: MASTER_MINDMAP_4_FINANCIAL_FLOW
+
+- Financial Flow - Pengadaan KMU
+  - PLANNING PHASE (Fase 1)
+    - Budget Inputs
+      - RKAP (Rencana Kerja Anggaran Perusahaan)
+      - RAB (Rencana Anggaran Biaya)
+      - SBU Request
+    - Budget Processing
+      - Total Available Budget
+      - Department Allocation
+      - Project Budgeting
+    - Financial Output
+      - Budget Ceiling per SBU
+      - Spending Authority Levels
+      - Timeline
+    - System: Finance/ERP
+    - Approval: Komite Anggaran, Direksi
+  - REQUISITION PHASE (Fase 3)
+    - SBU Creates Request
+      - PP (Permintaan Pembelian)
+      - IMT (Inventory Request)
+      - SPPJ (Surat Permintaan Pekerjaan Jasa)
+    - Financial Info
+      - Requested Amount
+      - Budget Account
+      - Cost Center
+      - Approval Limit
+    - AI Validation
+      - Budget availability check
+      - Approval authority check
+      - Compliance check
+    - Output: Approved PP
+  - PROCUREMENT PHASE (Fase 4)
+    - Tender/Quotation
+      - SPPH (Surat Permintaan Penawaran)
+      - Quotes received from vendors
+      - HPS (Harga Perkiraan Sementara)
+    - Bid Evaluation
+      - Price comparison
+      - Scoring (Price 25%)
+      - Total Cost of Ownership
+    - Vendor Selection
+      - Winner announcement
+      - Final negotiated price
+      - PO amount finalized
+    - Financial Record
+      - Commitment Register (Komitmen)
+      - Purchase Order (PO) amount
+  - CONTRACT PHASE (Fase 5)
+    - Contract Documents
+      - PO (Purchase Order) - Daan Umum
+      - SPK (Surat Perintah Kerja) - Daan Jasa
+      - PKS (Perjanjian Kerja Sama)
+    - Payment Terms
+      - DP (Down Payment) %
+      - Milestone Payments
+      - Final Payment %
+      - Payment Method
+      - Due Date
+    - Financial Recording
+      - GL Account assigned
+      - Cost center allocation
+      - Budget earmark
+  - DELIVERY & RECEIPT (Fase 6)
+    - Goods/Services Arrival
+      - Physical receipt at warehouse
+      - Service completion
+    - BAPB (Berita Acara)
+      - Quantity verification
+      - Quality inspection
+      - Condition check
+      - Signed BAPB
+    - Financial Status
+      - Ready for Invoice
+      - Actual amount confirmed
+  - INVOICE & PAYMENT (Fase 7)
+    - Vendor Submits Invoice
+      - Invoice document
+      - Invoice amount
+      - Invoice date
+      - Due date
+    - 3-Way Match
+      - PO vs Invoice (amount match)
+      - BAPB vs Invoice (quantity match)
+      - Invoice vs GL (account match)
+    - Payment Processing
+      - DP Payment (if applicable)
+      - Hold period (if any)
+      - Final payment authorization
+      - Check/Bank transfer
+      - Payment recording (GL post)
+    - Approval
+      - Finance Manager review
+      - CFO approval (if > limit)
+    - SLA: 30 hari
+  - 💵 CASH FLOW MANAGEMENT
+    - Working Capital
+      - Days Payable Outstanding (DPO)
+      - Current target: 45 days
+      - Optimized: 30 days (with AI)
+      - Cash freed up: Rp 1.67B
+    - Payment Cycles
+      - DP payment (if 10% upfront)
+      - Milestone payments
+      - Final payment (after BAPB)
+    - Early Payment Discounts
+      - Vendors offer 2% for payment in 10 days
+      - Finance evaluates cost-benefit
+      - Savings opportunity: Rp 200M/year
+    - Cash Forecasting
+      - Pending invoices
+      - Payment schedule
+      - Vendor payment status
+  - 📊 BUDGET TRACKING & CONTROL
+    - Budget Status
+      - Allocated: Rp X (from RKAP)
+      - Committed: Rp Y (from POs)
+      - Spent: Rp Z (from Invoices paid)
+      - Available: Rp (X - Y - Z)
+    - Monthly Reconciliation
+      - Compare budget vs actual
+      - Variance analysis
+      - Forecast vs actual
+      - Reallocation if needed
+    - Reports
+      - Budget execution report
+      - Spend analysis by vendor
+      - Spend analysis by category
+      - Deviations & variances
+    - Tools: Finance Dashboard, Analytics
+  - 💡 COST OPTIMIZATION
+    - Vendor Negotiation
+      - Price comparison
+      - Volume discounts
+      - Payment term optimization
+      - Estimated savings: Rp 2.5B/year
+    - Procurement Strategy
+      - Direct appointment for small items
+      - Tender for high-value items
+      - Consolidated purchasing (multi-SBU)
+    - Vendor Performance
+      - Quality improvements = less rework cost
+      - On-time delivery = less expedite cost
+      - Compliance = fewer penalty costs
+    - Financial Impact
+      - Error prevention: Rp 7.3B/year
+      - Vendor improvement: Rp 4.2B/year
+      - Cash flow optimization: Rp 242M/year
+  - FINANCIAL SUMMARY
+    - Annual Procurement Volume
+      - Daan Umum (Goods): ~Rp X per year
+      - Daan Jasa (Services): ~Rp Y per year
+      - Total: ~Rp Z per year
+    - Key Financial Metrics
+      - Vendor count: 200+ active
+      - Monthly transactions: ~100
+      - Avg transaction: Rp 50-500M
+    - Year 1 AI Impact
+      - Error prevention: Rp 7.3B
+      - Process efficiency: Rp 2.4B
+      - Vendor optimization: Rp 4.2B
+      - Cash flow: Rp 242M
+      - TOTAL: Rp 14.57B benefit
+    - System Benefit
+      - Real-time visibility to Direksi
+      - Faster payment cycles
+      - Better vendor management
+      - Lower financial risk
