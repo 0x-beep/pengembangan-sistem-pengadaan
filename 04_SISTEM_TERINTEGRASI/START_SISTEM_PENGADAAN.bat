@@ -19,6 +19,7 @@ start requisition_form.html
 start approval_dashboard.html
 start arm_portal.html
 start kso_evaluation.html
+start swakelola_dashboard.html
 start kso_management_dashboard.html
 start vendor_portal.html
 start spi_audit_dashboard.html

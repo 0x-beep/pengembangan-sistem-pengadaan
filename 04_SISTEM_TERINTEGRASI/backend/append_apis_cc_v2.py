@@ -14,10 +14,10 @@ def get_cc_contracts():
     
     # Generate some dummy contracts
     contracts = [
-        {"vendor": "PT Medik Jaya", "item": "KSO CT Scan", "start_date": "2023-01-15", "end_date": "2026-08-20"},
+        {"vendor": "PT Medik Jaya", "item": "KSO Lab Kimia", "start_date": "2023-01-15", "end_date": "2026-08-20"},
         {"vendor": "PT Farma Indonesia", "item": "Reagen Lab", "start_date": "2024-05-01", "end_date": "2027-04-30"},
         {"vendor": "PT Supply Chain", "item": "BMHP Consumables", "start_date": "2022-10-10", "end_date": "2025-09-10"},
-        {"vendor": "PT Indo Medika", "item": "KSO MRI", "start_date": "2020-03-01", "end_date": "2025-02-28"},
+        {"vendor": "PT. BEM (Borneo Etam Mandiri)", "item": "KSO Lab", "start_date": "2020-03-01", "end_date": "2025-02-28"},
         {"vendor": "PT Global Health", "item": "Maintenance Alkes", "start_date": "2025-01-01", "end_date": "2025-12-31"},
     ]
     
@@ -54,7 +54,7 @@ def get_cc_communications():
         {"vendor": "PT Medik Jaya", "msg": "Negosiasi harga term termin 2", "tag": "NEGOTIATION", "color": "purple"},
         {"vendor": "PT Farma Indonesia", "msg": "Klarifikasi BAPB bulan lalu", "tag": "CLARIFICATION", "color": "blue"},
         {"vendor": "PT Supply Chain", "msg": "Keterlambatan pengiriman batch 4", "tag": "URGENT", "color": "red"},
-        {"vendor": "PT Indo Medika", "msg": "Update jadwal preventive maintenance", "tag": "INFO", "color": "emerald"},
+        {"vendor": "PT. BEM (Borneo Etam Mandiri)", "msg": "Update jadwal preventive maintenance", "tag": "INFO", "color": "emerald"},
         {"vendor": "PT Mitra Sehat", "msg": "Pertanyaan spesifikasi tender X-Ray", "tag": "Q&A", "color": "cyan"}
     ]
     

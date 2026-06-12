@@ -22,9 +22,9 @@
         <!-- Logo -->
         <div class="p-6 border-b border-slate-800 shrink-0">
             <h1 class="text-xl font-black text-white flex items-center gap-2">
-                <i class="fas fa-hospital text-blue-500"></i>
+                <i class="fas fa-hospital text-emerald-500"></i>
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">KMU</span>
-                <span class="text-xs font-medium bg-blue-600 text-white px-2 py-0.5 rounded ml-1">v2.0</span>
+                <span class="text-xs font-medium bg-orange-500 text-white px-2 py-0.5 rounded ml-1">v2.0</span>
             </h1>
         </div>
 <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
@@ -54,6 +54,10 @@
                     <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
                         <i class="fas fa-file-contract w-5 text-center"></i>
                         <span class="text-sm font-medium">Manajemen Tender</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i>
+                        <span class="text-sm font-medium">Proyek Swakelola</span>
                     </a>
                 </div>
             </div>
@@ -128,7 +132,7 @@
                         <i class="fas fa-handshake w-6 text-center"></i>
                         <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
                     </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-blue-600 text-white shadow-md shadow-blue-900/20 title="Direksi (BOD)">
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20 title="Direksi (BOD)">
                         <i class="fas fa-chart-line w-6 text-center"></i>
                         <span class="text-sm font-medium">Direksi (BOD)</span>
                     </a>
@@ -147,7 +151,11 @@
                 <div class="space-y-1">
                     <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Vendor Portal">
                         <i class="fas fa-store w-6 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal</span>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors" title="Portal KSO Lab">
+                        <i class="fas fa-flask w-6 text-center text-teal-400"></i>
+                        <span class="text-sm font-medium">Portal KSO Lab</span>
                     </a>
                 </div>
             </div>
@@ -331,57 +339,90 @@
                     </div>
                 </div>
 
-                <!-- SECTION 3: Hambatan (Utang/Piutang) & Alerts Kerjasama -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
-                    <!-- ALERT UTANG PIUTANG -->
-                    <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col">
-                        <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
-                            <h3 class="font-bold text-white"><i class="fas fa-hand-holding-usd text-rose-500 mr-2"></i>Hambatan: Utang & Piutang</h3>
-                            <span class="bg-rose-900/50 text-rose-400 border border-rose-700/50 text-xs font-bold px-2 py-1 rounded">2 Critical</span>
-                        </div>
-                        <div class="p-5 flex-1 space-y-3">
-                            <div class="bg-rose-900/20 border border-rose-800 p-3 rounded-lg flex items-start gap-3">
-                                <div class="mt-1"><i class="fas fa-exclamation-triangle text-rose-500"></i></div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-rose-400">Aging Utang Vendor > 90 Hari</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Tagihan PT Alkes Indo (Rp 250 Juta) menunggak. Menghambat pengiriman batch BMHP berikutnya untuk RS PKT Bontang.</p>
-                                </div>
-                            </div>
-                            <div class="bg-amber-900/20 border border-amber-800 p-3 rounded-lg flex items-start gap-3">
-                                <div class="mt-1"><i class="fas fa-file-invoice-dollar text-amber-500"></i></div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-amber-400">Piutang KSO Asuransi Macet</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Penarikan revenue sharing KSO Laboratorium tertunda karena pembayaran klaim dari pihak ke-3 (BPJS/Asuransi) tertahan di pusat.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <!-- SECTION 3: Unified Alert Center (Grouped by Urgency) -->
+                  <!-- UNIFIED ALERT CENTER -->
+                  <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col mb-6">
+                      <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
+                          <h3 class="font-bold text-white"><i class="fas fa-bell text-rose-500 mr-2"></i>Unified Alert Center</h3>
+                          <span class="bg-rose-900/50 text-rose-400 border border-rose-700/50 text-xs font-bold px-2 py-1 rounded">Prioritas Urgensi</span>
+                      </div>
+                      
+                      <div class="p-5 flex flex-col gap-6">
+                          <!-- 1. CRITICAL ALERTS -->
+                          <div>
+                              <h4 class="text-rose-500 font-bold text-sm mb-3 flex items-center gap-2"><i class="fas fa-radiation"></i> CRITICAL ALERTS (Sistem Terblokir)</h4>
+                              <div class="space-y-3">
+                                  <div class="bg-rose-900/20 border-l-4 border-rose-600 p-3 rounded-r-lg flex items-start gap-3">
+                                      <div class="mt-1"><i class="fas fa-exclamation-triangle text-rose-500"></i></div>
+                                      <div>
+                                          <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-[10px] bg-rose-900 text-white px-2 py-0.5 rounded font-bold">INTEGRITAS KSO</span>
+                                            <h4 class="text-sm font-bold text-rose-400">Penyimpangan KSO: Alat Ilegal</h4>
+                                          </div>
+                                          <p class="text-xs text-slate-400">Sistem Otomatis (SPI) menahan tagihan PT. Rosche. Ditemukan 2 mesin beroperasi diam-diam di RS PKT Bontang tanpa adendum/izin Holding.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
 
-                    <!-- ALERT KERJASAMA (KSO) -->
-                    <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col">
-                        <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
-                            <h3 class="font-bold text-white"><i class="fas fa-handshake-slash text-amber-500 mr-2"></i>Alert Kerjasama KSO</h3>
-                            <span class="bg-amber-900/50 text-amber-400 border border-amber-700/50 text-xs font-bold px-2 py-1 rounded">Action Needed</span>
-                        </div>
-                        <div class="p-5 flex-1 space-y-3">
-                            <div class="bg-amber-900/20 border border-amber-800 p-3 rounded-lg flex items-start gap-3">
-                                <div class="mt-1"><i class="fas fa-stopwatch text-amber-500"></i></div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-amber-400">KSO Mesin MRI Berakhir < 60 Hari</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Kontrak PT Medik Jaya (KSO MRI) berakhir di bulan depan. Belum ada draf Renewal di meja Legal. Risiko *downtime* layanan radiologi.</p>
-                                </div>
-                            </div>
-                            <div class="bg-slate-800 border border-slate-700 p-3 rounded-lg flex items-start gap-3">
-                                <div class="mt-1"><i class="fas fa-chart-line text-slate-400"></i></div>
-                                <div>
-                                    <h4 class="text-sm font-bold text-white">Target Pasien KSO Tidak Tercapai</h4>
-                                    <p class="text-xs text-slate-400 mt-1">KSO Hemodialisa di Klinik Utama gagal mencapai target pasien harian. Perlu renegosiasi pembagian persentase dengan vendor terkait.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                          <!-- 2. HIGH ALERTS -->
+                          <div>
+                              <h4 class="text-amber-500 font-bold text-sm mb-3 flex items-center gap-2"><i class="fas fa-exclamation-circle"></i> HIGH ALERTS (Risiko Tinggi)</h4>
+                              <div class="space-y-3">
+                                  <div class="bg-amber-900/20 border-l-4 border-amber-600 p-3 rounded-r-lg flex items-start gap-3">
+                                      <div class="mt-1"><i class="fas fa-hand-holding-usd text-amber-500"></i></div>
+                                      <div>
+                                          <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-[10px] bg-amber-900 text-white px-2 py-0.5 rounded font-bold">KEUANGAN</span>
+                                            <h4 class="text-sm font-bold text-amber-400">Aging Utang Vendor > 90 Hari</h4>
+                                          </div>
+                                          <p class="text-xs text-slate-400">Tagihan PT Alkes Indo (Rp 250 Juta) menunggak. Menghambat pengiriman batch BMHP berikutnya untuk RS PKT Bontang.</p>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="bg-amber-900/20 border-l-4 border-amber-600 p-3 rounded-r-lg flex items-start gap-3">
+                                      <div class="mt-1"><i class="fas fa-stopwatch text-amber-500"></i></div>
+                                      <div>
+                                          <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-[10px] bg-amber-900 text-white px-2 py-0.5 rounded font-bold">LEGAL KSO</span>
+                                            <h4 class="text-sm font-bold text-amber-400">KSO Mesin Auto-Analyzer Berakhir < 60 Hari</h4>
+                                          </div>
+                                          <p class="text-xs text-slate-400">Kontrak PT Medik Jaya (KSO Lab) berakhir di bulan depan. Belum ada draf Renewal di meja Legal. Risiko *downtime* layanan laboratorium.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- 3. INFO / WARNING -->
+                          <div>
+                              <h4 class="text-blue-400 font-bold text-sm mb-3 flex items-center gap-2"><i class="fas fa-info-circle"></i> SYSTEM INFO / WARNING</h4>
+                              <div class="space-y-3">
+                                  <div class="bg-slate-800 border-l-4 border-blue-500 p-3 rounded-r-lg flex items-start gap-3">
+                                      <div class="mt-1"><i class="fas fa-file-invoice-dollar text-blue-400"></i></div>
+                                      <div>
+                                          <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-[10px] bg-slate-700 text-white px-2 py-0.5 rounded font-bold">PENDAPATAN KSO</span>
+                                            <h4 class="text-sm font-bold text-white">Piutang KSO Asuransi Macet</h4>
+                                          </div>
+                                          <p class="text-xs text-slate-400">Pembayaran tagihan volume pemeriksaan KSO Laboratorium tertunda karena pencairan klaim dari pihak ke-3 (BPJS/Asuransi) tertahan di pusat.</p>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="bg-slate-800 border-l-4 border-blue-500 p-3 rounded-r-lg flex items-start gap-3">
+                                      <div class="mt-1"><i class="fas fa-chart-line text-blue-400"></i></div>
+                                      <div>
+                                          <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-[10px] bg-slate-700 text-white px-2 py-0.5 rounded font-bold">EVALUASI SBU</span>
+                                            <h4 class="text-sm font-bold text-white">Target Pasien KSO Tidak Tercapai</h4>
+                                          </div>
+                                          <p class="text-xs text-slate-400">KSO Hemodialisa di Klinik Utama gagal mencapai target pasien harian. Perlu renegosiasi pembagian persentase dengan vendor terkait.</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                  </div>
 
                 <!-- SECTION 4: High-Level Approvals -->
                 <div class="grid grid-cols-1 gap-6">
@@ -396,7 +437,7 @@
                                 <div class="flex justify-between items-start mb-2">
                                     <div>
                                         <div class="flex items-center gap-2">
-                                            <h4 class="font-bold text-white text-lg">PKS-2026-004: KSO CT Scan 128 Slice</h4>
+                                            <h4 class="font-bold text-white text-lg">PKS-2026-004: KSO Lab Kimia Klinik (Auto-Analyzer)</h4>
                                             <span class="bg-blue-900/50 text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded border border-blue-700">CAPEX INVESTASI</span>
                                         </div>
                                         <p class="text-sm text-slate-400 mt-1">Vendor: PT Medik Jaya | SBU: RS PKT Bontang</p>

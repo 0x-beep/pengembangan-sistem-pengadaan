@@ -1,11 +1,29 @@
-import os
-import glob
-import re
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Proyek Swakelola (Jasa) — PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
-files = glob.glob('*.html')
-
-# Define the correct, unified sidebar content with Kasim Ganteng
-sidebar_content = '''<div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+    <!-- SIDEBAR FALLBACK (Akan diganti oleh update_sidebar.py) -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+        <!-- Logo -->
+        <div class="p-6 border-b border-slate-800 shrink-0">
+            <h1 class="text-xl font-black text-white flex items-center gap-2">
+                <i class="fas fa-hospital text-emerald-500"></i>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">KMU</span>
+                <span class="text-xs font-medium bg-orange-500 text-white px-2 py-0.5 rounded ml-1">v2.0</span>
+            </h1>
+        </div>
+<div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
             <!-- FASE 1 & E-KATALOG -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
@@ -33,7 +51,7 @@ sidebar_content = '''<div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
                         <i class="fas fa-file-contract w-5 text-center"></i>
                         <span class="text-sm font-medium">Manajemen Tender</span>
                     </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
                         <i class="fas fa-tools w-5 text-center"></i>
                         <span class="text-sm font-medium">Proyek Swakelola</span>
                     </a>
@@ -137,23 +155,7 @@ sidebar_content = '''<div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
                     </a>
                 </div>
             </div>
-        </div>'''
-
-sidebar_wrapper_start = '<aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">'
-sidebar_wrapper_end = '</aside>'
-
-logo_header = '''
-        <!-- Logo -->
-        <div class="p-6 border-b border-slate-800 shrink-0">
-            <h1 class="text-xl font-black text-white flex items-center gap-2">
-                <i class="fas fa-hospital text-emerald-500"></i>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">KMU</span>
-                <span class="text-xs font-medium bg-orange-500 text-white px-2 py-0.5 rounded ml-1">v2.0</span>
-            </h1>
         </div>
-'''
-
-user_footer = '''
         <!-- User Profile -->
         <div class="p-4 border-t border-slate-800 bg-[#0F172A]">
             <div class="flex items-center gap-3">
@@ -166,53 +168,59 @@ user_footer = '''
                 </div>
             </div>
         </div>
-'''
+</aside></div>
+                        </div>
 
-full_sidebar = sidebar_wrapper_start + logo_header + sidebar_content + user_footer + sidebar_wrapper_end
+                        <hr class="border-slate-100">
 
-for fname in files:
-    # Skip files that don't need a sidebar
-    if fname in ['vendor_portal.html', 'vendor_kso_lab_portal.html', 'vendor_registration.html', 'requisition_form.html', 'admin_dashboard.html', 'kso_evaluation.html', 'command_center.html', 'arm_portal.html']:
-        continue
+                        <!-- Project 2 -->
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-lg">PP-2026-095: Pembuatan Selasar Penghubung IGD</h4>
+                                    <p class="text-xs text-slate-500 mt-1"><i class="fas fa-building mr-1"></i> Desain/BOQ oleh: Bagian Umum | Target Selesai: 15 Jul 2026</p>
+                                </div>
+                                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200"><i class="fas fa-clipboard-check mr-1"></i> PERSIAPAN MATERIAL</span>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <!-- Progres Fisik -->
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 opacity-75">
+                                    <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">1. Progres Fisik (Jasa / Pekerja Umum)</h5>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="font-bold text-slate-600">0% Selesai</span>
+                                        <span class="text-slate-500 text-xs">Menunggu Material Dasar</span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2 mb-3">
+                                        <div class="bg-slate-300 h-2 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    <p class="text-xs text-slate-500 italic">Pekerjaan fisik belum dimulai karena material cor dan besi tulangan belum tiba di lokasi.</p>
+                                </div>
 
-    with open(fname, 'r', encoding='utf-8') as f:
-        content = f.read()
+                                <!-- Pengadaan Material -->
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">2. Status Supply Material (Pengadaan Barang)</h5>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-2">
+                                                <i class="fas fa-truck-loading text-blue-500"></i>
+                                                <div>
+                                                    <p class="text-xs font-bold text-slate-700">Besi Tulangan & Baja WF</p>
+                                                    <p class="text-[10px] text-slate-500">PO-2026-120</p>
+                                                </div>
+                                            </div>
+                                            <span class="text-[10px] font-bold bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Dalam Pengiriman (ETA: Besok)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    pattern = re.compile(
-        r'<(aside|div) class="w-64 bg-\[#(0F172A|0B1120)\].*?(Budi Santoso|Kasim Ganteng).*?</\1>',
-        re.DOTALL
-    )
+                    </div>
+                </div>
 
-    if pattern.search(content):
-        new_content = pattern.sub(full_sidebar, content)
-    else:
-        fallback_pattern = re.compile(
-            r'<aside class="w-64 bg-\[#0F172A\].*?(Admin Pengadaan|Kasie Pengadaan Barang).*?</div>\s*</div>\s*</div>\s*(</aside||</div>)',
-            re.DOTALL
-        )
-        if fallback_pattern.search(content):
-            new_content = fallback_pattern.sub(full_sidebar, content)
-        else:
-            continue
-
-    # Apply active state to specific files
-    active_class = 'bg-emerald-600 text-white shadow-md shadow-emerald-900/20'
-    inactive_class = 'text-slate-400 hover:text-white hover:bg-slate-800 transition-colors'
-    
-    target_link = f'href="{fname}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {inactive_class}"'
-    replacement_link = f'href="{fname}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {active_class}"'
-    target_link2 = f'href="{fname}" class="flex items-center gap-3 px-3 py-2 rounded-lg {inactive_class}"'
-    replacement_link2 = f'href="{fname}" class="flex items-center gap-3 px-3 py-2 rounded-lg {active_class}'
-
-    if fname == 'finance_dashboard.html':
-        active_finance = 'bg-emerald-600 text-white shadow-md shadow-emerald-950/20'
-        target_fin = f'href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {inactive_class}"'
-        rep_fin = f'href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg {active_finance}"'
-        new_content = new_content.replace(target_fin, rep_fin)
-    else:
-        new_content = new_content.replace(target_link, replacement_link).replace(target_link2, replacement_link2)
-
-    with open(fname, 'w', encoding='utf-8') as f:
-        f.write(new_content)
-
-print("update_sidebar.py successfully replaced and unified sidebars.")
+            </div>
+        </main>
+    </div>
+</body>
+</html>

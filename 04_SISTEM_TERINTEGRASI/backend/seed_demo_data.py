@@ -16,8 +16,8 @@ def seed_demo_data():
 
     print("Menyuntikkan Master Data Vendor...")
     vendors = [
-        ('VND-001', 'PT. Medika Sejahtera',     'Medika Sejahtera',  '987654321', 'approved', 'Jl. Sudirman 1, Balikpapan',       'admin@medika.com',      'KSO Alat Lab'),
-        ('VND-002', 'PT. Reagen Nusantara',      'Reagen Nusantara',  '123456789', 'approved', 'Jl. Thamrin 2, Jakarta',           'sales@reagen.com',      'Suplier Reagen'),
+        ('VND-001', 'PT. BEM (Borneo Etam Mandiri)',     'BEM (Borneo Etam Mandiri)',  '987654321', 'approved', 'Jl. Sudirman 1, Balikpapan',       'admin@bem.com',      'KSO Alat Lab'),
+        ('VND-002', 'PT. EH Syam',      'EH Syam',  '123456789', 'approved', 'Jl. Thamrin 2, Jakarta',           'sales@ehsyam.com',      'Suplier Reagen'),
         ('VND-003', 'CV. Maju Konstruksi',       'Maju Konstruksi',   '112233445', 'submitted','Jl. Gatot Subroto, Samarinda',    'info@maju.com',         'Jasa Konstruksi'),
         ('VND-004', 'PT. EH SYAM',               'EH SYAM',           '445566778', 'approved', 'Jl. Sangatta No. 12, Kutim',       'ehsyam@kso.com',        'KSO Alat Lab'),
         ('VND-005', 'PT. BEM',                   'BEM',               '556677889', 'approved', 'Jl. Bontang Raya No. 5, Bontang', 'bem@kso.com',           'KSO Alat Lab'),
@@ -212,9 +212,9 @@ def seed_demo_data():
     print("Menyuntikkan Data Jadwal Pembayaran Keuangan (payment_schedules)...")
     schedules = [
         # (po_number, project_title, vendor_name, negotiated_amount, dp_percentage, dp_status, dp_planned_date, dp_realized_date, remaining_status, remaining_planned_date, remaining_realized_date)
-        ('PO-2026-001', 'Reagen KSO Hematologi (Rutin)', 'PT. Medika Sejahtera', 22000000, 30.0, 'Lunas', '2026-06-10', '2026-06-09', 'Belum Dibayar', '2026-07-10', None),
-        ('PO-2026-002', 'Pembelian Reagen Kimia Klinik', 'PT. Medika Sejahtera', 50000000, 20.0, 'Belum Dibayar', None, None, 'Belum Dibayar', None, None),
-        ('PO-2026-003', 'Pengadaan UPS Ruang Server', 'PT. Reagen Nusantara', 15000000, 0.0, 'Tidak Ada', None, None, 'Belum Dibayar', '2026-06-25', None),
+        ('PO-2026-001', 'Reagen KSO Hematologi (Rutin)', 'PT. BEM (Borneo Etam Mandiri)', 22000000, 30.0, 'Lunas', '2026-06-10', '2026-06-09', 'Belum Dibayar', '2026-07-10', None),
+        ('PO-2026-002', 'Pembelian Reagen Kimia Klinik', 'PT. BEM (Borneo Etam Mandiri)', 50000000, 20.0, 'Belum Dibayar', None, None, 'Belum Dibayar', None, None),
+        ('PO-2026-003', 'Pengadaan UPS Ruang Server', 'PT. EH Syam', 15000000, 0.0, 'Tidak Ada', None, None, 'Belum Dibayar', '2026-06-25', None),
         ('PO-2026-004', 'ATK dan Alat Tulis Kantor', 'PT. Farma Andalan', 4500000, 0.0, 'Tidak Ada', None, None, 'Lunas', '2026-06-05', '2026-06-04'),
     ]
     for s in schedules:

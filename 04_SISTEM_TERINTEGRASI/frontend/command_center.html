@@ -381,8 +381,8 @@
             if(!kpi.sla_alerts || kpi.sla_alerts.length === 0) {
                 // Hardcode example cross-unit alerts
                 kpi.sla_alerts = [
-                    { days_elapsed: 15, req_number: "KSO-2026-003", title: "Keuangan: Pembayaran tertunda/jatuh tempo untuk PT. Reagen Nusantara" },
-                    { days_elapsed: 14, req_number: "KSO-2026-008", title: "Holding: Kontrak KSO PT. Medika Sejahtera berakhir dalam 60 hari" },
+                    { days_elapsed: 15, req_number: "KSO-2026-003", title: "Keuangan: Pembayaran tertunda/jatuh tempo untuk PT. EH Syam" },
+                    { days_elapsed: 14, req_number: "KSO-2026-008", title: "Holding: Kontrak KSO PT. BEM (Borneo Etam Mandiri) berakhir dalam 60 hari" },
                     { days_elapsed: 13, req_number: "PO-2026-004", title: "Keuangan: Jadwal Pembayaran belum diisi untuk PO KSO (SOP H+2)" },
                     { days_elapsed: 14, req_number: "TND-2026-001", title: "Legal: Review Draft Kontrak Vendor Melebihi Batas Waktu" },
                     { days_elapsed: 11, req_number: "REQ-2026-003", title: "SPI: Temuan Ketidaksesuaian BAPB vs Fisik Barang" }
@@ -491,10 +491,8 @@
             let top = data.data;
             if(!top || top.length === 0) {
                 top = [
-                    { company_name: "PT. Medika Sejahtera", star_rating: 4.8, total_evaluations: 12, weighted_score: 95.5 },
-                    { company_name: "PT. Global Health", star_rating: 4.5, total_evaluations: 8, weighted_score: 88.0 },
-                    { company_name: "PT. Reagen Nusantara", star_rating: 4.2, total_evaluations: 15, weighted_score: 82.5 },
-                    { company_name: "PT. Supply Chain", star_rating: 3.2, total_evaluations: 5, weighted_score: 65.0 }
+                    { company_name: "PT. BEM (Borneo Etam Mandiri)", star_rating: 4.8, total_evaluations: 12, weighted_score: 95.5 },
+                    { company_name: "PT. EH Syam", star_rating: 4.2, total_evaluations: 15, weighted_score: 82.5 }
                 ];
             }
             

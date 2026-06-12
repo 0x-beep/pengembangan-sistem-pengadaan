@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSO Lab Vendor Portal — PT. BEM</title>
+    <meta name="description" content="Vendor Self-Service Portal for KSO Laboratorium">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        
+        .card { 
+            background-color: #ffffff; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-content { padding: 1.25rem; flex: 1; }
+        .gradient-text { background: linear-gradient(90deg, #2563eb, #7c3aed); -webkit-background-clip: text; color: transparent; }
+    </style>
+</head>
+<body class="antialiased h-screen flex flex-col overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0 shadow-sm z-10">
+        <div class="flex items-center gap-4">
+            <div class="bg-white p-1 rounded-lg flex items-center justify-center shadow-sm border border-slate-200">
+                <img src="../SPO_daan_barang_dan_PEDOMAN/logo.png" alt="KMU Logo" onerror="this.outerHTML='<i class=\'fas fa-hospital text-teal-600 text-xl mx-2\'></i>'" class="h-8 object-contain">
+            </div>
+            <div>
+                <h1 class="font-black text-slate-800 text-lg tracking-tight">KSO Lab Portal</h1>
+                <p class="text-xs text-slate-500 font-medium">B2B Operations & Billing</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-bell text-slate-400 hover:text-blue-600 transition cursor-pointer text-xl relative">
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold border-2 border-white">1</span>
+                </i>
+            </div>
+            <div class="h-8 w-px bg-slate-200"></div>
+            <div class="flex items-center gap-3 cursor-pointer">
+                <div class="text-right hidden sm:block">
+                    <p class="text-sm font-bold text-slate-800">PT. Borneo Etam Mandiri</p>
+                    <p class="text-[10px] font-bold text-teal-700 bg-teal-100 px-1.5 py-0.5 rounded uppercase">Vendor KSO Lab</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center text-slate-500">
+                    <img src="https://ui-avatars.com/api/?name=BEM&background=e2e8f0&color=475569" class="w-full h-full rounded-full">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-slate-50 p-6">
+        <div class="max-w-7xl mx-auto space-y-6">
+            
+            <!-- Alert Banner -->
+            <div class="bg-teal-50 border border-teal-200 rounded-lg p-4 flex gap-3 items-start shadow-sm">
+                <i class="fas fa-info-circle text-teal-600 mt-0.5"></i>
+                <div class="flex-1">
+                    <h3 class="font-bold text-teal-900 text-sm">Reminder Operasional Harian</h3>
+                    <p class="text-teal-800 text-xs mt-1">Harap pastikan formulir <strong>QC Harian</strong> dan <strong>Update Stok Reagen</strong> telah diisi sebelum jam 10:00 WITA. Data LIS (Volume Pemeriksaan) telah ditarik otomatis per hari ini pukul 06:00.</p>
+                </div>
+                <button class="bg-teal-600 text-white text-xs font-bold px-4 py-2 rounded shadow-sm hover:bg-teal-700 transition">Input QC Sekarang</button>
+            </div>
+
+            <!-- ROW 1: Billing & LIS Data (Cost per Test Model) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- LIS Sync -->
+                <div class="card bg-gradient-to-br from-slate-800 to-slate-900 text-white border-none shadow-lg">
+                    <div class="p-5 flex flex-col h-full justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-slate-400 text-xs font-bold uppercase tracking-wider"><i class="fas fa-server mr-1"></i> Data LIS RS PKT</span>
+                                <span class="bg-emerald-500/20 text-emerald-400 text-[9px] px-2 py-0.5 rounded border border-emerald-500/30 font-bold">LIVE SYNC</span>
+                            </div>
+                            <h3 class="text-3xl font-black mt-2">14,250 <span class="text-sm font-normal text-slate-400">Pemeriksaan</span></h3>
+                            <p class="text-[10px] text-slate-400 mt-1">Bulan Berjalan (1 - 12 Juni 2026)</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-700 flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Total Bulan Lalu:</span>
+                            <span class="font-bold text-slate-200">32,105 Pemeriksaan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cost per Test Calculation -->
+                <div class="card md:col-span-2 shadow-lg">
+                    <div class="card-header bg-teal-50/50 border-teal-100">
+                        <span class="text-teal-900"><i class="fas fa-file-invoice-dollar text-teal-600 mr-2"></i>Estimasi Tagihan (Cost per Test)</span>
+                        <span class="text-[10px] text-slate-500 font-medium"><i class="fas fa-lock mr-1"></i>Auto-calculated by System</span>
+                    </div>
+                    <div class="card-content flex items-center justify-around">
+                        <div class="text-center">
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Total Pemeriksaan</p>
+                            <p class="text-2xl font-black text-slate-800">14,250</p>
+                        </div>
+                        <div class="text-slate-300 text-2xl"><i class="fas fa-times"></i></div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-1">Tarif Rata-rata</p>
+                            <p class="text-2xl font-black text-slate-800">Rp 35.000</p>
+                        </div>
+                        <div class="text-slate-300 text-2xl"><i class="fas fa-equals"></i></div>
+                        <div class="text-center bg-emerald-50 px-6 py-3 rounded-xl border border-emerald-100">
+                            <p class="text-xs text-emerald-700 font-bold uppercase tracking-wider mb-1">Estimasi Tagihan (Sementara)</p>
+                            <p class="text-2xl font-black text-emerald-600">Rp 498.750.000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: Daily Operations & QC -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Daily QC Form -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="text-slate-800"><i class="fas fa-clipboard-check text-teal-500 mr-2"></i>Laporan Kegiatan Harian & QC</span>
+                    </div>
+                    <div class="card-content">
+                        <form onsubmit="event.preventDefault(); alert('Laporan Harian Tersimpan!');" class="space-y-4">
+                            <!-- Teknisi -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Nama Teknisi On-Duty</label>
+                                <input type="text" value="Arif Rahman" class="w-full text-sm border border-slate-300 rounded px-3 py-2 bg-slate-50" readonly>
+                            </div>
+                            
+                            <!-- Mesin Status -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Status Mesin Hematologi</label>
+                                    <select class="w-full text-sm border border-slate-300 rounded px-3 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none">
+                                        <option value="normal" selected>Normal / QC Passed</option>
+                                        <option value="warning">Warning / Perlu Kalibrasi Ulang</option>
+                                        <option value="error">Error / Downtime</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Status Mesin Imunologi</label>
+                                    <select class="w-full text-sm border border-slate-300 rounded px-3 py-2 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none">
+                                        <option value="normal" selected>Normal / QC Passed</option>
+                                        <option value="warning">Warning / Perlu Kalibrasi Ulang</option>
+                                        <option value="error">Error / Downtime</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Upload Bukti -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Upload Bukti Print-out QC / Kalibrasi</label>
+                                <div class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition cursor-pointer">
+                                    <i class="fas fa-cloud-upload-alt text-slate-400 text-2xl mb-2"></i>
+                                    <p class="text-xs text-slate-500">Klik untuk upload foto print-out mesin atau <i>drag and drop</i></p>
+                                    <p class="text-[10px] text-slate-400 mt-1">Maksimal 5MB (JPG/PNG)</p>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2.5 rounded-lg shadow-sm transition text-sm">
+                                Submit Laporan Harian
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Inventory Tracker (Reagen, BHP, BMHP) -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="text-slate-800"><i class="fas fa-boxes text-purple-500 mr-2"></i>Manajemen Inventori KSO (Reagen & BMHP)</span>
+                        <button class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2 py-1 rounded font-bold border border-slate-200">Update Stok</button>
+                    </div>
+                    <div class="card-content space-y-5">
+                        
+                        <!-- Reagen Hematologi -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-sm font-bold text-slate-700">Reagen Hematologi (Diluent)</span>
+                                <span class="text-xs font-bold text-emerald-600">85% <span class="text-slate-400 font-normal">(Aman)</span></span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2 mb-1">
+                                <div class="bg-emerald-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-500">Estimasi habis: 24 Hari lagi. Stok: 45 Galon.</p>
+                        </div>
+
+                        <!-- Reagen Imunologi -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-sm font-bold text-slate-700">Reagen Imunologi (Anti-HBs)</span>
+                                <span class="text-xs font-bold text-amber-500">20% <span class="text-slate-400 font-normal">(Re-order)</span></span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2 mb-1">
+                                <div class="bg-amber-500 h-2 rounded-full" style="width: 20%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-500">Estimasi habis: 5 Hari lagi. Segera jadwalkan pengiriman.</p>
+                        </div>
+
+                        <!-- BMHP (Tabung, Jarum, dll) -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <span class="text-sm font-bold text-slate-700">BMHP (Tabung EDTA & Jarum Suntik)</span>
+                                <span class="text-xs font-bold text-teal-600">60% <span class="text-slate-400 font-normal">(Aman)</span></span>
+                            </div>
+                            <div class="w-full bg-slate-200 rounded-full h-2 mb-1">
+                                <div class="bg-teal-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                            <p class="text-[10px] text-slate-500">Sesuai kesepakatan KSO, suplai BMHP disediakan oleh vendor.</p>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <h4 class="text-xs font-bold text-slate-600 mb-2">Jadwal Kalibrasi Rutin</h4>
+                            <div class="bg-slate-50 border border-slate-200 rounded p-3 flex justify-between items-center">
+                                <div>
+                                    <p class="text-sm font-bold text-slate-800">Hematology Analyzer Sysmex XN-1000</p>
+                                    <p class="text-xs text-slate-500">Jadwal: 20 Juni 2026</p>
+                                </div>
+                                <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded">8 Hari Lagi</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
