@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 1 — Perencanaan & Anggaran (RKAP) | PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { display: block; padding: 0.625rem 1rem; color: #cbd5e1; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.15s; }
+        .sidebar-link:hover { background-color: #1e293b; color: white; }
+        .sidebar-link.active { background-color: #0284c7; color: white; }
+        .tab-btn { padding: 0.75rem 1rem; font-size: 0.875rem; font-weight: 500; border-bottom: 2px solid transparent; transition: all 0.15s; cursor: pointer; color: #6b7280; }
+        .tab-btn:hover { color: #374151; }
+        .tab-btn.active { border-bottom-color: #0284c7; color: #0284c7; }
+        .badge { display: inline-flex; align-items: center; padding: 0.125rem 0.625rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-sky-600 flex items-center justify-center text-xs font-bold">DR</div>
+                <div>
+                    <p class="text-sm font-medium">Direktorat Perencanaan</p>
+                    <p class="text-xs text-slate-400">Admin RKAP</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800">Fase 1 — Perencanaan & Anggaran (RKAP)</h2>
+                <p class="text-xs text-gray-500">Rencana Kerja dan Anggaran Perusahaan · Plafon Anggaran · Realisasi vs Budget</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <select class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-50 focus:ring-2 focus:ring-sky-500">
+                    <option>Tahun Anggaran 2026</option>
+                    <option>Tahun Anggaran 2025</option>
+                </select>
+                <button onclick="openRkapModal()" class="bg-sky-600 hover:bg-sky-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition">
+                    + Upload RKAP Baru
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <!-- KPI Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Total Anggaran (RKAP 2026)</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-1">Rp 120 M</p>
+                    <p class="text-xs text-gray-400 mt-1">Disetujui BOD</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Realisasi (YTD)</p>
+                    <p class="text-3xl font-bold text-sky-600 mt-1">Rp 45.5 M</p>
+                    <p class="text-xs text-gray-400 mt-1">37.9% dari Anggaran</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Sisa Anggaran</p>
+                    <p class="text-3xl font-bold text-emerald-500 mt-1">Rp 74.5 M</p>
+                    <p class="text-xs text-gray-400 mt-1">Tersedia untuk Pengadaan</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 bg-gradient-to-br from-rose-50 to-red-50 border-rose-100">
+                    <p class="text-xs text-rose-700 font-medium">Overbudget Warning</p>
+                    <p class="text-3xl font-bold text-rose-600 mt-1">2 SBU</p>
+                    <p class="text-xs text-rose-500 mt-1">Mendekati limit >90%</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-8">
+                <div class="border-b border-gray-200 px-6 flex gap-0 flex-wrap bg-gray-50/50">
+                    <button class="tab-btn active" id="tab-btn-dashboard" onclick="switchTab('dashboard')">📈 Dashboard Realisasi</button>
+                    <button class="tab-btn" id="tab-btn-sbu" onclick="switchTab('sbu')">🏢 Alokasi per SBU</button>
+                    <button class="tab-btn" id="tab-btn-kategori" onclick="switchTab('kategori')">📦 Alokasi per Kategori</button>
+                </div>
+
+                <!-- Tab: Dashboard -->
+                <div id="tab-dashboard" class="p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Chart: Realisasi per Bulan -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-white">
+                            <h3 class="text-sm font-bold text-gray-800 mb-4">Grafik Serapan Anggaran 2026</h3>
+                            <div class="relative h-64 w-full">
+                                <canvas id="budgetChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Info Panel -->
+                        <div class="space-y-4">
+                            <div class="border border-amber-200 bg-amber-50 rounded-xl p-5">
+                                <div class="flex gap-3">
+                                    <div class="text-amber-500 mt-0.5"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg></div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-amber-900">Peringatan Plafon Anggaran</h4>
+                                        <p class="text-xs text-amber-700 mt-1">Dua unit bisnis telah mencapai lebih dari 90% serapan anggaran semester 1. Sistem akan menahan (hold) otomatis jika pengajuan PP melebihi sisa plafon.</p>
+                                        <ul class="mt-2 space-y-1 text-xs text-amber-800 font-medium">
+                                            <li>• Klinik KMU Cab. Utama (Serapan: 92%)</li>
+                                            <li>• Lab KMU Biomedik (Serapan: 95%)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border border-blue-200 bg-blue-50 rounded-xl p-5">
+                                <div class="flex gap-3">
+                                    <div class="text-blue-500 mt-0.5"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-blue-900">Integrasi ke Fase 3 (Permintaan)</h4>
+                                        <p class="text-xs text-blue-800 mt-1">Data plafon (budget ceiling) di halaman ini terintegrasi langsung dengan Fase 3. Saat user membuat IMT/PP, sistem akan melakukan pengecekan saldo anggaran secara real-time.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Alokasi per SBU -->
+                <div id="tab-sbu" class="p-6 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="text-sm text-gray-500">Distribusi plafon anggaran per Strategic Business Unit (SBU).</p>
+                        <input type="text" placeholder="Cari SBU..." class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-sky-500">
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200 bg-gray-50">
+                                    <th class="py-3 px-4 rounded-tl-lg">SBU / Unit Kerja</th>
+                                    <th class="py-3 px-4">Kode SBU</th>
+                                    <th class="py-3 px-4 text-right">Anggaran (RKAP)</th>
+                                    <th class="py-3 px-4 text-right">Realisasi (YTD)</th>
+                                    <th class="py-3 px-4 text-right">Sisa Plafon</th>
+                                    <th class="py-3 px-4">Serapan (%)</th>
+                                    <th class="py-3 px-4 rounded-tr-lg">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 text-sm">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-semibold text-gray-900">RS KMU Pusat</td>
+                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">SBU-RS-01</td>
+                                    <td class="py-3 px-4 text-right">Rp 65.000.000.000</td>
+                                    <td class="py-3 px-4 text-right text-gray-600">Rp 25.000.000.000</td>
+                                    <td class="py-3 px-4 text-right font-semibold text-emerald-600">Rp 40.000.000.000</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-sky-500 h-1.5 rounded-full" style="width: 38%"></div></div>
+                                            <span class="text-xs">38%</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4"><span class="badge bg-emerald-100 text-emerald-700">Aman</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-semibold text-gray-900">Klinik KMU Cab. Utama</td>
+                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">SBU-KL-01</td>
+                                    <td class="py-3 px-4 text-right">Rp 15.000.000.000</td>
+                                    <td class="py-3 px-4 text-right text-gray-600">Rp 13.800.000.000</td>
+                                    <td class="py-3 px-4 text-right font-semibold text-rose-600">Rp 1.200.000.000</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-rose-500 h-1.5 rounded-full" style="width: 92%"></div></div>
+                                            <span class="text-xs font-bold text-rose-600">92%</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4"><span class="badge bg-rose-100 text-rose-700">Warning</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-semibold text-gray-900">Lab KMU Biomedik</td>
+                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">SBU-LB-01</td>
+                                    <td class="py-3 px-4 text-right">Rp 20.000.000.000</td>
+                                    <td class="py-3 px-4 text-right text-gray-600">Rp 19.000.000.000</td>
+                                    <td class="py-3 px-4 text-right font-semibold text-rose-600">Rp 1.000.000.000</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-rose-500 h-1.5 rounded-full" style="width: 95%"></div></div>
+                                            <span class="text-xs font-bold text-rose-600">95%</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4"><span class="badge bg-rose-100 text-rose-700">Warning</span></td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-3 px-4 font-semibold text-gray-900">Kantor Pusat KMU</td>
+                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">HO-001</td>
+                                    <td class="py-3 px-4 text-right">Rp 20.000.000.000</td>
+                                    <td class="py-3 px-4 text-right text-gray-600">Rp 4.000.000.000</td>
+                                    <td class="py-3 px-4 text-right font-semibold text-emerald-600">Rp 16.000.000.000</td>
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-sky-500 h-1.5 rounded-full" style="width: 20%"></div></div>
+                                            <span class="text-xs">20%</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4"><span class="badge bg-emerald-100 text-emerald-700">Aman</span></td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-gray-50 font-bold border-t border-gray-200">
+                                <tr>
+                                    <td colspan="2" class="py-3 px-4">TOTAL</td>
+                                    <td class="py-3 px-4 text-right">Rp 120.000.000.000</td>
+                                    <td class="py-3 px-4 text-right">Rp 61.800.000.000</td>
+                                    <td class="py-3 px-4 text-right text-sky-700">Rp 58.200.000.000</td>
+                                    <td class="py-3 px-4">51.5%</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab: Alokasi per Kategori -->
+                <div id="tab-kategori" class="p-6 hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Card: Alat Medis -->
+                        <div class="border border-gray-200 rounded-xl p-5 hover:border-sky-300 transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600 text-xl">⚕️</div>
+                                <span class="badge bg-sky-100 text-sky-700">Capex</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Alat Medis & KSO</h4>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between"><span class="text-gray-500">Anggaran:</span> <span class="font-semibold">Rp 50 M</span></div>
+                                <div class="flex justify-between"><span class="text-gray-500">Realisasi:</span> <span>Rp 25 M</span></div>
+                                <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-500">Sisa:</span> <span class="font-bold text-emerald-600">Rp 25 M</span></div>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4"><div class="bg-sky-500 h-1.5 rounded-full" style="width: 50%"></div></div>
+                        </div>
+
+                        <!-- Card: Obat -->
+                        <div class="border border-gray-200 rounded-xl p-5 hover:border-emerald-300 transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-xl">💊</div>
+                                <span class="badge bg-emerald-100 text-emerald-700">Opex</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Obat-obatan</h4>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between"><span class="text-gray-500">Anggaran:</span> <span class="font-semibold">Rp 40 M</span></div>
+                                <div class="flex justify-between"><span class="text-gray-500">Realisasi:</span> <span>Rp 28 M</span></div>
+                                <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-500">Sisa:</span> <span class="font-bold text-emerald-600">Rp 12 M</span></div>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4"><div class="bg-emerald-500 h-1.5 rounded-full" style="width: 70%"></div></div>
+                        </div>
+
+                        <!-- Card: BMHP -->
+                        <div class="border border-gray-200 rounded-xl p-5 hover:border-violet-300 transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-violet-100 flex items-center justify-center text-violet-600 text-xl">🧪</div>
+                                <span class="badge bg-violet-100 text-violet-700">Opex</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">BMHP & Reagen</h4>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between"><span class="text-gray-500">Anggaran:</span> <span class="font-semibold">Rp 20 M</span></div>
+                                <div class="flex justify-between"><span class="text-gray-500">Realisasi:</span> <span>Rp 18 M</span></div>
+                                <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-500">Sisa:</span> <span class="font-bold text-rose-600">Rp 2 M</span></div>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4"><div class="bg-rose-500 h-1.5 rounded-full" style="width: 90%"></div></div>
+                        </div>
+
+                        <!-- Card: Umum -->
+                        <div class="border border-gray-200 rounded-xl p-5 hover:border-amber-300 transition">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 text-xl">🏢</div>
+                                <span class="badge bg-amber-100 text-amber-700">Opex</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Umum & IT</h4>
+                            <div class="mt-4 space-y-2 text-sm">
+                                <div class="flex justify-between"><span class="text-gray-500">Anggaran:</span> <span class="font-semibold">Rp 10 M</span></div>
+                                <div class="flex justify-between"><span class="text-gray-500">Realisasi:</span> <span>Rp 2 M</span></div>
+                                <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-500">Sisa:</span> <span class="font-bold text-emerald-600">Rp 8 M</span></div>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4"><div class="bg-amber-500 h-1.5 rounded-full" style="width: 20%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Upload RKAP -->
+    <div id="rkap-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 class="text-lg font-bold text-gray-900">Upload Dokumen RKAP</h3>
+                <button onclick="closeRkapModal()" class="text-gray-400 hover:text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Tahun Anggaran</label>
+                    <input type="number" value="2027" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-sky-500">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">File RKAP (Excel / CSV)</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition cursor-pointer">
+                        <div class="text-3xl mb-2 text-gray-400">📄</div>
+                        <p class="text-sm font-medium text-gray-700">Klik untuk upload atau drag & drop</p>
+                        <p class="text-xs text-gray-500 mt-1">Format: .xlsx, .xls, .csv (Max 10MB)</p>
+                    </div>
+                </div>
+                <div class="bg-sky-50 p-3 rounded-lg flex items-start gap-2 border border-sky-100">
+                    <span class="text-sky-500 mt-0.5">ℹ️</span>
+                    <p class="text-xs text-sky-800">Sistem akan memvalidasi format kolom dan melakukan mapping otomatis ke plafon SBU dan Kategori. Pastikan format sesuai template.</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 flex justify-end gap-3 bg-gray-50 rounded-b-2xl">
+                <button onclick="closeRkapModal()" class="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 rounded-lg transition">Batal</button>
+                <button onclick="uploadRkap()" class="px-4 py-2 text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 rounded-lg shadow-sm transition">Mulai Proses Import</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+        <div class="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-xl text-sm font-medium flex items-center gap-2">
+            <span id="toast-icon" class="text-emerald-400">✓</span>
+            <span id="toast-msg">RKAP berhasil di-upload!</span>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            ['dashboard','sbu','kategori'].forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).classList.remove('active');
+            });
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tab).classList.add('active');
+        }
+
+        function openRkapModal() { document.getElementById('rkap-modal').classList.remove('hidden'); }
+        function closeRkapModal() { document.getElementById('rkap-modal').classList.add('hidden'); }
+
+        function showToast(msg) {
+            document.getElementById('toast-msg').textContent = msg;
+            const t = document.getElementById('toast');
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3000);
+        }
+
+        function uploadRkap() {
+            closeRkapModal();
+            // Simulate processing
+            setTimeout(() => { showToast('Sedang memvalidasi baris data...'); }, 500);
+            setTimeout(() => { showToast('RKAP 2027 berhasil di-import & plafon diupdate!'); }, 2500);
+        }
+
+        // Initialize Chart
+        window.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('budgetChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [
+                        {
+                            label: 'Realisasi Pengadaan',
+                            data: [5, 8, 12, 10, 15, 11],
+                            backgroundColor: '#0ea5e9',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Proyeksi (RKAP)',
+                            data: [10, 10, 10, 10, 10, 10],
+                            type: 'line',
+                            borderColor: '#cbd5e1',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: false,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8 } } },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Miliar Rupiah' }, grid: { borderDash: [2, 4], color: '#f1f5f9' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

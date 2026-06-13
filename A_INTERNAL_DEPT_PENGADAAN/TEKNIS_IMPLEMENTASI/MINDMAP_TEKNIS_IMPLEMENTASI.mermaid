@@ -1,0 +1,63 @@
+mindmap
+  root((TEKNIS\nIMPLEMENTASI\nSISTEM\nPENGADAAN\nKMU))
+    5 LAPISAN SISTEM IT
+      Lapisan 1 Manajemen dan Tata Kelola
+        Modul E-Procurement pengajuan dan approval berjenjang
+        Workflow otomatis Unit ke Pengadaan ke Komite ke Direksi ke Vendor
+        AI Penjaga Kepatuhan SPO rule enforcement real-time
+        Regulatory Compliance LKPP dan Permenkes
+      Lapisan 2 Operasional
+        Manajemen Vendor registrasi verifikasi dan penilaian
+        Katalog Pengadaan daftar barang dan jasa standar
+        Manajemen Kontrak drafting PKS SPK tanda tangan digital
+        Portal Vendor KSO self-reporting kewajiban
+      Lapisan 3 Integrasi
+        SIMRS tarik kebutuhan farmasi alkes lab KSO
+        Finance ERP cek anggaran real-time GL posting dan status bayar
+        Gudang Inventori stok real-time reorder point konfirmasi BAPB
+      Lapisan 4 Analitik dan Transparansi
+        Command Center Dashboard KPI real-time SLA tracking
+        Analisis Belanja efisiensi identifikasi pemborosan benchmarking
+        Audit Trail Digital rekam jejak lengkap setiap aksi
+      Lapisan 5 Infrastruktur dan Keamanan
+        Deployment Cloud Hybrid server RS dan cloud
+        Single Sign-On SSO akses berbasis jabatan RBAC
+        Keamanan Data enkripsi backup dan disaster recovery
+    DATABASE
+      Schema pengadaan inti transaksi PO SPK tender
+      Schema vendor master dan evaluasi
+      Schema keuangan invoice dan pembayaran
+      Schema audit trail immutable tidak bisa diubah
+      Inisialisasi via skrip SQL database-init.sql
+    AI INTEGRATION
+      Google Gemini Vision untuk ekstraksi dokumen penawaran
+      AI chatbot SOP Assistant berbasis RAG Retrieval Augmented Generation
+      Auto-populate bidding tabulasi dari dokumen uploaded vendor
+      Anomaly detection untuk pattern pelanggaran SPO
+    API SPECIFICATIONS
+      REST API untuk seluruh modul fungsional
+      WebSocket untuk real-time Command Center Dashboard
+      Webhook untuk integrasi SIMRS dan Finance ERP
+      API rate limiting dan authentication JWT
+    DEPLOYMENT PLAN
+      Target deployment 4 minggu dari kick-off
+      Week 1 setup database dan infrastruktur dasar
+      Week 2 modul core procurement dan vendor
+      Week 3 integrasi AI dan dashboard
+      Week 4 testing UAT dan go-live
+    KEAMANAN
+      RBAC Role-Based Access Control per jabatan
+      Enkripsi data sensitif at-rest dan in-transit
+      Audit log immutable setiap aksi tercatat dengan user dan timestamp
+      Backup otomatis dan disaster recovery plan
+      Tidak ada akses langsung ke database tanpa melalui aplikasi
+    INTEGRASI EKSTERNAL
+      SIMRS tarik kebutuhan klinis secara otomatis
+      Finance ERP sinkronisasi anggaran dan GL posting
+      Gudang Inventori reorder point otomatis trigger PP
+    TESTING STRATEGY
+      Unit testing setiap modul
+      Integration testing antar fase
+      UAT User Acceptance Testing dengan tim pengadaan KMU
+      Load testing untuk simulasi penggunaan peak
+      Security testing penetration testing sebelum go-live

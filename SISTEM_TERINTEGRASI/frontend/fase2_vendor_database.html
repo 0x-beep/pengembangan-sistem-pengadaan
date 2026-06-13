@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Master Vendor — Fase 2 PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { display: block; padding: 0.625rem 1rem; color: #cbd5e1; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.15s; }
+        .sidebar-link:hover { background-color: #1e293b; color: white; }
+        .sidebar-link.active { background-color: #3b82f6; color: white; }
+        .status-badge { display: inline-flex; align-items: center; padding: 0.125rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">A</div>
+                <div>
+                    <p class="text-sm font-medium">Admin Pengadaan</p>
+                    <p class="text-xs text-slate-400">Vendor Management</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0 shadow-sm">
+            <div>
+                <h2 class="text-lg font-bold text-gray-800">Database Master Vendor</h2>
+                <p class="text-xs text-gray-500">Fase 2: Registrasi, Verifikasi Dokumen, dan Manajemen Vendor</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button onclick="loadVendors()" class="px-3 py-1.5 text-xs font-semibold bg-gray-100 hover:bg-gray-200 border border-gray-200 text-gray-700 rounded-lg transition flex items-center gap-1.5">
+                    <i class="fas fa-sync-alt"></i> Refresh Data
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8">
+            
+            <!-- Summary Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Terdaftar</p>
+                            <h3 class="text-3xl font-black text-gray-800 mt-1" id="stat-total">152</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between border-l-4 border-l-amber-500">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Menunggu Verifikasi</p>
+                            <h3 class="text-3xl font-black text-amber-600 mt-1" id="stat-pending">8</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between border-l-4 border-l-emerald-500">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Vendor Aktif</p>
+                            <h3 class="text-3xl font-black text-emerald-600 mt-1" id="stat-active">140</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between border-l-4 border-l-rose-500">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Blacklist / Inaktif</p>
+                            <h3 class="text-3xl font-black text-rose-600 mt-1" id="stat-blacklist">4</h3>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xl">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter & Search -->
+            <div class="bg-white rounded-t-xl border-x border-t border-gray-200 p-4 flex justify-between items-center">
+                <div class="flex gap-3">
+                    <select id="filterStatus" onchange="filterTable()" class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Semua Status</option>
+                        <option value="pending">Menunggu Verifikasi</option>
+                        <option value="active">Aktif</option>
+                        <option value="rejected">Ditolak / Blacklist</option>
+                    </select>
+                    <select id="filterKategori" onchange="filterTable()" class="border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Semua Kategori</option>
+                        <option value="kso_lab">KSO Laboratorium</option>
+                        <option value="alkes">Alkes & Medis</option>
+                        <option value="umum">Umum & Jasa</option>
+                    </select>
+                </div>
+                <div class="relative w-64">
+                    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Cari nama vendor atau NIB..." class="w-full border border-gray-300 rounded-lg pl-9 pr-3 py-1.5 text-sm focus:ring-blue-500 focus:border-blue-500">
+                    <i class="fas fa-search absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="bg-white border border-gray-200 rounded-b-xl overflow-hidden shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-slate-50 border-b border-gray-200 text-xs uppercase font-bold text-slate-500 tracking-wider">
+                            <tr>
+                                <th class="px-6 py-3">ID & Nama Perusahaan</th>
+                                <th class="px-6 py-3">Kategori</th>
+                                <th class="px-6 py-3">Legalitas (NIB/NPWP)</th>
+                                <th class="px-6 py-3">Kontak Utama</th>
+                                <th class="px-6 py-3 text-center">Status</th>
+                                <th class="px-6 py-3 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vendorTable" class="divide-y divide-gray-100">
+                            <!-- JS Populated -->
+                            <tr>
+                                <td colspan="6" class="px-6 py-8 text-center text-slate-400 text-sm">
+                                    <i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>Memuat data vendor...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal Verifikasi -->
+    <div id="verifyModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <h3 class="font-bold text-slate-800">Verifikasi Dokumen Vendor</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="flex items-center gap-3 bg-blue-50 p-3 rounded-lg border border-blue-100">
+                    <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-blue-600 font-black text-xl shadow-sm border border-blue-100" id="m_icon">B</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900" id="m_name">PT. Borneo Etam Mandiri</h4>
+                        <p class="text-xs text-blue-600 font-medium" id="m_cat">KSO Laboratorium</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <span class="block text-xs text-gray-500 font-bold mb-0.5">NIB / SIUP</span>
+                        <span class="font-mono text-gray-800" id="m_nib">9120391029301</span>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-gray-500 font-bold mb-0.5">NPWP</span>
+                        <span class="font-mono text-gray-800" id="m_npwp">01.234.567.8-901.000</span>
+                    </div>
+                    <div class="col-span-2">
+                        <span class="block text-xs text-gray-500 font-bold mb-0.5">Alamat Kantor</span>
+                        <span class="text-gray-800" id="m_alamat">Jl. Jend Sudirman Balikpapan</span>
+                    </div>
+                    <div class="col-span-2 border-t border-gray-100 pt-3 mt-1">
+                        <span class="block text-xs text-gray-500 font-bold mb-2">Checklist Legalitas Internal (AI Scan)</span>
+                        <div class="flex items-center gap-2 mb-1 text-emerald-600 text-xs">
+                            <i class="fas fa-check-circle"></i> NIB Valid & Terdaftar di OSS
+                        </div>
+                        <div class="flex items-center gap-2 text-emerald-600 text-xs">
+                            <i class="fas fa-check-circle"></i> Status Wajib Pajak Aktif
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end gap-3">
+                <button onclick="closeModal()" class="px-4 py-2 text-sm font-medium text-gray-600 hover:bg-gray-200 rounded-lg">Batal</button>
+                <button onclick="approveVendor()" class="px-4 py-2 text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm rounded-lg flex items-center gap-2">
+                    <i class="fas fa-check"></i> Setujui Vendor
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let vendorData = [];
+        let currentVerifyId = null;
+
+        async function loadVendors() {
+            const tb = document.getElementById('vendorTable');
+            tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-slate-400 text-sm"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>Memuat...</td></tr>`;
+            
+            try {
+                // Gunakan endpoint list dummy/real
+                const response = await fetch('http://127.0.0.1:8000/api/dashboard-kpi'); 
+                // We'll simulate fetching from vendor db
+                
+                vendorData = [
+                    { id: 'VND-001', name: 'PT. Borneo Etam Mandiri', cat: 'KSO Laboratorium', nib: '9120391029301', npwp: '01.234.567.8-901.000', contact: 'Budi (08123456789)', status: 'active' },
+                    { id: 'VND-002', name: 'PT. Indo Sehat Medika', cat: 'Alat Kesehatan', nib: '1827364509123', npwp: '02.987.654.3-210.000', contact: 'Siska (08199988877)', status: 'pending' },
+                    { id: 'VND-003', name: 'CV. Maju Bersama', cat: 'Umum & Jasa', nib: '7364528190345', npwp: '14.555.666.7-888.000', contact: 'Andi (08554433221)', status: 'active' },
+                    { id: 'VND-004', name: 'PT. Mitra Farma', cat: 'Obat / Farmasi', nib: '9988776655443', npwp: '08.111.222.3-444.000', contact: 'Rina (08776655443)', status: 'rejected' }
+                ];
+                
+                renderTable(vendorData);
+            } catch (err) {
+                tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-rose-500 font-bold">Gagal terhubung ke server backend.</td></tr>`;
+            }
+        }
+
+        function getStatusBadge(status) {
+            if(status === 'active') return '<span class="status-badge bg-emerald-100 text-emerald-700 border border-emerald-200">AKTIF</span>';
+            if(status === 'pending') return '<span class="status-badge bg-amber-100 text-amber-700 border border-amber-200">MENUNGGU VERIFIKASI</span>';
+            if(status === 'rejected') return '<span class="status-badge bg-rose-100 text-rose-700 border border-rose-200">DITOLAK / BLACKLIST</span>';
+            return `<span class="status-badge bg-gray-100 text-gray-700">${status}</span>`;
+        }
+
+        function renderTable(data) {
+            const tb = document.getElementById('vendorTable');
+            if(data.length === 0) {
+                tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-slate-500">Tidak ada data ditemukan.</td></tr>`;
+                return;
+            }
+            
+            tb.innerHTML = data.map(v => `
+                <tr class="hover:bg-slate-50 transition border-b border-gray-100 last:border-0">
+                    <td class="px-6 py-4">
+                        <div class="text-xs text-gray-500 font-mono mb-0.5">${v.id}</div>
+                        <div class="font-bold text-gray-900">${v.name}</div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600 font-medium">${v.cat}</td>
+                    <td class="px-6 py-4">
+                        <div class="text-xs text-gray-500">NIB: <span class="font-mono text-gray-800">${v.nib}</span></div>
+                        <div class="text-xs text-gray-500">NPWP: <span class="font-mono text-gray-800">${v.npwp}</span></div>
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">${v.contact}</td>
+                    <td class="px-6 py-4 text-center">${getStatusBadge(v.status)}</td>
+                    <td class="px-6 py-4 text-right">
+                        ${v.status === 'pending' 
+                            ? `<button onclick="openVerifyModal('${v.id}')" class="text-xs bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-3 py-1.5 rounded transition border border-blue-200">Verifikasi Dokumen</button>`
+                            : `<button class="text-xs text-gray-500 hover:text-blue-600 font-medium px-2 py-1"><i class="fas fa-search"></i> Detail</button>`
+                        }
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterTable() {
+            const status = document.getElementById('filterStatus').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            
+            const filtered = vendorData.filter(v => {
+                const matchStatus = status === "" || v.status === status;
+                const matchSearch = v.name.toLowerCase().includes(search) || v.nib.includes(search) || v.id.toLowerCase().includes(search);
+                return matchStatus && matchSearch;
+            });
+            renderTable(filtered);
+        }
+
+        function openVerifyModal(id) {
+            currentVerifyId = id;
+            const v = vendorData.find(x => x.id === id);
+            if(!v) return;
+            
+            document.getElementById('m_icon').textContent = v.name.charAt(0);
+            document.getElementById('m_name').textContent = v.name;
+            document.getElementById('m_cat').textContent = v.cat;
+            document.getElementById('m_nib').textContent = v.nib;
+            document.getElementById('m_npwp').textContent = v.npwp;
+            
+            document.getElementById('verifyModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('verifyModal').classList.add('hidden');
+            currentVerifyId = null;
+        }
+
+        function approveVendor() {
+            if(currentVerifyId) {
+                const v = vendorData.find(x => x.id === currentVerifyId);
+                if(v) v.status = 'active';
+                filterTable();
+                
+                // Update stats dummy
+                document.getElementById('stat-pending').textContent = parseInt(document.getElementById('stat-pending').textContent) - 1;
+                document.getElementById('stat-active').textContent = parseInt(document.getElementById('stat-active').textContent) + 1;
+            }
+            closeModal();
+        }
+
+        window.onload = loadVendors;
+    </script>
+</body>
+</html>

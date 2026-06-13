@@ -1,0 +1,48 @@
+mindmap
+  root((FASE 3\nPERMINTAAN\nPENGADAAN))
+    INPUT
+      Anggaran RKAP yang sudah disahkan dari Fase 1
+      Kebutuhan operasional SBU yang muncul sepanjang tahun
+      IMT dari unit peminta
+    PENGELOLA
+      SBU atau Unit yang Meminta sebagai pemrakarsa
+      Departemen Umum sebagai pengolah dokumen
+      Admin Pengadaan Barang dan Jasa
+    JALUR BARANG UMUM
+      IMT masuk dari unit peminta
+      Departemen Umum proses IMT menjadi PP
+      PP dilengkapi spesifikasi teknis dan RAB
+      Komite Anggaran validasi ketersediaan budget
+      PP disetujui trigger Fase 4 jalur barang
+    JALUR BARANG INVESTASI
+      IMT masuk dengan nilai lebih dari 100 juta
+      Studi Kelayakan FS wajib dilampirkan
+      Departemen Umum proses IMT menjadi PP Investasi
+      Review tambahan Komite Anggaran dan Direksi
+      PP Investasi disetujui trigger Fase 4
+    JALUR JASA
+      JOR Jurnal Operasional dari unit peminta
+      Departemen Umum susun SPPJ lengkap
+      SPPJ dilengkapi RAB dan BOQ
+      Untuk jasa konstruksi wajib ada DED
+      SPPJ disetujui trigger Fase 4 jalur jasa
+    DOKUMEN YANG DIHASILKAN
+      IMT Instruksi Memo Teknis
+      PP Permintaan Pembelian barang umum dan investasi
+      SPPJ Surat Permintaan Pekerjaan Jasa
+      RAB Rencana Anggaran Biaya
+      BOQ Bill of Quantity untuk konstruksi
+      DED Detail Engineering Design untuk konstruksi
+      JOR Jurnal Operasional untuk jasa
+    AI PENJAGA KEPATUHAN
+      Validasi PP apakah ada di RKAP sebelum diproses
+      Validasi investasi lebih dari 100 juta wajib ada FS
+      Cek kelengkapan SPPJ haruus ada BOQ dan DED
+      Blokir jika unit tidak punya otorisasi budget
+    KONEKSI KE FASE LAIN
+      Input dari Fase 1 validasi ketersediaan RKAP
+      Output PP dan SPPJ menjadi trigger Fase 4
+      Departemen Umum terlibat di Fase 3 Fase 4 dan Fase 6
+    SLA TARGET
+      Pengajuan IMT ke proses PP maksimal 1 hari kerja
+      Review dan penentuan metode pengadaan maksimal 2 hari kerja

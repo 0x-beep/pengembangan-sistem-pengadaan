@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Operasional & QC Vendor — PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0B1120; color: #e2e8f0; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR FALLBACK -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800 bg-[#0F172A]">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-white">Kasim Ganteng</p>
+                    <p class="text-[10px] text-slate-500">Kasie Pengadaan Barang</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col h-full relative overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-[#0F172A] border-b border-slate-800 px-6 py-4 shrink-0 flex items-center justify-between z-10 shadow-md">
+            <div class="flex items-center gap-4">
+                <a href="kso_management_dashboard.html" class="text-slate-400 hover:text-white transition"><i class="fas fa-arrow-left"></i> Kembali</a>
+                <div class="h-6 w-px bg-slate-700"></div>
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-store text-purple-500"></i> Detail KSO: <span id="vendorNameTitle">Memuat...</span>
+                </h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="contractStatusBadge" class="bg-slate-800 text-slate-400 text-xs px-3 py-1.5 rounded-full border border-slate-600 font-bold">Memuat Status...</span>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-6 bg-[#0B1120]">
+            <div class="max-w-7xl mx-auto space-y-6">
+
+                <!-- Alert Information Anti Kongkalikong -->
+                <div class="bg-blue-900/20 border border-blue-500/30 p-4 rounded-xl flex items-start gap-4">
+                    <div class="bg-blue-500/20 text-blue-400 w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+                        <i class="fas fa-user-shield text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold mb-1">Mekanisme QC Dual-Control (Anti Kongkalikong)</h3>
+                        <p class="text-blue-200 text-sm">Vendor menginput Laporan Harian (termasuk Absensi Teknisi & Hasil Kontrol High/Low alat). Data tersebut <strong class="text-white">wajib</strong> divalidasi oleh pihak independen (User Lab/Klinik). Jika ada manipulasi kehadiran teknisi, Lab berhak melaporkan Deviasi yang langsung terbaca oleh Wasit KSO dan terpotong di Raport Bulanan.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Left/Center Column (Daily Logs) -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col">
+                            <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
+                                <h3 class="font-bold text-white flex items-center gap-2">
+                                    <i class="fas fa-clipboard-check text-purple-500"></i> Log Harian Kontrol Mesin (QC)
+                                </h3>
+                                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1.5 rounded transition">
+                                    <i class="fas fa-check-double mr-1"></i> Validasi Batch (Oleh User Lab)
+                                </button>
+                            </div>
+                            <div class="p-0 overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-800/50 text-slate-400 text-[11px] uppercase tracking-wider">
+                                            <th class="p-4 font-semibold">Tanggal & Mesin</th>
+                                            <th class="p-4 font-semibold text-center">Teknisi (Absen)</th>
+                                            <th class="p-4 font-semibold text-center">QC Control (Hi/Lo)</th>
+                                            <th class="p-4 font-semibold text-center">Downtime</th>
+                                            <th class="p-4 font-semibold">Status Validasi User Lab</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="logsTableBody" class="divide-y divide-slate-700 text-sm">
+                                        <!-- JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Rincian Alat & Penempatan (Cabang) -->
+                        <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col mt-6">
+                            <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
+                                <h3 class="font-bold text-white flex items-center gap-2">
+                                    <i class="fas fa-network-wired text-blue-500"></i> Rincian Alat yg Dikerjasamakan (Per Cabang)
+                                </h3>
+                            </div>
+                            <div class="p-4 bg-slate-800/30 border-b border-slate-700">
+                                <p class="text-xs text-slate-400">Pantauan kesesuaian jumlah alat di lapangan dengan kontrak *Holding Agreement*. Mencegah penambahan alat secara diam-diam (ilegal) antara Cabang dan Vendor.</p>
+                            </div>
+                            <div class="p-0 overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-800/50 text-slate-400 text-[11px] uppercase tracking-wider">
+                                            <th class="p-4 font-semibold">Cabang / RS</th>
+                                            <th class="p-4 font-semibold text-center">Disepakati (Holding)</th>
+                                            <th class="p-4 font-semibold text-center">Aktual Lapangan</th>
+                                            <th class="p-4 font-semibold text-center">Deviasi Ilegal</th>
+                                            <th class="p-4 font-semibold">Status Kepatuhan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="machinesTableBody" class="divide-y divide-slate-700 text-sm">
+                                        <!-- JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Laporan Kerusakan & Analitik -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg p-5">
+                                <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-chart-line text-emerald-500"></i> Kinerja Alat (Uptime)</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between text-sm mb-1">
+                                            <span class="text-white font-medium">HEMA-01 (Uptime Bulan Ini)</span>
+                                            <span class="text-emerald-400">99.8%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-700 rounded-full h-2">
+                                            <div class="bg-emerald-500 h-2 rounded-full" style="width: 99.8%"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-sm mb-1">
+                                            <span class="text-white font-medium">CHEM-01 (Uptime Bulan Ini)</span>
+                                            <span class="text-red-400">82.5%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-700 rounded-full h-2">
+                                            <div class="bg-red-500 h-2 rounded-full" style="width: 82.5%"></div>
+                                        </div>
+                                        <p class="text-[10px] text-red-400 mt-1"><i class="fas fa-exclamation-triangle"></i> Deviasi: Sering rusak, teknisi tidak standby.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg p-5">
+                                <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-wrench text-rose-500"></i> Histori Kerusakan & Kalibrasi</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-start justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                        <div>
+                                            <p class="text-white text-sm font-bold">CHEM-01</p>
+                                            <p class="text-xs text-rose-400 mt-1">Probe Tersumbat, Kalibrasi Gagal.</p>
+                                            <p class="text-[10px] text-slate-500 mt-1">Dilaporkan: 10 Jun 2026 (Menunggu Teknisi)</p>
+                                        </div>
+                                        <span class="bg-rose-900/50 text-rose-400 text-[10px] px-2 py-0.5 rounded border border-rose-500/30">OPEN</span>
+                                    </div>
+                                    <div class="flex items-start justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                        <div>
+                                            <p class="text-white text-sm font-bold">HEMA-01</p>
+                                            <p class="text-xs text-emerald-400 mt-1">Kalibrasi Tahunan Rutin.</p>
+                                            <p class="text-[10px] text-slate-500 mt-1">Dilaporkan: 01 Jun 2026</p>
+                                        </div>
+                                        <span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-500/30">RESOLVED</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Keuangan & Tagihan) -->
+                    <div class="space-y-6">
+                        <!-- Integrasi Status Pembayaran -->
+                        <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg p-5">
+                            <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-wallet text-blue-500"></i> Status Pencairan (Keuangan)</h3>
+                            
+                            <div class="bg-slate-800 rounded-lg p-4 mb-4 text-center border border-slate-700" id="financeValidationPanel">
+                                <p class="text-xs text-slate-400 uppercase tracking-wider mb-2">Pengecekan *Holding Agreement*</p>
+                                <!-- JS -->
+                            </div>
+                            
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Histori Tagihan Bulanan</h4>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <p class="text-sm text-white font-medium">Tagihan Mei 2026</p>
+                                        <span class="text-emerald-400 text-xs"><i class="fas fa-check-circle"></i> LUNAS</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-xs">
+                                        <span class="text-slate-400">Rp 12.500.000</span>
+                                        <span class="text-slate-500">Tgl Cair: 05 Jun 2026</span>
+                                    </div>
+                                </div>
+                                <div class="p-3 bg-slate-800/50 rounded-lg border border-slate-700 relative overflow-hidden">
+                                    <div class="flex justify-between items-center mb-2 relative z-10">
+                                        <p class="text-sm text-white font-medium">Tagihan Juni 2026</p>
+                                        <span class="text-amber-400 text-xs"><i class="fas fa-clock"></i> DIPROSES</span>
+                                    </div>
+                                    <div class="flex justify-between items-center text-xs relative z-10">
+                                        <span class="text-slate-400">Rp 14.200.000</span>
+                                        <span class="text-slate-500">Estimasi: 05 Jul 2026</span>
+                                    </div>
+                                    <!-- Progress Bar -->
+                                    <div class="absolute bottom-0 left-0 h-1 bg-amber-500 w-[60%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const vendorId = urlParams.get('vendor_id') || 'VND-001'; 
+        const contractId = urlParams.get('contract_id') || 'KSO-2026-001'; 
+
+        async function loadData() {
+            try {
+                // 1. Fetch Contract Info (For Title and Badge)
+                const ctrRes = await fetch('http://127.0.0.1:8000/api/kso/contracts');
+                const ctrData = await ctrRes.json();
+                const contract = ctrData.data.find(c => c.vendor_id === vendorId);
+                
+                if(contract) {
+                    document.getElementById('vendorNameTitle').textContent = contract.vendor_name;
+                    const badge = document.getElementById('contractStatusBadge');
+                    
+                    if(contract.days_remaining < 0) {
+                        badge.className = "bg-red-900/50 text-red-400 text-xs px-3 py-1.5 rounded-full border border-red-500/30 font-bold";
+                        badge.innerHTML = `<i class="fas fa-times-circle"></i> KONTRAK HABIS (${Math.abs(contract.days_remaining)} hr lewat)`;
+                    } else if(contract.days_remaining <= 90) {
+                        badge.className = "bg-amber-900/50 text-amber-400 text-xs px-3 py-1.5 rounded-full border border-amber-500/30 font-bold";
+                        badge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Sisa ${contract.days_remaining} Hari`;
+                    } else {
+                        badge.className = "bg-emerald-900/50 text-emerald-400 text-xs px-3 py-1.5 rounded-full border border-emerald-500/30 font-bold";
+                        badge.innerHTML = `<i class="fas fa-check-circle"></i> Kontrak Aktif (Sisa ${contract.days_remaining} Hari)`;
+                    }
+                }
+
+                // 2. Fetch Finance Hard Blocker Validation
+                const finRes = await fetch(`http://127.0.0.1:8000/api/finance/validate-payment?vendor_id=${vendorId}`);
+                const finData = await finRes.json();
+                const finPanel = document.getElementById('financeValidationPanel');
+                if(finData.blocked) {
+                    finPanel.className = "bg-red-950/40 rounded-lg p-4 mb-4 text-center border border-red-900";
+                    finPanel.innerHTML = `
+                        <p class="text-xs text-red-400 uppercase tracking-wider mb-2 font-bold"><i class="fas fa-ban"></i> PEMBAYARAN DIBLOKIR</p>
+                        <p class="text-xs text-red-300">${finData.reason}</p>
+                    `;
+                } else {
+                    finPanel.className = "bg-emerald-950/40 rounded-lg p-4 mb-4 text-center border border-emerald-900";
+                    finPanel.innerHTML = `
+                        <div class="text-emerald-500 text-3xl mb-2"><i class="fas fa-check-circle"></i></div>
+                        <p class="text-xs text-emerald-400 font-bold uppercase tracking-wider">Holding Agreement Aktif</p>
+                        <p class="text-[10px] text-emerald-300/70 mt-1">Keuangan dapat mencairkan tagihan.</p>
+                    `;
+                }
+
+                // 3. Fetch Daily Logs
+                const logRes = await fetch(`http://127.0.0.1:8000/api/kso/daily-logs?vendor_id=${vendorId}`);
+                const logData = await logRes.json();
+                const tbody = document.getElementById('logsTableBody');
+                
+                if(!logData.data || logData.data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-500 text-xs">Belum ada log harian diinput oleh vendor bulan ini.</td></tr>`;
+                } else {
+                    tbody.innerHTML = logData.data.map(log => {
+                        
+                        const techBadge = log.technician_present 
+                            ? `<span class="text-emerald-400 text-xs"><i class="fas fa-check"></i> Hadir</span>` 
+                            : `<span class="text-red-400 text-xs font-bold"><i class="fas fa-times"></i> Absen</span>`;
+                        
+                        const qcBadge = log.qc_verified_by_user 
+                            ? `<span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-1 rounded border border-emerald-500/30"><i class="fas fa-check-double"></i> Verified Lab</span>`
+                            : `<span class="bg-amber-900/50 text-amber-400 text-[10px] px-2 py-1 rounded border border-amber-500/30"><i class="fas fa-clock"></i> Pending Cek Internal</span>`;
+
+                        const downtimeStr = log.downtime_hours > 0 
+                            ? `<span class="text-red-400 font-bold">${log.downtime_hours} Jam</span>` 
+                            : `<span class="text-slate-500">-</span>`;
+
+                        let hiLoColor = log.high_control === 'Pass' && log.low_control === 'Pass' ? 'text-emerald-400' : 'text-amber-400';
+
+                        return `
+                        <tr class="hover:bg-slate-800/30 transition">
+                            <td class="p-4">
+                                <p class="font-bold text-white text-xs">${log.log_date}</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">${log.machine_id}</p>
+                            </td>
+                            <td class="p-4 text-center">${techBadge}</td>
+                            <td class="p-4 text-center">
+                                <span class="text-xs font-mono ${hiLoColor}">Hi: ${log.high_control} | Lo: ${log.low_control}</span>
+                            </td>
+                            <td class="p-4 text-center">${downtimeStr}</td>
+                            <td class="p-4">
+                                <div class="flex flex-col items-start gap-1">
+                                    ${qcBadge}
+                                    <span class="text-[9px] text-slate-500 truncate max-w-[150px]" title="${log.remarks}">Ket: ${log.remarks}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        `;
+                    }).join('');
+                }
+
+                // 4. Inject Mock Data for Rincian Alat (Hema, Kimia, Urin)
+                const machineTbody = document.getElementById('machinesTableBody');
+                const mockMachines = [
+                    { cabang: "Klinik Utama (Pusat)", type: "Hematologi (HEMA-01)", holding: "1 Unit", actual: "1 Unit", deviasi: "0", status: "Sesuai", isDeviant: false },
+                    { cabang: "Cabang Samarinda", type: "Kimia Klinik (CHEM-01)", holding: "1 Unit", actual: "1 Unit", deviasi: "0", status: "Sesuai", isDeviant: false },
+                    { cabang: "Cabang Balikpapan", type: "Urinalisa (URIN-02)", holding: "1 Unit", actual: "2 Unit", deviasi: "+1 (Ilegal)", status: "Tidak Patuh", isDeviant: true }
+                ];
+                
+                machineTbody.innerHTML = mockMachines.map(m => {
+                    const statusBadge = m.isDeviant 
+                        ? '<span class="bg-rose-900/50 text-rose-400 text-[10px] px-2 py-1 rounded border border-rose-500/30 font-bold"><i class="fas fa-ban"></i> Pelanggaran</span>'
+                        : '<span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-1 rounded border border-emerald-500/30"><i class="fas fa-check"></i> Sesuai Kontrak</span>';
+                    
+                    const deviasiText = m.isDeviant
+                        ? `<span class="text-rose-400 font-bold">${m.deviasi}</span>`
+                        : `<span class="text-slate-400">-</span>`;
+
+                    return `
+                    <tr class="hover:bg-slate-800/30 transition">
+                        <td class="p-4">
+                            <p class="font-bold text-white text-xs">${m.cabang}</p>
+                            <p class="text-[10px] text-slate-400 mt-0.5">${m.type}</p>
+                        </td>
+                        <td class="p-4 text-center font-mono text-emerald-400 text-xs">${m.holding}</td>
+                        <td class="p-4 text-center font-mono text-white text-xs ${m.isDeviant ? 'text-rose-400 font-bold' : ''}">${m.actual}</td>
+                        <td class="p-4 text-center text-xs">${deviasiText}</td>
+                        <td class="p-4">${statusBadge}</td>
+                    </tr>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                console.error("Error loading vendor details", err);
+            }
+        }
+        
+        window.onload = loadData;
+    </script>
+</body>
+</html>

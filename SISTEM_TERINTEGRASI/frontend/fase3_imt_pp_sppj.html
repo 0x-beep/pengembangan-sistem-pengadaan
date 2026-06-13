@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 3 — Permintaan (IMT/PP/SPPJ) | PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { display: block; padding: 0.625rem 1rem; color: #cbd5e1; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.15s; }
+        .sidebar-link:hover { background-color: #1e293b; color: white; }
+        .sidebar-link.active { background-color: #3b82f6; color: white; }
+        .path-card { @apply border-2 border-transparent bg-white rounded-xl p-5 cursor-pointer hover:shadow-md transition-all; }
+        .path-card.selected { @apply border-blue-500 bg-blue-50 shadow-md; }
+        .badge { display: inline-flex; align-items: center; padding: 0.125rem 0.625rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">UM</div>
+                <div>
+                    <p class="text-sm font-medium">SBU Balikpapan</p>
+                    <p class="text-xs text-slate-400">User Peminta</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main -->
+    <div class="flex-1 flex flex-col overflow-hidden bg-gray-50">
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800">Fase 3 — Form Permintaan Pengadaan</h2>
+                <p class="text-xs text-gray-500">IMT (Investasi Medis) · PP (Barang Umum) · SPPJ (Jasa)</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-200">
+                    Sisa Plafon Anggaran SBU: <span class="font-bold text-lg ml-1">Rp 1.2M</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="max-w-5xl mx-auto space-y-6">
+
+                <!-- 1. Pilih Jalur (Tipe Permintaan) -->
+                <div>
+                    <h3 class="text-base font-bold text-gray-900 mb-3">1. Pilih Jalur Permintaan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Jalur 1: Barang Umum (PP) -->
+                        <div class="path-card selected" id="path-pp" onclick="selectPath('pp')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-xl">📦</div>
+                                <span class="badge bg-blue-100 text-blue-700">Form PP</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Barang Umum & BMHP</h4>
+                            <p class="text-xs text-gray-500 mt-1">Pengadaan operasional (Opex), reagen, ATK, bahan habis pakai.</p>
+                        </div>
+                        
+                        <!-- Jalur 2: Barang Investasi Medis (IMT) -->
+                        <div class="path-card" id="path-imt" onclick="selectPath('imt')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-xl">⚕️</div>
+                                <span class="badge bg-emerald-100 text-emerald-700">Form IMT</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Investasi Alat Medis</h4>
+                            <p class="text-xs text-gray-500 mt-1">Pengadaan Capex, mesin lab, alat radiologi, atau KSO operasional.</p>
+                        </div>
+
+                        <!-- Jalur 3: Pengadaan Jasa (SPPJ) -->
+                        <div class="path-card" id="path-sppj" onclick="selectPath('sppj')">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="w-10 h-10 rounded-lg bg-amber-100 flex items-center justify-center text-amber-600 text-xl">🛠️</div>
+                                <span class="badge bg-amber-100 text-amber-700">Form SPPJ</span>
+                            </div>
+                            <h4 class="font-bold text-gray-900">Pengadaan Jasa Khusus</h4>
+                            <p class="text-xs text-gray-500 mt-1">Jasa konstruksi, maintenance, IT, kalibrasi, konsultansi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Form Input -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="bg-slate-800 px-6 py-4 flex justify-between items-center text-white">
+                        <div>
+                            <h3 class="font-bold text-lg" id="form-title">Draft Permintaan Pembelian (PP)</h3>
+                            <p class="text-xs text-slate-300" id="form-subtitle">Pengadaan Barang Umum & Opex</p>
+                        </div>
+                        <span class="text-xs font-mono bg-slate-700 px-2 py-1 rounded">DRAFT</span>
+                    </div>
+
+                    <form id="reqForm" class="p-6 space-y-6">
+                        <input type="hidden" id="req_type" value="PP">
+                        
+                        <!-- Info Dasar -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1.5">SBU / Departemen *</label>
+                                <select id="sbu_name" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 bg-gray-50 pointer-events-none">
+                                    <option value="SBU Balikpapan" selected>SBU Balikpapan (Klinik Utama)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1.5">Kode Anggaran (Budget Code) *</label>
+                                <select id="budget_code" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+                                    <option value="BGT-2026-OP-01">BGT-2026-OP-01 (Opex - BMHP)</option>
+                                    <option value="BGT-2026-OP-02">BGT-2026-OP-02 (Opex - Umum)</option>
+                                    <option value="BGT-2026-CP-01" disabled>BGT-2026-CP-01 (Capex - Alat Medis)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Judul Permintaan *</label>
+                            <input type="text" id="title" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" placeholder="Contoh: Pengadaan Reagen Hematologi Q3">
+                        </div>
+
+                        <!-- Spesifikasi (Dynamic based on path) -->
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Deskripsi / Spesifikasi Teknis *</label>
+                            <textarea id="description" rows="4" required class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Jelaskan kebutuhan secara detail. Jika ada merek/spesifikasi khusus, sebutkan beserta alasannya."></textarea>
+                        </div>
+
+                        <!-- Fields Khusus IMT (Hidden by default) -->
+                        <div id="imt-fields" class="hidden space-y-5 p-5 bg-emerald-50 border border-emerald-200 rounded-xl">
+                            <h4 class="text-sm font-bold text-emerald-800 mb-2">Formulir Khusus IMT (Investasi)</h4>
+                            <div class="grid grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold text-emerald-800 mb-1.5">Bentuk Pengadaan</label>
+                                    <select class="w-full border border-emerald-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                                        <option>Beli Putus (Direct Purchase)</option>
+                                        <option>Kerjasama Operasional (KSO)</option>
+                                        <option>Sewa / Leasing</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-emerald-800 mb-1.5">Justifikasi Medis/Bisnis</label>
+                                    <input type="text" class="w-full border border-emerald-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500" placeholder="ROI, Peningkatan Kapasitas, dll">
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" class="rounded text-emerald-600 border-emerald-300">
+                                <span class="text-xs text-emerald-800 font-medium">Saya menyatakan investasi ini telah disetujui dalam rapat komite medis.</span>
+                            </div>
+                        </div>
+
+                        <!-- Fields Khusus SPPJ (Hidden by default) -->
+                        <div id="sppj-fields" class="hidden space-y-5 p-5 bg-amber-50 border border-amber-200 rounded-xl">
+                            <h4 class="text-sm font-bold text-amber-800 mb-2">Formulir Khusus SPPJ (Jasa)</h4>
+                            <div class="grid grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold text-amber-800 mb-1.5">Durasi Pekerjaan</label>
+                                    <div class="flex gap-2">
+                                        <input type="number" placeholder="30" class="w-full border border-amber-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-500">
+                                        <select class="w-32 border border-amber-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-500">
+                                            <option>Hari</option>
+                                            <option>Bulan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-amber-800 mb-1.5">Kebutuhan SLA/Garansi</label>
+                                    <input type="text" class="w-full border border-amber-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-500" placeholder="Masa retensi, respon perbaikan, dll">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Harga & AI Guardian -->
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1.5">Estimasi Total Harga (Rp) *</label>
+                            <div class="relative max-w-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm font-bold">Rp</span>
+                                </div>
+                                <input type="number" id="total_amount" required class="w-full pl-10 pr-4 py-2 text-lg font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0">
+                            </div>
+                            
+                            <!-- AI Guardian Approval Preview -->
+                            <div class="mt-4 p-4 border border-gray-200 rounded-xl bg-gray-50" id="ai-guardian-box">
+                                <div class="flex gap-3">
+                                    <div class="text-blue-500 mt-0.5 text-xl">🤖</div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-gray-800">AI Guardian: Approval Routing</h4>
+                                        <p class="text-xs text-gray-500 mt-1" id="approval-path">Masukkan nilai estimasi untuk melihat rute persetujuan dokumen ini.</p>
+                                        <div id="budget-warning" class="hidden mt-2 inline-flex items-center gap-1 text-xs font-bold text-rose-600 bg-rose-50 px-2 py-1 rounded border border-rose-200">
+                                            ⚠ Overbudget: Nilai melebihi sisa plafon SBU (Rp 1.2M)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-gray-200 flex justify-end gap-3">
+                            <button type="button" class="px-5 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition">Simpan Draft</button>
+                            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg shadow-md transition">Kirim ke Pengadaan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Success -->
+    <div id="successModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-8 text-center">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-emerald-100 mb-5">
+                <svg class="h-8 w-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h2 class="text-xl font-bold text-gray-900 mb-2">Permintaan Berhasil!</h2>
+            <p class="text-sm text-gray-500">Dokumen masuk antrean approval sesuai matriks kewenangan.</p>
+            <p class="mt-4 font-mono font-bold bg-gray-100 p-2 text-sm rounded border border-gray-200" id="reqIdDisplay">REQ-...</p>
+            <button onclick="location.reload()" class="mt-6 w-full bg-slate-900 text-white font-semibold py-2.5 rounded-lg hover:bg-slate-800 transition">Buat Baru</button>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://127.0.0.1:8000';
+
+        function selectPath(path) {
+            // Update UI Selection
+            ['pp','imt','sppj'].forEach(p => {
+                document.getElementById('path-' + p).classList.remove('selected');
+                document.getElementById(p + '-fields')?.classList.add('hidden');
+            });
+            document.getElementById('path-' + path).classList.add('selected');
+            
+            // Update Form Data
+            const typeInput = document.getElementById('req_type');
+            const title = document.getElementById('form-title');
+            const subtitle = document.getElementById('form-subtitle');
+            
+            if(path === 'pp') {
+                typeInput.value = 'PP';
+                title.textContent = 'Draft Permintaan Pembelian (PP)';
+                subtitle.textContent = 'Pengadaan Barang Umum & Opex';
+            } else if (path === 'imt') {
+                typeInput.value = 'IMT';
+                title.textContent = 'Draft Instruksi Medis Teknis (IMT)';
+                subtitle.textContent = 'Pengadaan Investasi & Capex';
+                document.getElementById('imt-fields').classList.remove('hidden');
+            } else if (path === 'sppj') {
+                typeInput.value = 'SPPJ';
+                title.textContent = 'Draft Surat Permintaan Pengadaan Jasa (SPPJ)';
+                subtitle.textContent = 'Pengadaan Jasa Konstruksi / Layanan';
+                document.getElementById('sppj-fields').classList.remove('hidden');
+            }
+            
+            checkAIGuardian(); // re-eval
+        }
+
+        function checkAIGuardian() {
+            const amount = parseInt(document.getElementById('total_amount').value || 0);
+            const reqType = document.getElementById('req_type').value;
+            const pathText = document.getElementById('approval-path');
+            const budgetWarn = document.getElementById('budget-warning');
+            
+            const maxBudget = 1200000000; // 1.2M demo
+            
+            if (amount > maxBudget) {
+                budgetWarn.classList.remove('hidden');
+            } else {
+                budgetWarn.classList.add('hidden');
+            }
+
+            if(amount === 0) {
+                pathText.innerHTML = 'Masukkan nilai estimasi untuk melihat rute persetujuan dokumen ini.';
+                return;
+            }
+
+            let route = '';
+            if(reqType === 'SPPJ') {
+                if(amount <= 25000000) route = 'Kasie → Manager';
+                else if (amount <= 100000000) route = 'Kasie → Manager → GM';
+                else if (amount <= 1000000000) route = 'Kasie → Manager → GM → Direktur Ops';
+                else route = 'Kasie → Manager → GM → BOD (Kewajiban Bank Guarantee 5%)';
+            } else {
+                if(amount <= 10000000) route = 'Kasie → Manager';
+                else if (amount <= 25000000) route = 'Kasie → Manager → GM';
+                else if (amount <= 50000000) route = 'Kasie → Manager → GM → Direktur Ops';
+                else route = 'Kasie → Manager → GM → Direktur Ops → Direktur Utama';
+            }
+
+            pathText.innerHTML = `<span class="font-semibold text-blue-700">Rute Persetujuan:</span> ${route}`;
+        }
+
+        document.getElementById('total_amount').addEventListener('input', checkAIGuardian);
+
+        document.getElementById('reqForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const payload = {
+                req_type: document.getElementById('req_type').value,
+                sbu_name: document.getElementById('sbu_name').value,
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                budget_code: document.getElementById('budget_code').value,
+                total_amount: parseFloat(document.getElementById('total_amount').value),
+                created_by: 'Budi (SBU Balikpapan)'
+            };
+
+            try {
+                // Keep the same endpoint as original requisition_form.html
+                const response = await fetch(`${API}/api/requisitions`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('successModal').classList.remove('hidden');
+                    document.getElementById('reqIdDisplay').innerText = result.req_number;
+                } else {
+                    alert('Gagal: ' + (result.detail || 'Terjadi kesalahan server'));
+                }
+            } catch (err) {
+                // Demo fallback if backend is down
+                console.error(err);
+                document.getElementById('successModal').classList.remove('hidden');
+                document.getElementById('reqIdDisplay').innerText = `${payload.req_type}-2026-06-DEMO`;
+            }
+        });
+    </script>
+</body>
+</html>

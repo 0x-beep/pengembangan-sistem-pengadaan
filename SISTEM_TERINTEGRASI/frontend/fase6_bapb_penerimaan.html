@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 6 — BAPB & Penerimaan Barang | PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { @apply block px-4 py-2.5 text-slate-300 hover:bg-slate-800 hover:text-white rounded-lg text-sm font-medium transition-colors; }
+        .sidebar-link.active { @apply bg-emerald-600 text-white; }
+        .badge-status { @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold; }
+        .tab-btn { @apply px-4 py-2 text-sm font-medium border-b-2 transition-colors cursor-pointer; }
+        .tab-btn.active { @apply border-emerald-600 text-emerald-700; }
+        .tab-btn:not(.active) { @apply border-transparent text-gray-500 hover:text-gray-700; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center text-xs font-bold">GD</div>
+                <div>
+                    <p class="text-sm font-medium">Bagian Gudang</p>
+                    <p class="text-xs text-slate-400">Penerima Barang</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800">Fase 6 — BAPB & Penerimaan Barang</h2>
+                <p class="text-xs text-gray-500">Berita Acara Penerimaan Barang · Quality Control · 3-Way Match Pre-check</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-emerald-200">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    SLA Target: QC ≤ 2 Hari
+                </div>
+                <button onclick="openBAPBModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition">
+                    + Buat BAPB Baru
+                </button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <!-- Stats Row -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Menunggu Penerimaan</p>
+                    <p class="text-3xl font-bold text-amber-500 mt-1" id="stat_pending">0</p>
+                    <p class="text-xs text-gray-400 mt-1">PO belum diterima</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Dalam Proses QC</p>
+                    <p class="text-3xl font-bold text-blue-500 mt-1" id="stat_qc">0</p>
+                    <p class="text-xs text-gray-400 mt-1">Sedang diperiksa</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">BAPB Terbit</p>
+                    <p class="text-3xl font-bold text-emerald-500 mt-1" id="stat_done">0</p>
+                    <p class="text-xs text-gray-400 mt-1">Siap ke Fase 7</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Ditolak / Retur</p>
+                    <p class="text-3xl font-bold text-rose-500 mt-1" id="stat_rejected">0</p>
+                    <p class="text-xs text-gray-400 mt-1">Tidak sesuai spek</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-100">
+                    <p class="text-xs text-emerald-700 font-medium">QC Pass Rate</p>
+                    <p class="text-3xl font-bold text-emerald-600 mt-1" id="stat_passrate">—</p>
+                    <p class="text-xs text-emerald-500 mt-1">Target ≥ 95%</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="border-b border-gray-200 px-6 flex gap-0">
+                    <button class="tab-btn active" id="tab-btn-po" onclick="switchTab('po')">📦 PO Menunggu Penerimaan</button>
+                    <button class="tab-btn" id="tab-btn-qc" onclick="switchTab('qc')">🔬 Proses QC</button>
+                    <button class="tab-btn" id="tab-btn-bapb" onclick="switchTab('bapb')">✅ Daftar BAPB</button>
+                    <button class="tab-btn" id="tab-btn-retur" onclick="switchTab('retur')">🔄 Retur & Penolakan</button>
+                </div>
+
+                <!-- Tab: PO Menunggu -->
+                <div id="tab-po" class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="text-sm text-gray-500">Purchase Order yang sudah diterbitkan dan menunggu konfirmasi pengiriman dari vendor.</p>
+                        <button onclick="loadPOs()" class="text-sm text-gray-500 hover:text-gray-800 flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                            Refresh
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    <th class="pb-3 pr-4">No. PO</th>
+                                    <th class="pb-3 pr-4">Vendor</th>
+                                    <th class="pb-3 pr-4">Nilai PO</th>
+                                    <th class="pb-3 pr-4">Tgl. Terbit</th>
+                                    <th class="pb-3 pr-4">Est. Tiba</th>
+                                    <th class="pb-3 pr-4">Status</th>
+                                    <th class="pb-3 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="po-table-body" class="divide-y divide-gray-100 text-sm">
+                                <!-- JS inject -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="po-empty" class="hidden py-12 text-center text-gray-400">
+                        <div class="text-5xl mb-3">📭</div>
+                        <p class="font-medium">Tidak ada PO yang menunggu penerimaan</p>
+                    </div>
+                </div>
+
+                <!-- Tab: QC -->
+                <div id="tab-qc" class="p-6 hidden">
+                    <p class="text-sm text-gray-500 mb-4">Barang yang sudah diterima dan sedang menjalani pemeriksaan kualitas (QC) sebelum BAPB diterbitkan.</p>
+                    <div id="qc-list" class="space-y-4">
+                        <!-- QC Items -->
+                        <div class="border border-blue-200 rounded-xl p-5 bg-blue-50/50">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded">DALAM QC</span>
+                                    <h3 class="text-base font-bold text-gray-900 mt-2">PO-2026-06-001 — Reagen Laboratorium Hematologi</h3>
+                                    <p class="text-sm text-gray-500">Vendor: PT. Medik Jaya · Diterima: 12 Jun 2026 · QC oleh: Tim Laboratorium</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold text-gray-900">Rp 185.000.000</p>
+                                    <p class="text-xs text-gray-400">72 item diterima</p>
+                                </div>
+                            </div>
+                            <!-- QC Checklist -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" checked class="rounded text-blue-600"> Jumlah sesuai PO
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" checked class="rounded text-blue-600"> Spesifikasi sesuai
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" class="rounded text-blue-600"> Kondisi fisik baik
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" checked class="rounded text-blue-600"> Kemasan tidak rusak
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" class="rounded text-blue-600"> Sertifikat/COA ada
+                                </label>
+                                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                                    <input type="checkbox" checked class="rounded text-blue-600"> Expired date valid
+                                </label>
+                            </div>
+                            <div class="mb-3">
+                                <label class="text-xs font-semibold text-gray-600 block mb-1">Catatan QC</label>
+                                <textarea class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" rows="2" placeholder="Masukkan temuan QC..."></textarea>
+                            </div>
+                            <div class="flex gap-3">
+                                <button onclick="approveBAPB('PO-2026-06-001')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 py-2 rounded-lg transition">
+                                    ✓ Terima & Terbitkan BAPB
+                                </button>
+                                <button onclick="rejectItem('PO-2026-06-001')" class="bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold px-5 py-2 rounded-lg transition">
+                                    ✕ Tolak / Retur
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: BAPB -->
+                <div id="tab-bapb" class="p-6 hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="text-sm text-gray-500">BAPB yang sudah diterbitkan dan siap memicu proses Invoice di Fase 7.</p>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Cari No. BAPB / PO..." class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    <th class="pb-3 pr-4">No. BAPB</th>
+                                    <th class="pb-3 pr-4">No. PO</th>
+                                    <th class="pb-3 pr-4">Vendor</th>
+                                    <th class="pb-3 pr-4">Item</th>
+                                    <th class="pb-3 pr-4">Nilai</th>
+                                    <th class="pb-3 pr-4">Tgl. BAPB</th>
+                                    <th class="pb-3 pr-4">QC Status</th>
+                                    <th class="pb-3 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bapb-table-body" class="divide-y divide-gray-100 text-sm">
+                                <tr>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">BAPB-2026-06-001</td>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">PO-2026-05-018</td>
+                                    <td class="py-3 pr-4">PT. Medik Jaya</td>
+                                    <td class="py-3 pr-4">Alat Kesehatan ICU (15 item)</td>
+                                    <td class="py-3 pr-4 font-semibold">Rp 420.000.000</td>
+                                    <td class="py-3 pr-4 text-gray-500">5 Jun 2026</td>
+                                    <td class="py-3 pr-4"><span class="badge-status bg-emerald-100 text-emerald-700">✓ Lulus QC</span></td>
+                                    <td class="py-3 text-right">
+                                        <button class="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg font-semibold transition">Cetak BAPB</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">BAPB-2026-06-002</td>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">PO-2026-05-021</td>
+                                    <td class="py-3 pr-4">PT. Farma Indonesia</td>
+                                    <td class="py-3 pr-4">Obat-obatan ICU (200 item)</td>
+                                    <td class="py-3 pr-4 font-semibold">Rp 95.500.000</td>
+                                    <td class="py-3 pr-4 text-gray-500">8 Jun 2026</td>
+                                    <td class="py-3 pr-4"><span class="badge-status bg-emerald-100 text-emerald-700">✓ Lulus QC</span></td>
+                                    <td class="py-3 text-right">
+                                        <button class="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg font-semibold transition">Cetak BAPB</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">BAPB-2026-06-003</td>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">PO-2026-06-003</td>
+                                    <td class="py-3 pr-4">PT. Supply Chain</td>
+                                    <td class="py-3 pr-4">BMHP Consumables (500 item)</td>
+                                    <td class="py-3 pr-4 font-semibold">Rp 38.750.000</td>
+                                    <td class="py-3 pr-4 text-gray-500">10 Jun 2026</td>
+                                    <td class="py-3 pr-4"><span class="badge-status bg-amber-100 text-amber-700">⚠ Partial</span></td>
+                                    <td class="py-3 text-right">
+                                        <button class="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100 px-3 py-1.5 rounded-lg font-semibold transition">Cetak BAPB</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab: Retur -->
+                <div id="tab-retur" class="p-6 hidden">
+                    <p class="text-sm text-gray-500 mb-4">Barang yang ditolak saat QC dan dikembalikan ke vendor beserta alasannya.</p>
+                    <div class="space-y-3" id="retur-list">
+                        <div class="border border-rose-200 rounded-xl p-5 bg-rose-50/40">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <span class="text-xs font-bold text-rose-700 bg-rose-100 px-2 py-0.5 rounded">RETUR</span>
+                                    <h3 class="text-base font-bold text-gray-900 mt-2">PO-2026-05-009 — Reagen Kimia Klinik</h3>
+                                    <p class="text-sm text-gray-500">Vendor: PT. BEM · Dikembalikan: 3 Jun 2026</p>
+                                    <div class="mt-3 bg-white border border-rose-200 rounded-lg p-3">
+                                        <p class="text-xs font-semibold text-rose-700 mb-1">Alasan Penolakan:</p>
+                                        <p class="text-sm text-gray-700">Expired date produk kurang dari 6 bulan dari tanggal pengiriman (tidak sesuai COA yang disyaratkan). Batch #RK2024-88 ditemukan 12 item rusak kemasan.</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-lg font-bold text-rose-600">32 item ditolak</p>
+                                    <p class="text-xs text-gray-400">dari 50 item diterima</p>
+                                    <button class="mt-3 text-xs bg-rose-600 text-white hover:bg-rose-700 px-3 py-1.5 rounded-lg font-semibold transition">Kirim Surat Retur</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Buat BAPB -->
+    <div id="bapb-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900">Buat BAPB Baru</h3>
+                    <p class="text-sm text-gray-500">Berita Acara Penerimaan Barang</p>
+                </div>
+                <button onclick="closeBAPBModal()" class="text-gray-400 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-5">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Nomor PO *</label>
+                        <select id="bapb-po" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                            <option value="">-- Pilih PO --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Tanggal Penerimaan *</label>
+                        <input type="date" id="bapb-date" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Penerima Barang *</label>
+                        <input type="text" id="bapb-receiver" placeholder="Nama penerima" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Jabatan Penerima *</label>
+                        <input type="text" id="bapb-receiver-title" placeholder="Jabatan" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Jumlah Diterima *</label>
+                        <input type="number" id="bapb-qty-received" placeholder="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Jumlah Dipesan (PO)</label>
+                        <input type="number" id="bapb-qty-ordered" placeholder="0" readonly class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-gray-50">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Checklist QC</label>
+                    <div class="grid grid-cols-2 gap-2 border border-gray-200 rounded-lg p-4 bg-gray-50">
+                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="qc1" class="rounded text-emerald-600"> Jumlah sesuai PO</label>
+                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="qc2" class="rounded text-emerald-600"> Spesifikasi sesuai</label>
+                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="qc3" class="rounded text-emerald-600"> Kondisi fisik baik</label>
+                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="qc4" class="rounded text-emerald-600"> Kemasan tidak rusak</label>
+                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="qc5" class="rounded text-emerald-600"> Sertifikat/COA ada</label>
+                        <label class="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" id="qc6" class="rounded text-emerald-600"> Expired date valid</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Hasil QC</label>
+                    <select id="bapb-qc-result" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500">
+                        <option value="accepted">✅ Diterima Penuh</option>
+                        <option value="partial">⚠️ Diterima Sebagian</option>
+                        <option value="rejected">❌ Ditolak / Retur</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Catatan QC / Temuan</label>
+                    <textarea id="bapb-notes" rows="3" placeholder="Tuliskan temuan QC, kondisi khusus, atau alasan penolakan..." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 resize-none"></textarea>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+                    <strong>ℹ️ Info:</strong> BAPB yang diterbitkan akan otomatis menjadi trigger untuk proses Invoice di <strong>Fase 7</strong>. Pastikan seluruh data valid sebelum menerbitkan.
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 flex gap-3 justify-end">
+                <button onclick="closeBAPBModal()" class="px-5 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50 transition">Batal</button>
+                <button onclick="submitBAPB()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-bold transition shadow-sm">Terbitkan BAPB</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+        <div class="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-xl text-sm font-medium flex items-center gap-2">
+            <span id="toast-icon">✓</span>
+            <span id="toast-msg">Berhasil!</span>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://127.0.0.1:8000';
+        
+        // BAPB local storage (since no dedicated BAPB endpoint yet)
+        let bapbRecords = JSON.parse(localStorage.getItem('bapb_records') || '[]');
+        let bapbCounter = bapbRecords.length + 1;
+
+        function showToast(msg, isSuccess = true) {
+            const t = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            document.getElementById('toast-icon').textContent = isSuccess ? '✓' : '⚠';
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3000);
+        }
+
+        function switchTab(tab) {
+            ['po','qc','bapb','retur'].forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).classList.remove('active');
+            });
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tab).classList.add('active');
+            if (tab === 'po') loadPOs();
+            if (tab === 'bapb') renderBAPBTable();
+        }
+
+        async function loadPOs() {
+            try {
+                const res = await fetch(`${API}/api/purchase-orders`).catch(() => null);
+                const tbody = document.getElementById('po-table-body');
+                
+                // Demo data since PO endpoint may not have GET all
+                const demos = [
+                    { po_number: 'PO-2026-06-001', vendor: 'PT. Medik Jaya', amount: 185000000, issued: '2026-06-10', eta: '2026-06-13', status: 'issued' },
+                    { po_number: 'PO-2026-06-002', vendor: 'PT. Farma Indonesia', amount: 95500000, issued: '2026-06-08', eta: '2026-06-11', status: 'issued' },
+                    { po_number: 'PO-2026-06-003', vendor: 'PT. Supply Chain', amount: 38750000, issued: '2026-06-09', eta: '2026-06-12', status: 'issued' },
+                ];
+                tbody.innerHTML = '';
+                let pendingCount = 0;
+                demos.forEach(po => {
+                    pendingCount++;
+                    const eta = new Date(po.eta);
+                    const now = new Date();
+                    const overdue = eta < now;
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="py-3 pr-4 font-mono text-xs text-gray-600">${po.po_number}</td>
+                            <td class="py-3 pr-4 font-medium text-gray-900">${po.vendor}</td>
+                            <td class="py-3 pr-4 font-semibold">Rp ${po.amount.toLocaleString('id-ID')}</td>
+                            <td class="py-3 pr-4 text-gray-500 text-xs">${po.issued}</td>
+                            <td class="py-3 pr-4 text-xs ${overdue ? 'text-rose-600 font-bold' : 'text-gray-500'}">${po.eta}${overdue ? ' ⚠ Terlambat' : ''}</td>
+                            <td class="py-3 pr-4"><span class="badge-status bg-amber-100 text-amber-700">Menunggu Tiba</span></td>
+                            <td class="py-3 text-right">
+                                <button onclick="startQC('${po.po_number}', '${po.vendor}')" class="text-xs bg-blue-600 text-white hover:bg-blue-700 px-3 py-1.5 rounded-lg font-semibold transition">Konfirmasi Terima</button>
+                            </td>
+                        </tr>`;
+                });
+                document.getElementById('stat_pending').textContent = pendingCount;
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function startQC(poNumber, vendor) {
+            showToast(`Memulai proses QC untuk ${poNumber}...`);
+            switchTab('qc');
+        }
+
+        function approveBAPB(poNumber) {
+            const today = new Date().toISOString().split('T')[0];
+            const bapbNo = `BAPB-2026-06-${String(bapbCounter++).padStart(3,'0')}`;
+            bapbRecords.push({
+                bapb_number: bapbNo,
+                po_number: poNumber,
+                vendor: 'PT. Medik Jaya',
+                items: '72 item Reagen Laboratorium',
+                amount: 185000000,
+                date: today,
+                qc_result: 'accepted'
+            });
+            localStorage.setItem('bapb_records', JSON.stringify(bapbRecords));
+            showToast(`BAPB ${bapbNo} berhasil diterbitkan! Fase 7 siap diproses.`);
+            document.getElementById('stat_done').textContent = bapbRecords.filter(b => b.qc_result === 'accepted').length;
+            updatePassRate();
+            switchTab('bapb');
+        }
+
+        function rejectItem(poNumber) {
+            showToast('Item ditolak dan masuk antrian retur vendor.', false);
+            document.getElementById('stat_rejected').textContent = parseInt(document.getElementById('stat_rejected').textContent || 0) + 1;
+            switchTab('retur');
+        }
+
+        function renderBAPBTable() {
+            const tbody = document.getElementById('bapb-table-body');
+            if (bapbRecords.length === 0) return;
+            // Merge with existing demo rows
+        }
+
+        function updatePassRate() {
+            const done = parseInt(document.getElementById('stat_done').textContent) || 0;
+            const rejected = parseInt(document.getElementById('stat_rejected').textContent) || 0;
+            const total = done + rejected;
+            if (total > 0) {
+                document.getElementById('stat_passrate').textContent = Math.round((done / total) * 100) + '%';
+            }
+        }
+
+        function openBAPBModal() {
+            document.getElementById('bapb-modal').classList.remove('hidden');
+            document.getElementById('bapb-date').value = new Date().toISOString().split('T')[0];
+            // Populate PO options
+            const sel = document.getElementById('bapb-po');
+            sel.innerHTML = '<option value="">-- Pilih PO --</option>';
+            ['PO-2026-06-001','PO-2026-06-002','PO-2026-06-003'].forEach(p => {
+                sel.innerHTML += `<option value="${p}">${p}</option>`;
+            });
+        }
+
+        function closeBAPBModal() {
+            document.getElementById('bapb-modal').classList.add('hidden');
+        }
+
+        function submitBAPB() {
+            const po = document.getElementById('bapb-po').value;
+            const receiver = document.getElementById('bapb-receiver').value;
+            const qcResult = document.getElementById('bapb-qc-result').value;
+            if (!po || !receiver) {
+                showToast('Nomor PO dan Penerima wajib diisi!', false);
+                return;
+            }
+            const today = new Date().toISOString().split('T')[0];
+            const bapbNo = `BAPB-2026-06-${String(bapbCounter++).padStart(3,'0')}`;
+            bapbRecords.push({
+                bapb_number: bapbNo,
+                po_number: po,
+                vendor: 'Vendor Terpilih',
+                items: 'Barang dari PO',
+                amount: 0,
+                date: today,
+                qc_result: qcResult,
+                receiver: receiver,
+                notes: document.getElementById('bapb-notes').value
+            });
+            localStorage.setItem('bapb_records', JSON.stringify(bapbRecords));
+            closeBAPBModal();
+            showToast(`BAPB ${bapbNo} berhasil diterbitkan!`);
+            document.getElementById('stat_done').textContent = bapbRecords.filter(b => b.qc_result === 'accepted').length;
+            updatePassRate();
+        }
+
+        // Init
+        window.addEventListener('DOMContentLoaded', () => {
+            loadPOs();
+            document.getElementById('stat_done').textContent = bapbRecords.filter(b => b.qc_result === 'accepted').length;
+            document.getElementById('stat_qc').textContent = 1;
+            updatePassRate();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+mindmap
+  root((FASE 7\nPEMBAYARAN\n& INVOICE))
+    INPUT
+      3-Way Match yang sudah clear dari Fase 6
+      Invoice resmi dari vendor
+      Syarat pembayaran sesuai PKS atau PO DP dan pelunasan
+    PENGELOLA
+      Bagian Keuangan sebagai pelaksana pembayaran
+      Manager Pengadaan sebagai approval
+      Otorisasi Direksi untuk nilai tertentu
+    PROSES PEMBAYARAN
+      Invoice masuk ke sistem dari vendor
+      Auto-validasi 3-Way Match PO BAPB Invoice
+      Jika matched masuk antrian approval pembayaran
+      Approval bertingkat sesuai nilai sama dengan otorisasi PO
+      Pembayaran DP dahulu jika kontrak mensyaratkan
+      Pelunasan setelah semua milestone terpenuhi
+      GL Posting otomatis ke sistem keuangan KMU
+      Konfirmasi pembayaran di Portal Vendor KMU
+    SKEMA PEMBAYARAN MILESTONE
+      DP 30 persen setelah kontrak aktif dan jaminan diterima
+      Pengiriman 40 persen setelah barang diterima dan BAPB clear
+      Testing 20 persen setelah uji coba alat selesai
+      Training dan Komisioning 10 persen setelah serah terima final
+    OTORISASI BERTINGKAT
+      Nilai sampai 50 juta Manager Pengadaan
+      Nilai 50 sampai 500 juta GM Operasi
+      Nilai 500 juta sampai 1 miliar Direktur Keuangan
+      Nilai lebih dari 1 miliar Direktur Utama atau BOD
+    BANK GUARANTEE
+      Wajib untuk nilai kontrak lebih dari 1 miliar
+      BG senilai 5 persen dari nilai kontrak
+      Berlaku selama masa retensi
+      Pencairan BG setelah masa retensi selesai dan tanpa klaim
+    OUTPUT
+      Rekaman pembayaran lengkap ke Fase 9 Pelaporan
+      Status pembayaran vendor sebagai data Fase 8 Evaluasi
+      GL Posting integrasi dengan sistem keuangan ERP KMU
+      Konfirmasi LUNAS ke Portal Vendor sebagai trigger Fase 8
+    DOKUMEN
+      Invoice vendor
+      BAPB Berita Acara Penerimaan Barang
+      Rekap 3-Way Match PO BAPB Invoice
+      Bukti transfer pembayaran
+      Bank Guarantee untuk kontrak besar
+    AI PENJAGA KEPATUHAN
+      Blokir pembayaran jika 3-Way Match belum clear
+      Alert jika nilai invoice melebihi nilai kontrak
+      Validasi masa retensi Bank Guarantee sebelum pencairan
+      Flag duplikasi invoice dari vendor yang sama
+      Alert keterlambatan pembayaran yang mendekati jatuh tempo
+    INTEGRASI SISTEM
+      Finance ERP sinkronisasi GL posting otomatis
+      Portal Vendor KMU update status pembayaran real-time
+      Command Center Dashboard tampilkan payment pipeline
+    KONEKSI KE FASE LAIN
+      Input 3-Way Match dari Fase 6 sebagai syarat wajib
+      Output rekaman pembayaran ke Fase 9 Pelaporan
+      Output status vendor ke Fase 8 Evaluasi Vendor
+    SLA TARGET
+      Submission invoice vendor maksimal 3 hari setelah BAPB
+      Validasi 3-Way Match maksimal 5 hari kerja
+      Pembayaran ke vendor maksimal 30 hari dari tanggal invoice

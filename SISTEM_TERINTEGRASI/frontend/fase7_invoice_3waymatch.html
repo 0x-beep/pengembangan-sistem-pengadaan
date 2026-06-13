@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 7 — Invoice & 3-Way Match | PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { display: block; padding: 0.625rem 1rem; color: #cbd5e1; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.15s; }
+        .sidebar-link:hover { background-color: #1e293b; color: white; }
+        .sidebar-link.active { background-color: #7c3aed; color: white; }
+        .tab-btn { padding: 0.75rem 1rem; font-size: 0.875rem; font-weight: 500; border-bottom: 2px solid transparent; transition: all 0.15s; cursor: pointer; color: #6b7280; }
+        .tab-btn:hover { color: #374151; }
+        .tab-btn.active { border-bottom-color: #7c3aed; color: #7c3aed; }
+        .match-ok { background: #dcfce7; color: #166534; }
+        .match-warn { background: #fef9c3; color: #854d0e; }
+        .match-fail { background: #fee2e2; color: #991b1b; }
+        .badge { display: inline-flex; align-items: center; padding: 0.125rem 0.625rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-violet-600 flex items-center justify-center text-xs font-bold">KU</div>
+                <div>
+                    <p class="text-sm font-medium">Bagian Keuangan</p>
+                    <p class="text-xs text-slate-400">Approval Pembayaran</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0">
+            <div>
+                <h2 class="text-lg font-semibold text-gray-800">Fase 7 — Invoice & Pembayaran</h2>
+                <p class="text-xs text-gray-500">3-Way Match · Approval Bertingkat · Milestone Payment · Bank Guarantee</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 bg-violet-50 text-violet-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-violet-200">
+                    <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span>
+                    SLA Pembayaran ≤ 30 Hari
+                </div>
+                <button onclick="openInvoiceModal()" class="bg-violet-600 hover:bg-violet-700 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow-sm transition">
+                    + Input Invoice
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <!-- KPI Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Invoice Masuk</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-1">8</p>
+                    <p class="text-xs text-gray-400 mt-1">Bulan ini</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">3-Way Match Clear</p>
+                    <p class="text-3xl font-bold text-emerald-500 mt-1">6</p>
+                    <p class="text-xs text-gray-400 mt-1">Siap dibayar</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Mismatch / Hold</p>
+                    <p class="text-3xl font-bold text-rose-500 mt-1">2</p>
+                    <p class="text-xs text-gray-400 mt-1">Perlu klarifikasi</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Total Dibayar (YTD)</p>
+                    <p class="text-2xl font-bold text-gray-900 mt-1">Rp 3,9M</p>
+                    <p class="text-xs text-gray-400 mt-1">Termasuk KSO</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 bg-gradient-to-br from-violet-50 to-purple-50 border-violet-100">
+                    <p class="text-xs text-violet-700 font-medium">Outstanding</p>
+                    <p class="text-2xl font-bold text-violet-700 mt-1">Rp 920jt</p>
+                    <p class="text-xs text-violet-500 mt-1">Pipeline 30 hari</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="border-b border-gray-200 px-6 flex gap-0 flex-wrap">
+                    <button class="tab-btn active" id="tab-btn-match" onclick="switchTab('match')">🔍 3-Way Match</button>
+                    <button class="tab-btn" id="tab-btn-invoice" onclick="switchTab('invoice')">📄 Invoice Pipeline</button>
+                    <button class="tab-btn" id="tab-btn-approval" onclick="switchTab('approval')">✅ Approval Bertingkat</button>
+                    <button class="tab-btn" id="tab-btn-milestone" onclick="switchTab('milestone')">📊 Milestone Payment</button>
+                    <button class="tab-btn" id="tab-btn-bg" onclick="switchTab('bg')">🏦 Bank Guarantee</button>
+                </div>
+
+                <!-- Tab: 3-Way Match -->
+                <div id="tab-match" class="p-6">
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-4">Validasi otomatis: <strong>PO ↔ BAPB ↔ Invoice</strong>. Ketiga dokumen harus cocok sebelum pembayaran dapat diproses.</p>
+                        <div class="flex gap-3 mb-4">
+                            <input type="text" id="search-match" placeholder="Cari No. PO / Invoice..." onkeyup="filterMatch()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                            <select id="filter-match" onchange="filterMatch()" class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                <option value="">Semua Status</option>
+                                <option value="matched">✅ Matched</option>
+                                <option value="mismatch">❌ Mismatch</option>
+                                <option value="pending">⏳ Pending</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 3-Way Match Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    <th class="pb-3 pr-4">No. Invoice</th>
+                                    <th class="pb-3 pr-4">No. PO</th>
+                                    <th class="pb-3 pr-4">No. BAPB</th>
+                                    <th class="pb-3 pr-4">Vendor</th>
+                                    <th class="pb-3 pr-4">Nilai Invoice</th>
+                                    <th class="pb-3 pr-4">Nilai PO</th>
+                                    <th class="pb-3 pr-4">Match PO</th>
+                                    <th class="pb-3 pr-4">Match BAPB</th>
+                                    <th class="pb-3 pr-4">Status</th>
+                                    <th class="pb-3 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="match-table-body" class="divide-y divide-gray-100">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tab: Invoice Pipeline (Peta Keuangan) -->
+                <div id="tab-invoice" class="p-6 hidden bg-slate-50">
+                    <div class="flex justify-between items-end mb-6">
+                        <div>
+                            <h3 class="text-lg font-black text-slate-800 flex items-center gap-2">
+                                <i class="fas fa-map-marked-alt text-violet-600"></i> Peta Aliran Keuangan (Financial Pipeline)
+                            </h3>
+                            <p class="text-sm text-slate-500 mt-1">Sistem deteksi dini bottleneck (kemacetan) persetujuan pembayaran & mitigasi risiko.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 flex items-center gap-2 shadow-sm"><div class="w-2 h-2 rounded-full bg-emerald-500"></div> Lancar</span>
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 flex items-center gap-2 shadow-sm"><div class="w-2 h-2 rounded-full bg-amber-500"></div> Tersendat</span>
+                            <span class="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 flex items-center gap-2 shadow-sm"><div class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></div> Macet (Risiko)</span>
+                        </div>
+                    </div>
+
+                    <!-- Pipeline Map Container (Multi-Lane Bottleneck) -->
+                    <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden flex flex-col mb-4">
+                        <div class="p-0 overflow-x-auto relative">
+                            <div class="min-w-[950px] flex flex-col relative bg-white">
+                                
+                                <!-- Background vertical lane borders -->
+                                <div class="absolute left-0 top-0 bottom-0 w-36 bg-slate-50 border-r border-slate-200 z-0"></div>
+
+                                <!-- ZONA 1: OPERASIONAL -->
+                                <div class="flex relative z-10 border-b border-slate-200 border-dashed">
+                                    <div class="w-36 flex-shrink-0 flex items-center justify-center border-l-4 border-violet-500 bg-slate-50/80 p-4">
+                                        <div class="text-center">
+                                          <i class="fas fa-boxes text-violet-500 text-lg mb-1"></i>
+                                          <p class="text-[10px] font-bold text-violet-600 uppercase tracking-widest">Zona<br>Operasional</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 p-6 relative flex gap-12 items-start">
+                                        <!-- Route Line -->
+                                        <div class="absolute left-10 right-10 top-[44px] h-1.5 bg-slate-200 -translate-y-1/2 z-0 rounded-full"></div>
+                                        <div class="absolute left-10 w-[350px] top-[44px] h-1.5 bg-violet-500 -translate-y-1/2 z-0 rounded-full shadow-[0_0_8px_rgba(139,92,246,0.4)]"></div>
+                                        <i class="fas fa-chevron-right absolute left-[200px] top-[44px] -translate-y-1/2 text-violet-200 z-10 text-[10px]"></i>
+                                        <i class="fas fa-chevron-right absolute left-[350px] top-[44px] -translate-y-1/2 text-slate-400 z-10 text-[10px]"></i>
+                                        
+                                        <!-- Node 1 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-violet-500 flex items-center justify-center shadow-md mb-2 z-10 text-violet-600 font-bold">1</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Gudang / Admin<br>(3-Way Match)</h4>
+                                            <div class="mt-2 text-center w-full">
+                                                <p class="text-xs font-black text-emerald-600">Rp 480jt</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Node 2 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-violet-500 flex items-center justify-center shadow-md mb-2 z-10 text-violet-600 font-bold">2</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Manajer<br>Pengadaan</h4>
+                                            <div class="mt-2 text-center w-full">
+                                                <p class="text-xs font-black text-slate-400">Rp 0</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Node 3 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-violet-500 flex items-center justify-center shadow-md mb-2 z-10 text-violet-600 font-bold">3</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">GM<br>Operasi</h4>
+                                            <div class="mt-2 text-center w-full">
+                                                <p class="text-xs font-black text-slate-400">Rp 0</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Path going down to BOD -->
+                                        <div class="absolute right-32 top-[44px] w-1.5 h-full bg-slate-200 z-0"></div>
+                                        <i class="fas fa-chevron-down absolute right-[124px] bottom-[-10px] text-slate-400 z-10 text-[10px]"></i>
+                                    </div>
+                                </div>
+
+                                <!-- ZONA 2: DIREKSI -->
+                                <div class="flex relative z-10 border-b border-slate-200 border-dashed">
+                                    <div class="w-36 flex-shrink-0 flex items-center justify-center border-l-4 border-amber-500 bg-slate-50/80 p-4">
+                                        <div class="text-center">
+                                          <i class="fas fa-crown text-amber-500 text-lg mb-1"></i>
+                                          <p class="text-[10px] font-bold text-amber-600 uppercase tracking-widest">Zona<br>Direksi</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 p-6 relative flex gap-12 items-start justify-end pr-10">
+                                        <!-- Route Line -->
+                                        <div class="absolute left-64 right-[85px] top-[44px] h-1.5 bg-slate-200 -translate-y-1/2 z-0 rounded-full"></div>
+                                        <i class="fas fa-chevron-right absolute right-[250px] top-[44px] -translate-y-1/2 text-slate-400 z-10 text-[10px]"></i>
+                                        
+                                        <!-- Node 4 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10 mr-12">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-md mb-2 z-10 text-amber-500 font-bold">4</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Direktur<br>Operasi</h4>
+                                            <div class="mt-2 text-center w-full">
+                                                <p class="text-xs font-black text-slate-400">Rp 0</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Node 5 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-amber-400 flex items-center justify-center shadow-md mb-2 z-10 text-amber-500 font-bold">5</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Direktur<br>Utama (BOD)</h4>
+                                            <div class="mt-2 text-center w-full">
+                                                <p class="text-xs font-black text-slate-400">Rp 0</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Path going down to Finance -->
+                                        <div class="absolute right-[82px] top-[44px] w-1.5 h-full bg-slate-200 z-0"></div>
+                                        <i class="fas fa-chevron-down absolute right-[78px] bottom-[-10px] text-slate-400 z-10 text-[10px]"></i>
+                                    </div>
+                                </div>
+
+                                <!-- ZONA 3: KEUANGAN -->
+                                <div class="flex relative z-10">
+                                    <div class="w-36 flex-shrink-0 flex items-center justify-center border-l-4 border-emerald-500 bg-slate-50/80 p-4">
+                                        <div class="text-center">
+                                          <i class="fas fa-wallet text-emerald-600 text-lg mb-1"></i>
+                                          <p class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Zona<br>Keuangan</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 p-6 relative flex gap-12 items-start pl-10">
+                                        <!-- Route Line (Flows Left) -->
+                                        <div class="absolute left-24 right-[85px] top-[44px] h-1.5 bg-slate-200 -translate-y-1/2 z-0 rounded-full"></div>
+                                        <div class="absolute left-24 w-[350px] top-[44px] h-1.5 bg-emerald-500 -translate-y-1/2 z-0 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                                        
+                                        <!-- Arrows pointing left -->
+                                        <i class="fas fa-chevron-left absolute left-[45%] top-[44px] -translate-y-1/2 text-emerald-200 z-10 text-[10px]"></i>
+                                        <i class="fas fa-chevron-left absolute left-[75%] top-[44px] -translate-y-1/2 text-slate-400 z-10 text-[10px]"></i>
+
+                                        <!-- Node 8 (End) -->
+                                        <div class="flex flex-col items-center w-28 relative z-10 ml-8">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-md mb-2 z-10 text-emerald-600 font-bold"><i class="fas fa-check"></i></div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Kasir<br>(Eksekusi)</h4>
+                                            <div class="mt-2 text-center w-full">
+                                                <p class="text-xs font-black text-emerald-600">Rp 120jt</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Node 7 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10 ml-auto">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-md mb-2 z-10 text-emerald-600 font-bold">7</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Komite<br>Anggaran</h4>
+                                            <div class="mt-2 text-center w-full border border-rose-500/50 bg-rose-500/10 p-1.5 rounded relative animate-pulse">
+                                                <div class="absolute -top-1 -right-1 text-rose-500"><i class="fas fa-exclamation-circle bg-white rounded-full text-xs"></i></div>
+                                                <p class="text-xs font-black text-rose-500">Rp 1,2M</p>
+                                                <p class="text-[8px] font-bold text-rose-600 uppercase mt-0.5 leading-tight">Macet (12hr)<br><span class="text-[7px] text-rose-600/80 normal-case font-medium">Tunggu Pencairan BPJS</span></p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Node 6 -->
+                                        <div class="flex flex-col items-center w-28 relative z-10 mr-10">
+                                            <div class="w-10 h-10 rounded-full bg-white border-2 border-emerald-500 flex items-center justify-center shadow-md mb-2 z-10 text-emerald-600 font-bold">6</div>
+                                            <h4 class="text-[10px] font-bold text-slate-700 text-center leading-tight">Verifikasi<br>Pajak/Finance</h4>
+                                            <div class="mt-2 text-center w-full border border-amber-500/50 bg-amber-500/10 p-1.5 rounded relative">
+                                                <p class="text-xs font-black text-amber-500">Rp 210jt</p>
+                                                <p class="text-[8px] font-bold text-amber-600 uppercase mt-0.5 leading-tight">Tersendat<br><span class="text-[7px] text-amber-600/80 normal-case font-medium">Beda Nama Rekening</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mitigasi & Rekomendasi AI -->
+                    <div class="mt-4 bg-white border border-rose-200 rounded-xl p-5 shadow-sm">
+                        <h4 class="text-sm font-black text-rose-800 flex items-center gap-2 mb-3">
+                            <i class="fas fa-robot text-rose-500"></i> AI Guardian Alert: Mitigasi Risiko Terdeteksi
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-rose-50 rounded-lg p-4 border border-rose-100">
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-rose-200 text-rose-700 flex items-center justify-center shrink-0"><i class="fas fa-file-contract"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-rose-900 mb-1">Pelanggaran SLA & Risiko Denda PT. Medik Jaya</p>
+                                        <p class="text-xs text-rose-700 leading-relaxed mb-2">Invoice <strong>INV-2026-06-001 (Rp 1,2M)</strong> telah tertahan di Komite Anggaran selama 12 hari karena menunggu pencairan BPJS. Kontrak KSO PKS-2026-003 memiliki klausul denda 5% jika pembayaran mundur lebih dari 14 hari dari BAPB.</p>
+                                        <div class="flex gap-2">
+                                            <button class="text-[10px] font-bold px-3 py-1.5 bg-white border border-rose-300 text-rose-700 rounded hover:bg-rose-100 transition">Kirim Reminder ke Komite Anggaran</button>
+                                            <button class="text-[10px] font-bold px-3 py-1.5 bg-rose-600 text-white rounded shadow-sm hover:bg-rose-700 transition">Eskalasi ke BOD / SPI</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-amber-200 text-amber-700 flex items-center justify-center shrink-0"><i class="fas fa-chart-line"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-amber-900 mb-1">Dampak pada Piutang & Cashflow</p>
+                                        <p class="text-xs text-amber-800 leading-relaxed">Tersendatnya verifikasi Rp 210jt di Verifikasi Pajak berpotensi menghambat cashflow vendor, yang dapat berimbas pada keterlambatan pengiriman reagen lab bulan depan.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Tab: Approval Bertingkat -->
+                <div id="tab-approval" class="p-6 hidden">
+                    <div class="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
+                        <h4 class="text-sm font-bold text-amber-800 mb-2">⚖️ Matriks Otorisasi Pembayaran</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+                            <div class="bg-white border border-amber-200 rounded-lg p-3">
+                                <p class="font-bold text-gray-700">s/d Rp 50 Juta</p>
+                                <p class="text-amber-700 mt-1">Manager Pengadaan</p>
+                            </div>
+                            <div class="bg-white border border-amber-200 rounded-lg p-3">
+                                <p class="font-bold text-gray-700">Rp 50jt – 500jt</p>
+                                <p class="text-amber-700 mt-1">GM Operasi</p>
+                            </div>
+                            <div class="bg-white border border-amber-200 rounded-lg p-3">
+                                <p class="font-bold text-gray-700">Rp 500jt – 1 Miliar</p>
+                                <p class="text-amber-700 mt-1">Direktur Keuangan</p>
+                            </div>
+                            <div class="bg-white border border-amber-200 rounded-lg p-3">
+                                <p class="font-bold text-gray-700">> Rp 1 Miliar</p>
+                                <p class="text-amber-700 mt-1">Direktur Utama / BOD</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4" id="approval-list">
+                        <!-- Approval items -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <div class="bg-gray-50 px-5 py-3 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-mono text-gray-500">INV-2026-06-001</span>
+                                    <h4 class="font-semibold text-gray-900">PT. Medik Jaya — Reagen Lab</h4>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold text-gray-900">Rp 185.000.000</p>
+                                    <p class="text-xs text-gray-500">Jatuh tempo: 13 Jul 2026</p>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <!-- Approval Chain -->
+                                <div class="flex items-center gap-0 mb-5">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white text-lg">✓</div>
+                                        <p class="text-xs text-center mt-1 text-emerald-700 font-semibold">Manager<br>Pengadaan</p>
+                                        <p class="text-[10px] text-gray-400">12 Jun</p>
+                                    </div>
+                                    <div class="flex-1 h-1 bg-emerald-300 mx-1"></div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center text-white text-sm font-bold animate-pulse">...</div>
+                                        <p class="text-xs text-center mt-1 text-amber-700 font-semibold">GM<br>Operasi</p>
+                                        <p class="text-[10px] text-gray-400">Menunggu</p>
+                                    </div>
+                                    <div class="flex-1 h-1 bg-gray-200 mx-1"></div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm">—</div>
+                                        <p class="text-xs text-center mt-1 text-gray-400">Dir.<br>Keuangan</p>
+                                        <p class="text-[10px] text-gray-300">Belum</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button onclick="approvePayment('INV-2026-06-001', 'gm')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 py-2 rounded-lg transition">✓ Approve (GM Operasi)</button>
+                                    <button class="bg-white border border-rose-300 text-rose-600 hover:bg-rose-50 text-sm font-bold px-5 py-2 rounded-lg transition">✕ Hold / Reject</button>
+                                    <button class="bg-white border border-gray-300 text-gray-600 hover:bg-gray-50 text-sm px-4 py-2 rounded-lg transition">Lihat Dokumen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Milestone Payment -->
+                <div id="tab-milestone" class="p-6 hidden">
+                    <p class="text-sm text-gray-600 mb-6">Skema pembayaran bertahap sesuai milestone kontrak. Berlaku untuk pengadaan alat investasi dan KSO.</p>
+                    <div class="space-y-5">
+                        <!-- Milestone Card -->
+                        <div class="border border-gray-200 rounded-xl overflow-hidden">
+                            <div class="bg-gradient-to-r from-violet-600 to-purple-600 px-5 py-4 text-white">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <p class="text-xs text-violet-200">PKS-2026-003 · PT. Medik Jaya</p>
+                                        <h4 class="text-base font-bold mt-0.5">Pengadaan Alat CT-Scan 64 Slice</h4>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold">Rp 4.200.000.000</p>
+                                        <p class="text-xs text-violet-200">Total Nilai Kontrak</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <div class="space-y-3">
+                                    <!-- DP -->
+                                    <div class="flex items-center gap-4 p-3 rounded-lg bg-emerald-50 border border-emerald-200">
+                                        <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">✓</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-bold text-gray-900">DP 30% — Setelah Kontrak Aktif & Jaminan Diterima</p>
+                                            <p class="text-xs text-gray-500">Rp 1.260.000.000 · Dibayar: 15 Mar 2026</p>
+                                        </div>
+                                        <span class="badge bg-emerald-100 text-emerald-700">LUNAS</span>
+                                    </div>
+                                    <!-- Pengiriman -->
+                                    <div class="flex items-center gap-4 p-3 rounded-lg bg-blue-50 border border-blue-200">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">↻</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-bold text-gray-900">Pengiriman 40% — Setelah Barang Diterima & BAPB Clear</p>
+                                            <p class="text-xs text-gray-500">Rp 1.680.000.000 · Rencana: 15 Jun 2026</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="badge bg-amber-100 text-amber-700">PROSES</span>
+                                            <p class="text-xs text-gray-400 mt-1">BAPB siap</p>
+                                        </div>
+                                    </div>
+                                    <!-- Testing -->
+                                    <div class="flex items-center gap-4 p-3 rounded-lg bg-gray-50 border border-gray-200">
+                                        <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 text-sm flex-shrink-0">3</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-bold text-gray-700">Testing 20% — Setelah Uji Coba Alat Selesai</p>
+                                            <p class="text-xs text-gray-400">Rp 840.000.000 · Rencana: 30 Jun 2026</p>
+                                        </div>
+                                        <span class="badge bg-gray-100 text-gray-500">BELUM</span>
+                                    </div>
+                                    <!-- Komisioning -->
+                                    <div class="flex items-center gap-4 p-3 rounded-lg bg-gray-50 border border-gray-200">
+                                        <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 text-sm flex-shrink-0">4</div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-bold text-gray-700">Training & Komisioning 10% — Setelah Serah Terima Final</p>
+                                            <p class="text-xs text-gray-400">Rp 420.000.000 · Rencana: 15 Jul 2026</p>
+                                        </div>
+                                        <span class="badge bg-gray-100 text-gray-500">BELUM</span>
+                                    </div>
+                                </div>
+                                <!-- Progress Bar -->
+                                <div class="mt-4">
+                                    <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                        <span>Progress Pembayaran</span>
+                                        <span>30% dari total</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-violet-500 to-purple-500 h-2 rounded-full" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Bank Guarantee -->
+                <div id="tab-bg" class="p-6 hidden">
+                    <p class="text-sm text-gray-600 mb-4">Bank Guarantee wajib untuk kontrak > Rp 1 Miliar (senilai 5% dari nilai kontrak, berlaku selama masa retensi).</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    <th class="pb-3 pr-4">No. BG</th>
+                                    <th class="pb-3 pr-4">Vendor</th>
+                                    <th class="pb-3 pr-4">Nilai Kontrak</th>
+                                    <th class="pb-3 pr-4">Nilai BG (5%)</th>
+                                    <th class="pb-3 pr-4">Bank Penerbit</th>
+                                    <th class="pb-3 pr-4">Berlaku s/d</th>
+                                    <th class="pb-3 pr-4">Status</th>
+                                    <th class="pb-3 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">BG-2026-001</td>
+                                    <td class="py-3 pr-4 font-medium">PT. Medik Jaya</td>
+                                    <td class="py-3 pr-4">Rp 4.200.000.000</td>
+                                    <td class="py-3 pr-4 font-semibold text-violet-700">Rp 210.000.000</td>
+                                    <td class="py-3 pr-4">Bank Mandiri</td>
+                                    <td class="py-3 pr-4 text-emerald-700 font-medium">15 Jan 2027</td>
+                                    <td class="py-3 pr-4"><span class="badge bg-emerald-100 text-emerald-700">AKTIF</span></td>
+                                    <td class="py-3 text-right">
+                                        <button class="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200 px-3 py-1.5 rounded-lg font-semibold">Lihat BG</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-4 font-mono text-xs text-gray-600">BG-2026-002</td>
+                                    <td class="py-3 pr-4 font-medium">PT. Farma Indonesia</td>
+                                    <td class="py-3 pr-4">Rp 1.800.000.000</td>
+                                    <td class="py-3 pr-4 font-semibold text-violet-700">Rp 90.000.000</td>
+                                    <td class="py-3 pr-4">BNI</td>
+                                    <td class="py-3 pr-4 text-amber-600 font-medium">30 Jul 2026 <span class="text-xs">(47 hari)</span></td>
+                                    <td class="py-3 pr-4"><span class="badge bg-amber-100 text-amber-700">⚠ SEGERA HABIS</span></td>
+                                    <td class="py-3 text-right">
+                                        <button class="text-xs bg-amber-500 text-white hover:bg-amber-600 px-3 py-1.5 rounded-lg font-semibold">Perbarui BG</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Input Invoice -->
+    <div id="invoice-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-900">Input Invoice Baru</h3>
+                    <p class="text-sm text-gray-500">Dari vendor — akan divalidasi 3-Way Match otomatis</p>
+                </div>
+                <button onclick="closeInvoiceModal()" class="text-gray-400 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">No. Invoice Vendor *</label>
+                        <input type="text" id="inv-number" placeholder="INV/2026/..." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">No. PO Referensi *</label>
+                        <select id="inv-po" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                            <option value="">-- Pilih PO --</option>
+                            <option value="PO-2026-06-001">PO-2026-06-001 (PT. Medik Jaya)</option>
+                            <option value="PO-2026-06-002">PO-2026-06-002 (PT. Farma Indonesia)</option>
+                            <option value="PO-2026-06-003">PO-2026-06-003 (PT. Supply Chain)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">No. BAPB *</label>
+                        <select id="inv-bapb" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                            <option value="">-- Pilih BAPB --</option>
+                            <option value="BAPB-2026-06-001">BAPB-2026-06-001</option>
+                            <option value="BAPB-2026-06-002">BAPB-2026-06-002</option>
+                            <option value="BAPB-2026-06-003">BAPB-2026-06-003</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 block mb-1.5">Tanggal Invoice *</label>
+                        <input type="date" id="inv-date" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Nilai Invoice (Rp) *</label>
+                    <input type="number" id="inv-amount" placeholder="185000000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Jatuh Tempo Pembayaran</label>
+                    <input type="date" id="inv-due" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 block mb-1.5">Catatan / Keterangan</label>
+                    <textarea id="inv-notes" rows="2" placeholder="Catatan khusus invoice..." class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-violet-500 resize-none"></textarea>
+                </div>
+                <!-- 3-Way Match Preview -->
+                <div id="match-preview" class="hidden bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+                    <p class="text-sm font-bold text-emerald-800 mb-2">🟢 3-Way Match Preview</p>
+                    <div class="grid grid-cols-3 gap-2 text-xs">
+                        <div class="bg-white rounded-lg p-2 border border-emerald-200">
+                            <p class="font-semibold text-gray-500">PO Amount</p>
+                            <p class="font-bold text-gray-900 text-sm" id="po-amount-preview">—</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-2 border border-emerald-200">
+                            <p class="font-semibold text-gray-500">BAPB Amount</p>
+                            <p class="font-bold text-gray-900 text-sm" id="bapb-amount-preview">—</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-2 border border-emerald-200">
+                            <p class="font-semibold text-gray-500">Invoice Amount</p>
+                            <p class="font-bold text-gray-900 text-sm" id="inv-amount-preview">—</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800">
+                    <strong>ℹ️ SLA:</strong> Invoice harus diterima maksimal <strong>3 hari</strong> setelah BAPB diterbitkan. Sistem akan memblokir pembayaran jika 3-Way Match belum clear.
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-200 flex gap-3 justify-end">
+                <button onclick="closeInvoiceModal()" class="px-5 py-2 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">Batal</button>
+                <button onclick="submitInvoice()" class="px-5 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-sm font-bold shadow-sm">Proses 3-Way Match</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden">
+        <div class="bg-gray-900 text-white px-5 py-3 rounded-xl shadow-xl text-sm font-medium">
+            <span id="toast-msg">Berhasil!</span>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://127.0.0.1:8000';
+
+        const matchData = [
+            { inv: 'INV-2026-06-001', po: 'PO-2026-05-018', bapb: 'BAPB-2026-06-001', vendor: 'PT. Medik Jaya', inv_amount: 420000000, po_amount: 420000000, status: 'matched' },
+            { inv: 'INV-2026-06-002', po: 'PO-2026-05-021', bapb: 'BAPB-2026-06-002', vendor: 'PT. Farma Indonesia', inv_amount: 97000000, po_amount: 95500000, status: 'mismatch' },
+            { inv: 'INV-2026-06-003', po: 'PO-2026-06-003', bapb: 'BAPB-2026-06-003', vendor: 'PT. Supply Chain', inv_amount: 38750000, po_amount: 38750000, status: 'matched' },
+            { inv: 'INV-2026-06-004', po: 'PO-2026-06-004', bapb: '', vendor: 'PT. BEM', inv_amount: 185000000, po_amount: 185000000, status: 'pending' },
+        ];
+
+        function renderMatchTable(data) {
+            const tbody = document.getElementById('match-table-body');
+            tbody.innerHTML = '';
+            data.forEach(m => {
+                const statusBadge = m.status === 'matched'
+                    ? '<span class="badge bg-emerald-100 text-emerald-700">✅ Matched</span>'
+                    : m.status === 'mismatch'
+                    ? '<span class="badge bg-rose-100 text-rose-700">❌ Mismatch</span>'
+                    : '<span class="badge bg-amber-100 text-amber-700">⏳ Pending BAPB</span>';
+                const matchPO = m.inv_amount === m.po_amount ? '<span class="badge bg-emerald-100 text-emerald-700">✓ OK</span>' : '<span class="badge bg-rose-100 text-rose-700">✗ Beda</span>';
+                const matchBAPB = m.bapb ? '<span class="badge bg-emerald-100 text-emerald-700">✓ Ada</span>' : '<span class="badge bg-amber-100 text-amber-700">— Belum</span>';
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="py-3 pr-4 font-mono text-xs text-gray-600">${m.inv}</td>
+                        <td class="py-3 pr-4 font-mono text-xs text-gray-600">${m.po}</td>
+                        <td class="py-3 pr-4 font-mono text-xs text-gray-600">${m.bapb || '—'}</td>
+                        <td class="py-3 pr-4 font-medium text-sm">${m.vendor}</td>
+                        <td class="py-3 pr-4 font-semibold text-sm">Rp ${m.inv_amount.toLocaleString('id-ID')}</td>
+                        <td class="py-3 pr-4 text-sm text-gray-500">Rp ${m.po_amount.toLocaleString('id-ID')}</td>
+                        <td class="py-3 pr-4">${matchPO}</td>
+                        <td class="py-3 pr-4">${matchBAPB}</td>
+                        <td class="py-3 pr-4">${statusBadge}</td>
+                        <td class="py-3 text-right">
+                            ${m.status === 'matched' ? '<button class="text-xs bg-violet-600 text-white hover:bg-violet-700 px-3 py-1.5 rounded-lg font-semibold">Proses Bayar</button>' : '<button class="text-xs bg-gray-100 text-gray-600 hover:bg-gray-200 px-3 py-1.5 rounded-lg">Klarifikasi</button>'}
+                        </td>
+                    </tr>`;
+            });
+        }
+
+        function filterMatch() {
+            const q = document.getElementById('search-match').value.toLowerCase();
+            const f = document.getElementById('filter-match').value;
+            const filtered = matchData.filter(m => {
+                const matchQ = m.inv.toLowerCase().includes(q) || m.po.toLowerCase().includes(q) || m.vendor.toLowerCase().includes(q);
+                const matchF = !f || m.status === f;
+                return matchQ && matchF;
+            });
+            renderMatchTable(filtered);
+        }
+
+        function switchTab(tab) {
+            ['match','invoice','approval','milestone','bg'].forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).classList.remove('active');
+            });
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tab).classList.add('active');
+        }
+
+        function openInvoiceModal() {
+            document.getElementById('invoice-modal').classList.remove('hidden');
+            document.getElementById('inv-date').value = new Date().toISOString().split('T')[0];
+            const due = new Date(); due.setDate(due.getDate() + 30);
+            document.getElementById('inv-due').value = due.toISOString().split('T')[0];
+        }
+
+        function closeInvoiceModal() {
+            document.getElementById('invoice-modal').classList.add('hidden');
+        }
+
+        function submitInvoice() {
+            const invNum = document.getElementById('inv-number').value;
+            const po = document.getElementById('inv-po').value;
+            const bapb = document.getElementById('inv-bapb').value;
+            const amount = document.getElementById('inv-amount').value;
+            if (!invNum || !po || !amount) {
+                showToast('Lengkapi semua field wajib!', false); return;
+            }
+            // Simulate 3-Way Match
+            const matched = po && bapb && amount;
+            const status = matched ? '✅ 3-Way Match Sukses! Invoice masuk antrian approval.' : '⚠ BAPB belum ada. Invoice di-hold.';
+            closeInvoiceModal();
+            showToast(status, matched);
+            renderMatchTable(matchData);
+        }
+
+        function approvePayment(invId, level) {
+            showToast(`Pembayaran ${invId} disetujui oleh ${level.toUpperCase()}. Lanjut ke approver berikutnya.`);
+        }
+
+        function showToast(msg, isOk = true) {
+            document.getElementById('toast-msg').textContent = msg;
+            const t = document.getElementById('toast');
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3500);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMatchTable(matchData);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Guardian (Penjaga SPO) — PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { display: block; padding: 0.625rem 1rem; color: #cbd5e1; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.15s; }
+        .sidebar-link:hover { background-color: #1e293b; color: white; }
+        .sidebar-link.active { background-color: #3b82f6; color: white; }
+        
+        .pulse-ring { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        
+        .chat-bubble { max-width: 80%; padding: 0.75rem 1rem; border-radius: 1rem; font-size: 0.875rem; line-height: 1.4; }
+        .chat-bot { background-color: white; border: 1px solid #e2e8f0; color: #334155; border-bottom-left-radius: 0.25rem; }
+        .chat-user { background-color: #3b82f6; color: white; border-bottom-right-radius: 0.25rem; margin-left: auto; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="pt-2 border-t border-slate-800 mt-2"></div>
+            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider px-2 mb-2">LAPISAN KHUSUS</p>
+            <a href="command_center.html" class="sidebar-link">🖥️ Command Center</a>
+            <a href="ai_guardian.html" class="sidebar-link active">🤖 AI Penjaga SPO</a>
+            <a href="admin_dashboard.html" class="sidebar-link">⚙️ Admin & Vendor DB</a>
+            <a href="director_dashboard.html" class="sidebar-link">👔 Dashboard Direksi</a>
+            <a href="spi_audit_dashboard.html" class="sidebar-link">🔍 SPI Audit Trail</a>
+            <a href="finance_dashboard.html" class="sidebar-link">💰 Finance Dashboard</a>
+        </nav>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden bg-slate-50">
+        
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0 shadow-sm z-10 relative">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center pulse-ring">
+                    <i class="fas fa-shield-alt text-blue-600 text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-lg font-bold text-gray-800">AI Guardian (Penjaga SPO)</h2>
+                    <p class="text-xs text-gray-500">Mendeteksi Anomali & Kepatuhan SOP Pengadaan secara Real-Time</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-emerald-200">
+                    <i class="fas fa-circle text-[8px] text-emerald-500"></i> Sistem Aktif
+                </span>
+            </div>
+        </header>
+
+        <main class="flex-1 flex overflow-hidden">
+            
+            <!-- Panel Kiri: Log Peringatan AI -->
+            <div class="w-1/2 p-6 overflow-y-auto border-r border-gray-200">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-slate-800">Log Peringatan Otomatis (Real-time)</h3>
+                    <button class="text-xs text-blue-600 font-semibold hover:underline">Tandai semua dibaca</button>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Alert 1 (High) -->
+                    <div class="bg-white border-l-4 border-l-rose-500 rounded-lg p-4 shadow-sm relative overflow-hidden group hover:border-rose-300 transition cursor-pointer">
+                        <div class="absolute top-4 right-4 text-xs font-bold text-slate-400">10 Menit lalu</div>
+                        <div class="flex gap-3">
+                            <div class="mt-1 text-rose-500"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Anomali Vendor - KSO-2026-033</h4>
+                                <p class="text-xs text-slate-600 mt-1">Vendor <b>PT. Global Medika</b> telah melewati batas SLA pemasangan alat (35 Hari). Denda belum diterbitkan oleh bagian KSO.</p>
+                                <div class="mt-3 flex gap-2">
+                                    <button class="text-[10px] bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold px-2 py-1 rounded border border-rose-200">Terbitkan Draft Denda</button>
+                                    <button class="text-[10px] bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold px-2 py-1 rounded border border-slate-200">Abaikan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert 2 (Medium) -->
+                    <div class="bg-white border-l-4 border-l-amber-500 rounded-lg p-4 shadow-sm relative overflow-hidden group hover:border-amber-300 transition cursor-pointer">
+                        <div class="absolute top-4 right-4 text-xs font-bold text-slate-400">1 Jam lalu</div>
+                        <div class="flex gap-3">
+                            <div class="mt-1 text-amber-500"><i class="fas fa-code-branch"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Validasi Alur Terputus - SPPJ #992</h4>
+                                <p class="text-xs text-slate-600 mt-1">Permintaan Pembelian (PP) untuk ATK Bulanan belum dikonversi ke SPPJ, namun PO sudah dibuat secara manual. Ini melanggar SOP Alur Pembelian.</p>
+                                <div class="mt-3 flex gap-2">
+                                    <button class="text-[10px] bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold px-2 py-1 rounded border border-amber-200">Tinjau Dokumen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert 3 (Info) -->
+                    <div class="bg-white border-l-4 border-l-blue-500 rounded-lg p-4 shadow-sm relative overflow-hidden group hover:border-blue-300 transition cursor-pointer">
+                        <div class="absolute top-4 right-4 text-xs font-bold text-slate-400">Kemarin</div>
+                        <div class="flex gap-3">
+                            <div class="mt-1 text-blue-500"><i class="fas fa-info-circle"></i></div>
+                            <div>
+                                <h4 class="font-bold text-slate-800 text-sm">Peringatan Budget (RKAP)</h4>
+                                <p class="text-xs text-slate-600 mt-1">Sisa anggaran Divisi Keperawatan untuk Q2 sudah mencapai batas < 10%. Pertimbangkan pemblokiran IMT non-urgent.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Kanan: Asisten Interaktif (Chat) -->
+            <div class="w-1/2 flex flex-col relative bg-slate-100/50">
+                <div class="p-4 bg-white border-b border-gray-200 shadow-sm flex items-center gap-3 shrink-0">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Tanya AI Guardian</h3>
+                        <p class="text-[10px] text-slate-500">Ketik pertanyaan seputar SOP, status dokumen, atau vendor.</p>
+                    </div>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto p-6 space-y-4" id="chatArea">
+                    <div class="chat-bubble chat-bot shadow-sm">
+                        Halo! Saya AI Guardian PT. KMU. Saya terintegrasi dengan seluruh database pengadaan (Fase 1 s/d 9). Ada yang bisa saya bantu cek hari ini? <br><br>
+                        <span class="text-xs text-slate-400 block mt-2">💡 Coba tanyakan: "Siapa vendor yang paling sering telat?", atau "Tampilkan status BAPB untuk SPPJ #1002"</span>
+                    </div>
+                    
+                    <div class="chat-bubble chat-user shadow-sm">
+                        Apakah ada vendor KSO yang berkinerja buruk bulan ini?
+                    </div>
+                    
+                    <div class="chat-bubble chat-bot shadow-sm">
+                        Berdasarkan <b>Fase 8 (Raport Vendor)</b>, terdapat 1 vendor yang masuk radar kritis:<br><br>
+                        <b>PT. Global Medika</b><br>
+                        • Skor Tertimbang: <b>52% (Diusulkan Blacklist)</b><br>
+                        • Pelanggaran utama: <i>Delivery</i> (SLA Pemasangan terlambat >35 Hari, kontrak KSO-2026-033).<br><br>
+                        Apakah Anda ingin saya membuat draf Surat Peringatan (SP-1) untuk vendor ini?
+                    </div>
+                </div>
+
+                <div class="p-4 bg-white border-t border-gray-200 shrink-0">
+                    <form onsubmit="event.preventDefault(); document.getElementById('chatInput').value='';" class="flex gap-2">
+                        <input type="text" id="chatInput" placeholder="Ketik pertanyaan..." class="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition shadow-sm"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>

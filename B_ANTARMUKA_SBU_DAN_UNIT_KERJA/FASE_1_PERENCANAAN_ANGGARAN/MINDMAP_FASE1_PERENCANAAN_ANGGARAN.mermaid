@@ -1,0 +1,48 @@
+mindmap
+  root((FASE 1\nPERENCANAAN\n& ANGGARAN))
+    INPUT
+      Arahan strategis Direksi dari Fase 0
+      Hasil evaluasi vendor siklus lalu dari Fase 8
+      Laporan realisasi anggaran dari Fase 9
+      Kebutuhan operasional SBU sepanjang tahun
+    PENGELOLA
+      Manager Pengadaan
+      Komite Anggaran
+      Kepala SBU seluruh unit
+    PROSES
+      Pengajuan Kebutuhan SBU
+        Semua SBU ajukan kebutuhan tahunan
+        Kategorisasi Reguler / Urgent / Investasi
+        Lampiran pendukung tiap item kebutuhan
+      Kompilasi & Review
+        Master list kebutuhan barang dan jasa
+        Validasi kesesuaian dengan kapasitas operasional
+        Pembobotan prioritas antar kebutuhan
+      Penyusunan RKAP
+        RKAP disusun bersama Komite Anggaran
+        RAB per proyek dan kebutuhan investasi
+        Budget ceiling ditetapkan per kategori
+      Pengesahan Direksi
+        Direksi review dan sahkan RKAP
+        Distribusi informasi budget ke semua unit
+    OUTPUT
+      RKAP yang disahkan sebagai batas atas pengadaan
+      RAB per proyek sebagai syarat proses SPPJ
+      Daftar prioritas pengadaan investasi
+      Budget ceiling per kategori untuk kontrol PO di Fase 4
+    DOKUMEN
+      RKAP Rencana Kerja dan Anggaran Perusahaan
+      RAB Rencana Anggaran Biaya
+      Daftar Prioritas Pengadaan Investasi
+    KONEKSI KE FASE LAIN
+      Output ke Fase 3 sebagai validasi anggaran sebelum PP diproses
+      Output ke Fase 4 sebagai batas nilai PO dan SPK
+      Menerima historis dari Fase 9 untuk perencanaan lebih akurat
+    AI PENJAGA KEPATUHAN
+      Validasi PP apakah sudah masuk RKAP
+      Alert jika nilai permintaan melebihi budget ceiling
+      Blokir SPPJ jika anggaran belum tersedia di RKAP
+    SLA TARGET
+      Pengajuan kebutuhan SBU selesai akhir Oktober
+      RKAP final disahkan Direksi akhir November
+      Distribusi budget ceiling ke unit sebelum 1 Januari

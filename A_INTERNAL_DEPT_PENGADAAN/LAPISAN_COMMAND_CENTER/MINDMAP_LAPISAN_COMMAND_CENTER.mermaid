@@ -1,0 +1,73 @@
+mindmap
+  root((LAPISAN\nCOMMAND\nCENTER\nDASHBOARD))
+    FUNGSI UTAMA
+      Single pane of glass untuk manajemen
+      Monitor seluruh aktivitas pengadaan real-time
+      Update sub-second via WebSocket
+      Tampilan layar besar 43 inci untuk ruang control
+    TARGET PENGGUNA
+      BOD Direksi PT KMU KPI tingkat tinggi
+      GM Operasi semua tender aktif dan alert
+      Direktur Keuangan payment pipeline dan budget
+      Manager Pengadaan operasional harian lengkap
+      SPI Satuan Pengawasan Internal compliance monitoring
+    PANEL 1 KPI BOARD
+      Total pengadaan YTD dalam rupiah
+      Perbandingan realisasi vs budget RKAP
+      On-time delivery persen
+      Average approval time hari
+      Cost variance persen
+      Vendor quality score rata-rata
+      Compliance rate SPO
+      SLA achievement rate
+    PANEL 2 ACTIVE TENDER WALL
+      Semua tender aktif dengan status real-time
+      SLA countdown timer tiap tender
+      Jumlah quote yang sudah diterima
+      Status hijau kuning atau merah urgency
+    PANEL 3 ALERT CENTER
+      Merah kritis pembayaran overdue atau invoice mismatch
+      Kuning warning invoice pending approval atau threshold budget
+      Info biru untuk notifikasi informasional
+      Tombol ACK CLOSE dan ESCALATE
+    PANEL 4 PAYMENT PIPELINE
+      Invoice menunggu approval dengan jumlah dan jatuh tempo
+      Invoice sedang diproses
+      Invoice sudah dibayar
+      Total outstanding pembayaran
+      Proyeksi cash flow 30 hari ke depan
+    PANEL 5 VENDOR PERFORMANCE
+      Top performers real-time dengan rating bintang
+      Bottom performers dan vendor at risk
+      Persen spend per vendor
+      On-time delivery persen per vendor
+      Isu terbaru yang diselesaikan atau dalam proses
+    PANEL 6 BUDGET TRACKER
+      Total budget vs realisasi per kategori
+      Progress bar per kategori equipment farmasi jasa lainnya
+      Proyeksi year-end spend
+      Alert threshold jika realisasi mendekati 90 persen budget
+    PANEL 7 SLA COUNTDOWN TIMERS
+      Countdown visual per tender aktif
+      Merah kurang dari 2 hari
+      Kuning 2 sampai 5 hari
+      Hijau lebih dari 5 hari
+    PANEL 8 LIVE TRANSACTION LOG
+      Stream aksi real-time setiap detik
+      Format timestamp user modul aksi dokumen nilai status
+      Tidak bisa dihapus atau dimanipulasi
+    PANEL 9 SYSTEM STATUS
+      Status operasional seluruh modul sistem
+      Database latency
+      WebSocket connection status
+      Backup status
+    TEKNOLOGI
+      WebSocket untuk update real-time sub-second
+      Large format display 43 inci atau lebih
+      Responsive untuk akses dari laptop dan tablet
+      Single Sign-On berbasis jabatan RBAC
+    INTEGRASI
+      Menerima data dari semua Fase 1 sampai 9
+      Menerima alert dari AI Penjaga Kepatuhan SPO
+      Terintegrasi dengan Finance ERP untuk budget tracking
+      Terintegrasi dengan Portal Vendor KMU

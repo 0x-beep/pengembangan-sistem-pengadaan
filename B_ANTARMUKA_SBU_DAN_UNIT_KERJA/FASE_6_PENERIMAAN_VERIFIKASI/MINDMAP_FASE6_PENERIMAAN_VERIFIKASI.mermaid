@@ -1,0 +1,50 @@
+mindmap
+  root((FASE 6\nPENERIMAAN\n& VERIFIKASI))
+    INPUT
+      Barang datang ke gudang setelah vendor kirim dari Fase 4
+      BAPP Berita Acara Penyelesaian Pekerjaan dari vendor jasa Fase 5
+      Invoice dari vendor
+    PENGELOLA
+      Staf Pemeriksa Barang di gudang
+      Unit yang Meminta sebagai validator kesesuaian
+      Admin Pengadaan sebagai koordinator dokumen
+    PROSES PENERIMAAN BARANG
+      Pengecekan fisik kuantitas sesuai PO
+      Pengecekan kualitas dan spesifikasi teknis
+      Pengecekan kesesuaian merek dan tipe dengan PO
+      Jika sesuai BAPB ditandatangani
+      Jika tidak sesuai notifikasi ke vendor untuk revisi atau penggantian
+    PROSES VERIFIKASI JASA
+      Menerima BAPP dari vendor setelah pekerjaan selesai
+      Tim teknis KMU periksa hasil pekerjaan jasa
+      Departemen Umum terlibat serah terima lokasi dan pekerjaan
+      Konfirmasi ke unit peminta bahwa pekerjaan sesuai scope
+    THREE WAY MATCH
+      Komponen 1 PO Purchase Order dari Fase 4
+      Komponen 2 BAPB Berita Acara Penerimaan Barang
+      Komponen 3 Invoice dari vendor
+      Jika semua cocok Invoice disetujui lanjut ke Fase 7
+      Jika tidak cocok Invoice ditolak vendor diberitahu
+    OUTPUT
+      BAPB yang ditandatangani sebagai bukti penerimaan resmi
+      Hasil 3-Way Match sebagai clearance pembayaran ke Fase 7
+      Data kualitas barang dan jasa untuk evaluasi vendor di Fase 8
+      Konfirmasi ke unit peminta bahwa barang siap digunakan
+    DOKUMEN
+      BAPB Berita Acara Penerimaan Barang
+      BAPP Berita Acara Penyelesaian Pekerjaan
+      Checklist QC Pemeriksaan Barang
+      Formulir Penolakan Barang jika tidak sesuai
+    AI PENJAGA KEPATUHAN
+      Blokir proses Invoice jika BAPB belum ditandatangani
+      Alert jika nilai Invoice melebihi nilai BAPB
+      Validasi 3-Way Match wajib clear sebelum lanjut ke Fase 7
+      Notifikasi otomatis ke vendor jika barang ditolak
+    KONEKSI KE FASE LAIN
+      Input dari Fase 4 via pengiriman barang oleh vendor
+      Input dari Fase 5 via BAPP untuk jasa
+      Output 3-Way Match ke Fase 7 sebagai syarat pembayaran
+      Output data kualitas ke Fase 8 untuk evaluasi vendor
+    SLA TARGET
+      QC dan pembuatan BAPB maksimal 2 hari kerja setelah barang datang
+      Validasi 3-Way Match maksimal 5 hari kerja

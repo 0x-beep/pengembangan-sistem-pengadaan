@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="p-4 border-t border-slate-800">
+            <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm">KS</div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium">Kasie Pengadaan</p>
+                    <p class="text-xs text-slate-400">Admin</p>
+                </div>
+            </div>
+        </div>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        <!-- Top header -->
+        <header class="bg-white shadow-sm h-16 flex items-center justify-between px-8 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-800">Manajemen Database Vendor</h2>
+            <div class="flex items-center space-x-4">
+                <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-green-500 mr-2"></span> AI Guardian Active
+                </div>
+            </div>
+        </header>
+
+        <!-- Content scrollable -->
+        <main class="flex-1 overflow-y-auto p-8">
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm font-medium text-gray-500">Total Vendor Aktif</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2" id="stat_active">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm font-medium text-gray-500">Menunggu Approval</p>
+                    <p class="text-3xl font-bold text-amber-500 mt-2" id="stat_pending">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <p class="text-sm font-medium text-gray-500">Ditolak / Revisi</p>
+                    <p class="text-3xl font-bold text-rose-500 mt-2" id="stat_rejected">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+                    <p class="text-sm font-medium text-blue-800">SLA Approval</p>
+                    <p class="text-3xl font-bold text-blue-600 mt-2">100%</p>
+                    <p class="text-xs text-blue-500 mt-1">Sesuai aturan <5 hari</p>
+                </div>
+            </div>
+
+            <!-- Vendor Tab -->
+            <div id="tab-vendors">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                        <h3 class="font-semibold text-gray-800">Daftar Pendaftaran Vendor Baru</h3>
+                        <div class="flex space-x-2">
+                            <select id="filter_status" class="text-sm border-gray-300 rounded-md shadow-sm" onchange="loadVendors()">
+                                <option value="">Semua Status</option>
+                                <option value="submitted">Menunggu Approval (Submitted)</option>
+                                <option value="approved">Aktif (Approved)</option>
+                                <option value="rejected">Ditolak</option>
+                            </select>
+                            <button onclick="loadVendors()" class="p-2 bg-white border border-gray-300 rounded-md hover:bg-gray-50">
+                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-white text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                    <th class="px-6 py-4">ID Vendor</th>
+                                    <th class="px-6 py-4">Perusahaan</th>
+                                    <th class="px-6 py-4">Kategori</th>
+                                    <th class="px-6 py-4">Tanggal Daftar</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vendorTableBody" class="divide-y divide-gray-100">
+                                <!-- Rows will be injected here via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Empty state -->
+                    <div id="emptyState" class="hidden py-12 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">Belum ada data</h3>
+                        <p class="mt-1 text-sm text-gray-500">Tidak ada vendor yang sesuai dengan filter.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PO Generation Tab -->
+            <div id="tab-po" class="hidden">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                        <h3 class="font-semibold text-gray-800">Generate Purchase Order (PO) dari PP yang Disetujui</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-600 mb-6">Berikut adalah daftar Permintaan Pembelian (PP) yang sudah mendapatkan "Final Approval" dari management. Pilih vendor untuk diubah menjadi PO.</p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
+                                        <th class="px-4 py-3">No. PP</th>
+                                        <th class="px-4 py-3">SBU</th>
+                                        <th class="px-4 py-3">Judul</th>
+                                        <th class="px-4 py-3">Nilai</th>
+                                        <th class="px-4 py-3">Pilih Vendor (Pemenang Tender)</th>
+                                        <th class="px-4 py-3 text-right">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="approvedReqTableBody" class="divide-y divide-gray-100">
+                                    <!-- JS inject -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts / Inbox Tab -->
+            <div id="tab-alerts" class="hidden h-[calc(100vh-12rem)]">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden h-full flex flex-col md:flex-row">
+                    <!-- Left: List of Alerts (Inbox) -->
+                    <div class="w-full md:w-1/3 border-r border-gray-200 flex flex-col h-full">
+                        <div class="p-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center shrink-0">
+                            <h3 class="font-bold text-gray-800">Inbox Alerts</h3>
+                            <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg></button>
+                        </div>
+                        <div class="overflow-y-auto flex-1 divide-y divide-gray-100" id="alert-list">
+                            <!-- Alert Item 1 -->
+                            <div class="p-4 hover:bg-rose-50 cursor-pointer border-l-4 border-rose-500 bg-rose-50/30 transition" onclick="showAlertDetail('alert1')">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[10px] font-bold text-rose-600 bg-rose-100 px-2 py-0.5 rounded">URGENT</span>
+                                    <span class="text-[10px] text-gray-400">10:45 AM</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-800 mb-1 leading-tight">Anomali Tagihan KSO PT. BEM</h4>
+                                <p class="text-xs text-gray-500 line-clamp-2">Sistem mendeteksi lonjakan klaim pemeriksaan Hematologi melebihi 30% dari rata-rata historis bulanan.</p>
+                            </div>
+                            <!-- Alert Item 2 -->
+                            <div class="p-4 hover:bg-amber-50 cursor-pointer border-l-4 border-amber-400 transition" onclick="showAlertDetail('alert2')">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded">WARNING</span>
+                                    <span class="text-[10px] text-gray-400">Kemarin</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-800 mb-1 leading-tight">Kontrak PT. Triasa Hampir Habis</h4>
+                                <p class="text-xs text-gray-500 line-clamp-2">Masa berlaku kontrak KSO Lab akan kedaluwarsa dalam 45 hari. Harap siapkan adendum atau tender ulang.</p>
+                            </div>
+                            <!-- Alert Item 3 -->
+                            <div class="p-4 hover:bg-blue-50 cursor-pointer border-l-4 border-blue-400 transition" onclick="showAlertDetail('alert3')">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[10px] font-bold text-blue-600 bg-blue-100 px-2 py-0.5 rounded">INFO</span>
+                                    <span class="text-[10px] text-gray-400">Kemarin</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-800 mb-1 leading-tight">Penilaian Vendor: PT. ROSCHE</h4>
+                                <p class="text-xs text-gray-500 line-clamp-2">Sistem telah menerbitkan Surat Peringatan (SP 1) akibat penundaan kalibrasi alat selama 7 hari berturut-turut.</p>
+                            </div>
+                            <!-- Alert Item 4 -->
+                            <div class="p-4 hover:bg-gray-50 cursor-pointer border-l-4 border-gray-300 transition" onclick="showAlertDetail('alert4')">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">SYSTEM</span>
+                                    <span class="text-[10px] text-gray-400">10 Jun</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-800 mb-1 leading-tight">Sinkronisasi E-Katalog Berhasil</h4>
+                                <p class="text-xs text-gray-500 line-clamp-2">50 item baru telah diimpor dari E-Katalog nasional. Silakan verifikasi kesesuaian spesifikasi medis.</p>
+                            </div>
+                            <!-- Alert Item 5 -->
+                            <div class="p-4 hover:bg-emerald-50 cursor-pointer border-l-4 border-emerald-400 transition" onclick="showAlertDetail('alert5')">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded">SUCCESS</span>
+                                    <span class="text-[10px] text-gray-400">09 Jun</span>
+                                </div>
+                                <h4 class="text-sm font-bold text-gray-800 mb-1 leading-tight">PO #1204 - Obat-obatan Disetujui</h4>
+                                <p class="text-xs text-gray-500 line-clamp-2">Semua layer otorisasi telah terpenuhi. Dokumen PO siap dikirimkan secara elektronik ke PT. Phapros.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Reading Pane -->
+                    <div class="w-full md:w-2/3 h-full flex flex-col bg-gray-50/50" id="alert-reading-pane">
+                        <div class="m-auto text-center text-gray-400" id="reading-pane-empty">
+                            <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <p>Pilih pesan peringatan di samping untuk membaca detail.</p>
+                        </div>
+                        
+                        <!-- Content goes here dynamically -->
+                        <div id="reading-pane-content" class="hidden h-full flex-col">
+                            <div class="p-6 border-b border-gray-200 bg-white">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span id="rp-badge" class="text-[10px] font-bold px-2 py-0.5 rounded">URGENT</span>
+                                    <span class="text-xs text-gray-500" id="rp-date">Hari ini, 10:45 AM</span>
+                                </div>
+                                <h2 class="text-xl font-bold text-gray-900 mb-2" id="rp-title">Judul Alert</h2>
+                                <div class="flex items-center gap-2 text-sm text-gray-600">
+                                    <span class="font-medium">Dari:</span> <span class="bg-gray-100 px-2 py-0.5 rounded border border-gray-200" id="rp-sender">Sistem Deteksi Anomali</span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 overflow-y-auto text-sm text-gray-700 leading-relaxed space-y-4" id="rp-body">
+                                <!-- Body content -->
+                            </div>
+                            <div class="p-4 border-t border-gray-200 bg-white flex gap-3" id="rp-actions">
+                                <!-- Buttons -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        async function loadVendors() {
+            const filter = document.getElementById('filter_status').value;
+            const url = filter ? `http://127.0.0.1:8000/api/vendors?status=${filter}` : 'http://127.0.0.1:8000/api/vendors';
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const tbody = document.getElementById('vendorTableBody');
+                tbody.innerHTML = '';
+                
+                if(data.data.length === 0) {
+                    document.getElementById('emptyState').classList.remove('hidden');
+                } else {
+                    document.getElementById('emptyState').classList.add('hidden');
+                    
+                    let activeCount = 0, pendingCount = 0, rejectedCount = 0;
+
+                    data.data.forEach(v => {
+                        // Counters
+                        if(v.vendor_status === 'approved') activeCount++;
+                        if(v.vendor_status === 'submitted') pendingCount++;
+                        if(v.vendor_status === 'rejected') rejectedCount++;
+
+                        // Status Badge styling
+                        let statusBadge = '';
+                        if(v.vendor_status === 'approved') {
+                            statusBadge = '<span class="px-2 py-1 bg-green-100 text-green-800 rounded-md text-xs font-medium">Aktif</span>';
+                        } else if(v.vendor_status === 'submitted') {
+                            statusBadge = '<span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-md text-xs font-medium">Menunggu</span>';
+                        } else {
+                            statusBadge = '<span class="px-2 py-1 bg-rose-100 text-rose-800 rounded-md text-xs font-medium">Ditolak</span>';
+                        }
+
+                        const dateStr = new Date(v.registration_date).toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' });
+
+                        const row = `
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 font-mono text-sm text-gray-600">${v.vendor_id}</td>
+                                <td class="px-6 py-4">
+                                    <div class="font-medium text-gray-900">${v.company_name}</div>
+                                    <div class="text-xs text-gray-500">PIC: ${v.contact_person_name} (${v.contact_person_phone})</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded text-xs font-medium uppercase tracking-wider">${v.vendor_category}</span>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-500">${dateStr}</td>
+                                <td class="px-6 py-4">${statusBadge}</td>
+                                <td class="px-6 py-4 text-right">
+                                    ${v.vendor_status === 'submitted' ? `
+                                        <button onclick="updateStatus('${v.vendor_id}', 'approved')" class="text-green-600 hover:text-green-900 bg-green-50 hover:bg-green-100 p-2 rounded mr-1" title="Approve">✓</button>
+                                        <button onclick="updateStatus('${v.vendor_id}', 'rejected')" class="text-rose-600 hover:text-rose-900 bg-rose-50 hover:bg-rose-100 p-2 rounded" title="Reject">✕</button>
+                                    ` : `
+                                        <button class="text-gray-400 cursor-not-allowed bg-gray-50 p-2 rounded" disabled>Terkunci</button>
+                                    `}
+                                </td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+
+                    // Update stats if we are not filtering
+                    if(!filter) {
+                        document.getElementById('stat_active').innerText = activeCount;
+                        document.getElementById('stat_pending').innerText = pendingCount;
+                        document.getElementById('stat_rejected').innerText = rejectedCount;
+                    }
+                }
+            } catch (err) {
+                console.error("Gagal load data", err);
+            }
+        }
+
+        async function updateStatus(vendorId, newStatus) {
+            if(!confirm(`Anda yakin ingin mengubah status ${vendorId} menjadi ${newStatus}?`)) return;
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/vendors/${vendorId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus })
+                });
+                
+                if (response.ok) {
+                    loadVendors();
+                } else {
+                    alert('Gagal update status');
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // --- TABS & PO GENERATION LOGIC ---
+        function switchTab(tabId) {
+            document.querySelectorAll('nav a').forEach(el => {
+                el.classList.remove('bg-blue-600', 'text-white');
+                el.classList.add('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
+            });
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
+                activeBtn.classList.add('bg-blue-600', 'text-white');
+            }
+            document.getElementById('tab-vendors').classList.add('hidden');
+            document.getElementById('tab-po').classList.add('hidden');
+            document.getElementById('tab-alerts').classList.add('hidden');
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            
+            if(tabId === 'po') {
+                loadApprovedRequisitions();
+            }
+        }
+
+        // --- ALERT INBOX LOGIC ---
+        const alertData = {
+            'alert1': {
+                badgeClass: 'text-rose-600 bg-rose-100', badgeText: 'URGENT', date: 'Hari ini, 10:45 AM',
+                title: 'Anomali Tagihan KSO PT. BEM', sender: 'AI Fraud Guardian (Sistem LIS)',
+                body: `
+                    <p>Sistem AI Guardian telah mendeteksi lonjakan pengajuan klaim Cost per Test (Volume Pemeriksaan) pada mesin Hematologi dari vendor <strong>PT. BEM</strong>.</p>
+                    <div class="bg-rose-50 border border-rose-200 p-4 rounded text-rose-900 font-medium">
+                        <ul class="list-disc ml-5 space-y-1">
+                            <li>Rata-rata Historis: 1,200 test / bulan</li>
+                            <li>Klaim Berjalan: 1,580 test / bulan (Naik 31%)</li>
+                            <li>Status Sinkronisasi Alat LIS: <span class="text-rose-600 font-bold">Unverified</span></li>
+                        </ul>
+                    </div>
+                    <p>Harap segera lakukan investigasi lapangan (Sidaks) atau tahan sementara (hold) proses pembayaran tagihan ke sistem Keuangan hingga klarifikasi KSO diterima.</p>
+                `,
+                actions: `
+                    <button class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded text-sm font-bold shadow-sm transition">Blokir Pembayaran (Hold)</button>
+                    <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded text-sm font-bold shadow-sm transition">Teruskan ke SPI</button>
+                `
+            },
+            'alert2': {
+                badgeClass: 'text-amber-600 bg-amber-100', badgeText: 'WARNING', date: 'Kemarin, 14:20 PM',
+                title: 'Kontrak PT. Triasa Hampir Habis', sender: 'Contract Management',
+                body: `
+                    <p>Pemberitahuan otomatis dari sistem Legal & Kontrak.</p>
+                    <p>Masa berlaku kontrak kerjasama operasional (KSO) alat radiologi dengan <strong>PT. Triasa</strong> akan berakhir dalam 45 hari (Tgl: 25 Juli 2026).</p>
+                    <p>Sesuai SOP Pengadaan, departemen terkait harus memutuskan apakah akan melakukan adendum perpanjangan kontrak atau memulai proses pelelangan (Tender) baru untuk menghindari kekosongan layanan alat medis.</p>
+                `,
+                actions: `
+                    <button class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded text-sm font-bold shadow-sm transition">Buat Draft Adendum</button>
+                    <button class="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-2 rounded text-sm font-bold shadow-sm transition">Mulai Tender Baru</button>
+                `
+            },
+            'alert3': {
+                badgeClass: 'text-blue-600 bg-blue-100', badgeText: 'INFO', date: 'Kemarin, 09:15 AM',
+                title: 'Penilaian Vendor: PT. ROSCHE (SP 1)', sender: 'Modul Evaluasi Wasit',
+                body: `
+                    <p>Laporan Evaluasi Wasit Kinerja Vendor.</p>
+                    <p>Berdasarkan laporan departemen penunjang medis, <strong>PT. ROSCHE</strong> telah menerima teguran lisan dua kali, dan saat ini sistem otomatis menerbitkan <strong class="text-blue-700">Surat Peringatan 1 (SP 1)</strong>.</p>
+                    <div class="bg-gray-100 border border-gray-200 p-4 rounded font-mono text-xs text-gray-600">
+                        ALASAN: Penundaan proses kalibrasi alat Imunologi (mesin c501) melewati batas waktu SLA harian selama 7 hari berturut-turut.
+                    </div>
+                `,
+                actions: `
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-bold shadow-sm transition">Lihat Raport Lengkap</button>
+                `
+            },
+            'alert4': {
+                badgeClass: 'text-gray-600 bg-gray-200', badgeText: 'SYSTEM', date: '10 Jun 2026, 18:00 PM',
+                title: 'Sinkronisasi E-Katalog Berhasil', sender: 'API Integration Service',
+                body: `
+                    <p>Job sinkronisasi API dari platform E-Katalog Nasional (LKPP) dan LKPP Sektor Kesehatan telah berjalan sukses pada pukul 18:00 WITA.</p>
+                    <ul class="list-disc ml-5 space-y-1 text-gray-600">
+                        <li>Kategori Tersinkronisasi: Alat Kesehatan, Obat, BMHP</li>
+                        <li>Item Diperbarui (Harga): 142 items</li>
+                        <li>Item Baru Ditambahkan: 50 items</li>
+                    </ul>
+                    <p class="mt-4">Katalog internal PT. KMU kini up-to-date untuk proses E-Purchasing.</p>
+                `,
+                actions: `<button class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded text-sm font-bold shadow-sm transition">Tinjau Master Data Item</button>`
+            },
+            'alert5': {
+                badgeClass: 'text-emerald-600 bg-emerald-100', badgeText: 'SUCCESS', date: '09 Jun 2026, 11:30 AM',
+                title: 'PO #1204 - Obat-obatan Disetujui', sender: 'Approval Matrix System',
+                body: `
+                    <p>Proses Approval Purchase Order No <strong>PO-2026-06-1204</strong> (Kategori: Obat-obatan) telah selesai.</p>
+                    <div class="flex flex-col gap-2 mt-4">
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Disetujui oleh Kasie Pengadaan</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Disetujui oleh Manajer Keuangan</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500"></i> Disetujui oleh Direktur Operasional</div>
+                    </div>
+                    <p class="mt-4">Dokumen PDF resmi sudah digenerate dan dikirim via Email Gateway ke vendor: <strong>PT. Phapros Tbk</strong>.</p>
+                `,
+                actions: `<button class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded text-sm font-bold shadow-sm transition">Unduh PDF Salinan</button>`
+            }
+        };
+
+        function showAlertDetail(alertId) {
+            // Update active state in list
+            document.querySelectorAll('#alert-list > div').forEach(el => el.classList.remove('bg-gray-100', 'border-l-8'));
+            event.currentTarget.classList.add('bg-gray-100', 'border-l-8');
+
+            const data = alertData[alertId];
+            if(!data) return;
+
+            document.getElementById('reading-pane-empty').classList.add('hidden');
+            document.getElementById('reading-pane-content').classList.remove('hidden');
+            document.getElementById('reading-pane-content').classList.add('flex');
+
+            document.getElementById('rp-badge').className = `text-[10px] font-bold px-2 py-0.5 rounded ${data.badgeClass}`;
+            document.getElementById('rp-badge').textContent = data.badgeText;
+            document.getElementById('rp-date').textContent = data.date;
+            document.getElementById('rp-title').textContent = data.title;
+            document.getElementById('rp-sender').textContent = data.sender;
+            document.getElementById('rp-body').innerHTML = data.body;
+            document.getElementById('rp-actions').innerHTML = data.actions;
+        }
+
+        async function loadApprovedRequisitions() {
+            try {
+                // Get approved requisitions
+                const res1 = await fetch('http://127.0.0.1:8000/api/requisitions?status=approved_final');
+                const dataReq = await res1.json();
+                
+                // Get active vendors to populate dropdowns
+                const res2 = await fetch('http://127.0.0.1:8000/api/vendors?status=approved');
+                const dataVendors = await res2.json();
+                let vendorOptions = '<option value="">-- Pilih Vendor --</option>';
+                dataVendors.data.forEach(v => {
+                    vendorOptions += `<option value="${v.vendor_id}">${v.company_name}</option>`;
+                });
+
+                const tbody = document.getElementById('approvedReqTableBody');
+                tbody.innerHTML = '';
+                
+                dataReq.data.forEach(req => {
+                    const row = `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3 font-mono text-xs text-gray-500">${req.req_number}</td>
+                            <td class="px-4 py-3 text-sm">${req.sbu_name}</td>
+                            <td class="px-4 py-3 text-sm font-medium">${req.title}</td>
+                            <td class="px-4 py-3 text-sm">Rp ${req.total_amount.toLocaleString('id-ID')}</td>
+                            <td class="px-4 py-3">
+                                <select id="vendor_select_${req.id}" class="w-full text-sm border-gray-300 rounded focus:ring-blue-500">
+                                    ${vendorOptions}
+                                </select>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <button onclick="generatePO(${req.id}, ${req.total_amount})" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-1.5 px-3 rounded">Terbitkan PO</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+                
+                if(dataReq.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="text-center py-6 text-gray-500">Tidak ada PP yang siap dibuatkan PO.</td></tr>';
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function generatePO(reqId, amount) {
+            const vendorSelect = document.getElementById(`vendor_select_${reqId}`);
+            if(!vendorSelect.value) {
+                alert("Harap pilih vendor pemenang tender terlebih dahulu!");
+                return;
+            }
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/purchase-orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ req_id: reqId, vendor_id: vendorSelect.value, total_amount: amount })
+                });
+                
+                const result = await response.json();
+                if(response.ok) {
+                    alert(`SUKSES: ${result.message}\n${result.po_number}`);
+                    loadApprovedRequisitions(); // refresh
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Load data on start
+        window.addEventListener('DOMContentLoaded', loadVendors);
+    </script>
+</body>
+</html>

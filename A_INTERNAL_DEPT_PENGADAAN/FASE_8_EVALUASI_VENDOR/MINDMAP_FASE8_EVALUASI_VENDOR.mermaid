@@ -1,0 +1,75 @@
+mindmap
+  root((FASE 8\nEVALUASI\nVENDOR))
+    INPUT
+      Data kinerja real-time dari Portal KSO Fase 5
+      Data penerimaan barang dan jasa dari Fase 6
+      Data pembayaran dan perilaku invoice dari Fase 7
+      Akumulasi semua transaksi dalam periode evaluasi
+    PENGELOLA
+      Kasie Pengadaan Jasa untuk vendor jasa
+      Kasie Pengadaan Barang untuk vendor barang
+      Manager Pengadaan sebagai reviewer akhir
+    7 DIMENSI SCORING
+      Dimensi 1 Delivery Performance
+        On-time delivery persen
+        Rata-rata keterlambatan hari
+        Reliability jadwal
+        Emergency fulfillment
+      Dimensi 2 Kualitas
+        Defect rate persen
+        Kesesuaian spesifikasi
+        Rework required persen
+        Standards compliance
+      Dimensi 3 Responsivitas
+        Kecepatan SJPH dari SPPH
+        Respon terhadap isu dan klaim
+        Kecepatan resolusi masalah
+        Kualitas komunikasi
+      Dimensi 4 Harga dan Terms
+        Kompetitivitas harga
+        Konsistensi harga antar periode
+        Negosiasi payment terms
+        Early payment discount
+      Dimensi 5 Kepatuhan SPO
+        Persen kepatuhan prosedur KMU
+        Akurasi invoice
+        Kepatuhan kontrak
+        Kelengkapan dokumentasi
+      Dimensi 6 Kesehatan Finansial
+        Stabilitas keuangan vendor
+        Dampak ke modal kerja KMU
+        Reliabilitas pembayaran
+        Stabilitas kredit
+      Dimensi 7 Kemitraan
+        Level kolaborasi
+        Problem-solving approach
+        Growth dan inovasi bersama
+        Strategic alignment
+    RATING DAN KEPUTUSAN
+      Bintang 5 skor 4.5 sampai 5.0 Preferred Vendor prioritas tender
+      Bintang 4 skor 3.5 sampai 4.4 Good Vendor lanjut normal
+      Bintang 3 skor 2.5 sampai 3.4 Vendor Perlu Improvement peringatan
+      Bintang 2 skor 1.5 sampai 2.4 Vendor Bermasalah suspensi sementara
+      Bintang 1 skor kurang 1.5 Daftar Hitam dikeluarkan 2 tahun
+    FREKUENSI EVALUASI
+      Bulanan laporan kinerja tiap vendor aktif
+      Triwulan evaluasi komprehensif 3 bulan
+      Tahunan penilaian strategis keseluruhan
+      Ad-hoc jika ada insiden kritis
+    OUTPUT
+      Update status vendor di Database Master Fase 2
+      Laporan evaluasi ke Pelaporan Fase 9
+      Rekomendasi strategis ke Direksi Fase 0 untuk KSO lanjut atau putus
+      Improvement plan untuk vendor rating rendah
+    AI PENJAGA KEPATUHAN
+      Agregasi data otomatis dari semua fase
+      Kalkulasi skor weighted average 7 dimensi
+      Alert jika vendor turun rating signifikan dalam 1 periode
+      Rekomendasi tindak lanjut otomatis berdasarkan skor
+    KONEKSI KE FASE LAIN
+      Input dari Fase 5 data kinerja KSO portal
+      Input dari Fase 6 kualitas barang dan ketepatan waktu
+      Input dari Fase 7 perilaku invoice dan pembayaran
+      Output ke Fase 2 update status vendor aktif atau blacklist
+      Output ke Fase 9 laporan evaluasi vendor
+      Output ke Fase 0 rekomendasi strategis ke Direksi

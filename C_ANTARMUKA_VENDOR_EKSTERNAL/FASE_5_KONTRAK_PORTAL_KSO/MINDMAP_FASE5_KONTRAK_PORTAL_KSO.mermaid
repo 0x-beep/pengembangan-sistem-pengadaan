@@ -1,0 +1,66 @@
+mindmap
+  root((FASE 5\nPELAKSANAAN\nKONTRAK &\nPORTAL VENDOR\nKSO))
+    INPUT
+      PKS dan SPK yang sudah ditandatangani kedua pihak dari Fase 4
+      KSO obligations dari kontrak vendor di Database Fase 2
+    PENGELOLA
+      Kasie Pengadaan Jasa sebagai koordinator
+      Tim Teknis KMU sebagai pengawas lapangan
+      Vendor melalui Portal Vendor KMU
+    PORTAL VENDOR KMU
+      Vendor login menggunakan akun terverifikasi
+      Dashboard kewajiban KSO vendor
+      Upload laporan kegiatan harian bulanan tahunan
+      Status verifikasi laporan oleh KMU
+      Notifikasi dan reminder kewajiban mendatang
+      Riwayat kepatuhan dan skor kinerja
+    KEWAJIBAN KSO MAINTENANCE
+      Harian
+        Laporan inspeksi visual alat
+        Power on test dan verifikasi fungsi dasar
+        Dokumentasi foto kondisi alat
+      Bulanan
+        Kalibrasi alat sesuai standar
+        Penggantian suku cadang terjadwal
+        Laporan preventive maintenance
+      Tahunan
+        Overhaul menyeluruh alat
+        Sertifikasi ulang alat medis
+        Laporan kondisi alat jangka panjang
+    KEWAJIBAN KSO KONSUMABEL
+      BHP Bahan Habis Pakai
+        ATK dan alat tulis kantor jadwal bulanan
+        Cleaning supply jadwal bulanan
+      BMHP Bahan Medis Habis Pakai
+        Jarum suntik jadwal mingguan
+        Sarung tangan dan masker jadwal mingguan
+        Plester dan perban jadwal mingguan
+      Reagen
+        Reagen lab dan diagnostik jadwal sesuai kontrak
+        Stok minimal buffer sesuai KPI kontrak
+    PROSES MONITORING
+      Vendor upload laporan ke Portal
+      KMU verifikasi laporan secara digital bukan manual
+      Jika sesuai status hijau kewajiban terpenuhi
+      Jika tidak sesuai eskalasi otomatis ke Kasie dan Manager
+      Tim Teknis pantau progress pekerjaan konstruksi di lapangan
+      Pekerjaan selesai vendor buat BAPP
+    OUTPUT
+      Data kinerja vendor real-time ke Fase 8 Evaluasi Vendor
+      BAPP Berita Acara Penyelesaian Pekerjaan sebagai trigger Fase 6
+      Log kewajiban KSO ke Fase 9 Pelaporan
+    ESKALASI OTOMATIS
+      Laporan terlambat 1 hari notifikasi ke vendor
+      Laporan terlambat 3 hari alert ke Kasie Pengadaan
+      Laporan terlambat 7 hari eskalasi ke Manager Pengadaan
+      Kewajiban kritis tidak terpenuhi eskalasi ke Direksi
+    AI PENJAGA KEPATUHAN
+      Alert jika maintenance terlambat dari jadwal kontrak
+      Flag jika vendor tidak upload laporan sesuai tenggat
+      Eskalasi otomatis jika kewajiban melebihi toleransi
+      Skor kepatuhan real-time masuk ke profil vendor
+    KONEKSI KE FASE LAIN
+      Input dari Fase 4 PKS dan SPK sebagai dasar kewajiban
+      Input dari Fase 2 KSO obligations dari database vendor
+      Output BAPP ke Fase 6 sebagai trigger penerimaan jasa
+      Output kinerja ke Fase 8 sebagai bahan evaluasi vendor

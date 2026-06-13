@@ -1,0 +1,70 @@
+mindmap
+  root((FASE 4\nPELAKSANAAN\nPENGADAAN\nPROSES TENDER))
+    INPUT
+      PP Permintaan Pembelian yang sudah disetujui dari Fase 3
+      SPPJ Surat Permintaan Pekerjaan Jasa dari Fase 3
+      Pool vendor terverifikasi dari Fase 2
+      Budget ceiling RKAP dari Fase 1
+    PENGELOLA
+      Kasie Pengadaan Barang untuk jalur barang
+      Kasie Pengadaan Jasa untuk jalur jasa
+      Panitia Pengadaan SKD untuk nilai besar
+    JALUR BARANG
+      PP diterima dan diverifikasi
+      SPPH dikirim ke minimal 2 vendor estimasi jawab 2 hari
+      SJPH diterima dari vendor peserta
+      Bidding Tabulasi dibuat dalam 1 hari
+      Scoring vendor 5 kriteria Harga 25 Kualitas 20 Maintenance 20 Kebutuhan User 20 Brand 15
+      Negosiasi harga waktu garansi after-sales
+      Pemenang ditetapkan
+      PO dibuat dalam 1 hari dan diotorisasi sesuai nilai
+      PO dikirim ke vendor trigger pengiriman barang
+    JALUR JASA
+      SPPJ dan BOQ serta DED diterima
+      Aanwijzing Internal 1 hari unit peminta pengadaan keuangan
+      SPPH dikirim ke minimal 2 kontraktor atau konsultan
+      Aanwijzing Eksternal briefing semua peserta
+      SJPH diterima kecil 1 minggu sedang 10 hari besar 1 bulan
+      Bidding Tabulasi dibuat dalam 1 hari
+      Negosiasi dan penetapan pemenang
+      PKS dan SPK dibuat dan diotorisasi sesuai nilai
+      BASTL Berita Acara Serah Terima Lokasi pekerjaan dimulai
+    JALUR KHUSUS
+      Penunjukan Langsung
+        Tanpa proses tender kompetitif
+        Syarat ketat kondisi darurat atau vendor tunggal
+        SLA maksimal 3 hari kerja
+      Swakelola
+        Dikerjakan oleh tim internal KMU
+        Tidak ada proses vendor
+        Anggaran tetap dari RKAP
+    OTORISASI NILAI PO DAN SPK
+      Sampai 50 juta Kasie Pengadaan
+      50 sampai 500 juta Manager Pengadaan
+      500 juta sampai 1 miliar GM Operasi
+      Lebih dari 1 miliar Direktur atau BOD
+    SKORING BIDDING TABULASI
+      Harga Penawaran bobot 25 persen mendekati HPS
+      Kualitas Barang bobot 20 persen spesifikasi dan sertifikasi
+      Maintenance dan Sparepart bobot 20 persen respons dan ketersediaan
+      Kesesuaian Kebutuhan User bobot 20 persen fit to clinical requirements
+      Orientasi Merek Track Record bobot 15 persen reputasi dan populasi
+      Skor lebih dari 400 Rekomendasi Utama
+      Skor 350 sampai 399 Rekomendasi Alternatif
+      Skor 300 sampai 349 Pertimbangan Bersyarat
+      Skor kurang dari 300 Tidak Direkomendasikan
+    OUTPUT
+      PO yang ditandatangani sebagai trigger pengiriman barang ke Fase 6
+      PKS dan SPK yang ditandatangani sebagai trigger pelaksanaan jasa ke Fase 5
+      Data tender tersimpan di sistem masuk ke Pelaporan Fase 9
+    AI PENJAGA KEPATUHAN
+      Validasi minimal 2 vendor di SPPH
+      Cek Aanwijzing sudah dilakukan sebelum SJPH diterima
+      Blokir PO jika nilai melebihi budget RKAP tanpa persetujuan tambahan
+      Validasi otorisasi sesuai kewenangan nilai PO dan SPK
+    SLA TARGET
+      PP ke SPPH maksimal 1 hari kerja
+      SPPH ke SJPH estimasi 2 hari kerja
+      Bidding Tabulasi maksimal 1 hari kerja
+      Total PP ke PO jalur tender maksimal 14 hari kerja
+      Total PP ke PO jalur penunjukan langsung maksimal 3 hari kerja

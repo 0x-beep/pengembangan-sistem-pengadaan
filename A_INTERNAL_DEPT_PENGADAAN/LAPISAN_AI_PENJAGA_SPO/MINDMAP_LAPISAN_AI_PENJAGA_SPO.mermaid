@@ -1,0 +1,78 @@
+mindmap
+  root((LAPISAN AI\nPENJAGA\nKEPATUHAN\nSPO))
+    FUNGSI UTAMA
+      Memantau setiap aksi di seluruh modul sistem
+      Membandingkan aksi dengan SPO yang sudah diingesti
+      Alert real-time jika deviasi terdeteksi
+      Memberikan panduan langkah yang benar otomatis
+      Mencegah pelanggaran sebelum terjadi
+    ARSITEKTUR SISTEM
+      Document Repository
+        Semua SPO dan prosedur KMU dalam format PDF
+        Guidelines dan checklist operasional
+        Regulasi LKPP dan Permenkes
+      AI Document Processor
+        Gemini Vision untuk ingesti dokumen
+        Ekstraksi aturan dan alur dari setiap SPO
+        Pembaruan otomatis jika SPO direvisi
+      Procedure Validation Engine
+        Rule database berisi semua aturan terekstrak
+        Real-time matching setiap aksi pengguna
+        Pattern recognition anomali
+      Real-Time Guidance System
+        Alert dan panduan saat aksi dilakukan
+        Step-by-step guidance langkah benar
+        Chatbot 24 jam untuk tanya jawab prosedur
+    TITIK VALIDASI PER FASE
+      Fase 1 Perencanaan
+        Apakah RKAP sudah disahkan Direksi sebelum proses dimulai
+      Fase 3 Permintaan
+        Apakah PP sudah ada di RKAP yang disetujui
+        Apakah investasi lebih dari 100 juta ada Feasibility Study
+        Apakah SPPJ sudah dilengkapi BOQ dan DED
+      Fase 4 Tender
+        Apakah jumlah vendor SPPH minimal 2
+        Apakah Aanwijzing sudah dilakukan sebelum SJPH diterima
+        Apakah nilai PO tidak melebihi budget RKAP
+        Apakah otorisasi PO sesuai kewenangan nilai
+      Fase 6 Penerimaan
+        Apakah BAPB sudah ada sebelum invoice diproses
+        Apakah 3-Way Match sudah clear
+      Fase 7 Pembayaran
+        Apakah 3-Way Match sudah verified sebelum bayar
+        Apakah nilai pembayaran tidak melebihi nilai kontrak
+      Fase 5 Kontrak KSO
+        Apakah laporan maintenance vendor terlambat dari jadwal
+    LEVEL RESPONS
+      Pelanggaran Ringan
+        Alert popup dengan penjelasan
+        Panduan langkah yang benar
+        User bisa lanjut setelah konfirmasi
+      Pelanggaran Sedang
+        Warning dengan detail pelanggaran
+        Harus ada override approval dari atasan
+        Dicatat di audit trail sebagai exception
+      Pelanggaran Berat
+        BLOKIR total aksi tidak bisa dilanjutkan
+        Eskalasi otomatis ke Manager atau Direksi
+        Investigasi wajib sebelum proses bisa dilanjutkan
+    CHATBOT 24 JAM
+      Staff bisa tanya prosedur kapan saja
+      Jawaban berbasis SPO KMU yang sudah diingesti
+      Contoh pertanyaan Apa langkah selanjutnya untuk SPPJ konstruksi
+      Contoh pertanyaan Berapa minimal vendor untuk SPPH jasa
+      Contoh pertanyaan Dokumen apa yang dibutuhkan untuk PP investasi
+    PEMBELAJARAN AI
+      Semakin banyak data transaksi semakin akurat deteksi anomali
+      Pattern learning dari histori pelanggaran
+      Penyesuaian threshold berdasarkan data aktual KMU
+    INTEGRASI
+      Embedded di seluruh modul platform pengadaan KMU
+      Standalone sebagai SOP Assistant chatbot
+      Feed ke Command Center Dashboard untuk alert kritis
+      Feed ke Audit Trail semua kejadian pelanggaran tercatat
+    MANFAAT TERUKUR
+      Compliance rate dari 15 persen ke target 95 persen
+      Pelanggaran SPO terdeteksi real-time bukan saat audit
+      Waktu pencarian prosedur manual dieliminasi
+      Konsistensi penerapan SPO di seluruh user KMU

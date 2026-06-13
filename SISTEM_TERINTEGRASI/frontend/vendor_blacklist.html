@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Vendor Blacklist — PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .sidebar-link { display: block; padding: 0.625rem 1rem; color: #cbd5e1; font-size: 0.875rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.15s; }
+        .sidebar-link:hover { background-color: #1e293b; color: white; }
+        .sidebar-link.active { background-color: #3b82f6; color: white; }
+        .badge { display: inline-flex; align-items: center; padding: 0.125rem 0.625rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+
+        <!-- Logo -->
+        <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
+            <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
+                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <div class="flex flex-col">
+                    <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
+                    <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                </div>
+            </h1>
+        </div>
+
+
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Internal Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 3: Permintaan (PP)</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 4: Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 5: KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 6: BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 7: Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 8: Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Fase 9: Laporan & Analitik</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                </div>
+                <div class="space-y-1">
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i>
+                        <span class="text-sm font-medium">Command Center</span>
+                    </a>
+                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-wallet w-5 text-center"></i>
+                        <span class="text-sm font-medium">Finance Dashboard</span>
+                    </a>
+                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">SPI & Audit Trail</span>
+                    </a>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i>
+                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    </a>
+                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-balance-scale w-5 text-center"></i>
+                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    </a>
+                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i>
+                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. EKSTERNAL (UI Vendor) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-globe text-slate-600"></i> Eksternal
+                </div>
+                <div class="space-y-1">
+                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-store w-5 text-center"></i>
+                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    </a>
+                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-flask w-5 text-center"></i>
+                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. LAPISAN AI (Guardian) -->
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
+                </div>
+                <div class="space-y-1">
+                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-shield-alt w-5 text-center"></i>
+                        <span class="text-sm font-medium">AI Penjaga SOP</span>
+                    </a>
+                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-database w-5 text-center"></i>
+                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+<div class="pt-2 border-t border-slate-800 mt-2"></div>
+            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider px-2 mb-2">LAPISAN KHUSUS</p>
+            <a href="command_center.html" class="sidebar-link">🖥️ Command Center</a>
+            <a href="ai_guardian.html" class="sidebar-link">🤖 AI Penjaga SPO</a>
+            <a href="admin_dashboard.html" class="sidebar-link">⚙️ Admin & Vendor DB</a>
+            <a href="vendor_blacklist.html" class="sidebar-link active">🚫 Vendor Blacklist</a>
+            <a href="director_dashboard.html" class="sidebar-link">👔 Dashboard Direksi</a>
+            <a href="spi_audit_dashboard.html" class="sidebar-link">🔍 SPI Audit Trail</a>
+            <a href="finance_dashboard.html" class="sidebar-link">💰 Finance Dashboard</a>
+        </nav>
+</aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0 shadow-sm">
+            <div>
+                <h2 class="text-lg font-bold text-gray-800">Daftar Vendor Bermasalah (Blacklist)</h2>
+                <p class="text-xs text-gray-500">Pemantauan Khusus, Sanksi SP, dan Pemutusan Kemitraan (Integrasi Fase 8)</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-3 top-2 text-gray-400 text-xs"></i>
+                    <input type="text" placeholder="Cari NIB/Nama..." class="border border-gray-300 rounded-lg pl-8 pr-3 py-1.5 text-xs w-48 focus:border-blue-500 focus:outline-none">
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-8 bg-gray-50">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-rose-50 border border-rose-200 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-bold text-rose-800 uppercase tracking-wider mb-1">Blacklist Permanen</p>
+                            <h3 class="text-3xl font-black text-rose-600">2</h3>
+                            <p class="text-xs text-rose-700 mt-1">Dilarang mengikuti Tender</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-rose-200 text-rose-700 flex items-center justify-center text-xl">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-bold text-amber-800 uppercase tracking-wider mb-1">Masa Skorsing (Sementara)</p>
+                            <h3 class="text-3xl font-black text-amber-600">4</h3>
+                            <p class="text-xs text-amber-700 mt-1">Status aktif ditangguhkan</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-amber-200 text-amber-700 flex items-center justify-center text-xl">
+                            <i class="fas fa-pause-circle"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] font-bold text-blue-800 uppercase tracking-wider mb-1">Dalam Pantauan (SP 1/2)</p>
+                            <h3 class="text-3xl font-black text-blue-600">7</h3>
+                            <p class="text-xs text-blue-700 mt-1">Masih aktif namun diawasi ketat</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-lg bg-blue-200 text-blue-700 flex items-center justify-center text-xl">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Blacklist -->
+            <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                <table class="w-full text-left text-sm whitespace-nowrap">
+                    <thead class="bg-slate-50 border-b border-gray-200 text-[10px] uppercase font-bold text-slate-500 tracking-wider">
+                        <tr>
+                            <th class="px-6 py-3">Vendor / Perusahaan</th>
+                            <th class="px-6 py-3">Status Sanksi</th>
+                            <th class="px-6 py-3">Skor Raport (Terakhir)</th>
+                            <th class="px-6 py-3">Alasan / Pelanggaran</th>
+                            <th class="px-6 py-3">Tanggal Ketetapan</th>
+                            <th class="px-6 py-3 text-right">Tindakan Khusus</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                <div class="font-bold text-gray-900">PT. Abadi Makmur Jaya</div>
+                                <div class="text-xs text-gray-500 font-mono">NIB: 9182371239</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="badge bg-rose-100 text-rose-700 border border-rose-200"><i class="fas fa-times-circle mr-1"></i> BLACKLIST PERMANEN</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xl font-black text-rose-600">42%</span>
+                                    <i class="fas fa-arrow-down text-rose-500 text-xs"></i>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-xs text-gray-700 font-medium">Pemalsuan Dokumen Kualifikasi Tender</p>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Tender Pengadaan MRI (Fase 4)</p>
+                            </td>
+                            <td class="px-6 py-4 text-xs text-gray-600">12 Mar 2024</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-xs bg-white hover:bg-gray-50 border border-gray-200 text-gray-600 font-bold px-3 py-1.5 rounded transition shadow-sm">Lihat BA Pemeriksaan</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                <div class="font-bold text-gray-900">CV. Indo Teknik KSO</div>
+                                <div class="text-xs text-gray-500 font-mono">NIB: 5412349012</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="badge bg-amber-100 text-amber-700 border border-amber-200"><i class="fas fa-pause-circle mr-1"></i> SKORSING (6 BLN)</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xl font-black text-amber-600">54%</span>
+                                    <i class="fas fa-arrow-down text-amber-500 text-xs"></i>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-xs text-gray-700 font-medium">Gagal memenuhi SLA KSO > 3 Kali</p>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Denda KSO belum dilunasi (Fase 5)</p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-xs text-gray-600">1 Jun 2024</div>
+                                <div class="text-[10px] text-amber-600 font-bold mt-0.5">Aktif s/d 1 Des 2024</div>
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-xs bg-white hover:bg-gray-50 border border-gray-200 text-gray-600 font-bold px-3 py-1.5 rounded transition shadow-sm">Review Sanksi</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                <div class="font-bold text-gray-900">PT. Global Medika</div>
+                                <div class="text-xs text-gray-500 font-mono">NIB: 7612398412</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="badge bg-blue-100 text-blue-700 border border-blue-200"><i class="fas fa-eye mr-1"></i> SURAT PERINGATAN (SP-1)</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xl font-black text-amber-600">65%</span>
+                                    <i class="fas fa-arrow-down text-amber-500 text-xs"></i>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-xs text-gray-700 font-medium">Keterlambatan Pemasangan Alat KSO > 30 Hari</p>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Kontrak KSO-2026-033</p>
+                            </td>
+                            <td class="px-6 py-4 text-xs text-gray-600">Hari ini</td>
+                            <td class="px-6 py-4 text-right">
+                                <button class="text-xs bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-bold px-3 py-1.5 rounded transition shadow-sm">Eskalasi ke Blacklist</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
