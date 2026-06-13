@@ -72,6 +72,9 @@ Akan langsung redirect ke `portal_hub.html`.
 - Root URL 404 — redirect ke portal_hub.html
 - `python main.py` tidak start server — ditambah uvicorn.run() block
 - `context_snapshot.py` crash UnboundLocalError — fixed
+- **Vendor B2B split by bidang** — `vendor_hub.html` dibuat sebagai sub-hub 6 kategori:
+  KSO Lab · KSO Farmasi · KSO BMHP · Alkes · Umum · Jasa
+  `portal_hub.html` vendor card diupdate → link ke `vendor_hub.html`
 
 ### Prioritas 1 — Fix RAM/Freeze
 - `command_center.html` punya `setInterval(fetchAll, 3000)` yang polling backend setiap 3 detik
@@ -95,8 +98,11 @@ Cek folder ini untuk spec masing-masing:
 portal_hub.html         → Landing page, pilih portal
   ├─ rs_klinik_dashboard.html    → Unit Bisnis (RS & Klinik)
   ├─ approval_dashboard.html     → Holding/Internal
-  └─ vendor_kso_dashboard.html   → Vendor B2B
-  
+  └─ vendor_hub.html             → Sub-hub Vendor B2B (6 kategori)
+       ├─ vendor_kso_lab_portal.html   → KSO Laboratorium
+       ├─ vendor_portal.html           → KSO Farmasi / Alkes / Umum / Jasa
+       └─ vendor_kso_dashboard.html    → KSO BMHP (legacy, masih aktif)
+
 Backend: SISTEM_TERINTEGRASI/backend/main.py (FastAPI, port 8000)
 DB: SISTEM_TERINTEGRASI/backend/kmu_procurement.db (SQLite)
 ```

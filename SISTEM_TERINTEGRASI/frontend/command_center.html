@@ -169,7 +169,7 @@
                     <i class="fas fa-robot text-slate-600"></i> Lapisan AI
                 </div>
                 <div class="space-y-1">
-                    <a href="ai_guardian_placeholder.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                    <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
                         <i class="fas fa-shield-alt w-5 text-center"></i>
                         <span class="text-sm font-medium">AI Penjaga SOP</span>
                     </a>
@@ -211,7 +211,7 @@
             <div class="flex items-center gap-4 text-xs font-bold font-mono text-slate-400">
                 <span id="headerClock">2026-06-20 14:32:15</span>
                 <div class="w-px h-4 bg-slate-700"></div>
-                <span class="text-emerald-400 flex items-center gap-1.5"><div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div> ALL SYSTEMS OPERATIONAL</span>
+                <span id="systemStatusHeader" class="text-emerald-400 flex items-center gap-1.5"><div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div> ALL SYSTEMS OPERATIONAL</span>
                 <button onclick="document.documentElement.requestFullscreen()" class="ml-2 text-slate-500 hover:text-white transition"><i class="fas fa-expand"></i></button>
             </div>
         </header>
@@ -417,6 +417,21 @@
                 
                 const responses = await Promise.all(endpoints.map(p => p.catch(e => e)));
 
+                let isAnyOk = responses.some(r => r && r.ok);
+                const statusEl = document.getElementById('systemStatusHeader');
+                if (!isAnyOk) {
+                    if (statusEl) {
+                        statusEl.className = 'text-red-400 flex items-center gap-1.5';
+                        statusEl.innerHTML = '<div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div> CONNECTION ERROR';
+                    }
+                    return; // Skip rendering if everything failed to prevent weird UI states
+                } else {
+                    if (statusEl) {
+                        statusEl.className = 'text-emerald-400 flex items-center gap-1.5';
+                        statusEl.innerHTML = '<div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div> ALL SYSTEMS OPERATIONAL';
+                    }
+                }
+
                 if(responses[0] && responses[0].ok) renderBox1and3and7(await responses[0].json());
                 if(responses[1] && responses[1].ok) renderBox2(await responses[1].json());
                 if(responses[2] && responses[2].ok) renderBox5(await responses[2].json());
@@ -429,6 +444,11 @@
 
             } catch (err) {
                 console.error("Fetch error", err);
+                const statusEl = document.getElementById('systemStatusHeader');
+                if (statusEl) {
+                    statusEl.className = 'text-red-400 flex items-center gap-1.5';
+                    statusEl.innerHTML = '<div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div> CONNECTION ERROR';
+                }
             }
         }
 
@@ -640,14 +660,16 @@
 
         function renderBox8(data) {
             if(!data.data) return;
-            const html = data.data.map(log => `
+            const target = document.getElementById('box8-logs');
+            target.innerHTML = ''; // clear before re-render
+            const html = data.data.slice(0, 10).map(log => `
                 <div class="flex gap-2">
                     <span class="text-slate-500">${log.time}</span>
                     <span class="text-emerald-300">»</span>
                     <span class="text-slate-300 truncate">${log.action}</span>
                 </div>
             `).join('');
-            document.getElementById('box8-logs').innerHTML = html;
+            target.innerHTML = html;
         }
 
         function renderBox9(data) {
@@ -701,7 +723,9 @@
 
         function renderBox10(data) {
             if(!data.data) return;
-            const rows = data.data.map(log => {
+            const target = document.getElementById('box10-communications');
+            target.innerHTML = ''; // clear before re-render
+            const rows = data.data.slice(0, 10).map(log => {
                 return `
                 <tr class="hover:bg-slate-800/50 transition">
                     <td class="py-2 px-3 w-16 text-slate-500 font-mono text-[9px] align-top">${log.time}</td>
@@ -718,12 +742,12 @@
                 </tr>
                 `;
             }).join('');
-            document.getElementById('box10-communications').innerHTML = rows;
+            target.innerHTML = rows;
         }
 
         // Auto Refresh Engine
         fetchAll(); // initial
-        setInterval(fetchAll, 3000); // refresh every 3 seconds for live feel
+        setInterval(fetchAll, 5000); // refresh every 5 seconds for live feel, optimized to reduce load
 
     </script>
 </body>

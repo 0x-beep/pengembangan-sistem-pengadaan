@@ -12,23 +12,9 @@ cd backend
 start cmd /k "python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload"
 
 echo 2. Membuka Frontend...
-cd ../frontend
-start vendor_registration.html
-start admin_dashboard.html
-start requisition_form.html
-start approval_dashboard.html
-start arm_portal.html
-start kso_evaluation.html
-start swakelola_dashboard.html
-start kso_management_dashboard.html
-start vendor_portal.html
-start spi_audit_dashboard.html
-start legal_dashboard.html
-start ksu_dashboard.html
-start director_dashboard.html
-start catalogue_dashboard.html
-start finance_dashboard.html
-start umum_dashboard.html
+timeout /t 3 /nobreak
+start http://127.0.0.1:8000
+
 
 echo.
 echo Sistem berhasil dijalankan.
