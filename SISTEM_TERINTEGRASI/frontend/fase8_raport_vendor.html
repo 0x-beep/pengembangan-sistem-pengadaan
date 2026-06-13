@@ -172,6 +172,10 @@
                 <p class="text-xs text-slate-500 mt-1">Fase 8: Evaluasi Kinerja Vendor KSO berdasarkan Blueprint KMU</p>
             </div>
             <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg border border-slate-200">
+                    <div id="apiDot" class="w-2 h-2 rounded-full bg-slate-400"></div>
+                    <span id="apiLabel" class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">API: —</span>
+                </div>
                 <button onclick="window.print()" class="text-xs px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg text-slate-600 transition flex items-center gap-1.5">
                     <i class="fas fa-print text-slate-400"></i> Cetak Raport
                 </button>
@@ -373,12 +377,42 @@
                 }, 50);
             } catch (e) {
                 setApiStatus(false);
-                document.getElementById('mainContent').innerHTML = `
-                    <div class="bg-red-50 border border-red-200 rounded-xl p-10 text-center">
-                        <i class="fas fa-server text-red-400 text-4xl mb-4"></i>
-                        <h3 class="text-lg font-bold text-red-800 mb-2">Backend tidak aktif</h3>
-                        <p class="text-sm text-red-600">Jalankan <code class="bg-red-100 px-2 py-0.5 rounded font-mono">START_SISTEM_PENGADAAN.bat</code> lalu refresh halaman ini.</p>
-                    </div>`;
+                // Tampilkan contoh data mock saat backend offline
+                const MOCK = [
+                    {
+                        company_name: 'PT Sysmex Indonesia', company_name_short: 'Sysmex',
+                        star_rating: 4.6, weighted_score: 91, badge: 'Excellent', badge_color: 'emerald',
+                        total_evaluations: 12, total_disputes: 0, total_penalties: 0,
+                        avg_delivery: 95, avg_quality: 93, avg_response: 90,
+                        avg_pricing: 88, avg_compliance: 92, avg_financial: 87, avg_relationship: 90,
+                    },
+                    {
+                        company_name: 'PT Kimia Farma Trading & Distribution', company_name_short: 'Kimia Farma',
+                        star_rating: 3.9, weighted_score: 78, badge: 'Good', badge_color: 'blue',
+                        total_evaluations: 24, total_disputes: 1, total_penalties: 0,
+                        avg_delivery: 82, avg_quality: 80, avg_response: 75,
+                        avg_pricing: 77, avg_compliance: 79, avg_financial: 74, avg_relationship: 81,
+                    },
+                    {
+                        company_name: 'PT Daikin Airconditioning Indonesia', company_name_short: 'Daikin',
+                        star_rating: 3.1, weighted_score: 63, badge: 'Needs Improvement', badge_color: 'amber',
+                        total_evaluations: 8, total_disputes: 2, total_penalties: 1,
+                        avg_delivery: 60, avg_quality: 68, avg_response: 55,
+                        avg_pricing: 71, avg_compliance: 64, avg_financial: 62, avg_relationship: 70,
+                    },
+                    {
+                        company_name: 'CV Linen Nusantara Mandiri', company_name_short: 'LNM',
+                        star_rating: 2.2, weighted_score: 46, badge: 'At Risk', badge_color: 'red',
+                        total_evaluations: 6, total_disputes: 3, total_penalties: 2,
+                        avg_delivery: 42, avg_quality: 48, avg_response: 40,
+                        avg_pricing: 55, avg_compliance: 44, avg_financial: 51, avg_relationship: 47,
+                    },
+                ];
+                const banner = `<div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-center gap-3 text-xs text-amber-700 no-print">
+                    <i class="fas fa-plug shrink-0"></i>
+                    <span>Backend offline — menampilkan <strong>data contoh</strong>. Jalankan <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">START_SISTEM_PENGADAAN.bat</code> untuk data real.</span>
+                </div>`;
+                document.getElementById('mainContent').innerHTML = banner + MOCK.map((v, i) => renderCard(v, i)).join('');
             }
         }
 
