@@ -282,20 +282,21 @@
                     <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-3">
                         <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center"><i class="fas fa-bullhorn text-indigo-600 text-sm"></i></div>
                         <div>
-                            <h3 class="font-semibold text-slate-800">Arahan GM ke Dirops</h3>
-                            <p class="text-xs text-slate-500">Keputusan dikirim ke Direktur Operasional untuk ditindaklanjuti</p>
+                            <h3 class="font-semibold text-slate-800">Arahan GM Ops ke Manager Pengadaan</h3>
+                            <p class="text-xs text-slate-500">Arahan tindak lanjut ke Manager — Direktur Operasional diinformasikan (tembusan)</p>
                         </div>
                     </div>
                     <div class="p-5 space-y-3">
-                        <textarea id="arahan-gm" placeholder="Contoh: Mohon Dirops koordinasi dengan Kimia Farma terkait keterlambatan..."
+                        <textarea id="arahan-gm" placeholder="Contoh: Segera koordinasikan dengan Manager Pengadaan Barang terkait keterlambatan Obat Formularium..."
                             class="w-full text-sm border border-slate-200 rounded-xl p-3 resize-none h-24 outline-none focus:border-indigo-400"></textarea>
                         <div class="flex items-center justify-between">
                             <div class="flex gap-4">
-                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" checked class="rounded"> CC Keuangan</label>
-                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" class="rounded"> CC SPI</label>
+                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" checked class="rounded"> Tembusan Dir. Operasional</label>
+                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" class="rounded"> Tembusan Keuangan</label>
+                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" class="rounded"> Tembusan SPI</label>
                             </div>
                             <button onclick="kirimArahan()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition flex items-center gap-2">
-                                <i class="fas fa-paper-plane"></i> Kirim ke Dirops
+                                <i class="fas fa-paper-plane"></i> Kirim ke Manager Pengadaan
                             </button>
                         </div>
                     </div>
@@ -339,82 +340,126 @@
                 </div>
             </div>
 
-            <!-- ════ TAB 5: PERUBAHAN / SWITCHING ════ -->
+            <!-- ════ TAB 5: SWITCHING — INBOX DARI SBU ════ -->
             <div id="content-perubahan" class="tab-content hidden space-y-5">
 
-                <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 flex items-start gap-3">
-                    <i class="fas fa-arrows-rotate text-amber-600 mt-0.5 shrink-0"></i>
-                    <div>
-                        <p class="text-sm font-semibold text-amber-800">Perubahan Rencana — Diproses Bagian Umum</p>
-                        <p class="text-xs text-amber-700 mt-1">Gunakan form ini jika ada item RKAP yang perlu diubah: switching vendor, pembatalan (void), pergeseran jadwal, atau perubahan anggaran. Setiap perubahan memerlukan persetujuan GM dan konfirmasi ulang Keuangan.</p>
+                <!-- Alur proses — readonly, info saja -->
+                <div class="bg-slate-800 rounded-xl p-4">
+                    <p class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3">Alur Switching / Perubahan RKAP</p>
+                    <div class="flex items-center gap-2 flex-wrap text-xs text-white">
+                        <div class="bg-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-1.5"><i class="fas fa-building text-blue-400"></i> SBU pemilik RKAP</div>
+                        <i class="fas fa-arrow-right text-slate-500"></i>
+                        <div class="bg-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-1.5"><i class="fas fa-vote-yea text-amber-400"></i> Komite Anggaran</div>
+                        <i class="fas fa-arrow-right text-slate-500"></i>
+                        <div class="bg-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-1.5"><i class="fas fa-file-alt text-emerald-400"></i> Bagian Umum (input PP)</div>
+                        <i class="fas fa-arrow-right text-slate-500"></i>
+                        <div class="bg-sky-700 rounded-lg px-3 py-1.5 font-bold flex items-center gap-1.5 ring-2 ring-sky-400"><i class="fas fa-inbox text-sky-300"></i> Masuk ke sini (clear &amp; clean)</div>
+                        <i class="fas fa-arrow-right text-slate-500"></i>
+                        <div class="bg-slate-700 rounded-lg px-3 py-1.5 flex items-center gap-1.5"><i class="fas fa-clipboard-list text-violet-400"></i> Tindak Lanjut PP Pengadaan</div>
                     </div>
+                    <p class="text-[11px] text-slate-400 mt-3">Pengadaan <strong class="text-slate-200">tidak mengusulkan</strong> switching. Item yang muncul di bawah sudah melewati Komite Anggaran dan diinput Bagian Umum — siap ditindaklanjuti.</p>
                 </div>
 
-                <!-- Form Perubahan -->
+                <!-- Inbox switching yang sudah clear -->
                 <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
-                            <i class="fas fa-pen text-amber-600 text-sm"></i>
+                    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-sky-100 flex items-center justify-center">
+                                <i class="fas fa-inbox text-sky-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-slate-800">Switching / Perubahan Masuk — Siap Ditindaklanjuti</h3>
+                                <p class="text-xs text-slate-500">Sudah disetujui Komite Anggaran · Diinput Bagian Umum</p>
+                            </div>
                         </div>
-                        <h3 class="font-semibold text-slate-800">Ajukan Perubahan Rencana</h3>
+                        <span class="badge bg-sky-100 text-sky-700 text-xs">2 item</span>
                     </div>
-                    <div class="p-5 space-y-4">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="text-xs font-semibold text-slate-600 block mb-1.5">Item RKAP yang Berubah *</label>
-                                <select id="perubahan-item" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400 bg-white">
-                                    <option value="">-- Pilih item dari daftar --</option>
-                                    <option>B-001 · Reagen Hematologi Sysmex (Rp 180 jt)</option>
-                                    <option>B-003 · Obat Formularium Triwulan III (Rp 620 jt)</option>
-                                    <option>J-001 · Pemeliharaan AC Sentral RSUD (Rp 75 jt)</option>
-                                </select>
+                    <div class="divide-y divide-slate-100" id="switching-inbox">
+
+                        <!-- Item 1: Switching Vendor -->
+                        <div class="px-5 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-arrows-rotate text-amber-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="badge bg-amber-100 text-amber-700">Switching Vendor</span>
+                                        <span class="badge bg-emerald-100 text-emerald-700"><i class="fas fa-check-circle mr-1"></i>KA Disetujui 2 Jun 2026</span>
+                                        <span class="badge bg-sky-100 text-sky-700">PP sudah diinput Bagian Umum</span>
+                                    </div>
+                                    <p class="font-semibold text-slate-800 text-sm">B-003 · Obat Formularium Triwulan III</p>
+                                    <div class="mt-1 flex items-center gap-2 text-xs text-slate-500 flex-wrap">
+                                        <span class="line-through text-red-400">PT Kimia Farma</span>
+                                        <i class="fas fa-arrow-right text-slate-400"></i>
+                                        <span class="font-semibold text-slate-700">PT Indofarma Global Medika</span>
+                                        <span>·</span>
+                                        <span>Rp 620 jt</span>
+                                        <span>·</span>
+                                        <span>Diusulkan: SBU Instalasi Farmasi</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-1.5 bg-slate-50 rounded px-2 py-1 italic">Alasan SBU: PT Kimia Farma tidak dapat memenuhi spesifikasi ED minimal 18 bulan untuk formularium triwulanan.</p>
+                                    <div class="mt-1.5 text-[11px] text-slate-400">
+                                        No. PP Lama: <span class="font-mono">PP-2026-FARM-0041</span> · PP Baru sudah dibuat Bagian Umum: <span class="font-mono">PP-2026-FARM-0052</span>
+                                    </div>
+                                </div>
+                                <button onclick="tindakLanjutSwitching('PP-2026-FARM-0052', 'B-003')"
+                                    class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1.5 mt-1">
+                                    <i class="fas fa-clipboard-list"></i> Tindak Lanjut PP
+                                </button>
                             </div>
-                            <div>
-                                <label class="text-xs font-semibold text-slate-600 block mb-1.5">Jenis Perubahan *</label>
-                                <select id="perubahan-jenis" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400 bg-white" onchange="renderPerubahanFields(this.value)">
-                                    <option value="">-- Pilih jenis --</option>
-                                    <option value="switching_vendor">Switching Vendor</option>
-                                    <option value="switching_anggaran">Switching Anggaran (RKAP)</option>
-                                    <option value="reschedule">Reschedule / Geser Jadwal</option>
-                                    <option value="void">Void / Pembatalan</option>
-                                    <option value="perubahan_nilai">Perubahan Nilai Estimasi</option>
-                                </select>
+                        </div>
+
+                        <!-- Item 2: Reschedule -->
+                        <div class="px-5 py-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-9 h-9 rounded-lg bg-violet-100 flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fas fa-calendar-days text-violet-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                                        <span class="badge bg-violet-100 text-violet-700">Reschedule</span>
+                                        <span class="badge bg-emerald-100 text-emerald-700"><i class="fas fa-check-circle mr-1"></i>KA Disetujui 5 Jun 2026</span>
+                                        <span class="badge bg-sky-100 text-sky-700">PP sudah diinput Bagian Umum</span>
+                                    </div>
+                                    <p class="font-semibold text-slate-800 text-sm">J-001 · Jasa Pemeliharaan AC Sentral RSUD</p>
+                                    <div class="mt-1 flex items-center gap-2 text-xs text-slate-500 flex-wrap">
+                                        <span class="line-through text-red-400">Target: Juli 2026</span>
+                                        <i class="fas fa-arrow-right text-slate-400"></i>
+                                        <span class="font-semibold text-slate-700">Agustus 2026</span>
+                                        <span>·</span>
+                                        <span>Rp 75 jt</span>
+                                        <span>·</span>
+                                        <span>Diusulkan: SBU IPS</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-1.5 bg-slate-50 rounded px-2 py-1 italic">Alasan SBU: Jadwal pemadaman listrik untuk maintenance major baru tersedia di Agustus.</p>
+                                    <div class="mt-1.5 text-[11px] text-slate-400">
+                                        No. PP: <span class="font-mono">PP-2026-IPS-0019</span> · Jadwal PP diperbarui Bagian Umum
+                                    </div>
+                                </div>
+                                <button onclick="tindakLanjutSwitching('PP-2026-IPS-0019', 'J-001')"
+                                    class="shrink-0 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1.5 mt-1">
+                                    <i class="fas fa-clipboard-list"></i> Tindak Lanjut PP
+                                </button>
                             </div>
                         </div>
-                        <!-- Dynamic fields tergantung jenis perubahan -->
-                        <div id="perubahan-dynamic" class="space-y-3 hidden">
-                        </div>
-                        <div>
-                            <label class="text-xs font-semibold text-slate-600 block mb-1.5">Alasan / Justifikasi *</label>
-                            <textarea id="perubahan-alasan" placeholder="Jelaskan mengapa perubahan ini diperlukan dan dampaknya terhadap operasional..." class="w-full text-sm border border-slate-200 rounded-xl p-3 resize-none h-24 outline-none focus:border-amber-400"></textarea>
-                        </div>
-                        <div class="flex items-center justify-between pt-2">
-                            <p class="text-xs text-slate-500"><i class="fas fa-info-circle mr-1"></i>Pengajuan ini akan diteruskan ke Bagian Umum → GM → Keuangan</p>
-                            <button onclick="submitPerubahan()" class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition flex items-center gap-2">
-                                <i class="fas fa-paper-plane"></i> Ajukan Perubahan
-                            </button>
-                        </div>
+
                     </div>
                 </div>
 
-                <!-- Riwayat Perubahan -->
+                <!-- Yang sudah selesai ditindaklanjuti -->
                 <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
                     <div class="px-5 py-4 border-b border-slate-100">
-                        <h3 class="font-semibold text-slate-800">Riwayat Perubahan — Juli 2026</h3>
+                        <h3 class="font-semibold text-slate-800 text-sm">Sudah Ditindaklanjuti</h3>
                     </div>
-                    <div id="riwayat-perubahan" class="divide-y divide-slate-100">
-                        <div class="px-5 py-4 flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
-                                <i class="fas fa-arrows-rotate text-amber-600 text-xs"></i>
+                    <div class="divide-y divide-slate-100 opacity-60" id="switching-done">
+                        <div class="px-5 py-3 flex items-center gap-3 text-sm">
+                            <i class="fas fa-check-circle text-emerald-500 shrink-0"></i>
+                            <div>
+                                <span class="font-medium text-slate-700">B-001 · Reagen Hematologi Sysmex</span>
+                                <span class="ml-2 badge bg-slate-100 text-slate-500">Switching Vendor</span>
                             </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-semibold text-slate-800 text-sm">J-001 · Pemeliharaan AC Sentral</span>
-                                    <span class="badge bg-amber-100 text-amber-700">Reschedule</span>
-                                    <span class="badge bg-emerald-100 text-emerald-700">Disetujui GM</span>
-                                </div>
-                                <p class="text-xs text-slate-500 mt-1">Digeser ke Agustus 2026 — perubahan jadwal dari IPS. Diajukan: 5 Jun 2026 · Disetujui: 7 Jun 2026</p>
-                            </div>
+                            <span class="ml-auto text-xs text-slate-400">Ditindaklanjuti 3 Jun 2026</span>
                         </div>
                     </div>
                 </div>
@@ -697,51 +742,17 @@
             card?.querySelector('.flex-1')?.appendChild(nota);
         }
 
-        // ─── Perubahan form ─────────────────────────────────────────────────────────
-        function renderPerubahanFields(jenis) {
-            const d = document.getElementById('perubahan-dynamic');
-            d.classList.remove('hidden');
-            const fields = {
-                switching_vendor: `<div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Vendor Pengganti</label>
-                    <input type="text" placeholder="Nama vendor baru yang diusulkan..." class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>`,
-                switching_anggaran: `<div class="grid grid-cols-2 gap-3">
-                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Kode RKAP Asal</label>
-                    <input type="text" placeholder="BGT-2026-XX-00" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>
-                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Kode RKAP Tujuan</label>
-                    <input type="text" placeholder="BGT-2026-XX-00" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div></div>`,
-                reschedule: `<div class="grid grid-cols-2 gap-3">
-                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Jadwal Semula</label>
-                    <input type="month" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>
-                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Jadwal Baru</label>
-                    <input type="month" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div></div>`,
-                void: `<div class="bg-red-50 border border-red-200 rounded-lg p-3 text-xs text-red-700">
-                    <i class="fas fa-exclamation-triangle mr-1"></i>Pembatalan (void) akan menghapus item ini dari rencana realisasi bulan ini dan membebaskan alokasi anggaran. Pastikan ada persetujuan dari user yang meminta.</div>`,
-                perubahan_nilai: `<div class="grid grid-cols-2 gap-3">
-                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Nilai Estimasi Semula (Rp)</label>
-                    <input type="number" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>
-                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Nilai Estimasi Baru (Rp)</label>
-                    <input type="number" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div></div>`,
-            };
-            d.innerHTML = fields[jenis] || '';
-        }
-
-        function submitPerubahan() {
-            const item = document.getElementById('perubahan-item').value;
-            const jenis = document.getElementById('perubahan-jenis').value;
-            const alasan = document.getElementById('perubahan-alasan').value.trim();
-            if (!item || !jenis || !alasan) { showToast('Lengkapi semua field wajib.', 'error'); return; }
-            showToast('Perubahan berhasil diajukan ke Bagian Umum → GM → Keuangan.', 'success');
-            document.getElementById('perubahan-alasan').value = '';
-            document.getElementById('perubahan-item').value = '';
-            document.getElementById('perubahan-jenis').value = '';
-            document.getElementById('perubahan-dynamic').classList.add('hidden');
+        // ─── Switching inbox: tindak lanjut → buka fase3 dengan PP pre-fill ─────────
+        function tindakLanjutSwitching(noPP, itemId) {
+            // Buka fase3 dengan parameter PP agar bisa auto-fill
+            window.location.href = `fase3_imt_pp_sppj.html?pp=${noPP}&item=${itemId}&source=switching`;
         }
 
         // ─── GM arahan ──────────────────────────────────────────────────────────────
         function kirimArahan() {
             const teks = document.getElementById('arahan-gm').value.trim();
             if (!teks) { showToast('Tulis arahan terlebih dahulu.', 'error'); return; }
-            showToast('Arahan GM dikirim ke Dirops.', 'success');
+            showToast('Arahan GM dikirim ke Manager Pengadaan.', 'success');
             document.getElementById('arahan-gm').value = '';
         }
 
