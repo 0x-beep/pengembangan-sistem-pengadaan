@@ -44,6 +44,10 @@
                         <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
                         <span class="text-sm font-medium">Fase 1: RKAP & Anggaran</span>
                     </a>
+                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-calendar-check w-5 text-center"></i>
+                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
+                    </a>
                     <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
                         <i class="fas fa-users w-5 text-center"></i>
                         <span class="text-sm font-medium">Fase 2: Registrasi Vendor</span>
@@ -174,6 +178,23 @@
 
         <main class="flex-1 overflow-y-auto p-8">
             <div class="max-w-5xl mx-auto space-y-6">
+
+                <!-- PROKER CLEARED — Items yang siap di-PP dari Rencana Realisasi RKAP -->
+                <div id="proker-ready-panel" class="bg-emerald-50 border border-emerald-200 rounded-xl overflow-hidden">
+                    <div class="px-5 py-3 bg-emerald-700 text-white flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-check-double"></i>
+                            <span class="text-sm font-bold">Proker RKAP Cleared — Siap Ditindaklanjuti Pengadaan</span>
+                        </div>
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded" id="proker-count-badge">Memuat...</span>
+                    </div>
+                    <div id="proker-ready-list" class="divide-y divide-emerald-100">
+                        <p class="px-5 py-3 text-xs text-emerald-600 italic">Memuat data dari backend...</p>
+                    </div>
+                    <div class="px-5 py-2 bg-emerald-50 border-t border-emerald-200">
+                        <p class="text-xs text-emerald-700"><i class="fas fa-info-circle mr-1"></i>Klik item untuk auto-isi form PP/SPPJ di bawah. Item sudah diverifikasi GM & Keuangan.</p>
+                    </div>
+                </div>
 
                 <!-- 1. Pilih Jalur (Tipe Permintaan) -->
                 <div>
@@ -347,6 +368,62 @@
 
     <script>
         const API = 'http://127.0.0.1:8000';
+
+        // ─── Load Proker Ready dari backend ───────────────────────────────────────
+        async function loadProkerReady() {
+            try {
+                const res = await fetch(`${API}/api/proker?status=ready_pengadaan`);
+                const json = await res.json();
+                const items = json.data || [];
+                const panel = document.getElementById('proker-ready-list');
+                const badge = document.getElementById('proker-count-badge');
+                badge.textContent = `${items.length} item ready`;
+                if (!items.length) {
+                    panel.innerHTML = '<p class="px-5 py-3 text-xs text-slate-500 italic">Tidak ada item proker yang sudah cleared saat ini.</p>';
+                    return;
+                }
+                panel.innerHTML = items.map(item => `
+                    <div class="px-5 py-3 flex items-center gap-4 hover:bg-emerald-100/50 cursor-pointer transition-colors"
+                         onclick="autofillFromProker(${JSON.stringify(item).replace(/"/g,'&quot;')})">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="font-semibold text-emerald-800 text-sm">${item.item_title}</span>
+                                <span class="text-[10px] font-bold px-1.5 py-0.5 bg-emerald-200 text-emerald-800 rounded">${item.bidang_pekerjaan.toUpperCase()}</span>
+                                <span class="text-xs text-slate-500">${item.rkap_ref}</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-0.5 text-xs text-slate-500">
+                                <span>Rp ${(item.estimasi_nilai/1e6).toFixed(0)} jt</span>
+                                <span>·</span>
+                                <span>Target: ${item.target_bulan}</span>
+                                <span>·</span>
+                                <span>Vendor: ${item.target_vendor||'—'}</span>
+                            </div>
+                        </div>
+                        <span class="text-xs text-emerald-600 font-semibold shrink-0 flex items-center gap-1">
+                            <i class="fas fa-arrow-right"></i> Gunakan
+                        </span>
+                    </div>
+                `).join('');
+            } catch(e) {
+                document.getElementById('proker-ready-list').innerHTML =
+                    '<p class="px-5 py-3 text-xs text-slate-400 italic">Backend tidak aktif — data proker tidak tersedia.</p>';
+                document.getElementById('proker-count-badge').textContent = 'offline';
+            }
+        }
+
+        function autofillFromProker(item) {
+            document.getElementById('title').value = item.item_title;
+            document.getElementById('total_amount').value = item.estimasi_nilai;
+            if (item.kategori === 'jasa') { selectPath('sppj'); }
+            else if (item.kategori === 'kso') { selectPath('imt'); }
+            else { selectPath('pp'); }
+            document.getElementById('description').value =
+                `[Ref. Proker: ${item.item_code}] ${item.keterangan||''} — Vendor target: ${item.target_vendor||'TBD'}`;
+            checkAIGuardian();
+            document.getElementById('reqForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProkerReady);
 
         function selectPath(path) {
             // Update UI Selection

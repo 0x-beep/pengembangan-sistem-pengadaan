@@ -228,6 +228,63 @@ def init_db():
     )
     ''')
 
+    # Proker Bulanan (Rencana Realisasi RKAP — dibuat Bagian Umum, disetujui GM+Keuangan)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS proker_items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        item_code TEXT UNIQUE,
+        item_title TEXT NOT NULL,
+        kategori TEXT NOT NULL,
+        bidang_pekerjaan TEXT NOT NULL,
+        rkap_ref TEXT,
+        estimasi_nilai REAL,
+        target_bulan TEXT NOT NULL,
+        target_vendor TEXT,
+        keterangan TEXT,
+        submitted_by TEXT,
+        status TEXT DEFAULT 'draft',
+        approved_gm_by TEXT,
+        approved_gm_at DATETIME,
+        cleared_keuangan_by TEXT,
+        cleared_keuangan_at DATETIME,
+        catatan_keuangan TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
+    # Vendor Notifications (dipicu saat proker cleared → vendor bidang terkait dapat alert)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS vendor_notifications (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        vendor_category TEXT NOT NULL,
+        title TEXT NOT NULL,
+        message TEXT NOT NULL,
+        priority TEXT DEFAULT 'normal',
+        related_proker_id INTEGER,
+        is_read INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (related_proker_id) REFERENCES proker_items (id)
+    )
+    ''')
+
+    # BAPB — Berita Acara Penerimaan Barang
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS bapb (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        bapb_number TEXT UNIQUE,
+        po_number TEXT NOT NULL,
+        vendor_id TEXT,
+        received_date TEXT,
+        received_by TEXT,
+        items_json TEXT,
+        condition TEXT DEFAULT 'good',
+        notes TEXT,
+        status TEXT DEFAULT 'draft',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (po_number) REFERENCES purchase_orders (po_number)
+    )
+    ''')
+
     conn.commit()
     conn.close()
     print(f"Database initialized at {DB_PATH}")

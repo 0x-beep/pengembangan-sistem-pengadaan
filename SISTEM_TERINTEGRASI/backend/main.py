@@ -1078,6 +1078,198 @@ def validate_finance_payment(vendor_id: str):
     return {"status": "success", "blocked": False, "message": "Kontrak tervalidasi."}
 
 
+# =============================================================================
+# PROKER BULANAN API (Rencana Realisasi — Bagian Umum → GM → Keuangan → Pengadaan)
+# =============================================================================
+
+class ProkerItemCreate(BaseModel):
+    item_title: str
+    kategori: str           # barang / jasa / kso
+    bidang_pekerjaan: str   # lab / farmasi / bmhp / alkes / umum / jasa
+    rkap_ref: str = ""
+    estimasi_nilai: float
+    target_bulan: str       # YYYY-MM
+    target_vendor: str = ""
+    keterangan: str = ""
+    submitted_by: str
+
+@app.get("/api/proker")
+def get_proker(status: str = None, bulan: str = None):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    q = "SELECT * FROM proker_items WHERE 1=1"
+    params = []
+    if status:
+        q += " AND status = ?"
+        params.append(status)
+    if bulan:
+        q += " AND target_bulan = ?"
+        params.append(bulan)
+    q += " ORDER BY id DESC"
+    cursor.execute(q, params)
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": rows}
+
+@app.post("/api/proker")
+def create_proker_item(item: ProkerItemCreate):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT COUNT(*) as cnt FROM proker_items")
+        cnt = cursor.fetchone()["cnt"]
+        bulan_short = item.target_bulan.replace("-", "")
+        code = f"PRK-{bulan_short}-{str(cnt + 1).zfill(3)}"
+        cursor.execute('''
+            INSERT INTO proker_items (item_code, item_title, kategori, bidang_pekerjaan,
+                rkap_ref, estimasi_nilai, target_bulan, target_vendor, keterangan, submitted_by)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (code, item.item_title, item.kategori, item.bidang_pekerjaan,
+              item.rkap_ref, item.estimasi_nilai, item.target_bulan,
+              item.target_vendor, item.keterangan, item.submitted_by))
+        conn.commit()
+        return {"status": "success", "item_code": code, "message": "Item proker berhasil ditambahkan"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+@app.post("/api/proker/{item_id}/status")
+async def update_proker_status(item_id: int, request: Request):
+    data = await request.json()
+    action = data.get("action")   # gm_approve / keuangan_clear / reject
+    actor  = data.get("actor", "System")
+    catatan = data.get("catatan", "")
+
+    valid_actions = {"gm_approve", "keuangan_clear", "reject"}
+    if action not in valid_actions:
+        raise HTTPException(status_code=400, detail="Action tidak valid")
+
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT * FROM proker_items WHERE id = ?", (item_id,))
+        item = cursor.fetchone()
+        if not item:
+            raise HTTPException(status_code=404, detail="Proker item tidak ditemukan")
+
+        now = datetime.now()
+        if action == "gm_approve":
+            cursor.execute(
+                "UPDATE proker_items SET status='approved_gm', approved_gm_by=?, approved_gm_at=? WHERE id=?",
+                (actor, now, item_id))
+        elif action == "keuangan_clear":
+            cursor.execute(
+                "UPDATE proker_items SET status='ready_pengadaan', cleared_keuangan_by=?, cleared_keuangan_at=?, catatan_keuangan=? WHERE id=?",
+                (actor, now, catatan, item_id))
+            # Kirim notifikasi ke vendor bidang terkait
+            bidang = item["bidang_pekerjaan"]
+            title = f"Peluang Pengadaan: {item['item_title']}"
+            msg = (f"PT KMU membuka peluang pengadaan untuk bidang {bidang.upper()}. "
+                   f"Estimasi nilai: Rp {item['estimasi_nilai']:,.0f}. "
+                   f"Target realisasi: {item['target_bulan']}. "
+                   f"Siapkan penawaran Anda melalui portal ini.")
+            cursor.execute(
+                "INSERT INTO vendor_notifications (vendor_category, title, message, priority, related_proker_id) VALUES (?, ?, ?, ?, ?)",
+                (bidang, title, msg, "normal", item_id))
+        elif action == "reject":
+            cursor.execute("UPDATE proker_items SET status='rejected' WHERE id=?", (item_id,))
+
+        conn.commit()
+        return {"status": "success", "message": f"Status proker diubah: {action}"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+
+# =============================================================================
+# VENDOR NOTIFICATIONS API
+# =============================================================================
+
+@app.get("/api/notifications")
+def get_notifications(vendor_category: str = None, unread_only: bool = False):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    q = "SELECT * FROM vendor_notifications WHERE 1=1"
+    params = []
+    if vendor_category:
+        q += " AND vendor_category = ?"
+        params.append(vendor_category)
+    if unread_only:
+        q += " AND is_read = 0"
+    q += " ORDER BY created_at DESC LIMIT 20"
+    cursor.execute(q, params)
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": rows, "unread_count": len([r for r in rows if not r["is_read"]])}
+
+@app.post("/api/notifications/{notif_id}/read")
+def mark_notification_read(notif_id: int):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("UPDATE vendor_notifications SET is_read = 1 WHERE id = ?", (notif_id,))
+    conn.commit()
+    conn.close()
+    return {"status": "success"}
+
+
+# =============================================================================
+# BAPB API (Berita Acara Penerimaan Barang)
+# =============================================================================
+
+class BAPBCreate(BaseModel):
+    po_number: str
+    vendor_id: str
+    received_date: str
+    received_by: str
+    items_json: str   # JSON string list of received items
+    condition: str = "good"  # good / partial / rejected
+    notes: str = ""
+
+@app.get("/api/bapb")
+def get_bapb(po_number: str = None, status: str = None):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    q = "SELECT * FROM bapb WHERE 1=1"
+    params = []
+    if po_number:
+        q += " AND po_number = ?"
+        params.append(po_number)
+    if status:
+        q += " AND status = ?"
+        params.append(status)
+    q += " ORDER BY id DESC"
+    cursor.execute(q, params)
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": rows}
+
+@app.post("/api/bapb")
+def create_bapb(b: BAPBCreate):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT COUNT(*) as cnt FROM bapb")
+        cnt = cursor.fetchone()["cnt"]
+        bapb_number = f"BAPB-{datetime.now().strftime('%Y%m')}-{str(cnt + 1).zfill(3)}"
+        cursor.execute('''
+            INSERT INTO bapb (bapb_number, po_number, vendor_id, received_date, received_by,
+                items_json, condition, notes, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'submitted')
+        ''', (bapb_number, b.po_number, b.vendor_id, b.received_date,
+              b.received_by, b.items_json, b.condition, b.notes))
+        conn.commit()
+        return {"status": "success", "bapb_number": bapb_number, "message": "BAPB berhasil disimpan"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run('main:app', host='127.0.0.1', port=8000, reload=True)

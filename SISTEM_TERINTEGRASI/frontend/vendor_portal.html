@@ -80,6 +80,22 @@
     <main class="flex-1 overflow-y-auto bg-slate-50 p-6">
         <div class="max-w-7xl mx-auto space-y-6">
             
+            <!-- Notifikasi dari Pengadaan KMU (realtime) -->
+            <div id="notif-panel" class="hidden">
+                <div class="bg-amber-50 border border-amber-300 rounded-xl overflow-hidden shadow-sm">
+                    <div class="px-4 py-3 bg-amber-500 text-white flex items-center justify-between">
+                        <div class="flex items-center gap-2 text-sm font-bold">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifikasi dari PT KMU Pengadaan</span>
+                            <span id="notif-unread-badge" class="bg-white text-amber-600 text-[10px] font-black px-2 py-0.5 rounded-full">0 baru</span>
+                        </div>
+                        <button onclick="document.getElementById('notif-list').classList.toggle('hidden')" class="text-xs bg-white/20 hover:bg-white/30 px-2 py-1 rounded font-semibold">Lihat / Sembunyikan</button>
+                    </div>
+                    <div id="notif-list" class="divide-y divide-amber-100">
+                    </div>
+                </div>
+            </div>
+
             <!-- Alert Banner -->
             <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3 items-start shadow-sm">
                 <i class="fas fa-info-circle text-blue-600 mt-0.5"></i>
@@ -194,6 +210,52 @@
     <script>
         const API_URL = 'http://127.0.0.1:8000/api';
         let chartInstance = null;
+
+        // ─── Notifikasi dari Pengadaan KMU ────────────────────────────────────────
+        // vendor_category diambil dari data vendor yang login — default 'umum' untuk demo
+        const VENDOR_CATEGORY = 'umum';
+
+        async function loadNotifications() {
+            try {
+                const res = await fetch(`${API_URL}/notifications?vendor_category=${VENDOR_CATEGORY}&unread_only=false`);
+                const json = await res.json();
+                const items = json.data || [];
+                const unread = json.unread_count || 0;
+                if (!items.length) return;
+                document.getElementById('notif-panel').classList.remove('hidden');
+                document.getElementById('notif-unread-badge').textContent = `${unread} baru`;
+                // Update header bell badge
+                const bellBadge = document.querySelector('.fa-bell + span, .fa-bell ~ span');
+                if (bellBadge) bellBadge.textContent = unread;
+                const list = document.getElementById('notif-list');
+                list.innerHTML = items.map(n => `
+                    <div class="px-4 py-3 flex items-start gap-3 ${n.is_read ? 'opacity-60' : 'bg-white'}" id="notif-${n.id}">
+                        <div class="w-8 h-8 rounded-full ${n.priority==='urgent'?'bg-red-100':'bg-amber-100'} flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fas ${n.priority==='urgent'?'fa-exclamation-triangle text-red-500':'fa-megaphone text-amber-600'} text-xs"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-slate-800">${n.title}</p>
+                            <p class="text-xs text-slate-600 mt-0.5">${n.message}</p>
+                            <p class="text-[10px] text-slate-400 mt-1">${new Date(n.created_at).toLocaleString('id-ID')}</p>
+                        </div>
+                        ${!n.is_read ? `<button onclick="markRead(${n.id})" class="text-[10px] text-amber-700 bg-amber-100 hover:bg-amber-200 px-2 py-1 rounded font-semibold shrink-0">Tandai Dibaca</button>` : ''}
+                    </div>
+                `).join('');
+            } catch(e) {
+                // Backend offline — notif panel stays hidden
+            }
+        }
+
+        async function markRead(id) {
+            await fetch(`${API_URL}/notifications/${id}/read`, { method: 'POST' });
+            document.querySelector(`#notif-${id} button`)?.remove();
+            document.querySelector(`#notif-${id}`)?.classList.add('opacity-60');
+            await loadNotifications();
+        }
+
+        // Poll setiap 60 detik (tidak setiap 3 detik — hindari RAM issue)
+        loadNotifications();
+        setInterval(loadNotifications, 60000);
 
         const fmtM = n => 'Rp ' + (n/1000000).toFixed(0) + ' Juta';
 
