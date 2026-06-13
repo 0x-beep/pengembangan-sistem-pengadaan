@@ -352,67 +352,62 @@
             `;
         }
 
+        const MOCK_DATA = [
+            {
+                company_name: 'PT Sysmex Indonesia', company_name_short: 'Sysmex',
+                star_rating: 4.6, weighted_score: 91, badge: 'Excellent', badge_color: 'emerald',
+                total_evaluations: 12, total_disputes: 0, total_penalties: 0,
+                avg_delivery: 95, avg_quality: 93, avg_response: 90,
+                avg_pricing: 88, avg_compliance: 92, avg_financial: 87, avg_relationship: 90,
+            },
+            {
+                company_name: 'PT Kimia Farma Trading & Distribution', company_name_short: 'Kimia Farma',
+                star_rating: 3.9, weighted_score: 78, badge: 'Good', badge_color: 'blue',
+                total_evaluations: 24, total_disputes: 1, total_penalties: 0,
+                avg_delivery: 82, avg_quality: 80, avg_response: 75,
+                avg_pricing: 77, avg_compliance: 79, avg_financial: 74, avg_relationship: 81,
+            },
+            {
+                company_name: 'PT Daikin Airconditioning Indonesia', company_name_short: 'Daikin',
+                star_rating: 3.1, weighted_score: 63, badge: 'Needs Improvement', badge_color: 'amber',
+                total_evaluations: 8, total_disputes: 2, total_penalties: 1,
+                avg_delivery: 60, avg_quality: 68, avg_response: 55,
+                avg_pricing: 71, avg_compliance: 64, avg_financial: 62, avg_relationship: 70,
+            },
+            {
+                company_name: 'CV Linen Nusantara Mandiri', company_name_short: 'LNM',
+                star_rating: 2.2, weighted_score: 46, badge: 'At Risk', badge_color: 'rose',
+                total_evaluations: 6, total_disputes: 3, total_penalties: 2,
+                avg_delivery: 42, avg_quality: 48, avg_response: 40,
+                avg_pricing: 55, avg_compliance: 44, avg_financial: 51, avg_relationship: 47,
+            },
+        ];
+
+        function renderMock() {
+            const banner = `<div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-center gap-3 text-xs text-amber-700 no-print mb-2">
+                <i class="fas fa-plug shrink-0"></i>
+                <span>Backend offline — menampilkan <strong>data contoh</strong>. Jalankan <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">START_SISTEM_PENGADAAN.bat</code> untuk data real.</span>
+            </div>`;
+            document.getElementById('mainContent').innerHTML = banner + MOCK_DATA.map((v, i) => renderCard(v, i)).join('');
+        }
+
         async function loadScorecard() {
-            document.getElementById('mainContent').innerHTML = `
-                <div class="flex items-center justify-center h-48">
-                    <div class="text-center">
-                        <i class="fas fa-spinner fa-spin text-slate-300 text-3xl mb-4"></i>
-                        <p class="text-slate-400 text-sm">Memuat data raport vendor...</p>
-                    </div>
-                </div>`;
+            // Langsung tampilkan mock dulu agar tidak kosong
+            renderMock();
+            // Coba fetch data real di background (timeout 4 detik)
             try {
-                const res = await fetch('http://127.0.0.1:8000/api/vendor-scorecard');
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 4000);
+                const res = await fetch('http://127.0.0.1:8000/api/vendor-scorecard', { signal: controller.signal });
+                clearTimeout(timeout);
                 const data = await res.json();
-                setApiStatus(true);
-                if (!data.data || data.data.length === 0) {
-                    document.getElementById('mainContent').innerHTML = `<div class="text-center py-16 text-slate-400"><i class="fas fa-chart-bar text-4xl mb-4"></i><p>Belum ada data evaluasi vendor.</p></div>`;
-                    return;
+                if (data.data && data.data.length > 0) {
+                    setApiStatus(true);
+                    document.getElementById('mainContent').innerHTML = data.data.map((v, i) => renderCard(v, i)).join('');
                 }
-                document.getElementById('mainContent').innerHTML = data.data.map((v, i) => renderCard(v, i)).join('');
-                // Trigger bars animation
-                setTimeout(() => {
-                    document.querySelectorAll('.dim-bar').forEach(el => {
-                        el.style.width = el.style.width; // re-trigger
-                    });
-                }, 50);
             } catch (e) {
                 setApiStatus(false);
-                // Tampilkan contoh data mock saat backend offline
-                const MOCK = [
-                    {
-                        company_name: 'PT Sysmex Indonesia', company_name_short: 'Sysmex',
-                        star_rating: 4.6, weighted_score: 91, badge: 'Excellent', badge_color: 'emerald',
-                        total_evaluations: 12, total_disputes: 0, total_penalties: 0,
-                        avg_delivery: 95, avg_quality: 93, avg_response: 90,
-                        avg_pricing: 88, avg_compliance: 92, avg_financial: 87, avg_relationship: 90,
-                    },
-                    {
-                        company_name: 'PT Kimia Farma Trading & Distribution', company_name_short: 'Kimia Farma',
-                        star_rating: 3.9, weighted_score: 78, badge: 'Good', badge_color: 'blue',
-                        total_evaluations: 24, total_disputes: 1, total_penalties: 0,
-                        avg_delivery: 82, avg_quality: 80, avg_response: 75,
-                        avg_pricing: 77, avg_compliance: 79, avg_financial: 74, avg_relationship: 81,
-                    },
-                    {
-                        company_name: 'PT Daikin Airconditioning Indonesia', company_name_short: 'Daikin',
-                        star_rating: 3.1, weighted_score: 63, badge: 'Needs Improvement', badge_color: 'amber',
-                        total_evaluations: 8, total_disputes: 2, total_penalties: 1,
-                        avg_delivery: 60, avg_quality: 68, avg_response: 55,
-                        avg_pricing: 71, avg_compliance: 64, avg_financial: 62, avg_relationship: 70,
-                    },
-                    {
-                        company_name: 'CV Linen Nusantara Mandiri', company_name_short: 'LNM',
-                        star_rating: 2.2, weighted_score: 46, badge: 'At Risk', badge_color: 'red',
-                        total_evaluations: 6, total_disputes: 3, total_penalties: 2,
-                        avg_delivery: 42, avg_quality: 48, avg_response: 40,
-                        avg_pricing: 55, avg_compliance: 44, avg_financial: 51, avg_relationship: 47,
-                    },
-                ];
-                const banner = `<div class="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 flex items-center gap-3 text-xs text-amber-700 no-print">
-                    <i class="fas fa-plug shrink-0"></i>
-                    <span>Backend offline — menampilkan <strong>data contoh</strong>. Jalankan <code class="bg-amber-100 px-1.5 py-0.5 rounded font-mono">START_SISTEM_PENGADAAN.bat</code> untuk data real.</span>
-                </div>`;
-                document.getElementById('mainContent').innerHTML = banner + MOCK.map((v, i) => renderCard(v, i)).join('');
+                // mock sudah tampil, tidak perlu render ulang
             }
         }
 
