@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proker Bulanan & Rencana Realisasi RKAP | PT. KMU</title>
+    <title>Proker Bulanan & Rencana Realisasi | PT. KMU</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
@@ -15,26 +15,25 @@
         .sidebar-link.active { background-color: #0284c7; color: white; }
         .tab-btn { padding: 0.75rem 1.25rem; font-size: 0.875rem; font-weight: 600; border-bottom: 2px solid transparent; cursor: pointer; color: #6b7280; transition: all 0.15s; white-space: nowrap; }
         .tab-btn:hover { color: #374151; background-color: #f3f4f6; }
-        .tab-btn.active { border-bottom-color: #0284c7; color: #0284c7; background-color: transparent; }
+        .tab-btn.active { border-bottom-color: #0284c7; color: #0284c7; }
         .badge { display: inline-flex; align-items: center; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; }
-        .alert-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-        .status-selesai { background:#dcfce7; color:#166534; }
-        .status-berjalan { background:#dbeafe; color:#1d4ed8; }
-        .status-terlambat { background:#fee2e2; color:#991b1b; }
-        .status-belum { background:#f3f4f6; color:#6b7280; }
-        .status-ditangguhkan { background:#fef9c3; color:#92400e; }
-        .progress-bar { height: 8px; border-radius: 4px; background: #e2e8f0; overflow: hidden; }
-        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+        .alert-pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+        .item-card { border: 1px solid #e2e8f0; border-radius: 0.75rem; background: white; transition: all 0.2s; }
+        .item-card.confirmed { border-color: #86efac; background: #f0fdf4; }
+        .item-card.perubahan { border-color: #fcd34d; background: #fffbeb; }
+        .item-card.void { border-color: #fca5a5; background: #fef2f2; opacity: 0.7; }
+        .progress-bar { height: 6px; border-radius: 3px; background: #e2e8f0; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 3px; background: #10b981; transition: width 0.4s; }
     </style>
 </head>
 <body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
-    <!-- SIDEBAR (shared pattern) -->
-    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full">
         <div class="p-4 border-b border-slate-800 shrink-0 bg-white">
             <h1 class="text-xl font-black text-slate-800 flex items-center gap-3">
-                <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+                <img src="logo_kmu.png" alt="KMU" class="h-10 object-contain">
                 <div class="flex flex-col">
                     <span class="text-lg leading-none tracking-tight text-emerald-700">KMU</span>
                     <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
@@ -73,9 +72,9 @@
                 </div>
             </div>
         </div>
-        <div class="p-4 border-t border-slate-800 bg-[#0F172A]">
+        <div class="p-4 border-t border-slate-800">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
+                <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400">
                     <i class="fas fa-user"></i>
                 </div>
                 <div>
@@ -86,40 +85,37 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
-    <div class="flex-1 flex flex-col overflow-hidden bg-slate-50">
+    <!-- MAIN -->
+    <div class="flex-1 flex flex-col overflow-hidden">
 
         <!-- Top Bar -->
-        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between shrink-0">
+        <header class="bg-white border-b border-slate-200 px-6 py-4 shrink-0 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <div>
-                    <h2 class="font-outfit font-bold text-xl text-slate-800">Proker & Rencana Realisasi RKAP</h2>
-                    <p class="text-xs text-slate-500 mt-0.5">Program Kerja Bulanan — Pengadaan Barang & Jasa</p>
+                    <h2 class="font-outfit font-bold text-xl text-slate-800">Proker & Rencana Realisasi Bulanan</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Konfirmasi item RKAP tahunan yang akan direalisasikan bulan depan</p>
                 </div>
-                <!-- Alert Deadline -->
                 <div id="deadline-alert" class="hidden items-center gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
-                    <i class="fas fa-exclamation-triangle text-red-500 alert-pulse"></i>
-                    <span class="text-xs font-bold text-red-600">Batas Input: 31 Jun 2026 — Belum Diusulkan!</span>
+                    <i class="fas fa-exclamation-triangle text-red-500 alert-pulse text-sm"></i>
+                    <span class="text-xs font-bold text-red-600">Deadline konfirmasi: 31 bulan ini!</span>
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <!-- Bulan Aktif -->
                 <div class="flex items-center gap-2 bg-slate-100 rounded-lg px-3 py-2">
                     <i class="fas fa-calendar text-slate-500 text-sm"></i>
-                    <select id="bulan-selector" class="bg-transparent text-sm font-semibold text-slate-700 border-0 outline-none cursor-pointer" onchange="gantiBulan(this.value)">
-                        <option value="2026-07">Juli 2026</option>
-                        <option value="2026-06" selected>Juni 2026 (Berjalan)</option>
-                        <option value="2026-05">Mei 2026</option>
+                    <span class="text-xs text-slate-500">Bulan target:</span>
+                    <select id="bulan-selector" class="bg-transparent text-sm font-bold text-slate-700 border-0 outline-none cursor-pointer" onchange="loadProker()">
+                        <option value="2026-07" selected>Juli 2026</option>
+                        <option value="2026-08">Agustus 2026</option>
+                        <option value="2026-09">September 2026</option>
                     </select>
                 </div>
-                <!-- Role Switcher (untuk demo) -->
                 <select id="role-switcher" onchange="gantiRole(this.value)" class="text-xs border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-600 font-semibold outline-none cursor-pointer">
                     <option value="kasie_barang">👤 Kasie Pengadaan Barang</option>
                     <option value="kasie_jasa">👤 Kasie Pengadaan Jasa</option>
                     <option value="manager">👔 Manager Pengadaan</option>
                     <option value="gm">🏛️ General Manager</option>
                     <option value="keuangan">💼 Keuangan</option>
-                    <option value="dirops">📋 Dir. Operasional</option>
                 </select>
             </div>
         </header>
@@ -127,11 +123,11 @@
         <!-- Tabs -->
         <div class="bg-white border-b border-slate-200 px-6 flex overflow-x-auto shrink-0">
             <button class="tab-btn active" onclick="switchTab('kasie')" id="tab-kasie">
-                <i class="fas fa-pen-to-square mr-2"></i>Input Rencana Realisasi
+                <i class="fas fa-clipboard-check mr-2"></i>Konfirmasi Rencana (Kasie)
             </button>
             <button class="tab-btn" onclick="switchTab('approval')" id="tab-approval">
                 <i class="fas fa-check-double mr-2"></i>Approval Manager
-                <span class="ml-2 badge bg-amber-100 text-amber-700">3 Pending</span>
+                <span class="ml-2 badge bg-amber-100 text-amber-700" id="badge-pending">0 Pending</span>
             </button>
             <button class="tab-btn" onclick="switchTab('gm')" id="tab-gm">
                 <i class="fas fa-binoculars mr-2"></i>Monitor GM
@@ -139,687 +135,617 @@
             <button class="tab-btn" onclick="switchTab('keuangan')" id="tab-keuangan">
                 <i class="fas fa-wallet mr-2"></i>Rencana Anggaran (Keuangan)
             </button>
+            <button class="tab-btn" onclick="switchTab('perubahan')" id="tab-perubahan">
+                <i class="fas fa-arrows-rotate mr-2"></i>Perubahan / Switching
+                <span class="ml-2 badge bg-red-100 text-red-600" id="badge-perubahan">0</span>
+            </button>
         </div>
 
-        <!-- Content Area -->
-        <div class="flex-1 overflow-y-auto p-6">
+        <!-- Content -->
+        <div class="flex-1 overflow-y-auto p-6 bg-slate-50">
 
-            <!-- ========== TAB 1: KASIE INPUT ========== -->
-            <div id="content-kasie" class="tab-content space-y-6">
+            <!-- ════ TAB 1: KASIE KONFIRMASI ════ -->
+            <div id="content-kasie" class="tab-content space-y-5">
 
-                <!-- Info Batas Waktu -->
-                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 flex items-start gap-3">
-                    <i class="fas fa-info-circle text-blue-500 mt-0.5"></i>
+                <!-- Context banner -->
+                <div class="bg-sky-50 border border-sky-200 rounded-xl p-4 flex items-start gap-3">
+                    <i class="fas fa-circle-info text-sky-500 mt-0.5 shrink-0"></i>
                     <div>
-                        <p class="text-sm font-semibold text-blue-800">Rencana Realisasi Bulan Juli 2026</p>
-                        <p class="text-xs text-blue-600 mt-1">Usulan rencana realisasi wajib disubmit ke Manager paling lambat <strong>tanggal 30 Juni 2026</strong>. Rencana ini akan diteruskan ke Keuangan untuk penyiapan anggaran bulan depan.</p>
+                        <p class="text-sm font-semibold text-sky-800">Item berikut diambil dari Rencana Realisasi RKAP Tahunan yang sudah disetujui Komite Anggaran</p>
+                        <p class="text-xs text-sky-700 mt-1">Tugas Kasie: konfirmasi item mana yang siap direalisasikan bulan depan, tambah catatan jika perlu. Jika ada perubahan (switching vendor, void, reschedule) — gunakan tab <strong>Perubahan / Switching</strong> untuk diproses Bagian Umum.</p>
                     </div>
                 </div>
 
-                <!-- Kasie Barang Section -->
-                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-sky-100 flex items-center justify-center">
-                                <i class="fas fa-boxes text-sky-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-slate-800 text-sm">Rencana Pengadaan Barang</h3>
-                                <p class="text-xs text-slate-500">Kasie Pengadaan Barang — Juli 2026</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="badge bg-amber-100 text-amber-700">Draft</span>
-                            <button onclick="tambahItem('barang')" class="text-xs bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1.5">
-                                <i class="fas fa-plus"></i> Tambah Item
-                            </button>
-                        </div>
+                <!-- Ringkasan status -->
+                <div class="grid grid-cols-4 gap-3" id="summary-cards">
+                    <div class="bg-white rounded-xl border border-slate-200 p-4 text-center shadow-sm">
+                        <p class="text-2xl font-outfit font-black text-slate-800" id="sum-total">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Total Item Terjadwal</p>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-bold">
-                                <tr>
-                                    <th class="px-4 py-3 text-left">#</th>
-                                    <th class="px-4 py-3 text-left">Nama Item / Proker</th>
-                                    <th class="px-4 py-3 text-left">Sumber RKAP</th>
-                                    <th class="px-4 py-3 text-right">Estimasi Nilai (Rp)</th>
-                                    <th class="px-4 py-3 text-left">Target Selesai</th>
-                                    <th class="px-4 py-3 text-left">Vendor Target</th>
-                                    <th class="px-4 py-3 text-left">Keterangan</th>
-                                    <th class="px-4 py-3 text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabel-barang" class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-3 text-slate-500 font-mono text-xs">B-001</td>
-                                    <td class="px-4 py-3 font-medium text-slate-800">Pengadaan Reagen Hematologi Sysmex</td>
-                                    <td class="px-4 py-3"><span class="badge bg-slate-100 text-slate-600">RKAP-LAB-03</span></td>
-                                    <td class="px-4 py-3 text-right font-semibold text-slate-700">180.000.000</td>
-                                    <td class="px-4 py-3 text-slate-600">15 Jul 2026</td>
-                                    <td class="px-4 py-3 text-slate-600">Sysmex Indonesia</td>
-                                    <td class="px-4 py-3 text-slate-500 text-xs">Stok tersisa 2 minggu</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="hapusItem(this)"><i class="fas fa-trash text-xs"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-3 text-slate-500 font-mono text-xs">B-002</td>
-                                    <td class="px-4 py-3 font-medium text-slate-800">Linen & Loundry Set ICU</td>
-                                    <td class="px-4 py-3"><span class="badge bg-slate-100 text-slate-600">RKAP-OPS-11</span></td>
-                                    <td class="px-4 py-3 text-right font-semibold text-slate-700">45.000.000</td>
-                                    <td class="px-4 py-3 text-slate-600">20 Jul 2026</td>
-                                    <td class="px-4 py-3 text-slate-600">CV Linen Nusantara</td>
-                                    <td class="px-4 py-3 text-slate-500 text-xs">Kontrak tahunan — renewal</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="hapusItem(this)"><i class="fas fa-trash text-xs"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-3 text-slate-500 font-mono text-xs">B-003</td>
-                                    <td class="px-4 py-3 font-medium text-slate-800">Obat Formularium Triwulan III</td>
-                                    <td class="px-4 py-3"><span class="badge bg-slate-100 text-slate-600">RKAP-FARM-07</span></td>
-                                    <td class="px-4 py-3 text-right font-semibold text-slate-700">620.000.000</td>
-                                    <td class="px-4 py-3 text-slate-600">10 Jul 2026</td>
-                                    <td class="px-4 py-3 text-slate-600">PT Kimia Farma</td>
-                                    <td class="px-4 py-3 text-slate-500 text-xs">ED check wajib sebelum BAPB</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="hapusItem(this)"><i class="fas fa-trash text-xs"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="bg-white rounded-xl border border-emerald-200 p-4 text-center shadow-sm">
+                        <p class="text-2xl font-outfit font-black text-emerald-600" id="sum-confirmed">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Dikonfirmasi</p>
                     </div>
-                    <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-xl">
-                        <span class="text-xs text-slate-500">3 item · Total estimasi: <strong class="text-slate-700">Rp 845.000.000</strong></span>
-                        <button onclick="submitKasie('barang')" class="text-sm bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
-                            <i class="fas fa-paper-plane"></i> Usulkan ke Manager
-                        </button>
+                    <div class="bg-white rounded-xl border border-amber-200 p-4 text-center shadow-sm">
+                        <p class="text-2xl font-outfit font-black text-amber-500" id="sum-perubahan">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Ada Perubahan</p>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 p-4 text-center shadow-sm">
+                        <p class="text-2xl font-outfit font-black text-slate-400" id="sum-belum">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Belum Dikonfirmasi</p>
                     </div>
                 </div>
 
-                <!-- Kasie Jasa Section -->
-                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-violet-100 flex items-center justify-center">
-                                <i class="fas fa-screwdriver-wrench text-violet-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-slate-800 text-sm">Rencana Pengadaan Jasa</h3>
-                                <p class="text-xs text-slate-500">Kasie Pengadaan Jasa — Juli 2026</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="badge bg-emerald-100 text-emerald-700">Diusulkan</span>
-                            <button onclick="tambahItem('jasa')" class="text-xs bg-violet-600 hover:bg-violet-700 text-white px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1.5">
-                                <i class="fas fa-plus"></i> Tambah Item
-                            </button>
-                        </div>
+                <!-- Daftar item RKAP untuk bulan ini -->
+                <div id="items-container" class="space-y-3">
+                    <!-- Diisi JS -->
+                    <div class="text-center py-12 text-slate-400">
+                        <i class="fas fa-spinner fa-spin text-2xl mb-3"></i>
+                        <p class="text-sm">Memuat rencana dari RKAP tahunan...</p>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-bold">
-                                <tr>
-                                    <th class="px-4 py-3 text-left">#</th>
-                                    <th class="px-4 py-3 text-left">Nama Jasa / Proker</th>
-                                    <th class="px-4 py-3 text-left">Sumber RKAP</th>
-                                    <th class="px-4 py-3 text-right">Estimasi Nilai (Rp)</th>
-                                    <th class="px-4 py-3 text-left">Target Selesai</th>
-                                    <th class="px-4 py-3 text-left">Penyedia Target</th>
-                                    <th class="px-4 py-3 text-left">Keterangan</th>
-                                    <th class="px-4 py-3 text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabel-jasa" class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-3 text-slate-500 font-mono text-xs">J-001</td>
-                                    <td class="px-4 py-3 font-medium text-slate-800">Jasa Pemeliharaan AC Sentral RSUD</td>
-                                    <td class="px-4 py-3"><span class="badge bg-slate-100 text-slate-600">RKAP-IPS-05</span></td>
-                                    <td class="px-4 py-3 text-right font-semibold text-slate-700">75.000.000</td>
-                                    <td class="px-4 py-3 text-slate-600">25 Jul 2026</td>
-                                    <td class="px-4 py-3 text-slate-600">PT Daikin Service</td>
-                                    <td class="px-4 py-3 text-slate-500 text-xs">Annual maintenance contract</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="hapusItem(this)"><i class="fas fa-trash text-xs"></i></button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-4 py-3 text-slate-500 font-mono text-xs">J-002</td>
-                                    <td class="px-4 py-3 font-medium text-slate-800">Jasa Keamanan Outsourcing (Juli)</td>
-                                    <td class="px-4 py-3"><span class="badge bg-slate-100 text-slate-600">RKAP-SDM-02</span></td>
-                                    <td class="px-4 py-3 text-right font-semibold text-slate-700">120.000.000</td>
-                                    <td class="px-4 py-3 text-slate-600">01 Jul 2026</td>
-                                    <td class="px-4 py-3 text-slate-600">PT Satria Sekuriti</td>
-                                    <td class="px-4 py-3 text-slate-500 text-xs">Kontrak perpanjangan bulanan</td>
-                                    <td class="px-4 py-3 text-center">
-                                        <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="hapusItem(this)"><i class="fas fa-trash text-xs"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-xl">
-                        <span class="text-xs text-slate-500">2 item · Total estimasi: <strong class="text-slate-700">Rp 195.000.000</strong></span>
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs text-emerald-600 font-semibold flex items-center gap-1"><i class="fas fa-check-circle"></i> Sudah diusulkan 28 Jun 2026</span>
+                </div>
+
+                <!-- Submit bar -->
+                <div class="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between shadow-sm sticky bottom-4">
+                    <div id="submit-progress" class="flex items-center gap-3">
+                        <div class="progress-bar w-40">
+                            <div class="progress-fill" id="confirm-bar" style="width:0%"></div>
                         </div>
+                        <span class="text-xs text-slate-500" id="confirm-label">0 dari 0 dikonfirmasi</span>
                     </div>
+                    <button onclick="submitKonfirmasi()" id="btn-submit"
+                        class="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition flex items-center gap-2 disabled:opacity-40">
+                        <i class="fas fa-paper-plane"></i> Usulkan ke Manager
+                    </button>
                 </div>
             </div>
 
-            <!-- ========== TAB 2: APPROVAL MANAGER ========== -->
-            <div id="content-approval" class="tab-content hidden space-y-6">
-
+            <!-- ════ TAB 2: APPROVAL MANAGER ════ -->
+            <div id="content-approval" class="tab-content hidden space-y-5">
                 <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
                     <i class="fas fa-inbox text-amber-500 mt-0.5"></i>
-                    <div>
-                        <p class="text-sm font-semibold text-amber-800">3 Usulan Menunggu Persetujuan Manager</p>
-                        <p class="text-xs text-amber-600 mt-1">Tinjau setiap item, berikan catatan jika diperlukan, lalu approve atau kembalikan ke Kasie. Setelah semua clear, proker diteruskan ke GM dan Keuangan.</p>
-                    </div>
+                    <p class="text-sm text-amber-800">Tinjau rencana realisasi yang diusulkan Kasie. Item sudah mengacu RKAP yang disetujui Komite Anggaran — Manager cukup verifikasi kesiapan operasional dan catatan Kasie.</p>
                 </div>
-
-                <!-- Card Usulan Barang -->
-                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-sky-100 flex items-center justify-center">
-                                <i class="fas fa-boxes text-sky-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-slate-800">Usulan Kasie Barang — Juli 2026</h3>
-                                <p class="text-xs text-slate-500">Diajukan: Ahmad Fauzi · 28 Jun 2026 · 3 item</p>
-                            </div>
-                        </div>
-                        <span class="badge bg-amber-100 text-amber-700 text-xs px-2 py-1">Menunggu Approval</span>
-                    </div>
-                    <div class="divide-y divide-slate-100">
-                        <!-- Item 1 -->
-                        <div class="px-5 py-4" id="approval-B-001">
-                            <div class="flex items-start justify-between gap-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <span class="font-mono text-xs text-slate-400">B-001</span>
-                                        <span class="font-semibold text-slate-800 text-sm">Pengadaan Reagen Hematologi Sysmex</span>
-                                        <span class="badge bg-slate-100 text-slate-600">RKAP-LAB-03</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 text-xs text-slate-500">
-                                        <span><i class="fas fa-rupiah-sign mr-1"></i>Rp 180.000.000</span>
-                                        <span><i class="fas fa-calendar mr-1"></i>Target: 15 Jul 2026</span>
-                                        <span><i class="fas fa-store mr-1"></i>Sysmex Indonesia</span>
-                                    </div>
-                                    <p class="text-xs text-slate-500 mt-1 italic">Catatan Kasie: Stok tersisa 2 minggu</p>
-                                </div>
-                                <div class="flex items-center gap-2 shrink-0">
-                                    <button onclick="approveItem('B-001', 'approve')" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-check"></i> Setuju</button>
-                                    <button onclick="approveItem('B-001', 'revisi')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-edit"></i> Revisi</button>
-                                    <button onclick="approveItem('B-001', 'tolak')" class="text-xs bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-times"></i> Tolak</button>
-                                </div>
-                            </div>
-                            <div id="notes-B-001" class="hidden mt-3">
-                                <textarea placeholder="Catatan Manager untuk item ini..." class="w-full text-xs border border-slate-200 rounded-lg p-2 resize-none h-16 outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-100"></textarea>
-                            </div>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="px-5 py-4" id="approval-B-002">
-                            <div class="flex items-start justify-between gap-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <span class="font-mono text-xs text-slate-400">B-002</span>
-                                        <span class="font-semibold text-slate-800 text-sm">Linen & Loundry Set ICU</span>
-                                        <span class="badge bg-slate-100 text-slate-600">RKAP-OPS-11</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 text-xs text-slate-500">
-                                        <span><i class="fas fa-rupiah-sign mr-1"></i>Rp 45.000.000</span>
-                                        <span><i class="fas fa-calendar mr-1"></i>Target: 20 Jul 2026</span>
-                                        <span><i class="fas fa-store mr-1"></i>CV Linen Nusantara</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2 shrink-0">
-                                    <button onclick="approveItem('B-002', 'approve')" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-check"></i> Setuju</button>
-                                    <button onclick="approveItem('B-002', 'revisi')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-edit"></i> Revisi</button>
-                                    <button onclick="approveItem('B-002', 'tolak')" class="text-xs bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-times"></i> Tolak</button>
-                                </div>
-                            </div>
-                            <div id="notes-B-002" class="hidden mt-3">
-                                <textarea placeholder="Catatan Manager untuk item ini..." class="w-full text-xs border border-slate-200 rounded-lg p-2 resize-none h-16 outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-100"></textarea>
-                            </div>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="px-5 py-4" id="approval-B-003">
-                            <div class="flex items-start justify-between gap-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-2 mb-1">
-                                        <span class="font-mono text-xs text-slate-400">B-003</span>
-                                        <span class="font-semibold text-slate-800 text-sm">Obat Formularium Triwulan III</span>
-                                        <span class="badge bg-slate-100 text-slate-600">RKAP-FARM-07</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 text-xs text-slate-500">
-                                        <span><i class="fas fa-rupiah-sign mr-1"></i>Rp 620.000.000</span>
-                                        <span><i class="fas fa-calendar mr-1"></i>Target: 10 Jul 2026</span>
-                                        <span><i class="fas fa-store mr-1"></i>PT Kimia Farma</span>
-                                    </div>
-                                    <p class="text-xs text-amber-600 mt-1 font-semibold"><i class="fas fa-exclamation-triangle mr-1"></i>Nilai > Rp 500 jt — wajib analisa cost-benefit sebelum PO</p>
-                                </div>
-                                <div class="flex items-center gap-2 shrink-0">
-                                    <button onclick="approveItem('B-003', 'approve')" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-check"></i> Setuju</button>
-                                    <button onclick="approveItem('B-003', 'revisi')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-edit"></i> Revisi</button>
-                                    <button onclick="approveItem('B-003', 'tolak')" class="text-xs bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1"><i class="fas fa-times"></i> Tolak</button>
-                                </div>
-                            </div>
-                            <div id="notes-B-003" class="hidden mt-3">
-                                <textarea placeholder="Catatan Manager untuk item ini..." class="w-full text-xs border border-slate-200 rounded-lg p-2 resize-none h-16 outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-100"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="px-5 py-4 bg-slate-50 rounded-b-xl border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-xs text-slate-500">Total nilai Barang: <strong class="text-slate-700">Rp 845.000.000</strong></span>
-                        <button onclick="approveAllBarang()" class="text-sm bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
-                            <i class="fas fa-check-double"></i> Approve Semua & Teruskan ke GM
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card Usulan Jasa (sudah approved) -->
-                <div class="bg-white rounded-xl border border-emerald-200 shadow-sm">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center">
-                                <i class="fas fa-screwdriver-wrench text-emerald-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-slate-800">Usulan Kasie Jasa — Juli 2026</h3>
-                                <p class="text-xs text-slate-500">Diajukan: Budi Santoso · 27 Jun 2026 · 2 item</p>
-                            </div>
-                        </div>
-                        <span class="badge bg-emerald-100 text-emerald-700 text-xs px-2 py-1"><i class="fas fa-check-circle mr-1"></i>Approved — 29 Jun 2026</span>
-                    </div>
-                    <div class="px-5 py-4 text-xs text-emerald-700 bg-emerald-50/50">
-                        Manager telah menyetujui 2 item pengadaan jasa senilai <strong>Rp 195.000.000</strong>. Sudah diteruskan ke GM dan Keuangan.
-                    </div>
+                <div id="approval-list" class="space-y-3">
+                    <p class="text-center py-8 text-slate-400 text-sm">Belum ada usulan masuk.</p>
                 </div>
             </div>
 
-            <!-- ========== TAB 3: MONITOR GM ========== -->
-            <div id="content-gm" class="tab-content hidden space-y-6">
-
-                <!-- Summary Cards -->
-                <div class="grid grid-cols-4 gap-4">
-                    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
-                        <p class="text-xs text-slate-500 font-semibold uppercase">Total Proker Bulan Ini</p>
-                        <p class="text-3xl font-outfit font-black text-slate-800 mt-1">12</p>
-                        <p class="text-xs text-slate-400 mt-1">Barang + Jasa · Juli 2026</p>
+            <!-- ════ TAB 3: MONITOR GM ════ -->
+            <div id="content-gm" class="tab-content hidden space-y-5">
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-center">
+                        <p class="text-3xl font-outfit font-black text-slate-800">12</p>
+                        <p class="text-xs text-slate-500 mt-1">Total Proker Bulan Ini</p>
                     </div>
-                    <div class="bg-white rounded-xl border border-emerald-200 p-4 shadow-sm">
-                        <p class="text-xs text-emerald-600 font-semibold uppercase">Selesai</p>
-                        <p class="text-3xl font-outfit font-black text-emerald-600 mt-1">5</p>
-                        <p class="text-xs text-slate-400 mt-1">41.7% terealisasi</p>
+                    <div class="bg-white rounded-xl border border-emerald-200 p-4 shadow-sm text-center">
+                        <p class="text-3xl font-outfit font-black text-emerald-600">5</p>
+                        <p class="text-xs text-slate-500 mt-1">Selesai Direalisasikan</p>
                     </div>
-                    <div class="bg-white rounded-xl border border-amber-200 p-4 shadow-sm">
-                        <p class="text-xs text-amber-600 font-semibold uppercase">Berjalan</p>
-                        <p class="text-3xl font-outfit font-black text-amber-600 mt-1">4</p>
-                        <p class="text-xs text-slate-400 mt-1">Proses pengadaan aktif</p>
+                    <div class="bg-white rounded-xl border border-amber-200 p-4 shadow-sm text-center">
+                        <p class="text-3xl font-outfit font-black text-amber-600">4</p>
+                        <p class="text-xs text-slate-500 mt-1">Sedang Berjalan</p>
                     </div>
-                    <div class="bg-white rounded-xl border border-red-200 p-4 shadow-sm">
-                        <p class="text-xs text-red-600 font-semibold uppercase">Terlambat / Hambatan</p>
-                        <p class="text-3xl font-outfit font-black text-red-600 mt-1">3</p>
-                        <p class="text-xs text-slate-400 mt-1">Perlu perhatian GM</p>
+                    <div class="bg-white rounded-xl border border-red-200 p-4 shadow-sm text-center">
+                        <p class="text-3xl font-outfit font-black text-red-600">3</p>
+                        <p class="text-xs text-slate-500 mt-1">Hambatan / Terlambat</p>
                     </div>
                 </div>
-
-                <!-- Progress Bar Overall -->
-                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
                     <div class="flex items-center justify-between mb-3">
-                        <h3 class="font-semibold text-slate-800">Realisasi Proker Juli 2026</h3>
-                        <span class="text-sm font-bold text-slate-600">5 / 12 Item</span>
+                        <h3 class="font-semibold text-slate-800">Realisasi Juli 2026</h3>
+                        <span class="text-sm font-bold text-slate-600">5 / 12</span>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill bg-emerald-500" style="width: 41.7%"></div>
-                    </div>
-                    <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
-                        <span>0%</span>
-                        <span class="text-emerald-600 font-semibold">41.7%</span>
-                        <span>100%</span>
-                    </div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:41.7%"></div></div>
                 </div>
-
-                <!-- Checklist Proker -->
-                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
-                    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-                        <h3 class="font-semibold text-slate-800">Checklist Program Kerja Bulanan</h3>
-                        <div class="flex items-center gap-2">
-                            <button class="text-xs text-slate-500 hover:text-slate-700 border border-slate-200 px-2 py-1 rounded-lg">Filter: Semua</button>
+                <!-- Checklist dengan hambatan -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm divide-y divide-slate-100" id="gm-checklist">
+                    <div class="px-5 py-4 flex items-start gap-3">
+                        <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-check text-emerald-600 text-xs"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="font-medium text-slate-800 text-sm">Jasa Keamanan Outsourcing</span>
+                                <span class="badge bg-emerald-100 text-emerald-700">Selesai</span>
+                                <span class="text-xs text-slate-400">Rp 120 jt · J-002</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1">Terealisasi 1 Jul 2026 · PT Satria Sekuriti</p>
                         </div>
                     </div>
-                    <div class="divide-y divide-slate-100" id="checklist-proker">
-                        <!-- Item Selesai -->
-                        <div class="px-5 py-4 flex items-start gap-4">
-                            <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0 mt-0.5">
-                                <i class="fas fa-check text-emerald-600 text-xs"></i>
+                    <div class="px-5 py-4 flex items-start gap-3 bg-red-50/40">
+                        <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5"><i class="fas fa-exclamation text-red-600 text-xs"></i></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="font-medium text-slate-800 text-sm">Obat Formularium Triwulan III</span>
+                                <span class="badge bg-red-100 text-red-700">Terlambat</span>
+                                <span class="text-xs text-slate-400">Rp 620 jt · B-003</span>
                             </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-medium text-slate-800 text-sm">Jasa Keamanan Outsourcing (Juli)</span>
-                                    <span class="badge status-selesai">Selesai</span>
-                                    <span class="text-xs text-slate-400">Kasie Jasa · Rp 120 jt · J-002</span>
-                                </div>
-                                <p class="text-xs text-slate-500 mt-1">Selesai: 1 Jul 2026 · Vendor: PT Satria Sekuriti</p>
-                            </div>
-                        </div>
-                        <!-- Item Berjalan -->
-                        <div class="px-5 py-4 flex items-start gap-4">
-                            <div class="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                                <i class="fas fa-spinner text-blue-600 text-xs"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-medium text-slate-800 text-sm">Pengadaan Reagen Hematologi Sysmex</span>
-                                    <span class="badge status-berjalan">Berjalan</span>
-                                    <span class="text-xs text-slate-400">Kasie Barang · Rp 180 jt · B-001</span>
-                                </div>
-                                <p class="text-xs text-slate-500 mt-1">Target: 15 Jul 2026 · PO sudah terbit, menunggu pengiriman</p>
-                            </div>
-                        </div>
-                        <!-- Item Terlambat + Hambatan -->
-                        <div class="px-5 py-4 flex items-start gap-4 bg-red-50/40">
-                            <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-0.5">
-                                <i class="fas fa-exclamation text-red-600 text-xs"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-medium text-slate-800 text-sm">Obat Formularium Triwulan III</span>
-                                    <span class="badge status-terlambat">Terlambat</span>
-                                    <span class="text-xs text-slate-400">Kasie Barang · Rp 620 jt · B-003</span>
-                                </div>
-                                <p class="text-xs text-slate-500 mt-1">Target: 10 Jul 2026 — <strong class="text-red-600">Terlewat 3 hari</strong></p>
-                                <!-- Hambatan Picker -->
-                                <div class="mt-3 flex items-start gap-3">
-                                    <div class="flex-1">
-                                        <label class="text-xs font-semibold text-slate-600 block mb-1">Kendala / Hambatan:</label>
-                                        <select id="hambatan-B003" class="w-full text-xs border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-red-300 bg-white" onchange="toggleJustifikasi('B003', this.value)">
-                                            <option value="">-- Pilih Kendala --</option>
-                                            <option value="user_void">User void (permintaan dibatalkan)</option>
-                                            <option value="syarat_kurang">Kelengkapan syarat kurang (analisa cost-benefit belum ada)</option>
-                                            <option value="perubahan_sbu">Perubahan rencana dari SBU / unit kerja</option>
-                                            <option value="anggaran_tidak_ada">Anggaran tidak ada di RKAP</option>
-                                            <option value="proses_switching">Proses switching vendor</option>
-                                            <option value="administrasi">Proses administrasi/legal belum selesai</option>
-                                            <option value="vendor_masalah">Masalah dari sisi vendor</option>
-                                            <option value="lainnya">Lainnya (isi justifikasi)</option>
-                                        </select>
-                                    </div>
-                                    <div class="flex-1" id="justifikasi-B003">
-                                        <label class="text-xs font-semibold text-slate-600 block mb-1">Justifikasi / Keterangan:</label>
-                                        <textarea placeholder="Jelaskan situasi secara singkat..." class="w-full text-xs border border-slate-200 rounded-lg p-2 resize-none h-16 outline-none focus:border-red-300 focus:ring-1 focus:ring-red-100"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Item Ditangguhkan -->
-                        <div class="px-5 py-4 flex items-start gap-4 bg-yellow-50/40">
-                            <div class="w-6 h-6 rounded-full bg-yellow-100 flex items-center justify-center shrink-0 mt-0.5">
-                                <i class="fas fa-pause text-yellow-600 text-xs"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <span class="font-medium text-slate-800 text-sm">Pemeliharaan AC Sentral RSUD</span>
-                                    <span class="badge status-ditangguhkan">Ditangguhkan</span>
-                                    <span class="text-xs text-slate-400">Kasie Jasa · Rp 75 jt · J-001</span>
-                                </div>
-                                <p class="text-xs text-slate-500 mt-1">Ditangguhkan: Perubahan rencana dari IPS — jadwal dimundurkan ke Agustus</p>
+                            <p class="text-xs text-slate-500 mt-1">Target 10 Jul 2026 — Terlewat 3 hari</p>
+                            <div class="mt-2 flex gap-3">
+                                <select class="text-xs border border-slate-200 rounded-lg px-2 py-1.5 outline-none bg-white flex-1">
+                                    <option>-- Pilih Hambatan --</option>
+                                    <option>Kelengkapan syarat kurang (analisa cost-benefit)</option>
+                                    <option>Perubahan rencana dari SBU</option>
+                                    <option>Anggaran tidak ada di RKAP</option>
+                                    <option>Proses switching vendor</option>
+                                    <option>User void (permintaan dibatalkan)</option>
+                                    <option>Masalah dari sisi vendor</option>
+                                    <option>Proses administrasi/legal belum selesai</option>
+                                    <option>Lainnya</option>
+                                </select>
+                                <textarea placeholder="Justifikasi..." class="text-xs border border-slate-200 rounded-lg px-2 py-1.5 resize-none outline-none flex-1 h-16"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Arahan GM → Dirops -->
+                <!-- Arahan GM -->
                 <div class="bg-white rounded-xl border border-indigo-200 shadow-sm">
                     <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center">
-                            <i class="fas fa-bullhorn text-indigo-600 text-sm"></i>
-                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center"><i class="fas fa-bullhorn text-indigo-600 text-sm"></i></div>
                         <div>
                             <h3 class="font-semibold text-slate-800">Arahan GM ke Dirops</h3>
-                            <p class="text-xs text-slate-500">Keputusan/arahan GM akan dikirimkan ke Direktur Operasional</p>
+                            <p class="text-xs text-slate-500">Keputusan dikirim ke Direktur Operasional untuk ditindaklanjuti</p>
                         </div>
                     </div>
-                    <div class="p-5 space-y-4">
-                        <div>
-                            <label class="text-xs font-semibold text-slate-600 block mb-2">Terkait Hambatan:</label>
-                            <div class="flex flex-wrap gap-2" id="tag-hambatan">
-                                <span class="badge bg-red-100 text-red-700 cursor-pointer px-2 py-1" onclick="toggleTagHambatan(this)">B-003 Obat Formularium</span>
-                                <span class="badge bg-slate-100 text-slate-600 cursor-pointer px-2 py-1 opacity-50" onclick="toggleTagHambatan(this)">J-001 AC Sentral</span>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="text-xs font-semibold text-slate-600 block mb-2">Arahan GM:</label>
-                            <textarea id="arahan-gm" placeholder="Contoh: Mohon Dirops koordinasi dengan Kimia Farma terkait keterlambatan pengiriman Obat Formularium. Jika tidak dapat diselesaikan dalam 5 hari kerja, ajukan switching vendor..." class="w-full text-sm border border-slate-200 rounded-xl p-3 resize-none h-28 outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-100"></textarea>
-                        </div>
+                    <div class="p-5 space-y-3">
+                        <textarea id="arahan-gm" placeholder="Contoh: Mohon Dirops koordinasi dengan Kimia Farma terkait keterlambatan..."
+                            class="w-full text-sm border border-slate-200 rounded-xl p-3 resize-none h-24 outline-none focus:border-indigo-400"></textarea>
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <input type="checkbox" id="cc-keuangan" checked class="rounded text-indigo-600">
-                                <label for="cc-keuangan" class="text-xs text-slate-600">CC ke Keuangan</label>
-                                <input type="checkbox" id="cc-spi" class="rounded text-indigo-600 ml-3">
-                                <label for="cc-spi" class="text-xs text-slate-600">CC ke SPI</label>
+                            <div class="flex gap-4">
+                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" checked class="rounded"> CC Keuangan</label>
+                                <label class="flex items-center gap-1.5 text-xs text-slate-600 cursor-pointer"><input type="checkbox" class="rounded"> CC SPI</label>
                             </div>
-                            <button onclick="kirimArahanGM()" class="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
+                            <button onclick="kirimArahan()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition flex items-center gap-2">
                                 <i class="fas fa-paper-plane"></i> Kirim ke Dirops
                             </button>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- ========== TAB 4: KEUANGAN ========== -->
-            <div id="content-keuangan" class="tab-content hidden space-y-6">
-
+            <!-- ════ TAB 4: KEUANGAN ════ -->
+            <div id="content-keuangan" class="tab-content hidden space-y-5">
                 <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start gap-3">
                     <i class="fas fa-wallet text-emerald-600 mt-0.5"></i>
                     <div>
-                        <p class="text-sm font-semibold text-emerald-800">Rencana Penggunaan Anggaran — Bulan Juli 2026</p>
-                        <p class="text-xs text-emerald-700 mt-1">Data berikut dikompilasi dari usulan Kasie Barang & Kasie Jasa yang telah disetujui Manager. Siapkan alokasi likuiditas sesuai jadwal target realisasi.</p>
+                        <p class="text-sm font-semibold text-emerald-800">Rencana Penggunaan Anggaran — Juli 2026</p>
+                        <p class="text-xs text-emerald-700 mt-1">Dikompilasi dari item yang telah dikonfirmasi Kasie & disetujui Manager. Anggaran telah dialokasikan dalam RKAP — siapkan likuiditas sesuai jadwal target.</p>
                     </div>
                 </div>
-
-                <!-- Summary Anggaran -->
                 <div class="grid grid-cols-3 gap-4">
                     <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
                         <p class="text-xs text-slate-500 font-semibold uppercase mb-2">Total Rencana Juli</p>
-                        <p class="text-2xl font-outfit font-black text-slate-800">Rp 1,040 jt</p>
-                        <div class="progress-bar mt-3">
-                            <div class="progress-fill bg-sky-500" style="width: 68%"></div>
-                        </div>
-                        <p class="text-xs text-slate-400 mt-1">68% dari Plafon RKAP Tahunan Tersisa</p>
+                        <p class="text-2xl font-outfit font-black text-slate-800" id="keu-total">Rp 1.040 jt</p>
+                        <div class="progress-bar mt-3"><div class="progress-fill" style="width:68%"></div></div>
+                        <p class="text-xs text-slate-400 mt-1">68% dari sisa plafon RKAP</p>
                     </div>
                     <div class="bg-white rounded-xl border border-sky-200 p-5 shadow-sm">
-                        <p class="text-xs text-sky-600 font-semibold uppercase mb-2">Pengadaan Barang</p>
-                        <p class="text-2xl font-outfit font-black text-sky-700">Rp 845 jt</p>
-                        <p class="text-xs text-slate-400 mt-3">3 item · Kimia Farma, Sysmex, CV Linen</p>
+                        <p class="text-xs text-sky-600 font-semibold uppercase mb-2">Barang</p>
+                        <p class="text-2xl font-outfit font-black text-sky-700" id="keu-barang">Rp 845 jt</p>
+                        <p class="text-xs text-slate-400 mt-3" id="keu-barang-vendor">3 item</p>
                     </div>
                     <div class="bg-white rounded-xl border border-violet-200 p-5 shadow-sm">
-                        <p class="text-xs text-violet-600 font-semibold uppercase mb-2">Pengadaan Jasa</p>
-                        <p class="text-2xl font-outfit font-black text-violet-700">Rp 195 jt</p>
-                        <p class="text-xs text-slate-400 mt-3">2 item · PT Daikin, PT Satria Sekuriti</p>
+                        <p class="text-xs text-violet-600 font-semibold uppercase mb-2">Jasa</p>
+                        <p class="text-2xl font-outfit font-black text-violet-700" id="keu-jasa">Rp 195 jt</p>
+                        <p class="text-xs text-slate-400 mt-3" id="keu-jasa-vendor">2 item</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden" id="keu-timeline">
+                    <div class="px-5 py-4 border-b border-slate-100">
+                        <h3 class="font-semibold text-slate-800">Timeline Kebutuhan Kas</h3>
+                    </div>
+                    <div id="keu-table-body">
+                        <p class="text-center py-6 text-slate-400 text-sm">Memuat data...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════ TAB 5: PERUBAHAN / SWITCHING ════ -->
+            <div id="content-perubahan" class="tab-content hidden space-y-5">
+
+                <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 flex items-start gap-3">
+                    <i class="fas fa-arrows-rotate text-amber-600 mt-0.5 shrink-0"></i>
+                    <div>
+                        <p class="text-sm font-semibold text-amber-800">Perubahan Rencana — Diproses Bagian Umum</p>
+                        <p class="text-xs text-amber-700 mt-1">Gunakan form ini jika ada item RKAP yang perlu diubah: switching vendor, pembatalan (void), pergeseran jadwal, atau perubahan anggaran. Setiap perubahan memerlukan persetujuan GM dan konfirmasi ulang Keuangan.</p>
                     </div>
                 </div>
 
-                <!-- Timeline Kebutuhan Kas -->
+                <!-- Form Perubahan -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+                    <div class="px-5 py-4 border-b border-slate-100 flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                            <i class="fas fa-pen text-amber-600 text-sm"></i>
+                        </div>
+                        <h3 class="font-semibold text-slate-800">Ajukan Perubahan Rencana</h3>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-xs font-semibold text-slate-600 block mb-1.5">Item RKAP yang Berubah *</label>
+                                <select id="perubahan-item" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400 bg-white">
+                                    <option value="">-- Pilih item dari daftar --</option>
+                                    <option>B-001 · Reagen Hematologi Sysmex (Rp 180 jt)</option>
+                                    <option>B-003 · Obat Formularium Triwulan III (Rp 620 jt)</option>
+                                    <option>J-001 · Pemeliharaan AC Sentral RSUD (Rp 75 jt)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-slate-600 block mb-1.5">Jenis Perubahan *</label>
+                                <select id="perubahan-jenis" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400 bg-white" onchange="renderPerubahanFields(this.value)">
+                                    <option value="">-- Pilih jenis --</option>
+                                    <option value="switching_vendor">Switching Vendor</option>
+                                    <option value="switching_anggaran">Switching Anggaran (RKAP)</option>
+                                    <option value="reschedule">Reschedule / Geser Jadwal</option>
+                                    <option value="void">Void / Pembatalan</option>
+                                    <option value="perubahan_nilai">Perubahan Nilai Estimasi</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Dynamic fields tergantung jenis perubahan -->
+                        <div id="perubahan-dynamic" class="space-y-3 hidden">
+                        </div>
+                        <div>
+                            <label class="text-xs font-semibold text-slate-600 block mb-1.5">Alasan / Justifikasi *</label>
+                            <textarea id="perubahan-alasan" placeholder="Jelaskan mengapa perubahan ini diperlukan dan dampaknya terhadap operasional..." class="w-full text-sm border border-slate-200 rounded-xl p-3 resize-none h-24 outline-none focus:border-amber-400"></textarea>
+                        </div>
+                        <div class="flex items-center justify-between pt-2">
+                            <p class="text-xs text-slate-500"><i class="fas fa-info-circle mr-1"></i>Pengajuan ini akan diteruskan ke Bagian Umum → GM → Keuangan</p>
+                            <button onclick="submitPerubahan()" class="bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition flex items-center gap-2">
+                                <i class="fas fa-paper-plane"></i> Ajukan Perubahan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Riwayat Perubahan -->
                 <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
                     <div class="px-5 py-4 border-b border-slate-100">
-                        <h3 class="font-semibold text-slate-800">Timeline Kebutuhan Kas — Juli 2026</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Estimasi ketersediaan dana harus siap pada tanggal target realisasi</p>
+                        <h3 class="font-semibold text-slate-800">Riwayat Perubahan — Juli 2026</h3>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-bold">
-                                <tr>
-                                    <th class="px-5 py-3 text-left">Target Tanggal</th>
-                                    <th class="px-5 py-3 text-left">Nama Item</th>
-                                    <th class="px-5 py-3 text-left">Kategori</th>
-                                    <th class="px-5 py-3 text-right">Nilai (Rp)</th>
-                                    <th class="px-5 py-3 text-left">Vendor</th>
-                                    <th class="px-5 py-3 text-left">Status Realisasi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-5 py-3 font-semibold text-slate-700">1 Jul 2026</td>
-                                    <td class="px-5 py-3 text-slate-800">Jasa Keamanan Outsourcing</td>
-                                    <td class="px-5 py-3"><span class="badge bg-violet-100 text-violet-700">Jasa</span></td>
-                                    <td class="px-5 py-3 text-right font-semibold">120.000.000</td>
-                                    <td class="px-5 py-3 text-slate-600">PT Satria Sekuriti</td>
-                                    <td class="px-5 py-3"><span class="badge status-selesai">✓ Terbayar</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-5 py-3 font-semibold text-red-600">10 Jul 2026 ⚠</td>
-                                    <td class="px-5 py-3 text-slate-800">Obat Formularium Triwulan III</td>
-                                    <td class="px-5 py-3"><span class="badge bg-sky-100 text-sky-700">Barang</span></td>
-                                    <td class="px-5 py-3 text-right font-semibold">620.000.000</td>
-                                    <td class="px-5 py-3 text-slate-600">PT Kimia Farma</td>
-                                    <td class="px-5 py-3"><span class="badge status-terlambat">Terlambat</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-5 py-3 font-semibold text-slate-700">15 Jul 2026</td>
-                                    <td class="px-5 py-3 text-slate-800">Reagen Hematologi Sysmex</td>
-                                    <td class="px-5 py-3"><span class="badge bg-sky-100 text-sky-700">Barang</span></td>
-                                    <td class="px-5 py-3 text-right font-semibold">180.000.000</td>
-                                    <td class="px-5 py-3 text-slate-600">Sysmex Indonesia</td>
-                                    <td class="px-5 py-3"><span class="badge status-berjalan">Berjalan</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-5 py-3 font-semibold text-slate-700">20 Jul 2026</td>
-                                    <td class="px-5 py-3 text-slate-800">Linen & Loundry Set ICU</td>
-                                    <td class="px-5 py-3"><span class="badge bg-sky-100 text-sky-700">Barang</span></td>
-                                    <td class="px-5 py-3 text-right font-semibold">45.000.000</td>
-                                    <td class="px-5 py-3 text-slate-600">CV Linen Nusantara</td>
-                                    <td class="px-5 py-3"><span class="badge status-belum">Belum Mulai</span></td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="px-5 py-3 font-semibold text-amber-600">25 Jul 2026</td>
-                                    <td class="px-5 py-3 text-slate-800">Pemeliharaan AC Sentral RSUD</td>
-                                    <td class="px-5 py-3"><span class="badge bg-violet-100 text-violet-700">Jasa</span></td>
-                                    <td class="px-5 py-3 text-right font-semibold">75.000.000</td>
-                                    <td class="px-5 py-3 text-slate-600">PT Daikin Service</td>
-                                    <td class="px-5 py-3"><span class="badge status-ditangguhkan">Ditangguhkan</span></td>
-                                </tr>
-                            </tbody>
-                            <tfoot class="bg-slate-50">
-                                <tr>
-                                    <td colspan="3" class="px-5 py-3 font-bold text-slate-700 text-right">Total:</td>
-                                    <td class="px-5 py-3 text-right font-black text-slate-800">1.040.000.000</td>
-                                    <td colspan="2"></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                    <div id="riwayat-perubahan" class="divide-y divide-slate-100">
+                        <div class="px-5 py-4 flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center shrink-0">
+                                <i class="fas fa-arrows-rotate text-amber-600 text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="font-semibold text-slate-800 text-sm">J-001 · Pemeliharaan AC Sentral</span>
+                                    <span class="badge bg-amber-100 text-amber-700">Reschedule</span>
+                                    <span class="badge bg-emerald-100 text-emerald-700">Disetujui GM</span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Digeser ke Agustus 2026 — perubahan jadwal dari IPS. Diajukan: 5 Jun 2026 · Disetujui: 7 Jun 2026</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
     <script>
         const API_URL = 'http://127.0.0.1:8000/api';
-        let prokerCache = [];
 
-        // ─── Load proker dari backend ─────────────────────────────────────────────
-        async function loadProker() {
+        // ─── Data RKAP tahunan (mock — dalam sistem nyata dari /api/rkap?bulan=...) ──
+        // Ini adalah item yang sudah dibuat Bagian Umum + disetujui Komite Anggaran di awal tahun
+        const RKAP_TAHUNAN = {
+            "2026-07": [
+                { id: "B-001", code: "RKAP-LAB-03", title: "Pengadaan Reagen Hematologi Sysmex", kategori: "barang", bidang: "lab",
+                  nilai: 180000000, vendor: "Sysmex Indonesia", target: "15 Jul 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026",
+                  catatan_umum: "Stok minimal 3 minggu sebelum habis" },
+                { id: "B-002", code: "RKAP-OPS-11", title: "Linen & Loundry Set ICU", kategori: "barang", bidang: "umum",
+                  nilai: 45000000, vendor: "CV Linen Nusantara", target: "20 Jul 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026",
+                  catatan_umum: "Kontrak tahunan, renewal otomatis" },
+                { id: "B-003", code: "RKAP-FARM-07", title: "Obat Formularium Triwulan III", kategori: "barang", bidang: "farmasi",
+                  nilai: 620000000, vendor: "PT Kimia Farma", target: "10 Jul 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026",
+                  catatan_umum: "ED check wajib sebelum BAPB. Nilai >500jt: wajib cost-benefit analysis" },
+                { id: "J-001", code: "RKAP-IPS-05", title: "Jasa Pemeliharaan AC Sentral RSUD", kategori: "jasa", bidang: "jasa",
+                  nilai: 75000000, vendor: "PT Daikin Service", target: "25 Jul 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026",
+                  catatan_umum: "Annual maintenance — koordinasi IPS H-7" },
+                { id: "J-002", code: "RKAP-SDM-02", title: "Jasa Keamanan Outsourcing Juli", kategori: "jasa", bidang: "jasa",
+                  nilai: 120000000, vendor: "PT Satria Sekuriti", target: "01 Jul 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026",
+                  catatan_umum: "Perpanjangan bulanan — pastikan SPJK masih aktif" },
+            ],
+            "2026-08": [
+                { id: "B-004", code: "RKAP-LAB-04", title: "Kalibrasi Alat Hematologi Q3", kategori: "barang", bidang: "lab",
+                  nilai: 35000000, vendor: "PT Sysmex Indonesia", target: "10 Agt 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026", catatan_umum: "" },
+                { id: "J-003", code: "RKAP-IPS-06", title: "Service Lift Pasien RSUD", kategori: "jasa", bidang: "jasa",
+                  nilai: 28000000, vendor: "PT Otis Elevator", target: "20 Agt 2026", approvedBy: "Komite Anggaran", approvedDate: "15 Jan 2026", catatan_umum: "" },
+            ],
+        };
+
+        // ─── State konfirmasi per item ──────────────────────────────────────────────
+        const konfirmasiState = {}; // { "B-001": { status: "confirmed"|"perubahan"|"void", catatan: "" } }
+
+        // ─── Load & render ──────────────────────────────────────────────────────────
+        function loadProker() {
             const bulan = document.getElementById('bulan-selector').value;
-            try {
-                const res = await fetch(`${API_URL}/proker?bulan=${bulan}`);
-                const json = await res.json();
-                if (json.status === 'success') {
-                    prokerCache = json.data;
-                    renderProkerChecklist(json.data);
-                    renderKeuanganTimeline(json.data);
-                }
-            } catch(e) {
-                console.warn('Backend tidak aktif, gunakan data demo.', e);
-            }
+            const items = RKAP_TAHUNAN[bulan] || [];
+            renderItems(items);
+            renderKeuangan(items);
+            updateSummary(items);
+            // Juga coba load dari backend untuk data yang sudah di-submit
+            fetch(`${API_URL}/proker?bulan=${bulan}`).then(r => r.json()).then(json => {
+                if (json.data?.length) mergeBackendStatus(json.data, items);
+            }).catch(() => {});
         }
 
-        function renderProkerChecklist(items) {
-            const el = document.getElementById('checklist-proker');
-            if (!items.length) return;
-            el.innerHTML = items.map(item => {
-                const icons = { draft:'fa-clock text-slate-400', approved_gm:'fa-check-circle text-blue-500',
-                                ready_pengadaan:'fa-check-circle text-emerald-500', rejected:'fa-times-circle text-red-500' };
-                const labels = { draft:'Draft', approved_gm:'Approved GM', ready_pengadaan:'Ready → Pengadaan', rejected:'Ditolak' };
-                return `<div class="px-5 py-4 flex items-start gap-4">
-                    <div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
-                        <i class="fas ${icons[item.status]||'fa-circle'} text-xs"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex items-center gap-2 flex-wrap">
-                            <span class="font-medium text-slate-800 text-sm">${item.item_title}</span>
-                            <span class="badge bg-slate-100 text-slate-600">${labels[item.status]||item.status}</span>
-                            <span class="text-xs text-slate-400">${item.bidang_pekerjaan} · Rp ${(item.estimasi_nilai/1e6).toFixed(0)} jt · ${item.item_code}</span>
+        function mergeBackendStatus(backendItems, rkap) {
+            backendItems.forEach(bi => {
+                const match = rkap.find(r => r.title === bi.item_title);
+                if (match) {
+                    konfirmasiState[match.id] = {
+                        status: bi.status === 'ready_pengadaan' ? 'confirmed' : 'confirmed',
+                        catatan: bi.keterangan || '', backendId: bi.id };
+                    updateItemCard(match.id);
+                }
+            });
+            updateSummary(rkap);
+        }
+
+        function renderItems(items) {
+            const container = document.getElementById('items-container');
+            if (!items.length) {
+                container.innerHTML = '<p class="text-center py-12 text-slate-400 text-sm">Tidak ada item RKAP terjadwal untuk bulan ini.</p>';
+                return;
+            }
+            container.innerHTML = items.map(item => renderItemCard(item)).join('');
+        }
+
+        function renderItemCard(item) {
+            const state = konfirmasiState[item.id] || {};
+            const isConfirmed = state.status === 'confirmed';
+            const isPerubahan = state.status === 'perubahan';
+            const isVoid = state.status === 'void';
+            const cardClass = isConfirmed ? 'confirmed' : isPerubahan ? 'perubahan' : isVoid ? 'void' : '';
+            const nilaiJt = (item.nilai / 1e6).toFixed(0);
+            const isHigh = item.nilai >= 500000000;
+
+            return `<div class="item-card p-5 ${cardClass}" id="card-${item.id}">
+                <div class="flex items-start gap-4">
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap mb-1">
+                            <span class="font-mono text-xs text-slate-400">${item.id}</span>
+                            <span class="font-semibold text-slate-800">${item.title}</span>
+                            ${isHigh ? '<span class="badge bg-amber-100 text-amber-700"><i class="fas fa-exclamation-triangle mr-1"></i>Nilai Besar — wajib CBА</span>' : ''}
                         </div>
-                        <p class="text-xs text-slate-500 mt-1">Target: ${item.target_bulan} · Vendor: ${item.target_vendor||'—'}</p>
-                        ${item.status==='ready_pengadaan'?`<p class="text-xs text-emerald-600 font-semibold mt-1"><i class="fas fa-arrow-right mr-1"></i>Sudah diteruskan ke Pengadaan & alert vendor terkirim</p>`:''}
+                        <div class="flex items-center gap-4 text-xs text-slate-500 flex-wrap">
+                            <span class="badge bg-slate-100 text-slate-600">${item.code}</span>
+                            <span><i class="fas fa-check-circle text-emerald-500 mr-1"></i>Disetujui Komite Anggaran: ${item.approvedDate}</span>
+                            <span><i class="fas fa-calendar mr-1"></i>Target: ${item.target}</span>
+                            <span><i class="fas fa-store mr-1"></i>${item.vendor}</span>
+                            <span class="font-semibold text-slate-700">Rp ${nilaiJt} jt</span>
+                        </div>
+                        ${item.catatan_umum ? `<p class="text-xs text-slate-500 mt-1.5 italic"><i class="fas fa-sticky-note mr-1 text-slate-400"></i>${item.catatan_umum}</p>` : ''}
+                        <!-- Catatan Kasie -->
+                        <div class="mt-3">
+                            <textarea id="catatan-${item.id}" placeholder="Catatan Kasie (opsional): kondisi terkini, hal yang perlu diperhatikan..."
+                                class="w-full text-xs border border-slate-200 rounded-lg p-2 resize-none h-14 outline-none focus:border-sky-300 bg-white/60"
+                                oninput="saveCatatan('${item.id}', this.value)">${state.catatan || ''}</textarea>
+                        </div>
                     </div>
-                    ${item.status==='approved_gm'?`<button onclick="clearKeuangan(${item.id})" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-700 px-3 py-1.5 rounded-lg font-semibold shrink-0">Konfirmasi Keuangan</button>`:''}
-                </div>`;
-            }).join('');
+                    <!-- Action buttons -->
+                    <div class="flex flex-col gap-2 shrink-0">
+                        <button onclick="konfirmItem('${item.id}')"
+                            class="text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1.5 ${isConfirmed ? 'bg-emerald-500 text-white' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200'}">
+                            <i class="fas fa-check"></i> ${isConfirmed ? 'Dikonfirmasi' : 'Konfirmasi'}
+                        </button>
+                        <button onclick="flagPerubahan('${item.id}')"
+                            class="text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1.5 ${isPerubahan ? 'bg-amber-400 text-white' : 'bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200'}">
+                            <i class="fas fa-arrows-rotate"></i> Ada Perubahan
+                        </button>
+                    </div>
+                </div>
+                ${isPerubahan ? `<div class="mt-3 bg-amber-100/60 border border-amber-200 rounded-lg px-3 py-2 text-xs text-amber-700 flex items-center gap-2">
+                    <i class="fas fa-info-circle"></i>
+                    Item ini akan diteruskan ke Bagian Umum untuk diproses perubahannya. Isi detail di tab <strong>Perubahan / Switching</strong>.
+                </div>` : ''}
+            </div>`;
         }
 
-        function renderKeuanganTimeline(items) {
-            const ready = items.filter(i => i.status === 'ready_pengadaan');
-            if (!ready.length) return;
-            const total = ready.reduce((s, i) => s + i.estimasi_nilai, 0);
-            const barang = ready.filter(i => i.kategori === 'barang').reduce((s, i) => s + i.estimasi_nilai, 0);
-            const jasa = ready.filter(i => i.kategori === 'jasa').reduce((s, i) => s + i.estimasi_nilai, 0);
-            document.querySelector('#content-keuangan .text-2xl.font-black.text-slate-800').textContent =
-                `Rp ${(total/1e6).toFixed(0)} jt`;
-            document.querySelector('.text-2xl.font-black.text-sky-700').textContent = `Rp ${(barang/1e6).toFixed(0)} jt`;
-            document.querySelector('.text-2xl.font-black.text-violet-700').textContent = `Rp ${(jasa/1e6).toFixed(0)} jt`;
+        function konfirmItem(id) {
+            if (!konfirmasiState[id]) konfirmasiState[id] = {};
+            konfirmasiState[id].status = konfirmasiState[id].status === 'confirmed' ? '' : 'confirmed';
+            updateItemCard(id);
+            const bulan = document.getElementById('bulan-selector').value;
+            updateSummary(RKAP_TAHUNAN[bulan] || []);
         }
 
-        async function clearKeuangan(itemId) {
-            try {
-                const res = await fetch(`${API_URL}/proker/${itemId}/status`, {
-                    method: 'POST',
-                    headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify({ action: 'keuangan_clear', actor: 'Dewi Rahayu (Keuangan)', catatan: 'Anggaran tersedia di RKAP' })
-                });
-                const json = await res.json();
-                if (json.status === 'success') {
-                    showToast('Konfirmasi Keuangan berhasil. Proker diteruskan ke Pengadaan & notifikasi vendor terkirim.', 'success');
-                    loadProker();
-                }
-            } catch(e) {
-                showToast('Gagal terhubung ke backend.', 'error');
+        function flagPerubahan(id) {
+            if (!konfirmasiState[id]) konfirmasiState[id] = {};
+            konfirmasiState[id].status = konfirmasiState[id].status === 'perubahan' ? '' : 'perubahan';
+            updateItemCard(id);
+            const bulan = document.getElementById('bulan-selector').value;
+            updateSummary(RKAP_TAHUNAN[bulan] || []);
+            if (konfirmasiState[id].status === 'perubahan') {
+                document.getElementById('badge-perubahan').textContent =
+                    Object.values(konfirmasiState).filter(s => s.status === 'perubahan').length;
+                switchTab('perubahan');
             }
         }
 
-        async function submitKasieToBackend(tipe) {
-            const rows = document.querySelectorAll(`#tabel-${tipe} tr`);
-            for (const row of rows) {
-                const inputs = row.querySelectorAll('input, select');
-                if (inputs.length < 4) continue;
-                const title = inputs[0]?.value?.trim();
-                if (!title) continue;
-                const bulan = document.getElementById('bulan-selector').value;
-                await fetch(`${API_URL}/proker`, {
-                    method: 'POST',
-                    headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify({
-                        item_title: title,
-                        kategori: tipe,
-                        bidang_pekerjaan: tipe === 'barang' ? 'umum' : 'jasa',
-                        estimasi_nilai: parseFloat(inputs[2]?.value) || 0,
-                        target_bulan: bulan,
-                        target_vendor: inputs[4]?.value || '',
-                        keterangan: inputs[5]?.value || '',
-                        submitted_by: document.getElementById('user-name').textContent,
-                    })
-                });
-            }
+        function saveCatatan(id, val) {
+            if (!konfirmasiState[id]) konfirmasiState[id] = {};
+            konfirmasiState[id].catatan = val;
         }
 
-        function gantiBulan(val) { loadProker(); }
+        function updateItemCard(id) {
+            const bulan = document.getElementById('bulan-selector').value;
+            const items = RKAP_TAHUNAN[bulan] || [];
+            const item = items.find(i => i.id === id);
+            if (!item) return;
+            const card = document.getElementById('card-' + id);
+            if (card) card.outerHTML = renderItemCard(item);
+        }
 
-        // ─── Tab Switcher ─────────────────────────────────────────────────────────
+        function updateSummary(items) {
+            const total = items.length;
+            const confirmed = items.filter(i => konfirmasiState[i.id]?.status === 'confirmed').length;
+            const perubahan = items.filter(i => konfirmasiState[i.id]?.status === 'perubahan').length;
+            const belum = total - confirmed - perubahan;
+            document.getElementById('sum-total').textContent = total;
+            document.getElementById('sum-confirmed').textContent = confirmed;
+            document.getElementById('sum-perubahan').textContent = perubahan;
+            document.getElementById('sum-belum').textContent = belum;
+            document.getElementById('badge-pending').textContent = confirmed + ' Pending';
+            document.getElementById('badge-perubahan').textContent = perubahan;
+            const pct = total ? Math.round((confirmed / total) * 100) : 0;
+            document.getElementById('confirm-bar').style.width = pct + '%';
+            document.getElementById('confirm-label').textContent = `${confirmed} dari ${total} dikonfirmasi`;
+        }
+
+        // ─── Keuangan tab rendering ─────────────────────────────────────────────────
+        function renderKeuangan(items) {
+            const confirmed = items.filter(i => konfirmasiState[i.id]?.status === 'confirmed' || true);
+            const totalVal = confirmed.reduce((s, i) => s + i.nilai, 0);
+            const barangVal = confirmed.filter(i => i.kategori === 'barang').reduce((s, i) => s + i.nilai, 0);
+            const jasaVal = confirmed.filter(i => i.kategori === 'jasa').reduce((s, i) => s + i.nilai, 0);
+            document.getElementById('keu-total').textContent = `Rp ${(totalVal/1e6).toFixed(0)} jt`;
+            document.getElementById('keu-barang').textContent = `Rp ${(barangVal/1e6).toFixed(0)} jt`;
+            document.getElementById('keu-jasa').textContent = `Rp ${(jasaVal/1e6).toFixed(0)} jt`;
+            document.getElementById('keu-barang-vendor').textContent = `${confirmed.filter(i=>i.kategori==='barang').length} item`;
+            document.getElementById('keu-jasa-vendor').textContent = `${confirmed.filter(i=>i.kategori==='jasa').length} item`;
+            document.getElementById('keu-table-body').innerHTML = `
+                <table class="w-full text-sm">
+                    <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-bold">
+                        <tr>
+                            <th class="px-5 py-3 text-left">Target</th>
+                            <th class="px-5 py-3 text-left">Item</th>
+                            <th class="px-5 py-3 text-left">Bidang</th>
+                            <th class="px-5 py-3 text-right">Nilai (Rp)</th>
+                            <th class="px-5 py-3 text-left">Vendor</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        ${items.map(i => `<tr class="hover:bg-slate-50">
+                            <td class="px-5 py-3 font-semibold text-slate-700 text-xs">${i.target}</td>
+                            <td class="px-5 py-3 text-slate-800 text-sm">${i.title}</td>
+                            <td class="px-5 py-3"><span class="badge bg-slate-100 text-slate-600">${i.bidang}</span></td>
+                            <td class="px-5 py-3 text-right font-semibold text-slate-700">${(i.nilai).toLocaleString('id-ID')}</td>
+                            <td class="px-5 py-3 text-slate-600 text-xs">${i.vendor}</td>
+                        </tr>`).join('')}
+                    </tbody>
+                    <tfoot class="bg-slate-50">
+                        <tr><td colspan="3" class="px-5 py-3 font-bold text-right text-slate-700">Total:</td>
+                        <td class="px-5 py-3 text-right font-black text-slate-800">${totalVal.toLocaleString('id-ID')}</td><td></td></tr>
+                    </tfoot>
+                </table>`;
+        }
+
+        // ─── Submit konfirmasi ke backend + Manager ──────────────────────────────────
+        async function submitKonfirmasi() {
+            const bulan = document.getElementById('bulan-selector').value;
+            const items = RKAP_TAHUNAN[bulan] || [];
+            const confirmed = items.filter(i => konfirmasiState[i.id]?.status === 'confirmed');
+            if (!confirmed.length) { showToast('Konfirmasi minimal 1 item terlebih dahulu.', 'error'); return; }
+            let saved = 0;
+            for (const item of confirmed) {
+                const state = konfirmasiState[item.id] || {};
+                try {
+                    await fetch(`${API_URL}/proker`, {
+                        method: 'POST', headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({ item_title: item.title, kategori: item.kategori, bidang_pekerjaan: item.bidang,
+                            rkap_ref: item.code, estimasi_nilai: item.nilai, target_bulan: bulan,
+                            target_vendor: item.vendor, keterangan: state.catatan || '',
+                            submitted_by: document.getElementById('user-name').textContent })
+                    });
+                    saved++;
+                } catch(e) {}
+            }
+            showToast(`${saved || confirmed.length} item rencana berhasil diusulkan ke Manager.`, 'success');
+            renderApprovalTab(items, confirmed);
+            switchTab('approval');
+        }
+
+        function renderApprovalTab(allItems, confirmed) {
+            const list = document.getElementById('approval-list');
+            list.innerHTML = confirmed.map(item => `
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm" id="apv-${item.id}">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 flex-wrap mb-1">
+                                <span class="font-mono text-xs text-slate-400">${item.id}</span>
+                                <span class="font-semibold text-slate-800">${item.title}</span>
+                                <span class="badge bg-slate-100 text-slate-600">${item.code}</span>
+                                <span class="badge bg-emerald-100 text-emerald-700"><i class="fas fa-check-circle mr-1"></i>Disetujui KA: ${item.approvedDate}</span>
+                            </div>
+                            <div class="flex gap-4 text-xs text-slate-500">
+                                <span>Rp ${(item.nilai/1e6).toFixed(0)} jt</span>
+                                <span>·</span><span>Target: ${item.target}</span>
+                                <span>·</span><span>${item.vendor}</span>
+                            </div>
+                            ${konfirmasiState[item.id]?.catatan ? `<p class="mt-2 text-xs text-slate-600 italic bg-slate-50 rounded px-2 py-1">Catatan Kasie: "${konfirmasiState[item.id].catatan}"</p>` : ''}
+                        </div>
+                        <div class="flex gap-2 shrink-0">
+                            <button onclick="approveItem('${item.id}')" class="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-700 px-3 py-1.5 rounded-lg font-bold transition flex items-center gap-1"><i class="fas fa-check"></i> Setuju</button>
+                            <button onclick="revisiItem('${item.id}')" class="text-xs bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-lg font-bold transition flex items-center gap-1"><i class="fas fa-edit"></i> Revisi</button>
+                        </div>
+                    </div>
+                </div>`).join('');
+        }
+
+        function approveItem(id) {
+            const card = document.getElementById('apv-' + id);
+            if (!card) return;
+            card.classList.add('opacity-60');
+            card.querySelector('.flex.gap-2').innerHTML = '<span class="text-xs text-emerald-600 font-bold flex items-center gap-1"><i class="fas fa-check-circle"></i> Disetujui Manager</span>';
+        }
+        function revisiItem(id) {
+            const card = document.getElementById('apv-' + id);
+            const nota = document.createElement('textarea');
+            nota.className = 'mt-2 w-full text-xs border border-slate-200 rounded-lg p-2 resize-none h-14 outline-none focus:border-sky-300';
+            nota.placeholder = 'Catatan revisi...';
+            card?.querySelector('.flex-1')?.appendChild(nota);
+        }
+
+        // ─── Perubahan form ─────────────────────────────────────────────────────────
+        function renderPerubahanFields(jenis) {
+            const d = document.getElementById('perubahan-dynamic');
+            d.classList.remove('hidden');
+            const fields = {
+                switching_vendor: `<div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Vendor Pengganti</label>
+                    <input type="text" placeholder="Nama vendor baru yang diusulkan..." class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>`,
+                switching_anggaran: `<div class="grid grid-cols-2 gap-3">
+                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Kode RKAP Asal</label>
+                    <input type="text" placeholder="BGT-2026-XX-00" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>
+                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Kode RKAP Tujuan</label>
+                    <input type="text" placeholder="BGT-2026-XX-00" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div></div>`,
+                reschedule: `<div class="grid grid-cols-2 gap-3">
+                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Jadwal Semula</label>
+                    <input type="month" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>
+                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Jadwal Baru</label>
+                    <input type="month" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div></div>`,
+                void: `<div class="bg-red-50 border border-red-200 rounded-lg p-3 text-xs text-red-700">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>Pembatalan (void) akan menghapus item ini dari rencana realisasi bulan ini dan membebaskan alokasi anggaran. Pastikan ada persetujuan dari user yang meminta.</div>`,
+                perubahan_nilai: `<div class="grid grid-cols-2 gap-3">
+                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Nilai Estimasi Semula (Rp)</label>
+                    <input type="number" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div>
+                    <div><label class="text-xs font-semibold text-slate-600 block mb-1.5">Nilai Estimasi Baru (Rp)</label>
+                    <input type="number" class="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none focus:border-amber-400"></div></div>`,
+            };
+            d.innerHTML = fields[jenis] || '';
+        }
+
+        function submitPerubahan() {
+            const item = document.getElementById('perubahan-item').value;
+            const jenis = document.getElementById('perubahan-jenis').value;
+            const alasan = document.getElementById('perubahan-alasan').value.trim();
+            if (!item || !jenis || !alasan) { showToast('Lengkapi semua field wajib.', 'error'); return; }
+            showToast('Perubahan berhasil diajukan ke Bagian Umum → GM → Keuangan.', 'success');
+            document.getElementById('perubahan-alasan').value = '';
+            document.getElementById('perubahan-item').value = '';
+            document.getElementById('perubahan-jenis').value = '';
+            document.getElementById('perubahan-dynamic').classList.add('hidden');
+        }
+
+        // ─── GM arahan ──────────────────────────────────────────────────────────────
+        function kirimArahan() {
+            const teks = document.getElementById('arahan-gm').value.trim();
+            if (!teks) { showToast('Tulis arahan terlebih dahulu.', 'error'); return; }
+            showToast('Arahan GM dikirim ke Dirops.', 'success');
+            document.getElementById('arahan-gm').value = '';
+        }
+
+        // ─── Tab switcher ────────────────────────────────────────────────────────────
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -827,120 +753,40 @@
             document.getElementById('tab-' + tab).classList.add('active');
         }
 
-        // ─── Role Switcher ────────────────────────────────────────────────────────
+        // ─── Role switcher ────────────────────────────────────────────────────────────
         const ROLES = {
             kasie_barang: { name: 'Ahmad Fauzi', role: 'Kasie Pengadaan Barang', tab: 'kasie' },
             kasie_jasa:   { name: 'Budi Santoso', role: 'Kasie Pengadaan Jasa', tab: 'kasie' },
             manager:      { name: 'Hendra Wijaya', role: 'Manager Pengadaan', tab: 'approval' },
-            gm:           { name: 'Ir. Suryono, M.M.', role: 'General Manager Operasional', tab: 'gm' },
-            keuangan:     { name: 'Dewi Rahayu', role: 'Dept. Keuangan & Akuntansi', tab: 'keuangan' },
-            dirops:       { name: 'Dr. Agus Pratomo', role: 'Direktur Operasional', tab: 'gm' },
+            gm:           { name: 'Ir. Suryono, M.M.', role: 'General Manager', tab: 'gm' },
+            keuangan:     { name: 'Dewi Rahayu', role: 'Dept. Keuangan', tab: 'keuangan' },
         };
-
         function gantiRole(val) {
-            const r = ROLES[val];
-            if (!r) return;
+            const r = ROLES[val]; if (!r) return;
             document.getElementById('user-name').textContent = r.name;
             document.getElementById('user-role').textContent = r.role;
             switchTab(r.tab);
         }
 
-        // ─── Tambah Item (demo) ────────────────────────────────────────────────────
-        function tambahItem(tipe) {
-            const tbody = document.getElementById('tabel-' + tipe);
-            const n = tbody.rows.length + 1;
-            const prefix = tipe === 'barang' ? 'B' : 'J';
-            const id = `${prefix}-${String(n).padStart(3, '0')}`;
-            const tr = document.createElement('tr');
-            tr.className = 'hover:bg-slate-50';
-            tr.innerHTML = `
-                <td class="px-4 py-3 text-slate-500 font-mono text-xs">${id}</td>
-                <td class="px-4 py-3"><input type="text" placeholder="Nama item..." class="text-sm border border-slate-200 rounded-lg px-2 py-1 w-full outline-none focus:border-sky-400"></td>
-                <td class="px-4 py-3"><input type="text" placeholder="RKAP-XXX-00" class="text-xs border border-slate-200 rounded-lg px-2 py-1 w-24 outline-none focus:border-sky-400"></td>
-                <td class="px-4 py-3"><input type="number" placeholder="0" class="text-sm border border-slate-200 rounded-lg px-2 py-1 w-36 text-right outline-none focus:border-sky-400"></td>
-                <td class="px-4 py-3"><input type="date" class="text-xs border border-slate-200 rounded-lg px-2 py-1 outline-none focus:border-sky-400"></td>
-                <td class="px-4 py-3"><input type="text" placeholder="Nama vendor..." class="text-sm border border-slate-200 rounded-lg px-2 py-1 w-full outline-none focus:border-sky-400"></td>
-                <td class="px-4 py-3"><input type="text" placeholder="Keterangan..." class="text-xs border border-slate-200 rounded-lg px-2 py-1 w-full outline-none focus:border-sky-400"></td>
-                <td class="px-4 py-3 text-center"><button class="text-slate-400 hover:text-red-500 transition-colors" onclick="hapusItem(this)"><i class="fas fa-trash text-xs"></i></button></td>
-            `;
-            tbody.appendChild(tr);
-        }
-
-        function hapusItem(btn) {
-            btn.closest('tr').remove();
-        }
-
-        // ─── Submit Kasie ─────────────────────────────────────────────────────────
-        async function submitKasie(tipe) {
-            const label = tipe === 'barang' ? 'Pengadaan Barang' : 'Pengadaan Jasa';
-            await submitKasieToBackend(tipe);
-            showToast(`Rencana Realisasi ${label} berhasil diusulkan ke Manager.`, 'success');
-            loadProker();
-        }
-
-        // ─── Approve Item ─────────────────────────────────────────────────────────
-        function approveItem(id, action) {
-            const card = document.getElementById('approval-' + id);
-            const notes = document.getElementById('notes-' + id);
-            if (action === 'approve') {
-                card.classList.add('opacity-50');
-                card.innerHTML += `<div class="mt-2 text-xs text-emerald-600 font-semibold flex items-center gap-1"><i class="fas fa-check-circle"></i> Disetujui Manager</div>`;
-                const btns = card.querySelectorAll('button');
-                btns.forEach(b => b.disabled = true);
-            } else if (action === 'revisi') {
-                notes.classList.toggle('hidden');
-            } else {
-                card.classList.add('opacity-40');
-                card.innerHTML += `<div class="mt-2 text-xs text-red-600 font-semibold flex items-center gap-1"><i class="fas fa-times-circle"></i> Ditolak — dikembalikan ke Kasie</div>`;
-            }
-        }
-
-        function approveAllBarang() {
-            showToast('Semua item Pengadaan Barang disetujui. Proker Juli 2026 diteruskan ke GM dan Keuangan.', 'success');
-        }
-
-        // ─── GM Arahan ────────────────────────────────────────────────────────────
-        function kirimArahanGM() {
-            const teks = document.getElementById('arahan-gm').value.trim();
-            if (!teks) { showToast('Tulis arahan GM terlebih dahulu.', 'error'); return; }
-            showToast('Arahan GM berhasil dikirim ke Dirops. Notifikasi tersimpan dalam audit trail.', 'success');
-            document.getElementById('arahan-gm').value = '';
-        }
-
-        function toggleTagHambatan(el) {
-            el.classList.toggle('opacity-50');
-            el.classList.toggle('ring-2');
-            el.classList.toggle('ring-offset-1');
-        }
-
-        function toggleJustifikasi(id, val) {
-            // show textarea always since all options benefit from notes
-        }
-
-        // ─── Toast ────────────────────────────────────────────────────────────────
+        // ─── Toast ─────────────────────────────────────────────────────────────────
         function showToast(msg, type = 'success') {
             const t = document.createElement('div');
             const bg = type === 'success' ? 'bg-emerald-600' : 'bg-red-600';
-            t.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-xl z-50 flex items-center gap-3 transition-all`;
-            t.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>${msg}`;
+            t.className = `fixed bottom-6 right-6 ${bg} text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-xl z-50 flex items-center gap-3`;
+            t.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i>${msg}`;
             document.body.appendChild(t);
             setTimeout(() => t.remove(), 4000);
         }
 
-        // ─── Alert Deadline (26-31 tgl berjalan) ──────────────────────────────────
-        function cekDeadlineAlert() {
-            const now = new Date();
-            const tgl = now.getDate();
-            const alertEl = document.getElementById('deadline-alert');
-            if (tgl >= 26 && tgl <= 31) {
-                alertEl.classList.remove('hidden');
-                alertEl.classList.add('flex');
+        // ─── Init ──────────────────────────────────────────────────────────────────
+        function cekDeadline() {
+            if (new Date().getDate() >= 26) {
+                const el = document.getElementById('deadline-alert');
+                el.classList.remove('hidden'); el.classList.add('flex');
             }
         }
-        cekDeadlineAlert();
-
-        // ─── Init ──────────────────────────────────────────────────────────────────
-        document.addEventListener('DOMContentLoaded', loadProker);
+        cekDeadline();
+        loadProker();
     </script>
 </body>
 </html>
