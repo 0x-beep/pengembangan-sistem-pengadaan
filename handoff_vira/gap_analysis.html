@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gap Analysis & Handoff Document — Sistem Terintegrasi PT KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; }
+        @media print {
+            body { background: white; font-size: 11px; }
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+        }
+        .pill-done   { background:#dcfce7; color:#166534; border:1px solid #bbf7d0; }
+        .pill-gap    { background:#fee2e2; color:#991b1b; border:1px solid #fecaca; }
+        .pill-partial{ background:#fef9c3; color:#854d0e; border:1px solid #fef08a; }
+        .pill-infra  { background:#ede9fe; color:#5b21b6; border:1px solid #ddd6fe; }
+        .tag { display:inline-flex; align-items:center; gap:.25rem; font-size:.65rem; font-weight:700; padding:.2rem .6rem; border-radius:999px; white-space:nowrap; }
+        .p1 { background:#dc2626; color:#fff; }
+        .p2 { background:#f59e0b; color:#000; }
+        .p3 { background:#3b82f6; color:#fff; }
+        .section-title { font-size:1.1rem; font-weight:800; color:#0f172a; border-left:4px solid #3b82f6; padding-left:.75rem; margin-bottom:1rem; }
+        table { border-collapse:collapse; width:100%; font-size:.78rem; }
+        th { background:#f1f5f9; text-align:left; padding:.6rem .75rem; font-size:.65rem; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:.05em; border-bottom:2px solid #e2e8f0; }
+        td { padding:.55rem .75rem; border-bottom:1px solid #f1f5f9; vertical-align:top; }
+        tr:hover td { background:#fafafa; }
+        .card { background:white; border:1px solid #e2e8f0; border-radius:.875rem; padding:1.25rem; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+    </style>
+</head>
+<body class="antialiased">
+
+<!-- PRINT BUTTON -->
+<div class="no-print fixed top-4 right-4 z-50 flex gap-2">
+    <button onclick="window.print()" class="bg-slate-900 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg hover:bg-slate-700 transition">
+        <i class="fas fa-print"></i> Print / Export PDF
+    </button>
+    <a href="portal_hub.html" class="bg-white border border-slate-200 text-slate-600 text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2 shadow hover:bg-slate-50 transition">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a>
+</div>
+
+<div class="max-w-5xl mx-auto px-6 py-10 space-y-8">
+
+    <!-- HEADER -->
+    <div class="card border-l-4 border-blue-600">
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+                <p class="text-xs font-bold text-blue-600 uppercase tracking-widest mb-1">Dokumen Handoff — IT KMU</p>
+                <h1 class="text-2xl font-black text-slate-900">Handoff Sistem Digitalisasi Pengadaan</h1>
+                <p class="text-sm text-slate-500 mt-1">PT Kaltim Medika Utama &nbsp;|&nbsp; 15 Juni 2026 &nbsp;|&nbsp; Versi Prototipe: v0.9-demo</p>
+                <div class="mt-3 flex flex-wrap gap-3 text-xs">
+                    <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5">
+                        <i class="fas fa-user-tie text-slate-400"></i>
+                        <span class="text-slate-500">Kepada</span>
+                        <strong class="text-slate-800">Viradina &nbsp;—&nbsp; IT KMU</strong>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5">
+                        <i class="fas fa-user text-slate-400"></i>
+                        <span class="text-slate-500">Dari</span>
+                        <strong class="text-slate-800">Tim Digitalisasi Pengadaan PT KMU</strong>
+                    </div>
+                    <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5">
+                        <i class="fas fa-tag text-slate-400"></i>
+                        <span class="text-slate-500">Perihal</span>
+                        <strong class="text-slate-800">Gap Analysis & Serah Terima Prototipe</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-1.5 text-right shrink-0">
+                <span class="tag pill-done"><i class="fas fa-check"></i> 43 halaman frontend selesai</span>
+                <span class="tag pill-gap"><i class="fas fa-times"></i> Backend masih mock/seed data</span>
+                <span class="tag pill-partial"><i class="fas fa-circle-half-stroke"></i> Integrasi belum ada</span>
+            </div>
+        </div>
+        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+            <strong>Tujuan dokumen ini:</strong> Memetakan apa yang sudah dibuat sebagai prototipe UI/UX, apa yang masih menjadi gap, dan apa yang perlu dibangun oleh tim IT untuk menjadikan ini sistem produksi nyata. Prototipe ini berjalan dengan SQLite + FastAPI mock — <em>bukan</em> untuk production.
+        </div>
+    </div>
+
+    <!-- RINGKASAN EKSEKUTIF -->
+    <div class="card">
+        <div class="section-title">Ringkasan Eksekutif</div>
+        <div class="grid grid-cols-3 gap-4 mb-5">
+            <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+                <p class="text-3xl font-black text-emerald-700">43</p>
+                <p class="text-xs text-slate-500 mt-1 font-semibold">Halaman UI Selesai</p>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+                <p class="text-3xl font-black text-amber-600">~60%</p>
+                <p class="text-xs text-slate-500 mt-1 font-semibold">Alur Bisnis Terpetakan</p>
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-center">
+                <p class="text-3xl font-black text-red-600">0%</p>
+                <p class="text-xs text-slate-500 mt-1 font-semibold">Siap Production</p>
+            </div>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed">Prototipe ini telah membuktikan <strong>kelayakan konsep (proof of concept)</strong> untuk seluruh alur utama pengadaan — dari RKAP, IMT, PP, tender, BAPB, hingga invoice dan KSO. Semua portal (Internal, SBU, Vendor, Pengadaan) sudah bisa dinavigasi dan didemonstrasikan. Namun seluruh data masih dummy, tidak ada RBAC nyata, tidak ada file storage, dan tidak ada integrasi dengan sistem existing. <strong>Setelah dibandingkan dengan mind map arsitektur sistem (5 layer + Module 4 AI Guardian), ditemukan tambahan gap signifikan</strong> — terutama di commitment accounting, matriks kewenangan amount-based, GL posting, HPS management, dan seluruh modul AI Guardian yang dalam arsitektur bersifat cross-layer kritis.</p>
+    </div>
+
+    <!-- APA YANG SUDAH ADA -->
+    <div class="card">
+        <div class="section-title">Yang Sudah Ada (Prototipe UI)</div>
+
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">4 Portal Utama</p>
+        <div class="grid grid-cols-2 gap-3 mb-6">
+            <div class="border border-orange-200 bg-orange-50 rounded-xl p-3">
+                <p class="text-xs font-black text-orange-700 mb-1"><i class="fas fa-building mr-1"></i>Portal Holding / Internal</p>
+                <p class="text-[11px] text-slate-600">portal_hub.html, command_center.html, admin_dashboard.html, director_dashboard.html, finance_dashboard.html, legal_dashboard.html, spi_audit_dashboard.html, ksu_dashboard.html, arm_portal.html</p>
+            </div>
+            <div class="border border-emerald-200 bg-emerald-50 rounded-xl p-3">
+                <p class="text-xs font-black text-emerald-700 mb-1"><i class="fas fa-hospital mr-1"></i>Portal SBU / Unit Bisnis</p>
+                <p class="text-[11px] text-slate-600">rs_klinik_dashboard.html, form_imt.html, proker_bulanan.html, catalogue_dashboard.html, kso_management_dashboard.html, umum_dashboard.html</p>
+            </div>
+            <div class="border border-blue-200 bg-blue-50 rounded-xl p-3">
+                <p class="text-xs font-black text-blue-700 mb-1"><i class="fas fa-clipboard-list mr-1"></i>Portal Pengadaan (9 Fase)</p>
+                <p class="text-[11px] text-slate-600">fase1_rkap_anggaran, fase2_vendor_database, fase3_imt_pp_sppj, fase4_tender, fase5_kso_portal, fase6_bapb_penerimaan, fase7_invoice_3waymatch, fase8_raport_vendor, fase9_laporan_analitik</p>
+            </div>
+            <div class="border border-slate-200 bg-slate-50 rounded-xl p-3">
+                <p class="text-xs font-black text-slate-700 mb-1"><i class="fas fa-truck mr-1"></i>Portal Vendor B2B</p>
+                <p class="text-[11px] text-slate-600">vendor_hub.html, vendor_portal.html, vendor_kso_lab_portal.html, vendor_kso_dashboard.html, vendor_registration.html, vendor_delivery_tracking.html, vendor_blacklist.html</p>
+            </div>
+        </div>
+
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Fitur yang Sudah Didemonstrasikan</p>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-1 text-xs text-slate-700">
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>RKAP per SBU + tab kategori Obat/BMHP/Umum/Jasa/Investasi</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>IMT → PP → SPPJ flow navigasi</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Tender scoring & evaluasi penawaran vendor</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>3-way match invoice (PO × BAPB × Invoice)</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>KSO Lab: log harian mesin, QC dual-control</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Raport Vendor 7 dimensi + radar chart</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Vendor Delivery Tracking 8 step (post-PO)</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Blokir tagihan otomatis jika step belum selesai</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Cross-unit alert (Keuangan, SPI, Legal)</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>SBU: Ajukan Spek + TOR + Cost-Benefit (no vendor pick)</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>RKAP switching & perubahan anggaran</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Proker bulanan + realisasi per SBU</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Vendor blacklist + SPI audit trail (UI)</div>
+            <div class="flex items-start gap-2"><i class="fas fa-check text-emerald-500 mt-0.5 shrink-0"></i>Google Auth overlay di portal hub & vendor hub</div>
+        </div>
+    </div>
+
+    <!-- GAP TABLE: BACKEND -->
+    <div class="card page-break">
+        <div class="section-title">Gap 1 — Backend & Database</div>
+        <p class="text-xs text-slate-500 mb-4">Backend saat ini: <strong>FastAPI + SQLite</strong> dengan data seed dummy. Tidak cocok untuk production. Semua endpoint belum memiliki business logic nyata.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:28%">Area</th>
+                    <th style="width:38%">Gap / Kekurangan</th>
+                    <th style="width:16%">Prioritas</th>
+                    <th style="width:18%">Rekomendasi IT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="font-semibold">Database Engine</td><td>SQLite tidak support concurrent users, tidak ada migration system, tidak ada backup otomatis</td><td><span class="tag p1">P1 — Kritis</span></td><td>PostgreSQL + Alembic</td></tr>
+                <tr><td class="font-semibold">RBAC / Otorisasi</td><td>Tidak ada role guard di endpoint manapun. Siapapun bisa POST/GET semua data tanpa token</td><td><span class="tag p1">P1 — Kritis</span></td><td>JWT + role middleware per endpoint</td></tr>
+                <tr><td class="font-semibold">Approval State Machine</td><td>Frontend menampilkan alur Kasie→Manager→Direktur RS tapi backend tidak enforce urutan, tidak ada log siapa approve kapan</td><td><span class="tag p1">P1 — Kritis</span></td><td>Tabel approval_log + state machine</td></tr>
+                <tr><td class="font-semibold">File Storage</td><td>Upload foto/dokumen di vendor delivery tracking, BAPB, TOR — semua mock. Tidak ada file yang benar-benar tersimpan</td><td><span class="tag p1">P1 — Kritis</span></td><td>MinIO / S3 + endpoint upload nyata</td></tr>
+                <tr><td class="font-semibold">Audit Trail</td><td>Tidak ada log siapa mengubah apa dan kapan di semua transaksi pengadaan</td><td><span class="tag p1">P1 — Kritis</span></td><td>Tabel audit_log dengan user_id + timestamp</td></tr>
+                <tr><td class="font-semibold">Raport Vendor (Kalkulasi)</td><td>Skor 7 dimensi ditampilkan di UI tapi tidak dihitung dari data aktual — hardcode seed</td><td><span class="tag p1">P1 — Kritis</span></td><td>Algoritma scoring dari data delivery_tracking</td></tr>
+                <tr><td class="font-semibold">Payment Block Engine</td><td>Logika blokir tagihan ada di frontend JS — tidak ada enforcement di backend. Keuangan bisa tetap proses bayar tanpa check</td><td><span class="tag p1">P1 — Kritis</span></td><td>Middleware payment_gate di endpoint invoice</td></tr>
+                <tr><td class="font-semibold">RKAP Budget Enforcement</td><td>Tidak ada check apakah IMT/PP melebihi plafon RKAP yang tersedia saat transaksi disubmit</td><td><span class="tag p2">P2 — Penting</span></td><td>Budget ledger + validasi di endpoint requisition</td></tr>
+                <tr><td class="font-semibold">Switching RKAP</td><td>UI ada tapi backend tidak menyimpan history switching, tidak ada approval chain untuk switching</td><td><span class="tag p2">P2 — Penting</span></td><td>Tabel budget_transfer_log</td></tr>
+                <tr><td class="font-semibold">Notifikasi Real-time</td><td>Notifikasi saat ini polling tiap 60 detik. Alert cross-unit adalah hardcode di JS</td><td><span class="tag p2">P2 — Penting</span></td><td>WebSocket / SSE + notification table</td></tr>
+                <tr><td class="font-semibold">Data Master</td><td>Tidak ada manajemen master data: item katalog, SBU list, user list, jabatan, cost center</td><td><span class="tag p2">P2 — Penting</span></td><td>Admin panel data master (CRUD)</td></tr>
+                <tr><td class="font-semibold">Tender Numbering</td><td>Nomor PP/SPPJ/PO/TND dibuat random — tidak ada sequence resmi sesuai SOP penomoran KMU</td><td><span class="tag p2">P2 — Penting</span></td><td>Auto-numbering engine per jenis dokumen</td></tr>
+                <tr><td class="font-semibold">3-Way Match Enforcement</td><td>UI fase7 menampilkan match tapi tidak ada validasi otomatis — user bisa approve meski ada selisih</td><td><span class="tag p2">P2 — Penting</span></td><td>Validasi selisih threshold di backend</td></tr>
+                <tr><td class="font-semibold">Matriks Kewenangan (Amount Threshold)</td><td>UI menampilkan hierarki approval tapi backend tidak mengenal batas nilai transaksi. Sesuai mind map: ≤Rp10jt=Kasie+Manager, Rp10-25jt=+GM, Rp25-50jt=+Dir.Ops, >Rp50jt=+Dir.Utama — perlu di-enforce di backend, bukan hanya UI</td><td><span class="tag p1">P1 — Kritis</span></td><td>Config table authorization_matrix per level</td></tr>
+                <tr><td class="font-semibold">Commitment Register</td><td>Budget ledger saat ini hanya track Paid. PO yang sudah approved tapi belum dibayar tidak mengurangi sisa anggaran — risk over-commit. Formula benar: Tersedia = RKAP − Committed − Spent</td><td><span class="tag p1">P1 — Kritis</span></td><td>Tabel po_commitments + trigger update saldo</td></tr>
+                <tr><td class="font-semibold">Soft Delete & Versioning</td><td>Tidak ada soft delete — data yang dihapus hilang permanen. Tidak ada versi dokumen</td><td><span class="tag p3">P3 — Nice to have</span></td><td>is_deleted flag + document_version table</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GAP TABLE: FITUR BISNIS -->
+    <div class="card">
+        <div class="section-title">Gap 2 — Fitur Bisnis yang Belum Ada</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:28%">Fitur</th>
+                    <th style="width:40%">Deskripsi Gap</th>
+                    <th style="width:14%">Prioritas</th>
+                    <th style="width:18%">Portal Terdampak</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="font-semibold">E-Signature dokumen</td><td>BAST, SPPJ, BA Commissioning butuh tanda tangan digital yang sah secara hukum. Saat ini hanya upload foto TTD</td><td><span class="tag p1">P1 — Kritis</span></td><td>Pengadaan, Vendor, SBU</td></tr>
+                <tr><td class="font-semibold">Approval mobile-friendly</td><td>Manager/Direktur RS perlu approve dari HP. UI saat ini tidak dioptimasi mobile</td><td><span class="tag p1">P1 — Kritis</span></td><td>Semua portal</td></tr>
+                <tr><td class="font-semibold">Generasi PDF otomatis</td><td>PP, SPPJ, PO, BAPB, BAST harus bisa dicetak/di-generate sebagai PDF resmi berformat KMU</td><td><span class="tag p1">P1 — Kritis</span></td><td>Pengadaan, Vendor</td></tr>
+                <tr><td class="font-semibold">Katalog Item Master</td><td>E-Katalog saat ini dari CSV seed. Tidak ada UI untuk tambah/edit/hapus item oleh Pengadaan/SBU</td><td><span class="tag p1">P1 — Kritis</span></td><td>SBU, Pengadaan</td></tr>
+                <tr><td class="font-semibold">Manajemen User & Akun</td><td>Tidak ada onboarding user, reset password, assign role, nonaktifkan akun</td><td><span class="tag p1">P1 — Kritis</span></td><td>Admin/IT</td></tr>
+                <tr><td class="font-semibold">Swakelola lengkap</td><td>swakelola_dashboard.html ada tapi belum terhubung ke alur pengadaan — isolated page</td><td><span class="tag p2">P2 — Penting</span></td><td>Pengadaan</td></tr>
+                <tr><td class="font-semibold">Rekap & Export laporan</td><td>fase9_laporan_analitik ada chartnya tapi tidak bisa export ke Excel/PDF. Tidak ada filter periode</td><td><span class="tag p2">P2 — Penting</span></td><td>Semua</td></tr>
+                <tr><td class="font-semibold">SLA Timer enforcement</td><td>SLA ditampilkan di command center tapi tidak ada sistem yang mengirim alert saat deadline terlewat secara otomatis</td><td><span class="tag p2">P2 — Penting</span></td><td>Command Center, Pengadaan</td></tr>
+                <tr><td class="font-semibold">Rekonsiliasi Keuangan</td><td>finance_dashboard.html ada tapi data terpisah dari alur PO/invoice. Tidak ada reconciliation nyata</td><td><span class="tag p2">P2 — Penting</span></td><td>Keuangan</td></tr>
+                <tr><td class="font-semibold">Monitoring KSO real-time</td><td>Log mesin KSO dari CSV — tidak ada integrasi dengan alat lab fisik (IoT/API vendor lab)</td><td><span class="tag p2">P2 — Penting</span></td><td>SBU, KSO</td></tr>
+                <tr><td class="font-semibold">Evaluasi Vendor periodik</td><td>Raport Vendor ada di UI tapi tidak ada jadwal evaluasi bulanan/kuartalan yang di-trigger otomatis</td><td><span class="tag p2">P2 — Penting</span></td><td>Pengadaan, Vendor</td></tr>
+                <tr><td class="font-semibold">Portal Direksi / Eksekutif</td><td>director_dashboard.html ada tapi data belum real, tidak ada drill-down ke transaksi</td><td><span class="tag p3">P3 — Nice to have</span></td><td>Holding</td></tr>
+                <tr><td class="font-semibold">AI Guardian (Module 4)</td><td>ai_guardian.html hanya placeholder. Di arsitektur mind map ini adalah modul cross-layer penuh: SPO validation engine, RAG chatbot, vector DB Deepseek, 6-langkah validasi compliance, OCR invoice, anomali detection — lihat <strong>Gap 4</strong> untuk detail lengkap</td><td><span class="tag p2">P2 — Penting</span></td><td>SPI, Pengadaan, Legal</td></tr>
+                <tr><td class="font-semibold">Manajemen Kontrak</td><td>Kontrak KSO dan PO ada di UI tapi tidak ada versioning, amendment tracking, atau expiry alert</td><td><span class="tag p3">P3 — Nice to have</span></td><td>Legal, Pengadaan</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GAP TABLE: INFRASTRUKTUR -->
+    <div class="card page-break">
+        <div class="section-title">Gap 3 — Infrastruktur & Integrasi</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:28%">Komponen</th>
+                    <th style="width:40%">Gap</th>
+                    <th style="width:14%">Prioritas</th>
+                    <th style="width:18%">Opsi Teknologi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="font-semibold">Google Workspace Auth</td><td>Client ID OAuth sudah dipasang di kode tapi belum ada domain KMU yang diizinkan. Hanya mode dev saat ini</td><td><span class="tag p1">P1 — Kritis</span></td><td>Google Cloud Console — daftarkan domain KMU</td></tr>
+                <tr><td class="font-semibold">Web Server / Hosting</td><td>Saat ini hanya berjalan di localhost. Tidak ada deployment ke server internal KMU</td><td><span class="tag p1">P1 — Kritis</span></td><td>Nginx + Ubuntu Server / Docker</td></tr>
+                <tr><td class="font-semibold">SSL / HTTPS</td><td>Tidak ada. Semua request HTTP — tidak aman untuk data sensitif pengadaan</td><td><span class="tag p1">P1 — Kritis</span></td><td>Let's Encrypt / Certbot</td></tr>
+                <tr><td class="font-semibold">File Storage</td><td>Foto BAPB, Surat Jalan, BAST, materi pelatihan — belum ada tempat penyimpanan</td><td><span class="tag p1">P1 — Kritis</span></td><td>MinIO (on-premise) atau Google Cloud Storage</td></tr>
+                <tr><td class="font-semibold">Email Notifikasi</td><td>Tidak ada email alert untuk approval pending, SLA terlewat, tagihan blokir</td><td><span class="tag p1">P1 — Kritis</span></td><td>SMTP KMU + template email per event</td></tr>
+                <tr><td class="font-semibold">Integrasi SIMRS/HIS</td><td>Data pasien, stok farmasi, permintaan lab — saat ini tidak terhubung. RKAP farmasi diinput manual</td><td><span class="tag p2">P2 — Penting</span></td><td>API bridge ke SIMRS existing</td></tr>
+                <tr><td class="font-semibold">Integrasi Akuntansi/ERP</td><td>Realisasi anggaran di RKAP tidak sync ke sistem keuangan (ACCURATE/SAP/dll) secara otomatis</td><td><span class="tag p2">P2 — Penting</span></td><td>Webhook / scheduled sync ke ERP</td></tr>
+                <tr><td class="font-semibold">Backup & Recovery</td><td>Tidak ada strategi backup. SQLite file bisa hilang jika disk rusak</td><td><span class="tag p2">P2 — Penting</span></td><td>Automated daily backup ke NAS/cloud</td></tr>
+                <tr><td class="font-semibold">WhatsApp / Notif Push</td><td>Alert ke Direktur RS, Manager, Kasie saat ini tidak ada di luar browser</td><td><span class="tag p2">P2 — Penting</span></td><td>Fonnte / WA Business API + FCM</td></tr>
+                <tr><td class="font-semibold">Environment Config</td><td>API URL masih hardcode <code>http://127.0.0.1:8000</code> di semua file HTML — perlu environment variable</td><td><span class="tag p2">P2 — Penting</span></td><td>Config.js / .env injection saat build</td></tr>
+                <tr><td class="font-semibold">Rate Limiting & DDoS</td><td>Tidak ada proteksi pada API endpoint dari abuse atau brute force</td><td><span class="tag p3">P3 — Nice to have</span></td><td>Nginx rate limit + Cloudflare</td></tr>
+                <tr><td class="font-semibold">Logging & Monitoring</td><td>Tidak ada APM, error tracking, atau uptime monitoring</td><td><span class="tag p3">P3 — Nice to have</span></td><td>Sentry + Grafana / Uptimerobot</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GAP 4: AI GUARDIAN -->
+    <div class="card page-break">
+        <div class="section-title" style="border-left-color:#7c3aed;">Gap 4 — AI Compliance Guardian (Module 4 — Belum Diimplementasi)</div>
+        <div class="bg-purple-50 border border-purple-200 rounded-xl p-3 mb-4 text-xs text-purple-800">
+            <i class="fas fa-robot mr-1"></i> <strong>Temuan dari Mind Map MODULE_4_AI_COMPLIANCE_GUARDIAN:</strong> Ini bukan fitur opsional — di arsitektur, AI Guardian adalah lapisan <em>cross-layer</em> yang memvalidasi setiap fase pengadaan secara real-time. Saat ini <code>ai_guardian.html</code> hanya halaman placeholder kosong.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%">Sub-Modul AI Guardian</th>
+                    <th style="width:40%">Deskripsi Fungsi (dari Mind Map)</th>
+                    <th style="width:15%">Status Saat Ini</th>
+                    <th style="width:20%">Teknologi yang Dibutuhkan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-semibold text-purple-800">SPO Validation Engine</td>
+                    <td>Validasi 6-langkah: (1) Kelengkapan dokumen, (2) Kesesuaian harga vs HPS, (3) Kepatuhan limit kewenangan, (4) Cross-reference blacklist vendor, (5) Anomali pola pengeluaran, (6) Skor compliance akhir per transaksi</td>
+                    <td><span class="tag" style="background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff;">0% — belum ada</span></td>
+                    <td>Python rule engine + threshold config</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold text-purple-800">RAG Chatbot SPO</td>
+                    <td>Chatbot berbasis Retrieval-Augmented Generation — menjawab pertanyaan staf pengadaan terkait SOP, batas kewenangan, dan prosedur. Index dokumen: Permen, SOP internal KMU, SK Direktur</td>
+                    <td><span class="tag" style="background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff;">0% — belum ada</span></td>
+                    <td>Deepseek API + vector DB (Chroma/Qdrant)</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold text-purple-800">Vector Database SPO</td>
+                    <td>Menyimpan embedding dokumen SOP, peraturan pengadaan, historical compliance violations — digunakan sebagai retrieval context oleh chatbot dan rule engine</td>
+                    <td><span class="tag" style="background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff;">0% — belum ada</span></td>
+                    <td>ChromaDB atau Qdrant (on-premise)</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold text-purple-800">Authorization Rule Engine</td>
+                    <td>Enforce matriks kewenangan berdasarkan nilai transaksi:<br>≤ Rp 10 jt → Kasie + Manager cukup<br>Rp 10–25 jt → + GM<br>Rp 25–50 jt → + Dir. Operasional<br>> Rp 50 jt → + Direktur Utama<br>Saat ini: hierarki tampil di UI tapi backend tidak enforce</td>
+                    <td><span class="tag pill-gap">Gap Kritis</span></td>
+                    <td>Backend middleware per-amount validation</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold text-purple-800">Anomali Detection</td>
+                    <td>Deteksi pola tidak wajar: harga jauh di atas HPS, vendor selalu menang di unit yang sama, pola pengajuan menjelang akhir tahun anggaran, split PO untuk hindari batas kewenangan</td>
+                    <td><span class="tag" style="background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff;">0% — belum ada</span></td>
+                    <td>Statistical rules + ML sederhana (scikit-learn)</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold text-purple-800">Document Intelligence (OCR)</td>
+                    <td>Auto-extract data dari invoice PDF/foto — nomor faktur, tanggal, jumlah, nama vendor — untuk validasi 3-way match tanpa input manual</td>
+                    <td><span class="tag" style="background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff;">0% — belum ada</span></td>
+                    <td>Tesseract OCR / Google Vision API</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold text-purple-800">Compliance Dashboard SPI</td>
+                    <td>Dashboard real-time untuk SPI: skor compliance per SBU, transaksi flagged, tren pelanggaran SPO per bulan — terintegrasi ke spi_audit_dashboard.html</td>
+                    <td><span class="tag pill-partial">UI ada, data mock</span></td>
+                    <td>Backend API + alert thresholds</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-3 bg-purple-50 border border-purple-200 rounded-xl p-3 text-xs text-purple-900">
+            <strong>Rekomendasi IT:</strong> Bangun AI Guardian sebagai <strong>microservice terpisah</strong> (FastAPI + Python AI stack) yang dipanggil oleh backend utama via internal HTTP. Ini memudahkan scaling dan testing independen. Urutan build: Rule Engine → Authorization Enforcement → Anomali Detection → RAG Chatbot → OCR (dari yang paling kritikal ke nice-to-have).
+        </div>
+    </div>
+
+    <!-- GAP 5: FITUR KEUANGAN LANJUTAN -->
+    <div class="card">
+        <div class="section-title" style="border-left-color:#059669;">Gap 5 — Manajemen Keuangan & Anggaran Lanjutan</div>
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 mb-4 text-xs text-emerald-800">
+            <i class="fas fa-file-invoice-dollar mr-1"></i> <strong>Temuan dari Mind Map MASTER_MINDMAP_4_FINANCIAL_FLOW:</strong> Mind map mendefinisikan sistem keuangan yang jauh lebih detail dari yang saat ini ada — termasuk GL posting otomatis, commitment register, HPS management, dan target efisiensi anggaran Rp 14.57 Miliar/tahun.
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:25%">Fitur Keuangan</th>
+                    <th style="width:42%">Gap / Belum Ada</th>
+                    <th style="width:15%">Prioritas</th>
+                    <th style="width:18%">Rekomendasi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-semibold">Commitment Register</td>
+                    <td>Saat PO disetujui, anggaran harus langsung "terkunci" (committed) walaupun belum dibayar. Formula: <code>Tersedia = RKAP − Committed − Spent</code>. Saat ini tidak ada commitment accounting sama sekali — sisa anggaran dihitung dari yang sudah dibayar saja</td>
+                    <td><span class="tag p1">P1 — Kritis</span></td>
+                    <td>Tabel commitment_register per PO</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">GL Posting Otomatis</td>
+                    <td>Setiap event pengadaan (PO approved, BAPB terima barang, invoice approved, payment released) harus men-trigger jurnal akuntansi otomatis ke buku besar. Saat ini tidak ada posting GL apapun</td>
+                    <td><span class="tag p2">P2 — Penting</span></td>
+                    <td>Event-driven GL engine → sync ke ERP/ACCURATE</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">HPS (Harga Perkiraan Sendiri)</td>
+                    <td>Sebelum tender, Pengadaan wajib menetapkan HPS sebagai batas atas harga wajar. Tidak ada modul penetapan HPS, tidak ada validasi apakah penawaran vendor melebihi HPS, tidak ada history HPS per item</td>
+                    <td><span class="tag p2">P2 — Penting</span></td>
+                    <td>Modul HPS per item katalog + validasi di tender</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Cash Flow Management</td>
+                    <td>Mind map menargetkan optimasi DPO dari 45 → 30 hari (membebaskan Rp 1.67 Miliar dari siklus kas), program early payment discount, dan proyeksi cash flow mingguan. Tidak ada fitur apapun untuk ini</td>
+                    <td><span class="tag p2">P2 — Penting</span></td>
+                    <td>Cash flow forecasting + DPO tracking di Finance Portal</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Cost Center Allocation</td>
+                    <td>Setiap pengeluaran harus dialokasikan ke cost center (departemen/SBU) untuk laporan keuangan per unit. Saat ini SBU hanya diidentifikasi sebagai nama string — tidak ada cost center code</td>
+                    <td><span class="tag p2">P2 — Penting</span></td>
+                    <td>Tabel cost_center + mapping per SBU dan RKAP line item</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Komite Anggaran</td>
+                    <td>Perubahan RKAP (switching anggaran, penambahan plafon) seharusnya melalui proses Komite Anggaran dengan notulen dan approval formal. Saat ini UI ada switching RKAP tapi tanpa mekanisme komite</td>
+                    <td><span class="tag p2">P2 — Penting</span></td>
+                    <td>Workflow komite anggaran + notulat digital</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Spend Analytics & Forecasting</td>
+                    <td>Analitik vendor benchmarking (harga vs pasar), prediksi kebutuhan pengadaan berdasarkan pola historis, analisis kategori pengeluaran. Mind map menyebut ini sebagai output utama Layer 4 (Analitik)</td>
+                    <td><span class="tag p3">P3 — Nice to have</span></td>
+                    <td>Data warehouse + BI tool (Metabase/Grafana)</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Konsolidasi Multi-SBU</td>
+                    <td>Pengadaan bisa menggabungkan kebutuhan yang sama dari beberapa SBU menjadi satu tender → volume discount. Tidak ada mekanisme konsolidasi kebutuhan lintas SBU saat ini</td>
+                    <td><span class="tag p3">P3 — Nice to have</span></td>
+                    <td>Modul consolidated purchasing + shared PO splitting</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PRINSIP: SETIAP MODUL WAJIB DATA TERUKUR -->
+    <div class="card" style="border-left:4px solid #0ea5e9;">
+        <div class="section-title" style="border-left-color:#0ea5e9;">Prinsip Wajib — Setiap Modul Harus Menghasilkan Data Terukur</div>
+        <p class="text-xs text-slate-500 mb-4">Sistem ini belum punya baseline data dari kondisi sebelumnya (manual). Agar manajemen bisa mengukur dampak nyata setelah go-live, setiap modul <strong>harus dirancang sejak awal untuk mencatat dan mengekspos metrik</strong> — bukan hanya memproses transaksi.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:22%">Modul</th>
+                    <th style="width:38%">Data yang Wajib Dicatat (bukan hanya diproses)</th>
+                    <th style="width:40%">Metrik yang Diukur dari Data Ini</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-semibold">3-Way Match (Fase 7)</td>
+                    <td>Setiap selisih antara PO × BAPB × Invoice: nilai selisih, siapa yang approve meski ada selisih, timestamp</td>
+                    <td>Jumlah & nilai over-payment yang dicegah per periode; tingkat akurasi invoice vendor</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Raport Vendor</td>
+                    <td>Harga aktual PO vs HPS per item; ketepatan waktu delivery per PO; skor per dimensi per transaksi</td>
+                    <td>Vendor mana yang konsisten di bawah HPS; tren kualitas per vendor; benchmark harga antar vendor untuk item yang sama</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">SLA Enforcement</td>
+                    <td>Timestamp masuk dan selesai setiap fase (1–9); siapa yang menjadi bottleneck; fase berapa yang paling sering terlambat</td>
+                    <td>Rata-rata cycle time pengadaan per jenis; persentase on-time completion; unit mana yang paling sering delay</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Delivery Tracking (Post-PO)</td>
+                    <td>Setiap step yang selesai vs terlambat; ETA aktual vs ETA rencana; berapa kali vendor harus di-reminder sebelum upload</td>
+                    <td>Persentase pengiriman on-time; rata-rata delay pasca-PO; skor responsivitas per vendor</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Commitment Register</td>
+                    <td>Setiap PO: nilai committed, tanggal committed, tanggal released, selisih committed vs actual payment</td>
+                    <td>Akurasi proyeksi cashflow; berapa besar anggaran yang "frozen" di PO yang belum lunas; DPO aktual per vendor</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">AI Guardian (SPO Compliance)</td>
+                    <td>Setiap transaksi yang di-flag: alasan flag, modul yang trigger, apakah override dilakukan dan oleh siapa</td>
+                    <td>Tingkat compliance SPO per SBU per bulan; jumlah transaksi yang terlewat tanpa validasi; tren anomali dari waktu ke waktu</td>
+                </tr>
+                <tr>
+                    <td class="font-semibold">Budget & RKAP</td>
+                    <td>Setiap perubahan anggaran: jumlah sebelum/sesudah, alasan, siapa yang approve, apakah melebihi threshold perubahan</td>
+                    <td>Penyerapan anggaran per bulan vs rencana; akurasi perencanaan RKAP vs realisasi akhir tahun</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-3 bg-sky-50 border border-sky-200 rounded-xl p-3 text-xs text-sky-900">
+            <i class="fas fa-triangle-exclamation mr-1 text-sky-600"></i> <strong>Untuk IT:</strong> Jangan bangun modul yang hanya CRUD. Setiap tabel harus memiliki kolom audit (created_at, updated_at, created_by, action_type). Setiap keputusan bisnis (approve, reject, override, flag) harus masuk ke <code>audit_log</code> dengan konteks lengkap — bukan hanya di tabel utama. Tanpa ini, sistem berjalan tapi tidak bisa membuktikan nilai yang dihasilkannya ke manajemen.
+        </div>
+    </div>
+
+    <!-- WHAT IS READY TO HAND OFF -->
+    <div class="card">
+        <div class="section-title">Yang Bisa Langsung Diterima IT</div>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-3">
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Seluruh Desain UI/UX</p>
+                        <p class="text-[11px] text-emerald-700">43 halaman HTML siap dijadikan referensi tampilan. IT bisa rebuild dengan framework apapun (React, Vue, dll)</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Pemetaan Alur Bisnis</p>
+                        <p class="text-[11px] text-emerald-700">Seluruh flow pengadaan dari RKAP s/d BAST sudah terpetakan dalam navigasi antar halaman</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">API Schema (draft)</p>
+                        <p class="text-[11px] text-emerald-700">main.py berisi ~60 endpoint draft yang bisa dijadikan kontrak API awal antara frontend & backend developer</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Struktur Portal (4 portal)</p>
+                        <p class="text-[11px] text-emerald-700">Arsitektur 4-portal (Holding, SBU, Pengadaan, Vendor) sudah terdefinisi dengan kewenangan masing-masing</p>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Aturan Bisnis Terdokumentasi di UI</p>
+                        <p class="text-[11px] text-emerald-700">SBU tidak bisa pilih vendor, blokir tagihan otomatis, alur approval per hierarki — semua sudah dikodekan sebagai validasi UI</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Raport Vendor 7 Dimensi</p>
+                        <p class="text-[11px] text-emerald-700">Metodologi scoring sudah terdefinisi (bobot per step delivery), tinggal IT implementasi kalkulasi di backend</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Demo Environment Aktif</p>
+                        <p class="text-[11px] text-emerald-700">Tim IT bisa langsung jalankan di localhost untuk walkthrough. Backend: <code>uvicorn main:app</code>, Frontend: static serve</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <i class="fas fa-check-circle text-emerald-500 mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-emerald-800">Seed Data Demo</p>
+                        <p class="text-[11px] text-emerald-700">seed_*.py scripts tersedia untuk populate data demo di semua modul — IT bisa langsung presentasi ke stakeholder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REKOMENDASI STACK -->
+    <div class="card">
+        <div class="section-title">Rekomendasi Stack untuk Production</div>
+        <div class="grid grid-cols-3 gap-4 text-xs">
+            <div class="border border-slate-200 rounded-xl p-4">
+                <p class="font-black text-slate-800 mb-3"><i class="fas fa-server mr-1.5 text-blue-500"></i>Backend</p>
+                <div class="space-y-2 text-slate-600">
+                    <div class="flex justify-between"><span>Framework</span><strong>FastAPI (keep) atau Django</strong></div>
+                    <div class="flex justify-between"><span>Database</span><strong>PostgreSQL 15+</strong></div>
+                    <div class="flex justify-between"><span>Auth</span><strong>Google OAuth2 + JWT</strong></div>
+                    <div class="flex justify-between"><span>File Storage</span><strong>MinIO (on-premise)</strong></div>
+                    <div class="flex justify-between"><span>Task Queue</span><strong>Celery + Redis</strong></div>
+                    <div class="flex justify-between"><span>Migration</span><strong>Alembic</strong></div>
+                </div>
+            </div>
+            <div class="border border-slate-200 rounded-xl p-4">
+                <p class="font-black text-slate-800 mb-3"><i class="fas fa-desktop mr-1.5 text-emerald-500"></i>Frontend</p>
+                <div class="space-y-2 text-slate-600">
+                    <div class="flex justify-between"><span>Opsi A</span><strong>Keep HTML/JS (cepat)</strong></div>
+                    <div class="flex justify-between"><span>Opsi B</span><strong>React + Vite (scalable)</strong></div>
+                    <div class="flex justify-between"><span>CSS</span><strong>Tailwind CSS (keep)</strong></div>
+                    <div class="flex justify-between"><span>State</span><strong>Zustand / Context API</strong></div>
+                    <div class="flex justify-between"><span>Charts</span><strong>Chart.js (keep)</strong></div>
+                    <div class="flex justify-between"><span>PDF Gen</span><strong>React-PDF / WeasyPrint</strong></div>
+                </div>
+            </div>
+            <div class="border border-slate-200 rounded-xl p-4">
+                <p class="font-black text-slate-800 mb-3"><i class="fas fa-cloud mr-1.5 text-purple-500"></i>Infrastruktur</p>
+                <div class="space-y-2 text-slate-600">
+                    <div class="flex justify-between"><span>Server</span><strong>Ubuntu 22.04 LTS</strong></div>
+                    <div class="flex justify-between"><span>Web Server</span><strong>Nginx reverse proxy</strong></div>
+                    <div class="flex justify-between"><span>Container</span><strong>Docker + Compose</strong></div>
+                    <div class="flex justify-between"><span>SSL</span><strong>Let's Encrypt</strong></div>
+                    <div class="flex justify-between"><span>Monitoring</span><strong>Sentry + Grafana</strong></div>
+                    <div class="flex justify-between"><span>Backup</span><strong>Daily pg_dump ke NAS</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ESTIMASI -->
+    <div class="card">
+        <div class="section-title">Estimasi Pengerjaan (Rough Order of Magnitude)</div>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-4 text-xs text-amber-800">
+            <i class="fas fa-triangle-exclamation mr-1"></i> Estimasi kasar, belum memperhitungkan complexity discovery, integrasi SIMRS, dan perubahan requirement.
+        </div>
+        <table>
+            <thead><tr><th>Tahap</th><th>Scope</th><th>Estimasi</th><th>Tim</th></tr></thead>
+            <tbody>
+                <tr><td class="font-semibold">Fase A — Foundation</td><td>PostgreSQL migration, RBAC, Auth production, File storage, Email notif</td><td class="font-bold text-red-600">6–8 minggu</td><td>1 Backend + 1 DevOps</td></tr>
+                <tr><td class="font-semibold">Fase B — Business Logic</td><td>Approval state machine, Budget enforcement, Payment block, 3-way match, SLA alert</td><td class="font-bold text-red-600">8–10 minggu</td><td>2 Backend Dev</td></tr>
+                <tr><td class="font-semibold">Fase C — Frontend Polish</td><td>Mobile responsive, PDF generator, Export Excel, E-signature</td><td class="font-bold text-amber-600">6–8 minggu</td><td>2 Frontend Dev</td></tr>
+                <tr><td class="font-semibold">Fase D — Integrasi</td><td>SIMRS bridge, ERP sync, WhatsApp notif, SSO Workspace</td><td class="font-bold text-amber-600">8–12 minggu</td><td>1 Backend + vendor SIMRS</td></tr>
+                <tr><td class="font-semibold">Fase E — UAT & Go-Live</td><td>User training, data migration, parallel run, bug fixing</td><td class="font-bold text-blue-600">4–6 minggu</td><td>Full team + user champion</td></tr>
+                <tr class="bg-slate-50"><td class="font-black">TOTAL</td><td class="text-slate-500">Jika tim paralel (Fase A+C bersamaan, Fase B+C bersamaan)</td><td class="font-black text-slate-800">±8–10 bulan</td><td>3–4 developer</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CATATAN PENUTUP -->
+    <div class="card border-l-4 border-emerald-500">
+        <p class="text-xs font-bold text-emerald-700 uppercase tracking-widest mb-2">Catatan untuk Tim IT</p>
+        <ul class="text-sm text-slate-700 space-y-2 list-none">
+            <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-emerald-500 mt-0.5 shrink-0 text-xs"></i>Prototipe ini adalah <strong>requirement yang sudah divisualisasikan</strong> — lebih cepat dari BRD teks karena bisa langsung diklik dan dilihat stakeholder</li>
+            <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-emerald-500 mt-0.5 shrink-0 text-xs"></i>Semua aturan bisnis (blokir tagihan, hierarki SBU, kewenangan per portal) sudah dikodekan di UI — jadikan ini sebagai <strong>acceptance criteria</strong> UAT</li>
+            <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-emerald-500 mt-0.5 shrink-0 text-xs"></i>Endpoint di <code>main.py</code> bisa dijadikan <strong>OpenAPI spec awal</strong> — import ke Postman/Swagger dan refinement bersama backend developer</li>
+            <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-emerald-500 mt-0.5 shrink-0 text-xs"></i>Prioritaskan <strong>Fase A (Foundation)</strong> dulu sebelum Fase B — RBAC dan Auth yang lemah akan membatalkan semua effort lain di production</li>
+            <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-emerald-500 mt-0.5 shrink-0 text-xs"></i>Hardcode <code>http://127.0.0.1:8000</code> ada di <strong>semua</strong> file HTML — IT perlu buat <code>config.js</code> yang di-load pertama sebelum file lain, atau migrasikan ke build system</li>
+        </ul>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <p class="text-xs text-slate-400">Dokumen ini di-generate otomatis dari prototipe. Last updated: 15 Juni 2026</p>
+            <button onclick="window.print()" class="no-print text-xs bg-slate-900 text-white px-4 py-2 rounded-lg font-bold hover:bg-slate-700 transition"><i class="fas fa-print mr-1"></i>Print PDF</button>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
