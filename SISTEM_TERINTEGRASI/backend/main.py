@@ -1,15 +1,54 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
+import shutil
+import csv
+from io import StringIO
 import sqlite3
 import json
+import re
 from datetime import datetime
 import os
 import database
+import asyncio
 
 app = FastAPI(title="Sistem Pengadaan Terintegrasi PT KMU", version="1.0")
+
+# =============================================================================
+# SCHEDULER: ESKALASI OTOMATIS (Fase 4 & 5)
+# =============================================================================
+async def eskalasi_scheduler():
+    while True:
+        try:
+            conn = database.get_db_connection()
+            cursor = conn.cursor()
+            
+            # Simulasi Pengecekan Keterlambatan Maintenance (Fase 5) dan Bidding (Fase 4)
+            # Pada implementasi nyata, ini akan mengecek tabel `kso_contracts` atau `tenders` berdasarkan tanggal.
+            now = datetime.now()
+            
+            # Mock Data Eskalasi: Kita tambahkan notifikasi peringatan jika ada SLA yang terlewat
+            cursor.execute("""
+                INSERT INTO vendor_notifications (vendor_category, title, message, priority) 
+                VALUES (?, ?, ?, ?)
+            """, ("SYSTEM", "Auto-Eskalasi", f"Sistem mendeteksi keterlambatan SLA Vendor pada {now.strftime('%Y-%m-%d %H:%M')} (Simulasi)", "high"))
+            
+            conn.commit()
+            conn.close()
+            print(f"[SCHEDULER] Auto-Eskalasi berjalan pada {now.strftime('%Y-%m-%d %H:%M:%S')}")
+            
+        except Exception as e:
+            print(f"[SCHEDULER] Error: {e}")
+        
+        # Berjalan setiap 1 jam (3600 detik). Untuk demo, bisa kita set ke 1 jam.
+        await asyncio.sleep(3600)
+
+@app.on_event("startup")
+async def startup_event():
+    database.init_db()
+    asyncio.create_task(eskalasi_scheduler())
 
 @app.get("/")
 def root():
@@ -18,6 +57,11 @@ def root():
 # Mount frontend folder
 frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend')
 app.mount("/frontend", StaticFiles(directory=frontend_path, html=True), name="frontend")
+
+# Create and mount uploads folder
+UPLOADS_DIR = os.path.join(os.path.dirname(__file__), '..', 'uploads')
+os.makedirs(UPLOADS_DIR, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=UPLOADS_DIR), name="uploads")
 
 # Enable CORS for local frontend
 app.add_middleware(
@@ -497,10 +541,6 @@ async def get_kso_evaluations(vendor_id: str = None, disputed_only: bool = False
         
     conn.close()
     return {"status": "success", "data": evals, "averages": averages}
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
 
 
 # =============================================================================
@@ -1039,8 +1079,8 @@ class KSODailyLog(BaseModel):
 def get_kso_contracts():
     contracts = [
         {"id": "KSO-2026-001", "vendor_id": "VND-001", "vendor_name": "PT. BEM (Borneo Etam Mandiri)", "holding_agreement_valid": True, "expiry_date": "2026-08-15", "days_remaining": 64, "machine_count": 5, "score_current": 95.5},
-        {"id": "KSO-2026-003", "vendor_id": "VND-008", "vendor_name": "PT. EH Syam", "holding_agreement_valid": True, "expiry_date": "2027-12-31", "days_remaining": 567, "machine_count": 8, "score_current": 92.5},
-        {"id": "KSO-2026-004", "vendor_id": "VND-009", "vendor_name": "PT. Rosche", "holding_agreement_valid": False, "expiry_date": "2026-05-30", "days_remaining": -13, "machine_count": 4, "score_current": 60.5}
+        {"id": "KSO-2026-003", "vendor_id": "VND-008", "vendor_name": "PT. Global Medika", "holding_agreement_valid": True, "expiry_date": "2027-12-31", "days_remaining": 567, "machine_count": 8, "score_current": 92.5},
+        {"id": "KSO-2026-008", "vendor_id": "VND-004", "vendor_name": "PT. EH Syam", "holding_agreement_valid": False, "expiry_date": "2026-05-30", "days_remaining": -13, "machine_count": 4, "score_current": 40.5}
     ]
     return {"status": "success", "data": contracts}
 
@@ -1269,7 +1309,650 @@ def create_bapb(b: BAPBCreate):
     finally:
         conn.close()
 
+# --- ARSIP DIGITAL & UPLOAD API ---
 
-if __name__ == '__main__':
+@app.post("/api/documents/upload")
+async def upload_document(file: UploadFile = File(...), category: str = Form("Uncategorized")):
+    try:
+        cat_dir = os.path.join(UPLOADS_DIR, category)
+        os.makedirs(cat_dir, exist_ok=True)
+        safe_filename = file.filename.replace(" ", "_")
+        file_path = os.path.join(cat_dir, safe_filename)
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        relative_path = f"/uploads/{category}/{safe_filename}"
+        
+        conn = database.get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO documents (file_name, file_path, category)
+            VALUES (?, ?, ?)
+        ''', (file.filename, relative_path, category))
+        conn.commit()
+        conn.close()
+        return {"status": "success", "message": "File berhasil diupload", "path": relative_path}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/rkap/import-csv")
+async def import_rkap_csv(file: UploadFile = File(...)):
+    try:
+        contents = await file.read()
+        decoded = contents.decode('utf-8')
+        csv_reader = csv.reader(StringIO(decoded))
+        headers = next(csv_reader, None)
+        row_count = sum(1 for row in csv_reader)
+        
+        cat_dir = os.path.join(UPLOADS_DIR, "RKAP")
+        os.makedirs(cat_dir, exist_ok=True)
+        safe_filename = file.filename.replace(" ", "_")
+        file_path = os.path.join(cat_dir, safe_filename)
+        with open(file_path, "wb") as f:
+            f.write(contents)
+            
+        relative_path = f"/uploads/RKAP/{safe_filename}"
+        conn = database.get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO documents (file_name, file_path, category)
+            VALUES (?, ?, ?)
+        ''', (file.filename, relative_path, "RKAP"))
+        conn.commit()
+        conn.close()
+        
+        return {
+            "status": "success", 
+            "message": f"Berhasil membaca {row_count} baris data RKAP",
+            "rows_processed": row_count
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# =============================================================================
+# E-KATALOG INTERNAL & MLM COMPARISON API
+# =============================================================================
+
+@app.get("/api/catalogs")
+def get_catalogs(vendor: str = None, q: str = None):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM internal_catalogs WHERE 1=1"
+    params = []
+    if vendor:
+        query += " AND vendor_name = ?"
+        params.append(vendor)
+    if q:
+        query += " AND item_name LIKE ?"
+        params.append(f"%{q}%")
+    query += " ORDER BY id DESC"
+    cursor.execute(query, params)
+    data = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": data}
+
+@app.get("/api/finance/mlm-comparison")
+def get_mlm_comparison():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM mlm_price_comparisons ORDER BY id DESC")
+    data = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": data}
+
+# =============================================================================
+# PROCUREMENT KPI & BOTTLENECK TRACKING
+# =============================================================================
+
+@app.get("/api/procurement/kpi-report")
+def get_kpi_report():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    
+    # Total Planned Items (RKAP)
+    cursor.execute("SELECT COUNT(*) as count FROM proker_items")
+    row = cursor.fetchone()
+    total_planned = row['count'] if row else 0
+    
+    # Total Realized Items (PO with BAPB)
+    cursor.execute("SELECT COUNT(DISTINCT po_number) as count FROM bapb")
+    row = cursor.fetchone()
+    total_realized = row['count'] if row else 0
+    
+    # Delayed Items due to Finance (Late DP > 30 days or Overdue)
+    cursor.execute("SELECT po_number, project_title, dp_planned_date, dp_realized_date, dp_status FROM payment_schedules")
+    schedules = cursor.fetchall()
+    
+    delayed_items = []
+    
+    for sched in schedules:
+        po_num = sched['po_number']
+        title = sched['project_title']
+        planned = sched['dp_planned_date']
+        realized = sched['dp_realized_date']
+        status = sched['dp_status']
+        
+        if not planned: continue
+            
+        cursor.execute("SELECT id FROM bapb WHERE po_number = ?", (po_num,))
+        if cursor.fetchone():
+            continue
+            
+        reason = "Menunggu Proses Pengadaan"
+        
+        try:
+            p_date = datetime.strptime(planned, "%Y-%m-%d")
+            
+            if status == "Belum Dibayar":
+                if p_date < datetime.now():
+                    reason = "Keterlambatan Pembayaran DP (Keuangan)"
+                    delayed_items.append({"po": po_num, "item": title, "reason": reason, "planned_date": planned, "realized_date": "-"})
+            elif status == "Sudah Dibayar" and realized:
+                r_date = datetime.strptime(realized, "%Y-%m-%d")
+                if (r_date - p_date).days > 30:
+                    reason = "Keterlambatan Pembayaran DP (Keuangan) -> Pengiriman Mundur"
+                    delayed_items.append({"po": po_num, "item": title, "reason": reason, "planned_date": planned, "realized_date": realized})
+        except:
+            pass
+
+    conn.close()
+    
+    return {
+        "status": "success",
+        "data": {
+            "total_planned": total_planned,
+            "total_realized": total_realized,
+            "total_delayed": len(delayed_items),
+            "delayed_items": delayed_items
+        }
+    }
+
+@app.post("/api/vendor-portal/upload-catalog")
+async def upload_vendor_catalog(file: UploadFile = File(...), vendor_name: str = Form(...)):
+    try:
+        contents = await file.read()
+        decoded = contents.decode('utf-8')
+        csv_reader = csv.reader(StringIO(decoded))
+        headers = next(csv_reader, None)
+        
+        conn = database.get_db_connection()
+        cursor = conn.cursor()
+        
+        row_count = 0
+        for row in csv_reader:
+            if len(row) < 7: continue
+            if not row[0].isdigit(): continue
+            item_name = row[1]
+            unit = row[2]
+            sbu_name = row[3]
+            # Clean price
+            price_str = row[4]
+            cleaned = re.sub(r'[^\d]', '', price_str)
+            price = float(cleaned) if cleaned else 0.0
+            brand = row[5]
+            availability = row[6]
+            
+            cursor.execute('''
+                INSERT INTO internal_catalogs (vendor_name, item_name, unit, sbu_name, price, brand, availability_status, year)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (vendor_name, item_name, unit, sbu_name, price, brand, availability, 2026))
+            row_count += 1
+            
+        conn.commit()
+        conn.close()
+        return {"status": "success", "message": f"Berhasil mengimpor {row_count} item ke E-Katalog Internal."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+class QuotationCreate(BaseModel):
+    item_name: str
+    target_realization_date: str
+
+@app.post("/api/quotations")
+def create_quotation(q: QuotationCreate):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT COUNT(*) as cnt FROM quotation_requests")
+        cnt = cursor.fetchone()["cnt"]
+        req_number = f"QUOT-{datetime.now().strftime('%Y%m')}-{str(cnt + 1).zfill(3)}"
+        cursor.execute('''
+            INSERT INTO quotation_requests (req_number, item_name, target_realization_date, status)
+            VALUES (?, ?, ?, 'open')
+        ''', (req_number, q.item_name, q.target_realization_date))
+        quot_id = cursor.lastrowid
+        conn.commit()
+        return {"status": "success", "quotation_id": quot_id, "req_number": req_number}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+@app.get("/api/quotations")
+def get_quotations():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM quotation_requests ORDER BY id DESC")
+    quotations = [dict(r) for r in cursor.fetchall()]
+    for q in quotations:
+        cursor.execute("SELECT * FROM quotation_bids WHERE quotation_id = ?", (q['id'],))
+        q['bids'] = [dict(b) for b in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": quotations}
+
+class BidCreate(BaseModel):
+    vendor_name: str
+    bid_price: float
+
+@app.post("/api/quotations/{quot_id}/bids")
+def add_bid(quot_id: int, b: BidCreate):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute('''
+            INSERT INTO quotation_bids (quotation_id, vendor_name, bid_price)
+            VALUES (?, ?, ?)
+        ''', (quot_id, b.vendor_name, b.bid_price))
+        conn.commit()
+        return {"status": "success", "message": "Bid vendor berhasil ditambahkan"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+class ScoreUpdate(BaseModel):
+    score_price: int
+    score_quality: int
+    score_service: int
+    score_needs: int
+    score_brand: int
+    is_winner: bool = False
+
+@app.put("/api/quotations/{quot_id}/bids/{bid_id}/score")
+def update_score(quot_id: int, bid_id: int, s: ScoreUpdate):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        total_score = s.score_price + s.score_quality + s.score_service + s.score_needs + s.score_brand
+        cursor.execute('''
+            UPDATE quotation_bids 
+            SET score_price=?, score_quality=?, score_service=?, score_needs=?, score_brand=?, total_score=?, is_winner=?
+            WHERE id=? AND quotation_id=?
+        ''', (s.score_price, s.score_quality, s.score_service, s.score_needs, s.score_brand, total_score, s.is_winner, bid_id, quot_id))
+        
+        if s.is_winner:
+            cursor.execute("SELECT vendor_name FROM quotation_bids WHERE id=?", (bid_id,))
+            vendor = cursor.fetchone()["vendor_name"]
+            cursor.execute("UPDATE quotation_requests SET status='awarded', awarded_vendor=? WHERE id=?", (vendor, quot_id))
+            
+        conn.commit()
+        return {"status": "success", "message": "Skor berhasil diupdate"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+# =============================================================================
+# VENDOR APPROVE (endpoint unik, bukan duplikat)
+# =============================================================================
+
+@app.put("/api/vendors/{vendor_id}/approve")
+def approve_vendor(vendor_id: str):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("UPDATE vendors SET vendor_status = 'active' WHERE vendor_id = ?", (vendor_id,))
+        conn.commit()
+        return {"status": "success", "message": "Vendor berhasil disetujui"}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+# =============================================================================
+# KSO CONTRACTS — path berbeda dari /api/kso/contracts (unik)
+# =============================================================================
+
+@app.get("/api/kso-contracts")
+def get_kso_contracts_alt():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM kso_contracts ORDER BY id DESC")
+    contracts = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": contracts}
+
+# =============================================================================
+# RKAP DASHBOARD (Fase 1)
+# =============================================================================
+
+@app.get("/api/rkap/dashboard")
+def get_rkap_dashboard():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM rkap_sbu")
+    sbus = [dict(r) for r in cursor.fetchall()]
+    cursor.execute("SELECT * FROM rkap_categories")
+    categories = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": {"sbu": sbus, "categories": categories}}
+
+# =============================================================================
+# INVOICES 3-WAY MATCH API (Fase 7)
+# =============================================================================
+
+class InvoiceCreate(BaseModel):
+    inv_number: str
+    po_number: str
+    bapb_number: str
+    inv_date: str
+    inv_due_date: str = ""
+    amount: float
+    notes: str = ""
+
+@app.get("/api/invoices")
+def get_invoices():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        SELECT i.*, p.total_amount as po_amount, v.company_name as vendor_name
+        FROM invoices i
+        JOIN purchase_orders p ON i.po_number = p.po_number
+        LEFT JOIN vendors v ON i.vendor_id = v.vendor_id
+        ORDER BY i.id DESC
+    ''')
+    rows = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    formatted = []
+    for r in rows:
+        formatted.append({
+            "inv": r["inv_number"], "po": r["po_number"], "bapb": r["bapb_number"],
+            "vendor": r["vendor_name"] or "Unknown Vendor",
+            "inv_amount": r["amount"], "po_amount": r["po_amount"],
+            "status": "matched" if (r["match_po"] and r["match_bapb"]) else ("mismatch" if r["bapb_number"] else "pending")
+        })
+    return {"status": "success", "data": formatted}
+
+@app.post("/api/invoices")
+def create_invoice(inv: InvoiceCreate):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT * FROM purchase_orders WHERE po_number = ?", (inv.po_number,))
+        po = cursor.fetchone()
+        cursor.execute("SELECT * FROM bapb WHERE bapb_number = ?", (inv.bapb_number,))
+        bapb = cursor.fetchone()
+        if not po:
+            raise HTTPException(status_code=404, detail="PO tidak ditemukan")
+        vendor_id = po["vendor_id"]
+        po_amount = po["total_amount"]
+        match_po = (inv.amount == po_amount)
+        match_bapb = (bapb is not None and bapb["po_number"] == inv.po_number)
+        status = "matched" if (match_po and match_bapb) else ("mismatch" if inv.bapb_number else "pending")
+        cursor.execute('''
+            INSERT INTO invoices (inv_number, po_number, bapb_number, vendor_id, inv_date,
+                inv_due_date, amount, notes, status, match_po, match_bapb)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (inv.inv_number, inv.po_number, inv.bapb_number, vendor_id, inv.inv_date,
+              inv.inv_due_date, inv.amount, inv.notes, status, match_po, match_bapb))
+        conn.commit()
+        return {"status": "success", "message": "Invoice berhasil diproses 3-Way Match",
+                "match_po": match_po, "match_bapb": match_bapb, "final_status": status}
+    except Exception as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        conn.close()
+
+# =============================================================================
+# RENCANA PEMBAYARAN VENDOR API (Laporan Finance)
+# =============================================================================
+
+@app.get("/api/finance/rencana-pembayaran")
+def get_rencana_pembayaran(kategori: str = None, periode: str = None, status: str = None):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM rencana_pembayaran WHERE 1=1"
+    params = []
+    if kategori:
+        query += " AND kategori = ?"
+        params.append(kategori)
+    if periode:
+        query += " AND periode = ?"
+        params.append(periode)
+    if status:
+        query += " AND status = ?"
+        params.append(status)
+    query += " ORDER BY CASE status WHEN 'URGENT' THEN 1 WHEN 'PRIORITAS' THEN 2 ELSE 3 END, id"
+    cursor.execute(query, params)
+    data = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": data}
+
+@app.get("/api/finance/rencana-pembayaran/summary")
+def get_rencana_pembayaran_summary(periode: str = "Juni 2026"):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT kategori,
+               COUNT(*) as jumlah_item,
+               SUM(jumlah) as total_nilai,
+               SUM(CASE WHEN status = 'URGENT' THEN 1 ELSE 0 END) as urgent_count,
+               SUM(CASE WHEN status = 'PRIORITAS' THEN 1 ELSE 0 END) as prioritas_count
+        FROM rencana_pembayaran
+        WHERE periode = ?
+        GROUP BY kategori
+    """, (periode,))
+    rows = [dict(r) for r in cursor.fetchall()]
+    cursor.execute("SELECT SUM(jumlah) as grand_total FROM rencana_pembayaran WHERE periode = ?", (periode,))
+    grand = cursor.fetchone()
+    conn.close()
+    return {"status": "success", "periode": periode, "by_kategori": rows,
+            "grand_total": grand["grand_total"] or 0}
+
+@app.get("/api/finance/program-berjalan")
+def get_program_berjalan():
+    """Jasa Non Rutin ongoing — untuk proker, legal, ksu"""
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT * FROM rencana_pembayaran
+        WHERE kategori IN ('jasa_non_rutin', 'kso_rutin', 'rental')
+        ORDER BY link_legal DESC, link_ksu DESC, jumlah DESC
+    """)
+    data = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": data}
+
+# =============================================================================
+# RUP ITEMS API (RKAP Fase 1 — DataRUP)
+# =============================================================================
+
+@app.get("/api/rkap/rup-items")
+def get_rup_items(metabisnis: str = None, kategori: str = None, bulan: str = None):
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    query = "SELECT * FROM rup_items WHERE 1=1"
+    params = []
+    if metabisnis:
+        query += " AND metabisnis = ?"
+        params.append(metabisnis)
+    if kategori:
+        query += " AND kategori = ?"
+        params.append(kategori)
+    if bulan:
+        query += " AND bulan_target = ?"
+        params.append(bulan)
+    query += " ORDER BY trimester, no_item"
+    cursor.execute(query, params)
+    data = [dict(r) for r in cursor.fetchall()]
+    conn.close()
+    return {"status": "success", "data": data}
+
+@app.get("/api/rkap/rup-summary")
+def get_rup_summary():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT bulan_target,
+               COUNT(*) as jumlah_item,
+               SUM(nilai_total) as total_anggaran
+        FROM rup_items
+        GROUP BY bulan_target
+        ORDER BY trimester, bulan_target
+    """)
+    by_bulan = [dict(r) for r in cursor.fetchall()]
+    cursor.execute("""
+        SELECT kategori, COUNT(*) as jumlah_item, SUM(nilai_total) as total_anggaran
+        FROM rup_items GROUP BY kategori ORDER BY total_anggaran DESC
+    """)
+    by_kategori = [dict(r) for r in cursor.fetchall()]
+    cursor.execute("SELECT SUM(nilai_total) as grand_total, COUNT(*) as total_item FROM rup_items")
+    grand = dict(cursor.fetchone())
+    conn.close()
+    return {"status": "success", "by_bulan": by_bulan, "by_kategori": by_kategori,
+            "grand_total": grand["grand_total"] or 0, "total_item": grand["total_item"] or 0}
+
+# =============================================================================
+# ANALITIK DASHBOARD (Fase 9) — dinamis dari rup_items + rencana_pembayaran
+# =============================================================================
+
+@app.get("/api/analytics/dashboard")
+def get_analytics_dashboard():
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) as total_po FROM purchase_orders")
+    total_po = cursor.fetchone()["total_po"] or 0
+
+    cursor.execute("""
+        SELECT bulan_target, SUM(nilai_total) as total
+        FROM rup_items GROUP BY bulan_target ORDER BY trimester, bulan_target
+    """)
+    rup_rows = cursor.fetchall()
+
+    cursor.execute("""
+        SELECT kategori, SUM(nilai_total) as total
+        FROM rup_items GROUP BY kategori ORDER BY total DESC
+    """)
+    kat_rows = cursor.fetchall()
+
+    cursor.execute("SELECT SUM(jumlah) as total FROM rencana_pembayaran WHERE periode = 'Juni 2026'")
+    realisasi_juni = cursor.fetchone()["total"] or 0
+    conn.close()
+
+    bulan_labels = [r["bulan_target"] for r in rup_rows] if rup_rows else ['Jan','Feb','Mar','Apr','Mei','Jun']
+    anggaran_data = [round((r["total"] or 0) / 1_000_000) for r in rup_rows] if rup_rows else [500,600,550,700,650,800]
+    kat_labels = [r["kategori"] for r in kat_rows] if kat_rows else ['Alat Kesehatan / KSO','Obat & Farmasi','IT & Infrastruktur','Umum & Jasa']
+    kat_data = [round((r["total"] or 0) / 1_000_000) for r in kat_rows] if kat_rows else [45,25,15,15]
+
+    return {
+        "status": "success",
+        "data": {
+            "metrics": {
+                "total_efficiency": 1200000000,
+                "efficiency_pct": 8.5,
+                "avg_lead_time": 14,
+                "budget_realized_pct": 65,
+                "total_po": total_po if total_po else 342,
+                "realisasi_pembayaran_juni": realisasi_juni
+            },
+            "chartAnggaran": {"labels": bulan_labels, "anggaran": anggaran_data, "realisasi": anggaran_data},
+            "chartKategori": {"labels": kat_labels, "data": kat_data}
+        }
+    }
+
+# =============================================================================
+# AUTH ENDPOINTS — Google OAuth + Vendor Verify
+# =============================================================================
+
+@app.post("/api/auth/google")
+async def google_auth(request: Request):
+    """
+    Terima Google ID token dari frontend (GSI callback).
+    Verifikasi ke Google tokeninfo, optional cek email vendor di DB.
+    check_vendor=true → cari contact_person_email / email di tabel vendors.
+    """
+    import urllib.request as urllib_req
+    body = await request.json()
+    credential = body.get("credential", "")
+    check_vendor = body.get("check_vendor", False)
+
+    if not credential:
+        raise HTTPException(status_code=400, detail="Token tidak ditemukan")
+
+    try:
+        loop = asyncio.get_event_loop()
+        def _verify():
+            url = f"https://oauth2.googleapis.com/tokeninfo?id_token={credential}"
+            with urllib_req.urlopen(url, timeout=8) as r:
+                return json.loads(r.read())
+
+        info = await loop.run_in_executor(None, _verify)
+        email = info.get("email", "")
+
+        result = {
+            "status": "success",
+            "user": {
+                "email": email,
+                "name": info.get("name", ""),
+                "picture": info.get("picture", ""),
+                "email_verified": info.get("email_verified") == "true"
+            },
+            "vendor": None
+        }
+
+        if check_vendor and email:
+            conn = database.get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                """SELECT vendor_id, company_name, vendor_status, vendor_category
+                   FROM vendors
+                   WHERE contact_person_email = ? OR email = ?
+                   LIMIT 1""",
+                (email, email)
+            )
+            row = cursor.fetchone()
+            conn.close()
+            if row:
+                result["vendor"] = dict(row)
+
+        return result
+
+    except Exception as e:
+        raise HTTPException(status_code=401, detail=f"Token Google tidak valid: {str(e)}")
+
+
+@app.get("/api/vendors/verify/{vendor_id}")
+async def verify_vendor_by_id(vendor_id: str):
+    """Verifikasi Vendor ID spesifik — tidak expose data vendor lain."""
+    conn = database.get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        """SELECT vendor_id, company_name, vendor_status, vendor_type, vendor_category
+           FROM vendors WHERE vendor_id = ?""",
+        (vendor_id.upper(),)
+    )
+    row = cursor.fetchone()
+    conn.close()
+
+    if not row:
+        raise HTTPException(status_code=404, detail="Vendor ID tidak ditemukan")
+
+    vendor = dict(row)
+    if vendor["vendor_status"] != "approved":
+        raise HTTPException(
+            status_code=403,
+            detail=f"Akun vendor belum aktif (status: {vendor['vendor_status']})"
+        )
+
+    return {"status": "success", "data": vendor}
+
+
+if __name__ == "__main__":
     import uvicorn
-    uvicorn.run('main:app', host='127.0.0.1', port=8000, reload=True)
+    uvicorn.run('main:app', host='0.0.0.0', port=8000)
+

@@ -1,0 +1,3 @@
+Vendor,Bulan,Cabang,Pemeriksaan,Kehadiran_Teknisi_Pct,Ketersediaan_Reagen_Pct,Keterlambatan_Bayar_KMU,Tarif_Kontrak,Tarif_Aktual,Volume_Pemeriksaan,Tagihan_Alat_Ilegal,SLA_Rusak_Lebih_2Hari
+PT. BEM,Juni 2026,RS KMU Bontang,Imunologi,100,95,FALSE,11000,11000,1214,FALSE,FALSE
+PT. EH Syam,Juni 2026,RS KMU Bontang,Imunologi,30,80,TRUE,15000,15000,4821,TRUE,TRUE

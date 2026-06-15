@@ -18,163 +18,77 @@
 <body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
+    
+    <!-- Sidebar Portal Pengadaan -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
+                </div>
+                <div class="space-y-1">
+                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
+                    </a>
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-inbox w-5 text-center relative"><span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span></i><span class="text-sm font-medium">Inbox Approval</span>
+                    </a>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
                 </div>
                 <div class="space-y-1">
                     <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
                     </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
-                    </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-blue-500 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
                     </a>
                     <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
+                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
                     </a>
                     <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
+                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
                     </a>
                     <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">5. KSO & Kontrak</span>
                     </a>
                     <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
+                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
                     </a>
                     <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
+                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
                     </a>
                     <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
+                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
                     </a>
                     <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
+                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
                     </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
-                    </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
-                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
-                    </a>
-                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
-                    </a>
-                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
-                    </a>
-                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
-                    </a>
-                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
-                    </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
-                </div>
-                <div class="space-y-1">
-                    <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
+                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<div class="p-4 border-t border-slate-800">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">A</div>
-                <div>
-                    <p class="text-sm font-medium">Admin Pengadaan</p>
-                    <p class="text-xs text-slate-400">Vendor Management</p>
-                </div>
-            </div>
-        </div>
-</aside>
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -346,27 +260,44 @@
         let vendorData = [];
         let currentVerifyId = null;
 
-        async function loadVendors() {
+                async function loadVendors() {
             const tb = document.getElementById('vendorTable');
             tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-slate-400 text-sm"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i><br>Memuat...</td></tr>`;
             
             try {
-                // Gunakan endpoint list dummy/real
-                const response = await fetch('http://127.0.0.1:8000/api/dashboard-kpi'); 
-                // We'll simulate fetching from vendor db
-                
-                vendorData = [
-                    { id: 'VND-001', name: 'PT. Borneo Etam Mandiri', cat: 'KSO Laboratorium', nib: '9120391029301', npwp: '01.234.567.8-901.000', contact: 'Budi (08123456789)', status: 'active' },
-                    { id: 'VND-002', name: 'PT. Indo Sehat Medika', cat: 'Alat Kesehatan', nib: '1827364509123', npwp: '02.987.654.3-210.000', contact: 'Siska (08199988877)', status: 'pending' },
-                    { id: 'VND-003', name: 'CV. Maju Bersama', cat: 'Umum & Jasa', nib: '7364528190345', npwp: '14.555.666.7-888.000', contact: 'Andi (08554433221)', status: 'active' },
-                    { id: 'VND-004', name: 'PT. Mitra Farma', cat: 'Obat / Farmasi', nib: '9988776655443', npwp: '08.111.222.3-444.000', contact: 'Rina (08776655443)', status: 'rejected' }
-                ];
-                
-                renderTable(vendorData);
+                const response = await fetch('/api/vendors');
+                const result = await response.json();
+                if(result.status === 'success') {
+                    // Map to existing structure
+                    vendorData = result.data.map(v => ({
+                        id: v.vendor_id,
+                        name: v.company_name,
+                        cat: v.vendor_category || 'Umum & Jasa',
+                        nib: v.sio || '-',
+                        npwp: v.npwp || '-',
+                        contact: `${v.contact_person_name || 'Admin'} (${v.contact_person_phone || '-'})`,
+                        status: (v.vendor_status === 'submitted' ? 'pending' : v.vendor_status) || 'pending'
+                    }));
+                    renderTable(vendorData);
+                    updateStats();
+                }
             } catch (err) {
                 tb.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-rose-500 font-bold">Gagal terhubung ke server backend.</td></tr>`;
             }
         }
+        
+        function updateStats() {
+            const total = vendorData.length;
+            const pending = vendorData.filter(v => v.status === 'pending' || v.status === 'submitted').length;
+            const active = vendorData.filter(v => v.status === 'active').length;
+            const blacklist = vendorData.filter(v => v.status === 'rejected' || v.status === 'blacklist').length;
+            
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-pending').textContent = pending;
+            document.getElementById('stat-active').textContent = active;
+            document.getElementById('stat-blacklist').textContent = blacklist;
+        }
+
 
         function getStatusBadge(status) {
             if(status === 'active') return '<span class="status-badge bg-emerald-100 text-emerald-700 border border-emerald-200">AKTIF</span>';
@@ -436,15 +367,22 @@
             currentVerifyId = null;
         }
 
-        function approveVendor() {
+                async function approveVendor() {
             if(currentVerifyId) {
-                const v = vendorData.find(x => x.id === currentVerifyId);
-                if(v) v.status = 'active';
-                filterTable();
-                
-                // Update stats dummy
-                document.getElementById('stat-pending').textContent = parseInt(document.getElementById('stat-pending').textContent) - 1;
-                document.getElementById('stat-active').textContent = parseInt(document.getElementById('stat-active').textContent) + 1;
+                try {
+                    const response = await fetch(`/api/vendors/${currentVerifyId}/approve`, {
+                        method: 'PUT'
+                    });
+                    const res = await response.json();
+                    if(res.status === 'success') {
+                        const v = vendorData.find(x => x.id === currentVerifyId);
+                        if(v) v.status = 'active';
+                        filterTable();
+                        updateStats();
+                    }
+                } catch (err) {
+                    alert("Gagal menyetujui vendor.");
+                }
             }
             closeModal();
         }

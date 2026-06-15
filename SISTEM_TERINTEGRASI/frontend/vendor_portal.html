@@ -145,40 +145,50 @@
             </div>
 
             <!-- Middle Row: E-Katalog Rencana Investasi (Terbuka) -->
-            <div class="card bg-gradient-to-br from-blue-900 to-indigo-900 border-none shadow-lg text-white">
-                <div class="p-4 border-b border-blue-800/50 flex justify-between items-center">
-                    <span class="font-bold"><i class="fas fa-book-open text-blue-300 mr-2"></i>E-Katalog Kebutuhan Investasi 1 Tahun (Terbuka)</span>
-                    <span class="bg-blue-500/30 text-blue-200 text-[10px] font-bold px-2 py-1 rounded">EXPRESS INTEREST</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card bg-gradient-to-br from-blue-900 to-indigo-900 border-none shadow-lg text-white">
+                    <div class="p-4 border-b border-blue-800/50 flex justify-between items-center">
+                        <span class="font-bold"><i class="fas fa-book-open text-blue-300 mr-2"></i>E-Katalog Kebutuhan (Terbuka)</span>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-xs text-blue-200 mb-4">Daftar rencana pengadaan KMU yang bersifat Terbuka.</p>
+                        <div class="space-y-4">
+                            <!-- Item 1 -->
+                            <div class="bg-blue-950/50 border border-blue-800/50 rounded-lg p-4 flex flex-col hover:bg-blue-900/50 transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="bg-rose-500/20 text-rose-300 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-500/30">Barang Medis</span>
+                                    <span class="text-xs font-bold text-slate-300">Target: <span class="text-white">Agt 2026</span></span>
+                                </div>
+                                <h4 class="font-bold text-sm mb-1">Pengadaan Reagen Kimia Klinik</h4>
+                                <button class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg transition mt-2" onclick="alert('Interest tersimpan!')">Express Interest</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-5">
-                    <p class="text-xs text-blue-200 mb-4">Daftar rencana pengadaan KMU yang bersifat Terbuka. Vendor dapat menekan tombol "Express Interest" untuk menerima notifikasi saat bulan realisasi tiba.</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Item 1 -->
-                        <div class="bg-blue-950/50 border border-blue-800/50 rounded-lg p-4 flex flex-col hover:bg-blue-900/50 transition">
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="bg-rose-500/20 text-rose-300 text-[10px] font-bold px-2 py-0.5 rounded border border-rose-500/30"><i class="fas fa-briefcase-medical mr-1"></i> Barang Medis</span>
-                                <span class="text-xs font-bold text-slate-300">Target: <span class="text-white">Agt 2026</span></span>
-                            </div>
-                            <h4 class="font-bold text-sm mb-1">Pengadaan Reagen Kimia Klinik Semester 2</h4>
-                            <p class="text-[10px] text-blue-300 mb-3 flex-1">Suplai rutin reagen kimia klinik untuk laboratorium sentral RS PKT Bontang (6 Bulan).</p>
-                            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg transition shadow-sm" onclick="alert('Interest tersimpan! Anda akan dinotifikasi pada bulan Agustus 2026 saat proses tender/input dimulai.')">
-                                <i class="fas fa-star mr-1"></i> Express Interest
-                            </button>
+
+                <!-- NEW: Upload Katalog Vendor -->
+                <div class="card bg-white border border-emerald-200 shadow-sm">
+                    <div class="p-4 border-b border-emerald-100 bg-emerald-50 flex justify-between items-center text-emerald-800">
+                        <span class="font-bold"><i class="fas fa-file-csv text-emerald-600 mr-2"></i>Kirim E-Katalog Anda (CSV)</span>
+                        <span class="bg-emerald-200 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded">ANNUAL REFRESH</span>
+                    </div>
+                    <div class="p-5 flex flex-col justify-between h-full">
+                        <div>
+                            <p class="text-xs text-slate-500 mb-4">Silakan unggah daftar item/katalog barang perusahaan Anda dalam format CSV agar tersimpan ke database Pengadaan KMU untuk tahun 2026.</p>
+                            <form id="uploadCatalogForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Vendor / Kategori</label>
+                                    <input type="text" id="catalogVendorName" value="PT. Medik Jaya" readonly class="w-full bg-slate-100 border border-slate-200 rounded p-2 text-sm text-slate-600">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">File CSV</label>
+                                    <input type="file" id="catalogFile" accept=".csv" class="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100">
+                                </div>
+                            </form>
                         </div>
-                        
-                        <!-- Item 2 -->
-                        <div class="bg-blue-950/50 border border-blue-800/50 rounded-lg p-4 flex flex-col hover:bg-blue-900/50 transition">
-                            <div class="flex justify-between items-start mb-2">
-                                <span class="bg-purple-500/20 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded border border-purple-500/30"><i class="fas fa-user-tie mr-1"></i> Jasa Outsourcing</span>
-                                <span class="text-xs font-bold text-slate-300">Target: <span class="text-white">Nov 2026</span></span>
-                            </div>
-                            <h4 class="font-bold text-sm mb-1">Penyediaan Jasa Keamanan (Security) 2027</h4>
-                            <p class="text-[10px] text-blue-300 mb-3 flex-1">Pengadaan 45 tenaga keamanan bersertifikat Gada Pratama untuk seluruh titik layanan KMU.</p>
-                            <button class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2 rounded-lg transition shadow-sm" onclick="alert('Interest tersimpan! Anda akan dinotifikasi pada bulan November 2026.')">
-                                <i class="fas fa-star mr-1"></i> Express Interest
-                            </button>
-                        </div>
+                        <button onclick="submitCatalog()" class="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold py-2.5 rounded-lg transition shadow-sm">
+                            <i class="fas fa-upload mr-2"></i> Unggah & Ekstrak Data
+                        </button>
                     </div>
                 </div>
             </div>
@@ -207,13 +217,50 @@
         </div>
     </main>
 
+    <!-- Login Modal (Full Screen Overlay) -->
+    <div id='authModal' class='fixed inset-0 bg-slate-900/95 backdrop-blur-md z-[100] flex items-center justify-center transition-opacity duration-500'>
+        <div class='bg-slate-800 border border-slate-700 rounded-2xl p-8 max-w-md w-full shadow-2xl'>
+            <div class='flex flex-col items-center mb-6'>
+                <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-2xl font-bold mb-3 shadow-lg">K</div>
+                <h3 class='text-2xl font-bold text-white'>Vendor Login</h3>
+                <p class="text-sm text-slate-400 mt-1">Portal B2B Kaltim Medika Utama</p>
+            </div>
+            <div class='space-y-4'>
+                <div>
+                    <label class='block text-sm font-medium text-slate-300 mb-1'>Username / Nama Perusahaan</label>
+                    <input type='text' id='authUsername' class='w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition' placeholder='Contoh: PT. Medika Sentosa'>
+                </div>
+                <div>
+                    <label class='block text-sm font-medium text-slate-300 mb-1'>Kategori Vendor</label>
+                    <select id='authCategory' class='w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition'>
+                        <option value="Farmasi">Farmasi / Obat-obatan</option>
+                        <option value="Alkes">Alat Kesehatan / Medis</option>
+                        <option value="Umum" selected>Barang Umum / Non-Medis</option>
+                        <option value="Jasa">Jasa Operasional / Profesional</option>
+                    </select>
+                </div>
+                <div>
+                    <label class='block text-sm font-medium text-slate-300 mb-1'>Password</label>
+                    <input type='password' class='w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition' value='password123'>
+                </div>
+                <button onclick='processLogin()' class='w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg shadow-blue-900/50 mt-2 flex justify-center items-center gap-2'>
+                    <i class="fas fa-sign-in-alt"></i> Masuk ke Workspace
+                </button>
+                <div class="text-center pt-2">
+                    <a href="vendor_registration.html" class="text-xs text-blue-400 hover:text-blue-300 transition">Belum punya akun? Daftar sebagai Vendor Baru</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const API_URL = 'http://127.0.0.1:8000/api';
         let chartInstance = null;
 
         // ─── Notifikasi dari Pengadaan KMU ────────────────────────────────────────
         // vendor_category diambil dari data vendor yang login — default 'umum' untuk demo
-        const VENDOR_CATEGORY = 'umum';
+        let VENDOR_CATEGORY = 'umum';
+        let loginIntervals = [];
 
         async function loadNotifications() {
             try {
@@ -253,9 +300,7 @@
             await loadNotifications();
         }
 
-        // Poll setiap 60 detik (tidak setiap 3 detik — hindari RAM issue)
-        loadNotifications();
-        setInterval(loadNotifications, 60000);
+        // Polling will be started after login
 
         const fmtM = n => 'Rp ' + (n/1000000).toFixed(0) + ' Juta';
 
@@ -394,9 +439,65 @@
             });
         }
 
-        // Init
-        fetchVendorData();
-        setInterval(fetchVendorData, 5000); // Poll every 5s
+        async function submitCatalog() {
+            const fileInput = document.getElementById('catalogFile');
+            if(!fileInput.files[0]) {
+                alert("Pilih file CSV terlebih dahulu!");
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('vendor_name', document.getElementById('catalogVendorName').value);
+            
+            try {
+                const res = await fetch(`${API_URL}/vendor-portal/upload-catalog`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await res.json();
+                alert(data.message || "Berhasil diunggah");
+                fileInput.value = "";
+            } catch(e) {
+                alert("Gagal mengunggah: " + e.message);
+            }
+        }
+
+        function processLogin() {
+            const username = document.getElementById('authUsername').value || 'PT. Vendor Demo';
+            const category = document.getElementById('authCategory').value;
+            
+            // Set global variables or UI text
+            VENDOR_CATEGORY = category.toLowerCase();
+            document.getElementById('vendorName').textContent = username;
+            
+            // Update Title Based on Category
+            document.querySelector('.tracking-tight').textContent = `KMU Vendor ${category}`;
+            
+            // Customize E-Katalog Card Title
+            const katalogTitle = document.querySelector('.fa-book-open').nextSibling;
+            if(katalogTitle) {
+                katalogTitle.textContent = ` E-Katalog Kebutuhan ${category} (Terbuka)`;
+            }
+            
+            // Update CSV label
+            document.getElementById('catalogVendorName').value = username;
+            
+            // Fade out modal
+            const modal = document.getElementById('authModal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                
+                // Initialize after login
+                fetchVendorData();
+                loadNotifications();
+                
+                loginIntervals.push(setInterval(fetchVendorData, 5000));
+                loginIntervals.push(setInterval(loadNotifications, 60000));
+            }, 500);
+        }
+
 
     </script>
 </body>

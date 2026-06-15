@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papan Kanban Pengadaan — PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(220px, 1fr));
+            gap: 0.875rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            align-items: start;
+        }
+        .kanban-col {
+            background-color: #f8fafc;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            max-height: 65vh;
+        }
+        .kanban-header {
+            padding: 0.625rem 0.75rem;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f1f5f9;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        .kanban-cards {
+            padding: 0.625rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .k-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #94a3b8;
+            border-radius: 0.5rem;
+            padding: 0.625rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            transition: all 0.15s;
+            cursor: pointer;
+        }
+        .k-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-1px); }
+        .k-card.normal  { border-left-color: #3b82f6; }
+        .k-card.warning { border-left-color: #f59e0b; }
+        .k-card.urgent  { border-left-color: #ef4444; }
+        .k-card.done    { border-left-color: #10b981; }
+        .k-card.kso     { border-left-color: #14b8a6; }
+        .k-card.proyek  { border-left-color: #a855f7; }
+        .k-card.rental  { border-left-color: #f97316; }
+        .k-empty { text-align:center; padding:1.25rem 0.5rem; color:#94a3b8; font-size:0.7rem; }
+    </style>
+</head>
+<body class="antialiased text-gray-900 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+        <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
+            <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
+                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
+            </div>
+            <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
+        </a>
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
+                </div>
+                <div class="space-y-1">
+                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-blue-500 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
+                    </a>
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-inbox w-5 text-center"></i><span class="text-sm font-medium">Inbox Approval</span>
+                    </a>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">5. KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
+                    </a>
+                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
+                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+        <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0 shadow-sm">
+            <div>
+                <h2 class="text-lg font-bold text-gray-800">Papan Kanban Pengadaan</h2>
+                <p class="text-xs text-gray-500">Rencana realisasi Barang & Jasa — data real Juni 2026</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="finance_simulation.html" class="px-3 py-1.5 text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fas fa-calculator"></i> Simulasi E-Katalog MLM
+                </a>
+                <a href="fase3_imt_pp_sppj.html" class="px-3 py-1.5 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fas fa-plus"></i> Buat PP Baru
+                </a>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-y-auto p-6 bg-gray-50">
+
+            <!-- ───── BARANG PIPELINE ───── -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fas fa-boxes text-blue-600"></i> Pipeline: Pengadaan Barang
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5"><i class="fas fa-user-circle mr-1"></i> PIC: <strong>Kasie Pengadaan Barang</strong></p>
+                    </div>
+                    <div class="flex gap-2">
+                        <span id="barang-total-pp" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold">Memuat...</span>
+                        <span id="barang-total-nilai" class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold"></span>
+                    </div>
+                </div>
+
+                <div class="kanban-board">
+                    <div class="kanban-col border-t-4 border-t-slate-400">
+                        <div class="kanban-header">
+                            <span>1. Rencana / Daftar Masuk</span>
+                            <span id="barang-col1-count" class="bg-slate-200 text-slate-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards" id="barang-col1">
+                            <div class="k-empty"><i class="fas fa-spinner fa-spin"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-indigo-400">
+                        <div class="kanban-header">
+                            <span>2. Bidding & Penawaran</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-blue-500">
+                        <div class="kanban-header">
+                            <span>3. Presentasi & Nego</span>
+                            <span class="bg-blue-100 text-blue-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-purple-500">
+                        <div class="kanban-header">
+                            <span>4. Draft PO</span>
+                            <span class="bg-purple-100 text-purple-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-amber-500">
+                        <div class="kanban-header">
+                            <span>5. Menunggu Bayar DP</span>
+                            <span id="barang-col5-count" class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards" id="barang-col5">
+                            <div class="k-empty"><i class="fas fa-spinner fa-spin"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-emerald-500">
+                        <div class="kanban-header">
+                            <span>6. PO Issued / Termin Berjalan</span>
+                            <span id="barang-col6-count" class="bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards" id="barang-col6">
+                            <div class="k-empty"><i class="fas fa-spinner fa-spin"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ───── JASA PIPELINE ───── -->
+            <div class="mb-8 border-t border-slate-200 pt-8">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fas fa-tools text-indigo-600"></i> Pipeline: Pengadaan Jasa & Program Berjalan
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5"><i class="fas fa-user-circle mr-1"></i> PIC: <strong>Kasie Pengadaan Jasa</strong></p>
+                    </div>
+                    <div class="flex gap-2">
+                        <span id="jasa-total-pp" class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold">Memuat...</span>
+                        <span id="jasa-total-nilai" class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold"></span>
+                    </div>
+                </div>
+
+                <div class="kanban-board">
+                    <div class="kanban-col border-t-4 border-t-slate-400">
+                        <div class="kanban-header">
+                            <span>1. PP & TOR Masuk</span>
+                            <span class="bg-slate-200 text-slate-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-indigo-400">
+                        <div class="kanban-header">
+                            <span>2. Bidding Vendor Jasa</span>
+                            <span class="bg-indigo-100 text-indigo-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-blue-500">
+                        <div class="kanban-header">
+                            <span>3. Aanwijzing & Presentasi</span>
+                            <span class="bg-blue-100 text-blue-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-purple-500">
+                        <div class="kanban-header">
+                            <span>4. Negosiasi & Draft SPK</span>
+                            <span class="bg-purple-100 text-purple-600 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-amber-500">
+                        <div class="kanban-header">
+                            <span>5. Persetujuan Keuangan</span>
+                            <span class="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards">
+                            <div class="k-empty text-slate-300">Belum ada item</div>
+                        </div>
+                    </div>
+
+                    <div class="kanban-col border-t-4 border-t-emerald-500">
+                        <div class="kanban-header">
+                            <span>6. SPK Issued / Program Berjalan</span>
+                            <span id="jasa-col6-count" class="bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-full">—</span>
+                        </div>
+                        <div class="kanban-cards" id="jasa-col6">
+                            <div class="k-empty"><i class="fas fa-spinner fa-spin"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ───── PROGRAM BERJALAN (beririsan Legal & KSU) ───── -->
+            <div class="mb-8 border-t border-slate-200 pt-8">
+                <div class="flex items-center justify-between mb-5">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fas fa-project-diagram text-violet-600"></i> Program Jasa Sedang Berjalan
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Rencana realisasi yang beririsan dengan Legal, KSU, dan Keuangan</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="legal_dashboard.html" class="px-3 py-1.5 text-xs font-semibold bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center gap-1.5 transition">
+                            <i class="fas fa-gavel"></i> Legal Dashboard
+                        </a>
+                        <a href="ksu_dashboard.html" class="px-3 py-1.5 text-xs font-semibold bg-teal-600 hover:bg-teal-700 text-white rounded-lg flex items-center gap-1.5 transition">
+                            <i class="fas fa-flask"></i> KSU Dashboard
+                        </a>
+                    </div>
+                </div>
+                <div id="program-berjalan-list">
+                    <div class="text-center py-10 text-slate-400 text-sm"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat program berjalan...</div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Card Detail Modal -->
+    <div id="cardModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[85vh] overflow-hidden flex flex-col transform scale-95 opacity-0 transition-all duration-200" id="cardModalContent">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <div class="flex items-center gap-3">
+                    <span class="px-3 py-1 bg-slate-200 text-slate-700 rounded-lg text-sm font-bold font-mono" id="modalNoPP">—</span>
+                    <span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded text-xs font-bold" id="modalKategori">kategori</span>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <h3 class="text-lg font-bold text-slate-800 mb-1" id="modalVendor">Vendor</h3>
+                <p class="text-sm text-slate-500 mb-5" id="modalKeterangan">Keterangan</p>
+                <div class="grid grid-cols-2 gap-3 mb-5">
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <p class="text-xs text-slate-500 mb-1">Nilai</p>
+                        <p class="text-base font-black text-blue-700" id="modalNilai">Rp —</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg">
+                        <p class="text-xs text-slate-500 mb-1">Periode</p>
+                        <p class="text-sm font-bold text-slate-700" id="modalPeriode">—</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-slate-50 p-3 rounded-lg">
+                        <p class="text-xs text-slate-500 mb-1">No. PO/SPK</p>
+                        <p class="text-sm font-bold text-slate-700" id="modalPO">—</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-lg">
+                        <p class="text-xs text-slate-500 mb-1">Rencana Bayar</p>
+                        <p class="text-sm font-bold text-slate-700" id="modalRencanaBayar">—</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+function fmt(n) {
+    if (!n) return 'Rp 0';
+    return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+}
+
+function fmtShort(n) {
+    if (!n) return 'Rp 0';
+    if (n >= 1e9) return 'Rp ' + (n/1e9).toFixed(1) + 'M';
+    if (n >= 1e6) return 'Rp ' + (n/1e6).toFixed(0) + 'jt';
+    return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+}
+
+let _modalData = {};
+
+function makeCard(item, cssClass, extraHtml) {
+    const noRef = (item.no_po_spk || item.no_referensi || '').trim() || '—';
+    const vendor = (item.vendor || '').trim() || item.keterangan?.substring(0, 35) || '—';
+    const ket = (item.keterangan || '').trim().substring(0, 55);
+    const dataId = item.id;
+    return `<div class="k-card ${cssClass}" onclick="openModal(${JSON.stringify(dataId)})">
+        <div class="flex justify-between items-start mb-1.5 gap-1">
+            <span class="text-[9px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded truncate max-w-[60%]">${noRef}</span>
+            <span class="text-[9px] font-bold text-slate-500 shrink-0">${item.unit_sbu || ''}</span>
+        </div>
+        <h5 class="font-bold text-[11px] text-slate-800 leading-tight mb-0.5 line-clamp-2">${vendor}</h5>
+        <p class="text-[10px] text-slate-500 leading-tight mb-1.5 line-clamp-2">${ket}</p>
+        <div class="text-xs font-black text-blue-700">${fmtShort(item.jumlah)}</div>
+        ${extraHtml || ''}
+    </div>`;
+}
+
+function openModal(id) {
+    const item = _modalData[id];
+    if (!item) return;
+    document.getElementById('modalNoPP').textContent = item.no_po_spk || item.no_referensi || '—';
+    document.getElementById('modalKategori').textContent = item.kategori || '—';
+    document.getElementById('modalVendor').textContent = item.vendor || '—';
+    document.getElementById('modalKeterangan').textContent = item.keterangan || '—';
+    document.getElementById('modalNilai').textContent = fmt(item.jumlah);
+    document.getElementById('modalPeriode').textContent = item.periode || '—';
+    document.getElementById('modalPO').textContent = item.no_po_spk || '—';
+    document.getElementById('modalRencanaBayar').textContent = item.rencana_bayar || '—';
+    const modal = document.getElementById('cardModal');
+    const content = document.getElementById('cardModalContent');
+    modal.classList.remove('hidden');
+    void modal.offsetWidth;
+    content.classList.remove('scale-95','opacity-0');
+    content.classList.add('scale-100','opacity-100');
+}
+
+function closeModal() {
+    const content = document.getElementById('cardModalContent');
+    content.classList.remove('scale-100','opacity-100');
+    content.classList.add('scale-95','opacity-0');
+    setTimeout(() => document.getElementById('cardModal').classList.add('hidden'), 200);
+}
+
+async function loadBarangKanban() {
+    try {
+        const res = await fetch('/api/finance/rencana-pembayaran?periode=Juni%202026');
+        const json = await res.json();
+        const items = (json.data || []);
+        items.forEach(i => { _modalData[i.id] = i; });
+
+        const nonAlkes  = items.filter(i => i.kategori === 'non_alkes');
+        const dpAlkes   = items.filter(i => i.kategori === 'dp_alkes');
+        const terminAlkes = items.filter(i => i.kategori === 'termin_alkes');
+
+        const col1 = document.getElementById('barang-col1');
+        col1.innerHTML = nonAlkes.length
+            ? nonAlkes.map(i => makeCard(i, 'normal',
+                '<div class="text-[9px] text-slate-400 mt-1"><i class="fas fa-list-ul mr-0.5"></i> Masuk daftar rencana</div>'
+              )).join('')
+            : '<div class="k-empty">Tidak ada item</div>';
+        document.getElementById('barang-col1-count').textContent = nonAlkes.length;
+
+        const col5 = document.getElementById('barang-col5');
+        col5.innerHTML = dpAlkes.length
+            ? dpAlkes.map(i => makeCard(i, 'warning',
+                '<div class="text-[9px] text-amber-600 mt-1"><i class="fas fa-dollar-sign mr-0.5"></i> Menunggu Pembayaran DP</div>'
+              )).join('')
+            : '<div class="k-empty">Tidak ada item</div>';
+        document.getElementById('barang-col5-count').textContent = dpAlkes.length;
+
+        const col6 = document.getElementById('barang-col6');
+        col6.innerHTML = terminAlkes.length
+            ? terminAlkes.map(i => makeCard(i, 'done',
+                '<div class="text-[9px] text-emerald-600 mt-1"><i class="fas fa-sync-alt mr-0.5"></i> Termin berlangsung</div>'
+              )).join('')
+            : '<div class="k-empty">Tidak ada item</div>';
+        document.getElementById('barang-col6-count').textContent = terminAlkes.length;
+
+        const totalItem = nonAlkes.length + dpAlkes.length + terminAlkes.length;
+        const totalNilai = [...nonAlkes, ...dpAlkes, ...terminAlkes].reduce((s,i) => s + (i.jumlah||0), 0);
+        document.getElementById('barang-total-pp').textContent = `Total: ${totalItem} Item`;
+        document.getElementById('barang-total-nilai').textContent = fmtShort(totalNilai);
+
+    } catch(e) {
+        console.error('Gagal load barang kanban:', e);
+        document.getElementById('barang-col1').innerHTML = '<div class="k-empty text-red-400">Gagal memuat</div>';
+    }
+}
+
+async function loadJasaKanban() {
+    try {
+        const res = await fetch('/api/finance/program-berjalan');
+        const json = await res.json();
+        const items = (json.data || []);
+        items.forEach(i => { _modalData[i.id] = i; });
+
+        const jasa   = items.filter(i => i.kategori === 'jasa_non_rutin');
+        const kso    = items.filter(i => i.kategori === 'kso_rutin');
+        const rental = items.filter(i => i.kategori === 'rental');
+        const all = [...jasa, ...kso, ...rental];
+
+        const col6 = document.getElementById('jasa-col6');
+        col6.innerHTML = all.length ? all.map(i => {
+            const cls = i.kategori === 'kso_rutin' ? 'kso'
+                      : i.kategori === 'rental'    ? 'rental'
+                      : 'proyek';
+            const badgeColor = cls === 'kso' ? 'teal' : cls === 'rental' ? 'orange' : 'violet';
+            const badgeLabel = cls === 'kso' ? 'KSO Berjalan' : cls === 'rental' ? 'Rental' : 'Proyek';
+            const legalLink = i.link_legal
+                ? `<a href="legal_dashboard.html" class="text-[9px] bg-violet-100 text-violet-700 px-1.5 py-0.5 rounded font-bold hover:bg-violet-200">Legal</a>`
+                : '';
+            const ksuLink = i.link_ksu
+                ? `<a href="ksu_dashboard.html" class="text-[9px] bg-teal-100 text-teal-700 px-1.5 py-0.5 rounded font-bold hover:bg-teal-200">KSU</a>`
+                : '';
+            const extra = `<div class="flex items-center gap-1 mt-1.5 flex-wrap">
+                <span class="text-[9px] bg-${badgeColor}-100 text-${badgeColor}-700 px-1.5 py-0.5 rounded font-bold">${badgeLabel}</span>
+                ${legalLink}${ksuLink}
+            </div>`;
+            return makeCard(i, cls, extra);
+        }).join('') : '<div class="k-empty">Tidak ada item</div>';
+        document.getElementById('jasa-col6-count').textContent = all.length;
+
+        const totalNilai = all.reduce((s,i) => s + (i.jumlah||0), 0);
+        document.getElementById('jasa-total-pp').textContent = `Total: ${all.length} Program`;
+        document.getElementById('jasa-total-nilai').textContent = fmtShort(totalNilai);
+
+        renderProgramBerjalan(jasa, kso, rental);
+
+    } catch(e) {
+        console.error('Gagal load jasa:', e);
+        document.getElementById('jasa-col6').innerHTML = '<div class="k-empty text-red-400">Gagal memuat</div>';
+    }
+}
+
+function renderProgramBerjalan(jasa, kso, rental) {
+    const groups = [
+        {
+            label: 'Jasa Non Rutin (Proyek & Konsultan)',
+            items: jasa,
+            colorBg: 'bg-violet-50', colorBorder: 'border-violet-200',
+            colorText: 'text-violet-700', colorDot: 'bg-violet-400',
+            icon: 'fas fa-hard-hat',
+            link: 'legal_dashboard.html', linkLabel: 'Lihat Kontrak di Legal',
+            linkColor: 'text-violet-600 hover:text-violet-800',
+        },
+        {
+            label: 'KSO Laboratorium (Rutin)',
+            items: kso,
+            colorBg: 'bg-teal-50', colorBorder: 'border-teal-200',
+            colorText: 'text-teal-700', colorDot: 'bg-teal-400',
+            icon: 'fas fa-flask',
+            link: 'ksu_dashboard.html', linkLabel: 'Lihat di KSU Dashboard',
+            linkColor: 'text-teal-600 hover:text-teal-800',
+        },
+        {
+            label: 'Rental Kendaraan',
+            items: rental,
+            colorBg: 'bg-orange-50', colorBorder: 'border-orange-200',
+            colorText: 'text-orange-700', colorDot: 'bg-orange-400',
+            icon: 'fas fa-car',
+            link: null, linkLabel: null,
+            linkColor: '',
+        },
+    ];
+
+    const container = document.getElementById('program-berjalan-list');
+    const activeGroups = groups.filter(g => g.items.length > 0);
+
+    if (activeGroups.length === 0) {
+        container.innerHTML = '<p class="text-sm text-slate-400 text-center py-8">Tidak ada program berjalan</p>';
+        return;
+    }
+
+    container.innerHTML = `<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    ${activeGroups.map(g => `
+        <div class="${g.colorBg} border ${g.colorBorder} rounded-xl p-4">
+            <div class="flex items-center justify-between mb-3">
+                <h4 class="text-sm font-bold ${g.colorText} flex items-center gap-2">
+                    <i class="${g.icon}"></i> ${g.label}
+                    <span class="text-xs font-normal text-slate-500">(${g.items.length})</span>
+                </h4>
+                ${g.link ? `<a href="${g.link}" class="text-xs font-semibold ${g.linkColor} flex items-center gap-1 transition">
+                    <i class="fas fa-external-link-alt text-[10px]"></i> ${g.linkLabel}
+                </a>` : ''}
+            </div>
+            <div class="space-y-2">
+                ${g.items.map(i => `
+                    <div class="bg-white rounded-lg p-2.5 border border-white/80 shadow-sm flex items-start gap-2">
+                        <span class="w-2 h-2 rounded-full ${g.colorDot} mt-1.5 shrink-0"></span>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-bold text-slate-800 truncate">${i.vendor || i.keterangan}</p>
+                            <p class="text-[10px] text-slate-500 truncate leading-tight">${i.keterangan || ''}</p>
+                            <p class="text-xs font-black ${g.colorText} mt-0.5">${fmtShort(i.jumlah)}</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-200 text-right text-xs font-bold text-slate-700">
+                Total: ${fmt(g.items.reduce((s,i) => s + (i.jumlah||0), 0))}
+            </div>
+        </div>
+    `).join('')}
+    </div>`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadBarangKanban();
+    loadJasaKanban();
+});
+</script>
+
+</body>
+</html>

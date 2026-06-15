@@ -1,296 +1,313 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0.1">
-  <node ID="root" TEXT="MODULE 1: Procurement Platform (Tender → Quote → PO → Payment)">
-    <edge COLOR="#000000" WIDTH="2"/>
-    <font NAME="Arial" SIZE="16" BOLD="true"/>
+<map version="freeplane 1.12.15">
+<!--To view this file, download free mind mapping software Freeplane from https://www.freeplane.org -->
+<bookmarks/>
+<node TEXT="MODULE 1: Procurement Platform (Tender → Quote → PO → Payment)" FOLDED="false" ID="root" CREATED="1781494663377" MODIFIED="1781494663377">
+<edge COLOR="#000000" WIDTH="2"/>
+<font NAME="Arial" SIZE="16" BOLD="true"/>
+<hook NAME="MapStyle" zoom="0.75131476">
+    <properties edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" auto_compact_layout="true" fit_to_viewport="false" show_icons="BESIDE_NODES" show_note_icons="true" show_tags="UNDER_NODES" showTagCategories="false" show_icon_for_attributes="true"/>
+    <tags category_separator="::"/>
 
-    <!-- REQUISITION FLOW -->
-    <node ID="requisition" TEXT="REQUISITION FLOW" POSITION="right">
-      <edge COLOR="#3498DB" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#3498DB"/>
-
-      <node TEXT="SBU Creates Request">
-        <node TEXT="Daan Umum: PP (Permintaan Pembelian)"/>
-        <node TEXT="Daan Barang Investasi: IMT (Inventory Material Request)"/>
-        <node TEXT="Daan Jasa: SPPJ (Surat Permintaan Pekerjaan Jasa)"/>
-      </node>
-
-      <node TEXT="Information Capture">
-        <node TEXT="Item/Service description"/>
-        <node TEXT="Quantity &amp; Specification"/>
-        <node TEXT="Required delivery date"/>
-        <node TEXT="Budget code &amp; amount"/>
-        <node TEXT="Cost center"/>
-      </node>
-
-      <node TEXT="AI Validation">
-        <node TEXT="Budget availability check"/>
-        <node TEXT="Approval authority validation"/>
-        <node TEXT="Specification compliance"/>
-        <node TEXT="Historical price check"/>
-      </node>
-
-      <node TEXT="Approval Workflow">
-        <node TEXT="SBU Head approval"/>
-        <node TEXT="Budget manager review"/>
-        <node TEXT="Finance pre-check"/>
-        <node TEXT="Ready for tender"/>
-      </node>
-    </node>
-
-    <!-- APPROVAL WORKFLOW -->
-    <node ID="approval" TEXT="APPROVAL WORKFLOW" POSITION="right">
-      <edge COLOR="#E74C3C" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#E74C3C"/>
-
-      <node TEXT="Authority Matrix (Daan Umum)">
-        <node TEXT="≤10M: Kasie + Manager"/>
-        <node TEXT="&gt;10-25M: + GM"/>
-        <node TEXT="&gt;25-50M: + Direktur Ops"/>
-        <node TEXT="&gt;50-100M: + Direktur Utama"/>
-      </node>
-
-      <node TEXT="Authority Matrix (Daan Jasa)">
-        <node TEXT="1-25M: Kasie + Manager"/>
-        <node TEXT="&gt;25-100M: + GM"/>
-        <node TEXT="&gt;100M-1B: + Direktur Ops"/>
-        <node TEXT="&gt;1B: + Direktur Utama (+ 5% bank guarantee)"/>
-      </node>
-
-      <node TEXT="Approval Rules">
-        <node TEXT="Sequential approval required"/>
-        <node TEXT="No skipping authority levels"/>
-        <node TEXT="Time-based escalation"/>
-        <node TEXT="Override approval trail"/>
-      </node>
-
-      <node TEXT="System Enforcement">
-        <node TEXT="AI validates approval authority"/>
-        <node TEXT="System blocks if insufficient authority"/>
-        <node TEXT="Audit trail of all approvals"/>
-      </node>
-    </node>
-
-    <!-- TENDER PROCESS -->
-    <node ID="tender" TEXT="TENDER PROCESS" POSITION="right">
-      <edge COLOR="#27AE60" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#27AE60"/>
-
-      <node TEXT="Tender Preparation">
-        <node TEXT="SPPH (Surat Permintaan Penawaran) creation"/>
-        <node TEXT="HPS (Harga Perkiraan Sementara) calculation"/>
-        <node TEXT="Specification finalization"/>
-        <node TEXT="Timeline setting"/>
-      </node>
-
-      <node TEXT="Vendor Invitation">
-        <node TEXT="Select vendors from master database"/>
-        <node TEXT="Send SPPH via system"/>
-        <node TEXT="Email notification to vendors"/>
-        <node TEXT="Portal access for quote submission"/>
-      </node>
-
-      <node TEXT="Quote Collection">
-        <node TEXT="SJPH (Surat Jawaban Penawaran) submission"/>
-        <node TEXT="Quote deadline management"/>
-        <node TEXT="Document verification"/>
-        <node TEXT="Completeness check"/>
-      </node>
-
-      <node TEXT="Bid Tabulation">
-        <node TEXT="Quote compilation"/>
-        <node TEXT="Price comparison"/>
-        <node TEXT="Format validation"/>
-        <node TEXT="AI-assisted evaluation"/>
-      </node>
-
-      <node TEXT="SLA: 14 hari (typical)"/>
-    </node>
-
-    <!-- DIRECT APPOINTMENT (ALTERNATIVE) -->
-    <node ID="direct" TEXT="DIRECT APPOINTMENT (Alternative)" POSITION="right">
-      <edge COLOR="#F39C12" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#F39C12"/>
-
-      <node TEXT="Criteria for Direct">
-        <node TEXT="Emergency situations"/>
-        <node TEXT="Single source availability"/>
-        <node TEXT="Specialized services"/>
-        <node TEXT="Prev vendor continuation"/>
-      </node>
-
-      <node TEXT="Process">
-        <node TEXT="Vendor selection"/>
-        <node TEXT="Quotation request"/>
-        <node TEXT="Price negotiation"/>
-        <node TEXT="Final approval"/>
-      </node>
-
-      <node TEXT="Documentation">
-        <node TEXT="Justification memo"/>
-        <node TEXT="Approval from authority"/>
-        <node TEXT="Final quote"/>
-      </node>
-
-      <node TEXT="SLA: 5 hari (faster)"/>
-    </node>
-
-    <!-- VENDOR SCORING &amp; SELECTION -->
-    <node ID="scoring" TEXT="VENDOR SCORING &amp; SELECTION" POSITION="right">
-      <edge COLOR="#9B59B6" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#9B59B6"/>
-
-      <node TEXT="Scoring Criteria">
-        <node TEXT="Harga (Price): 25%"/>
-        <node TEXT="Kualitas (Quality): 20%"/>
-        <node TEXT="Delivery/Maintenance: 20%"/>
-        <node TEXT="User Need Fulfillment: 20%"/>
-        <node TEXT="Brand/Certification: 15%"/>
-      </node>
-
-      <node TEXT="Scoring Process">
-        <node TEXT="Create evaluation form"/>
-        <node TEXT="Assign scoring panel"/>
-        <node TEXT="Individual scoring"/>
-        <node TEXT="Consensus discussion"/>
-        <node TEXT="Final scoring"/>
-      </node>
-
-      <node TEXT="Scoring System">
-        <node TEXT="1-5 point scale"/>
-        <node TEXT="Weighted calculation"/>
-        <node TEXT="Total score ranking"/>
-      </node>
-
-      <node TEXT="Winner Selection">
-        <node TEXT="Highest score vendor selected"/>
-        <node TEXT="Price acceptability check (vs HPS)"/>
-        <node TEXT="Final approval"/>
-      </node>
-
-      <node TEXT="Output: Winning vendor + final price"/>
-    </node>
-
-    <!-- PO GENERATION -->
-    <node ID="po" TEXT="PO GENERATION &amp; ISSUANCE" POSITION="right">
-      <edge COLOR="#16A085" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#16A085"/>
-
-      <node TEXT="PO Preparation">
-        <node TEXT="Vendor details (from master DB)"/>
-        <node TEXT="Item specifications"/>
-        <node TEXT="Quantity &amp; unit price"/>
-        <node TEXT="Total amount"/>
-        <node TEXT="Delivery requirements"/>
-        <node TEXT="Payment terms"/>
-      </node>
-
-      <node TEXT="PO Content">
-        <node TEXT="PO number (auto-generated)"/>
-        <node TEXT="Vendor name &amp; address"/>
-        <node TEXT="Delivery address (SBU location)"/>
-        <node TEXT="Item line items"/>
-        <node TEXT="Terms &amp; conditions"/>
-        <node TEXT="Payment schedule"/>
-      </node>
-
-      <node TEXT="Approvals">
-        <node TEXT="Kasie review"/>
-        <node TEXT="Manager approval"/>
-        <node TEXT="Finance final check"/>
-        <node TEXT="System sign-off"/>
-      </node>
-
-      <node TEXT="Issuance">
-        <node TEXT="PO PDF generation"/>
-        <node TEXT="Vendor notification"/>
-        <node TEXT="Vendor portal update"/>
-        <node TEXT="Finance recording (commitment)"/>
-      </node>
-
-      <node TEXT="Output: Signed PO + vendor acknowledgment"/>
-    </node>
-
-    <!-- SLA TRACKING -->
-    <node ID="sla" TEXT="SLA TRACKING" POSITION="left">
-      <edge COLOR="#34495E" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#34495E"/>
-
-      <node TEXT="Cycle SLAs">
-        <node TEXT="PP approval: 2 hours"/>
-        <node TEXT="Tender: 14 days"/>
-        <node TEXT="Direct: 5 days"/>
-        <node TEXT="PO generation: 1 day"/>
-      </node>
-
-      <node TEXT="Monitoring">
-        <node TEXT="Real-time timer in system"/>
-        <node TEXT="Escalation alerts at 80% time used"/>
-        <node TEXT="Dashboard visibility"/>
-      </node>
-
-      <node TEXT="Reporting">
-        <node TEXT="SLA compliance rate"/>
-        <node TEXT="Bottleneck analysis"/>
-        <node TEXT="Performance trends"/>
-      </node>
-    </node>
-
-    <!-- INTEGRATION POINTS -->
-    <node ID="integration" TEXT="INTEGRATION POINTS" POSITION="left">
-      <edge COLOR="#1ABC9C" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#1ABC9C"/>
-
-      <node TEXT="Systems Connected">
-        <node TEXT="Finance (budget check)"/>
-        <node TEXT="Vendor Master DB"/>
-        <node TEXT="Warehouse (delivery address)"/>
-        <node TEXT="SIMRS (integration)"/>
-      </node>
-
-      <node TEXT="Data Flow">
-        <node TEXT="Budget data in"/>
-        <node TEXT="Vendor data in"/>
-        <node TEXT="PO data out to Finance"/>
-        <node TEXT="Delivery tracking"/>
-      </node>
-
-      <node TEXT="Notifications">
-        <node TEXT="Email to SBU on approval"/>
-        <node TEXT="Email to vendor on PO issuance"/>
-        <node TEXT="Portal update for all parties"/>
-      </node>
-    </node>
-
-    <!-- KEY SUCCESS FACTORS -->
-    <node ID="success" TEXT="KEY SUCCESS FACTORS" POSITION="left">
-      <edge COLOR="#C0392B" WIDTH="2"/>
-      <font NAME="Arial" SIZE="12" BOLD="true" COLOR="#C0392B"/>
-
-      <node TEXT="Data Quality">
-        <node TEXT="Complete vendor master DB"/>
-        <node TEXT="Accurate specifications"/>
-        <node TEXT="Correct budget codes"/>
-      </node>
-
-      <node TEXT="Process Discipline">
-        <node TEXT="Follow approval matrix"/>
-        <node TEXT="Complete documentation"/>
-        <node TEXT="Timely actions"/>
-      </node>
-
-      <node TEXT="AI Guardian Role">
-        <node TEXT="Validate specifications"/>
-        <node TEXT="Check authority"/>
-        <node TEXT="Suggest improvements"/>
-        <node TEXT="Alert on issues"/>
-      </node>
-
-      <node TEXT="Stakeholder Engagement">
-        <node TEXT="SBU cooperation"/>
-        <node TEXT="Vendor responsiveness"/>
-        <node TEXT="Finance coordination"/>
-      </node>
-    </node>
-  </node>
+<map_styles>
+<stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24 pt">
+<font SIZE="24"/>
+<stylenode LOCALIZED_TEXT="styles.predefined" POSITION="bottom_or_right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="default" ID="ID_271890427" ICON_SIZE="12 pt" COLOR="#000000" STYLE="fork">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" DASH="" FONT_SIZE="9" FONT_FAMILY="SansSerif" DESTINATION="ID_271890427" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+<font NAME="SansSerif" SIZE="10" BOLD="false" ITALIC="false"/>
+<richcontent TYPE="DETAILS" CONTENT-TYPE="plain/auto"/>
+<richcontent TYPE="NOTE" CONTENT-TYPE="plain/auto"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.details"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.tags">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.attributes">
+<font SIZE="9"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#000000" BACKGROUND_COLOR="#ffffff" TEXT_ALIGN="LEFT"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.floating">
+<edge STYLE="hide_edge"/>
+<cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.selection" BACKGROUND_COLOR="#afd3f7" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#afd3f7"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="bottom_or_right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.important" ID="ID_67550811">
+<icon BUILTIN="yes"/>
+<arrowlink COLOR="#003399" TRANSPARENCY="255" DESTINATION="ID_67550811"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.flower" COLOR="#ffffff" BACKGROUND_COLOR="#255aba" STYLE="oval" TEXT_ALIGN="CENTER" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="22 pt" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#f9d71c" BORDER_DASH_LIKE_EDGE="false" BORDER_DASH="CLOSE_DOTS" MAX_WIDTH="6 cm" MIN_WIDTH="3 cm"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="bottom_or_right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#000000" STYLE="oval" SHAPE_HORIZONTAL_MARGIN="10 pt" SHAPE_VERTICAL_MARGIN="10 pt">
+<font SIZE="18"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#0033ff">
+<font SIZE="16"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#00b439">
+<font SIZE="14"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#990000">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#111111">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,11"/>
+</stylenode>
+</stylenode>
+</map_styles>
+</hook>
+<node TEXT="REQUISITION FLOW" POSITION="bottom_or_right" ID="requisition" CREATED="1781494663382" MODIFIED="1781494663382">
+<edge COLOR="#3498db" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="SBU Creates Request" ID="ID_1369498938" CREATED="1781494663382" MODIFIED="1781494663382">
+<node TEXT="Daan Umum: PP (Permintaan Pembelian)" ID="ID_1890216626" CREATED="1781494663382" MODIFIED="1781494663382"/>
+<node TEXT="Daan Barang Investasi: IMT (Inventory Material Request)" ID="ID_1519368023" CREATED="1781494663382" MODIFIED="1781494663382"/>
+<node TEXT="Daan Jasa: SPPJ (Surat Permintaan Pekerjaan Jasa)" ID="ID_10657982" CREATED="1781494663382" MODIFIED="1781494663382"/>
+</node>
+<node TEXT="Information Capture" ID="ID_1986826802" CREATED="1781494663382" MODIFIED="1781494663382">
+<node TEXT="Item/Service description" ID="ID_53317558" CREATED="1781494663382" MODIFIED="1781494663382"/>
+<node TEXT="Quantity &amp; Specification" ID="ID_1902558769" CREATED="1781494663382" MODIFIED="1781494663382"/>
+<node TEXT="Required delivery date" ID="ID_1312799960" CREATED="1781494663382" MODIFIED="1781494663382"/>
+<node TEXT="Budget code &amp; amount" ID="ID_780625112" CREATED="1781494663383" MODIFIED="1781494663383"/>
+<node TEXT="Cost center" ID="ID_671603832" CREATED="1781494663383" MODIFIED="1781494663383"/>
+</node>
+<node TEXT="AI Validation" FOLDED="true" ID="ID_1675849775" CREATED="1781494663383" MODIFIED="1781494663383">
+<node TEXT="Budget availability check" ID="ID_797874219" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="Approval authority validation" ID="ID_320452465" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="Specification compliance" ID="ID_1962039078" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="Historical price check" ID="ID_1659893762" CREATED="1781494663385" MODIFIED="1781494663385"/>
+</node>
+<node TEXT="Approval Workflow" ID="ID_1082546153" CREATED="1781494663385" MODIFIED="1781494663385">
+<node TEXT="SBU Head approval" ID="ID_985448560" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="Budget manager review" ID="ID_46850263" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="Finance pre-check" ID="ID_1208273994" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="Ready for tender" ID="ID_550116806" CREATED="1781494663385" MODIFIED="1781494663385"/>
+</node>
+</node>
+<node TEXT="APPROVAL WORKFLOW" POSITION="bottom_or_right" ID="approval" CREATED="1781494663385" MODIFIED="1781494663385">
+<edge COLOR="#e74c3c" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Authority Matrix (Daan Umum)" ID="ID_286250444" CREATED="1781494663385" MODIFIED="1781494663385">
+<node TEXT="≤10M: Kasie + Manager" ID="ID_316403012" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="&gt;10-25M: + GM" ID="ID_1942680645" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="&gt;25-50M: + Direktur Ops" ID="ID_517278625" CREATED="1781494663385" MODIFIED="1781494663385"/>
+<node TEXT="&gt;50-100M: + Direktur Utama" ID="ID_815962510" CREATED="1781494663385" MODIFIED="1781494663385"/>
+</node>
+<node TEXT="Authority Matrix (Daan Jasa)" ID="ID_1409727736" CREATED="1781494663386" MODIFIED="1781494663386">
+<node TEXT="1-25M: Kasie + Manager" ID="ID_256743168" CREATED="1781494663386" MODIFIED="1781494663386"/>
+<node TEXT="&gt;25-100M: + GM" ID="ID_589040242" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="&gt;100M-1B: + Direktur Ops" ID="ID_201865902" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="&gt;1B: + Direktur Utama (+ 5% bank guarantee)" ID="ID_1454680822" CREATED="1781494663388" MODIFIED="1781494663388"/>
+</node>
+<node TEXT="Approval Rules" ID="ID_744217935" CREATED="1781494663388" MODIFIED="1781494663388">
+<node TEXT="Sequential approval required" ID="ID_1393061438" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="No skipping authority levels" ID="ID_620976644" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="Time-based escalation" ID="ID_1185171505" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="Override approval trail" ID="ID_224656084" CREATED="1781494663388" MODIFIED="1781494663388"/>
+</node>
+<node TEXT="System Enforcement" ID="ID_1673751350" CREATED="1781494663388" MODIFIED="1781494663388">
+<node TEXT="AI validates approval authority" ID="ID_912866141" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="System blocks if insufficient authority" ID="ID_879791814" CREATED="1781494663388" MODIFIED="1781494663388"/>
+<node TEXT="Audit trail of all approvals" ID="ID_129534172" CREATED="1781494663388" MODIFIED="1781494663388"/>
+</node>
+</node>
+<node TEXT="TENDER PROCESS" POSITION="bottom_or_right" ID="tender" CREATED="1781494663388" MODIFIED="1781494663388">
+<edge COLOR="#27ae60" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Tender Preparation" ID="ID_975922304" CREATED="1781494663389" MODIFIED="1781494663389">
+<node TEXT="SPPH (Surat Permintaan Penawaran) creation" ID="ID_181499226" CREATED="1781494663389" MODIFIED="1781494663389"/>
+<node TEXT="HPS (Harga Perkiraan Sementara) calculation" ID="ID_499546172" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Specification finalization" ID="ID_639128406" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Timeline setting" ID="ID_1665584815" CREATED="1781494663391" MODIFIED="1781494663391"/>
+</node>
+<node TEXT="Vendor Invitation" ID="ID_436914168" CREATED="1781494663391" MODIFIED="1781494663391">
+<node TEXT="Select vendors from master database" ID="ID_1679577679" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Send SPPH via system" ID="ID_1237039983" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Email notification to vendors" ID="ID_528844628" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Portal access for quote submission" ID="ID_1597149626" CREATED="1781494663391" MODIFIED="1781494663391"/>
+</node>
+<node TEXT="Quote Collection" ID="ID_1990876616" CREATED="1781494663391" MODIFIED="1781494663391">
+<node TEXT="SJPH (Surat Jawaban Penawaran) submission" ID="ID_1548184011" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Quote deadline management" ID="ID_1286525870" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Document verification" ID="ID_1844850037" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Completeness check" ID="ID_1002125703" CREATED="1781494663391" MODIFIED="1781494663391"/>
+</node>
+<node TEXT="Bid Tabulation" ID="ID_1225108065" CREATED="1781494663391" MODIFIED="1781494663391">
+<node TEXT="Quote compilation" ID="ID_1154177148" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Price comparison" ID="ID_577774264" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="Format validation" ID="ID_957397923" CREATED="1781494663391" MODIFIED="1781494663391"/>
+<node TEXT="AI-assisted evaluation" ID="ID_1917021171" CREATED="1781494663391" MODIFIED="1781494663391"/>
+</node>
+<node TEXT="SLA: 14 hari (typical)" ID="ID_884833523" CREATED="1781494663391" MODIFIED="1781494663391"/>
+</node>
+<node TEXT="DIRECT APPOINTMENT (Alternative)" POSITION="bottom_or_right" ID="direct" CREATED="1781494663394" MODIFIED="1781494663394">
+<edge COLOR="#f39c12" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Criteria for Direct" FOLDED="true" ID="ID_1325529768" CREATED="1781494663394" MODIFIED="1781494663394">
+<node TEXT="Emergency situations" ID="ID_507739433" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Single source availability" ID="ID_1756351180" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Specialized services" ID="ID_272722175" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Prev vendor continuation" ID="ID_227164489" CREATED="1781494663394" MODIFIED="1781494663394"/>
+</node>
+<node TEXT="Process" FOLDED="true" ID="ID_908590453" CREATED="1781494663394" MODIFIED="1781494663394">
+<node TEXT="Vendor selection" ID="ID_1577848932" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Quotation request" ID="ID_1560675435" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Price negotiation" ID="ID_334345877" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Final approval" ID="ID_1954976359" CREATED="1781494663394" MODIFIED="1781494663394"/>
+</node>
+<node TEXT="Documentation" FOLDED="true" ID="ID_141668204" CREATED="1781494663394" MODIFIED="1781494663394">
+<node TEXT="Justification memo" ID="ID_297843631" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Approval from authority" ID="ID_578373698" CREATED="1781494663394" MODIFIED="1781494663394"/>
+<node TEXT="Final quote" ID="ID_1076219031" CREATED="1781494663394" MODIFIED="1781494663394"/>
+</node>
+<node TEXT="SLA: 5 hari (faster)" ID="ID_668831477" CREATED="1781494663394" MODIFIED="1781494663394"/>
+</node>
+<node TEXT="VENDOR SCORING &amp; SELECTION" POSITION="bottom_or_right" ID="scoring" CREATED="1781494663395" MODIFIED="1781494663395">
+<edge COLOR="#9b59b6" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Scoring Criteria" ID="ID_934759502" CREATED="1781494663398" MODIFIED="1781494663398">
+<node TEXT="Harga (Price): 25%" ID="ID_1198687760" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Kualitas (Quality): 20%" ID="ID_122174726" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Delivery/Maintenance: 20%" ID="ID_1904671389" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="User Need Fulfillment: 20%" ID="ID_49281642" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Brand/Certification: 15%" ID="ID_323189642" CREATED="1781494663398" MODIFIED="1781494663398"/>
+</node>
+<node TEXT="Scoring Process" ID="ID_1102447219" CREATED="1781494663398" MODIFIED="1781494663398">
+<node TEXT="Create evaluation form" ID="ID_802017063" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Assign scoring panel" ID="ID_1357751502" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Individual scoring" ID="ID_912326876" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Consensus discussion" ID="ID_761860657" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Final scoring" ID="ID_513419231" CREATED="1781494663398" MODIFIED="1781494663398"/>
+</node>
+<node TEXT="Scoring System" ID="ID_1022482183" CREATED="1781494663398" MODIFIED="1781494663398">
+<node TEXT="1-5 point scale" ID="ID_823066444" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Weighted calculation" ID="ID_1729887251" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Total score ranking" ID="ID_592001188" CREATED="1781494663398" MODIFIED="1781494663398"/>
+</node>
+<node TEXT="Winner Selection" ID="ID_1760730029" CREATED="1781494663398" MODIFIED="1781494663398">
+<node TEXT="Highest score vendor selected" ID="ID_1338655575" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Price acceptability check (vs HPS)" ID="ID_840153987" CREATED="1781494663398" MODIFIED="1781494663398"/>
+<node TEXT="Final approval" ID="ID_134839959" CREATED="1781494663399" MODIFIED="1781494663399"/>
+</node>
+<node TEXT="Output: Winning vendor + final price" ID="ID_1615589567" CREATED="1781494663401" MODIFIED="1781494663401"/>
+</node>
+<node TEXT="PO GENERATION &amp; ISSUANCE" POSITION="bottom_or_right" ID="po" CREATED="1781494663401" MODIFIED="1781494663401">
+<edge COLOR="#16a085" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="PO Preparation" ID="ID_1707021929" CREATED="1781494663402" MODIFIED="1781494663402">
+<node TEXT="Vendor details (from master DB)" ID="ID_1848919986" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Item specifications" ID="ID_104927583" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Quantity &amp; unit price" ID="ID_244375596" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Total amount" ID="ID_330136120" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Delivery requirements" ID="ID_393786601" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Payment terms" ID="ID_1312522006" CREATED="1781494663402" MODIFIED="1781494663402"/>
+</node>
+<node TEXT="PO Content" ID="ID_1608408686" CREATED="1781494663402" MODIFIED="1781494663402">
+<node TEXT="PO number (auto-generated)" ID="ID_948928445" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Vendor name &amp; address" ID="ID_694343934" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Delivery address (SBU location)" ID="ID_545864915" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Item line items" ID="ID_953299281" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Terms &amp; conditions" ID="ID_1340330960" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Payment schedule" ID="ID_1761838307" CREATED="1781494663402" MODIFIED="1781494663402"/>
+</node>
+<node TEXT="Approvals" ID="ID_1708217813" CREATED="1781494663402" MODIFIED="1781494663402">
+<node TEXT="Kasie review" ID="ID_1693073618" CREATED="1781494663402" MODIFIED="1781494663402"/>
+<node TEXT="Manager approval" ID="ID_524696415" CREATED="1781494663405" MODIFIED="1781494663405"/>
+<node TEXT="Finance final check" ID="ID_536577369" CREATED="1781494663405" MODIFIED="1781494663405"/>
+<node TEXT="System sign-off" ID="ID_888578888" CREATED="1781494663405" MODIFIED="1781494663405"/>
+</node>
+<node TEXT="Issuance" ID="ID_1052038178" CREATED="1781494663405" MODIFIED="1781494663405">
+<node TEXT="PO PDF generation" ID="ID_597776714" CREATED="1781494663405" MODIFIED="1781494663405"/>
+<node TEXT="Vendor notification" ID="ID_1130806466" CREATED="1781494663405" MODIFIED="1781494663405"/>
+<node TEXT="Vendor portal update" ID="ID_133985975" CREATED="1781494663405" MODIFIED="1781494663405"/>
+<node TEXT="Finance recording (commitment)" ID="ID_738221258" CREATED="1781494663405" MODIFIED="1781494663405"/>
+</node>
+<node TEXT="Output: Signed PO + vendor acknowledgment" ID="ID_559986654" CREATED="1781494663405" MODIFIED="1781494663405"/>
+</node>
+<node TEXT="SLA TRACKING" POSITION="top_or_left" ID="sla" CREATED="1781494663406" MODIFIED="1781494663406">
+<edge COLOR="#34495e" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Cycle SLAs" ID="ID_1445316627" CREATED="1781494663406" MODIFIED="1781494663406">
+<node TEXT="PP approval: 2 hours" ID="ID_715866383" CREATED="1781494663406" MODIFIED="1781494663406"/>
+<node TEXT="Tender: 14 days" ID="ID_1363251688" CREATED="1781494663406" MODIFIED="1781494663406"/>
+<node TEXT="Direct: 5 days" ID="ID_541044717" CREATED="1781494663406" MODIFIED="1781494663406"/>
+<node TEXT="PO generation: 1 day" ID="ID_462405864" CREATED="1781494663406" MODIFIED="1781494663406"/>
+</node>
+<node TEXT="Monitoring" ID="ID_154427468" CREATED="1781494663406" MODIFIED="1781494663406">
+<node TEXT="Real-time timer in system" ID="ID_1020312983" CREATED="1781494663406" MODIFIED="1781494663406"/>
+<node TEXT="Escalation alerts at 80% time used" ID="ID_977364870" CREATED="1781494663406" MODIFIED="1781494663406"/>
+<node TEXT="Dashboard visibility" ID="ID_626839217" CREATED="1781494663408" MODIFIED="1781494663408"/>
+</node>
+<node TEXT="Reporting" ID="ID_295493058" CREATED="1781494663408" MODIFIED="1781494663408">
+<node TEXT="SLA compliance rate" ID="ID_1619738221" CREATED="1781494663408" MODIFIED="1781494663408"/>
+<node TEXT="Bottleneck analysis" ID="ID_531087958" CREATED="1781494663408" MODIFIED="1781494663408"/>
+<node TEXT="Performance trends" ID="ID_1663665930" CREATED="1781494663408" MODIFIED="1781494663408"/>
+</node>
+</node>
+<node TEXT="INTEGRATION POINTS" POSITION="top_or_left" ID="integration" CREATED="1781494663409" MODIFIED="1781494663409">
+<edge COLOR="#1abc9c" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Systems Connected" ID="ID_1156865821" CREATED="1781494663409" MODIFIED="1781494663409">
+<node TEXT="Finance (budget check)" ID="ID_587382171" CREATED="1781494663409" MODIFIED="1781494663409"/>
+<node TEXT="Vendor Master DB" ID="ID_835505449" CREATED="1781494663409" MODIFIED="1781494663409"/>
+<node TEXT="Warehouse (delivery address)" ID="ID_537095047" CREATED="1781494663409" MODIFIED="1781494663409"/>
+<node TEXT="SIMRS (integration)" ID="ID_1045385665" CREATED="1781494663409" MODIFIED="1781494663409"/>
+</node>
+<node TEXT="Data Flow" ID="ID_985925744" CREATED="1781494663409" MODIFIED="1781494663409">
+<node TEXT="Budget data in" ID="ID_494037140" CREATED="1781494663409" MODIFIED="1781494663409"/>
+<node TEXT="Vendor data in" ID="ID_1743380515" CREATED="1781494663409" MODIFIED="1781494663409"/>
+<node TEXT="PO data out to Finance" ID="ID_1010078619" CREATED="1781494663409" MODIFIED="1781494663409"/>
+<node TEXT="Delivery tracking" ID="ID_1877908003" CREATED="1781494663409" MODIFIED="1781494663409"/>
+</node>
+<node TEXT="Notifications" ID="ID_1862012492" CREATED="1781494663409" MODIFIED="1781494663409">
+<node TEXT="Email to SBU on approval" ID="ID_1285211368" CREATED="1781494663410" MODIFIED="1781494663410"/>
+<node TEXT="Email to vendor on PO issuance" ID="ID_1348431679" CREATED="1781494663410" MODIFIED="1781494663410"/>
+<node TEXT="Portal update for all parties" ID="ID_398667315" CREATED="1781494663411" MODIFIED="1781494663411"/>
+</node>
+</node>
+<node TEXT="KEY SUCCESS FACTORS" POSITION="top_or_left" ID="success" CREATED="1781494663412" MODIFIED="1781494663412">
+<edge COLOR="#c0392b" WIDTH="2"/>
+<font NAME="Arial" SIZE="12" BOLD="true"/>
+<node TEXT="Data Quality" ID="ID_1393542901" CREATED="1781494663412" MODIFIED="1781494663412">
+<node TEXT="Complete vendor master DB" ID="ID_77479054" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Accurate specifications" ID="ID_862516862" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Correct budget codes" ID="ID_1491243833" CREATED="1781494663412" MODIFIED="1781494663412"/>
+</node>
+<node TEXT="Process Discipline" FOLDED="true" ID="ID_1498270473" CREATED="1781494663412" MODIFIED="1781494663412">
+<node TEXT="Follow approval matrix" ID="ID_814588734" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Complete documentation" ID="ID_658038014" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Timely actions" ID="ID_125693310" CREATED="1781494663412" MODIFIED="1781494663412"/>
+</node>
+<node TEXT="AI Guardian Role" ID="ID_1501891555" CREATED="1781494663412" MODIFIED="1781494663412">
+<node TEXT="Validate specifications" ID="ID_1123717034" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Check authority" ID="ID_940923895" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Suggest improvements" ID="ID_1529596215" CREATED="1781494663412" MODIFIED="1781494663412"/>
+<node TEXT="Alert on issues" ID="ID_1876745987" CREATED="1781494663412" MODIFIED="1781494663412"/>
+</node>
+<node TEXT="Stakeholder Engagement" ID="ID_1648967057" CREATED="1781494663412" MODIFIED="1781494663412">
+<node TEXT="SBU cooperation" ID="ID_237721478" CREATED="1781494663413" MODIFIED="1781494663413"/>
+<node TEXT="Vendor responsiveness" ID="ID_1919344078" CREATED="1781494663414" MODIFIED="1781494663414"/>
+<node TEXT="Finance coordination" ID="ID_149017598" CREATED="1781494663414" MODIFIED="1781494663414"/>
+</node>
+</node>
+</node>
 </map>

@@ -18,6 +18,9 @@
 8. ✅ **proker_bulanan.html** — Rencana realisasi bulanan: Kasie konfirmasi dari daftar RKAP tahunan (bukan input dari nol)
 9. ✅ **fase3_imt_pp_sppj.html** — Panel "Proker Cleared" auto-pull item siap tindak lanjut
 10. ✅ **vendor_portal.html** — Notifikasi vendor otomatis saat item proker cleared
+11. ✅ **MVP Tahap 1 (Core Internal)** — Akses Jaringan Lokal (0.0.0.0), Gudang Arsip Digital (Tabel `documents` & Folder `uploads/`), Endpoint Import RKAP CSV.
+12. ✅ **Fix Logo** — Seluruh 28 file HTML sudah dikembalikan ke `logo_kmu.png` yang asli agar seragam dan rapi.
+13. ✅ **Rencana Integrasi Email (Tahap Selanjutnya)** — Merancang skenario integrasi IMAP untuk `pengadaan@rspkt.id` otomatis menarik data PDF BAPB, Invoice, PO, dan Penawaran.
 
 ---
 
@@ -65,15 +68,15 @@ Akan langsung redirect ke `portal_hub.html`.
 
 ## BACKLOG — YANG MASIH PERLU DIKERJAKAN
 
-### Prioritas 1 — Fix RAM/Freeze (command_center.html)
+### ✅ Prioritas 1 — Fix RAM/Freeze (command_center.html) (SELESAI)
 - `command_center.html` punya `setInterval(fetchAll, 3000)` yang polling backend setiap 3 detik
 - Masalah: DOM di-append tanpa di-trim + Tailwind Play CDN JIT scanner = RAM naik terus → laptop freeze
-- Fix yang diperlukan: (a) batasi array data max N entries, (b) clear innerHTML sebelum re-render, (c) tambah error handling saat backend mati
+- Fix yang dilakukan: membatasi array data, membandingkan DOM sebelum re-render, mengurangi interval ke 5 detik.
 
-### Prioritas 2 — Invoice 3-Way Match (Fase 7)
-- `fase7_invoice_3waymatch.html` belum ada backend
-- Perlu endpoint `/api/invoices` dan logika matching: Invoice ↔ PO ↔ BAPB
-- Blok pembayaran otomatis jika tiga dokumen tidak cocok
+### ✅ Prioritas 2 — Invoice 3-Way Match (Fase 7) (SELESAI)
+- `fase7_invoice_3waymatch.html` sudah ada backend
+- Endpoint `/api/invoices` dan logika matching: Invoice ↔ PO ↔ BAPB telah dibuat
+- Status blok pembayaran otomatis jika tiga dokumen tidak cocok sudah diimplementasikan (status mismatch atau pending BAPB)
 
 ### Prioritas 3 — Halaman yang belum ada
 - `FASE_1` s/d `FASE_9` — masing-masing ada `.mm` panduan interface

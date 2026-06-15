@@ -6,6 +6,7 @@
     <title>KMU Ekosistem - Portal Gerbang</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -72,6 +73,26 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
 
+    <!-- ============================================================
+         GOOGLE AUTH OVERLAY — tampil saat belum login
+         ============================================================ -->
+    <div id="authOverlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#0f172a]/95 backdrop-blur-sm hidden">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-10 max-w-sm w-full shadow-2xl text-center">
+            <img src="logo_kmu.png" alt="KMU" class="h-14 mx-auto mb-6 object-contain bg-white rounded-xl p-2">
+            <h2 class="text-2xl font-bold text-white mb-1">KMU Ecosystem</h2>
+            <p class="text-slate-400 text-sm mb-8">Masuk menggunakan akun Google organisasi Anda untuk melanjutkan.</p>
+            <div id="google-signin-btn" class="flex justify-center mb-6"></div>
+            <p class="text-slate-600 text-xs">Hanya akun yang terdaftar dan diotorisasi yang dapat mengakses sistem ini.</p>
+        </div>
+    </div>
+
+    <!-- User badge (muncul setelah login) -->
+    <div id="userBadge" class="absolute top-4 right-6 z-20 hidden flex items-center gap-2 bg-slate-800/80 border border-slate-700 rounded-full px-3 py-1.5 backdrop-blur">
+        <img id="userAvatar" src="" alt="" class="w-7 h-7 rounded-full object-cover">
+        <span id="userName" class="text-sm font-medium text-white"></span>
+        <button onclick="kmuSignOut()" class="text-slate-400 hover:text-white text-xs ml-2 transition-colors" title="Keluar"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+
     <!-- Background Blobs -->
     <div class="blob bg-blue-600/30 w-96 h-96 rounded-full top-[-10%] left-[-10%]"></div>
     <div class="blob bg-emerald-600/20 w-96 h-96 rounded-full bottom-[-10%] right-[-10%]" style="animation-delay: -5s;"></div>
@@ -79,9 +100,7 @@
 
     <!-- Header Logo -->
     <div class="absolute top-10 left-12 z-20 flex items-center gap-4">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
-            <i class="fas fa-hospital-user text-white text-2xl"></i>
-        </div>
+        <img src="logo_kmu.png" alt="Logo KMU" class="h-12 object-contain bg-white rounded-lg p-1 shadow-lg shadow-blue-500/30">
         <div>
             <h1 class="text-2xl font-outfit font-bold tracking-wide text-white">KMU <span class="text-blue-400">Ecosystem</span></h1>
             <p class="text-xs tracking-widest text-slate-400 uppercase">Digitalisasi Terintegrasi</p>
@@ -96,10 +115,10 @@
     </div>
 
     <!-- Portal Cards Container -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full px-6 z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl w-full px-6 z-10">
         
         <!-- 1. Portal Internal KMU -->
-        <a href="approval_dashboard.html" class="glass-card rounded-2xl p-8 relative overflow-hidden group cursor-pointer block">
+        <a href="command_center.html" class="glass-card rounded-2xl p-8 relative overflow-hidden group cursor-pointer block">
             <div class="glow-effect internal"></div>
             <div class="relative z-10">
                 <div class="w-16 h-16 rounded-2xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mb-6 text-blue-400 text-3xl group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
@@ -171,12 +190,108 @@
             </div>
         </a>
 
+        <!-- 4. Portal Pengadaan -->
+        <a href="pengadaan_dashboard.html" class="glass-card rounded-2xl p-8 relative overflow-hidden group cursor-pointer block">
+            <div class="glow-effect internal" style="background: radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(0,0,0,0) 70%);"></div>
+            <div class="relative z-10">
+                <div class="w-16 h-16 rounded-2xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center mb-6 text-purple-400 text-3xl group-hover:bg-purple-500 group-hover:text-white transition-colors duration-300">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h3 class="text-2xl font-outfit font-bold mb-2">Portal Pengadaan</h3>
+                <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                    Ruang kerja terintegrasi untuk tim Pengadaan (Manager, Kasie Barang & Jasa). Silakan login sesuai role Anda.
+                </p>
+                <div class="pt-4 border-t border-slate-700/50">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-300">Kanban Board</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-slate-800 rounded text-slate-300">Role-Based</span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-8 right-8 text-purple-400 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                <i class="fas fa-arrow-right text-xl"></i>
+            </div>
+        </a>
+
     </div>
     
     <!-- Footer -->
     <div class="absolute bottom-6 text-center w-full z-10">
         <p class="text-slate-500 text-xs">&copy; 2026 PT Kaltim Medika Utama (KMU) Holding. Hak Cipta Dilindungi.</p>
     </div>
+
+    <script>
+        // ============================================================
+        // GOOGLE AUTH CONFIG
+        // Ganti nilai di bawah dengan Client ID dari Google Cloud Console.
+        // Buat di: console.cloud.google.com → APIs & Services → Credentials
+        // Tambahkan Authorized JavaScript Origins: http://localhost (dev)
+        // ============================================================
+        const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE';
+        const API = 'http://127.0.0.1:8000';
+
+        function kmuSignOut() {
+            localStorage.removeItem('kmu_auth');
+            google.accounts.id.disableAutoSelect();
+            showAuthOverlay();
+        }
+
+        function showAuthOverlay() {
+            document.getElementById('authOverlay').classList.remove('hidden');
+            document.getElementById('userBadge').classList.add('hidden');
+        }
+
+        function showApp(user) {
+            document.getElementById('authOverlay').classList.add('hidden');
+            document.getElementById('userBadge').classList.remove('hidden');
+            document.getElementById('userAvatar').src = user.picture || '';
+            document.getElementById('userName').textContent = user.name || user.email;
+        }
+
+        async function handleGoogleResponse(response) {
+            try {
+                const res = await fetch(`${API}/api/auth/google`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ credential: response.credential })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    localStorage.setItem('kmu_auth', JSON.stringify(data.user));
+                    showApp(data.user);
+                } else {
+                    alert('Login gagal. Coba lagi.');
+                }
+            } catch (e) {
+                // Jika backend belum jalan, tetap izinkan akses (dev mode)
+                console.warn('Backend tidak tersedia, mode dev aktif:', e.message);
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                const user = { email: payload.email, name: payload.name, picture: payload.picture };
+                localStorage.setItem('kmu_auth', JSON.stringify(user));
+                showApp(user);
+            }
+        }
+
+        window.onGoogleLibraryLoad = function () {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleGoogleResponse,
+                auto_select: false
+            });
+            google.accounts.id.renderButton(
+                document.getElementById('google-signin-btn'),
+                { theme: 'filled_blue', size: 'large', text: 'sign_in_with', shape: 'rectangular', width: 260 }
+            );
+        };
+
+        // Cek session yang sudah ada
+        const existingAuth = localStorage.getItem('kmu_auth');
+        if (existingAuth) {
+            showApp(JSON.parse(existingAuth));
+        } else {
+            showAuthOverlay();
+        }
+    </script>
 
 </body>
 </html>

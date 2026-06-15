@@ -17,169 +17,63 @@
 <body class="antialiased flex h-screen overflow-hidden">
 
     <!-- SIDEBAR FALLBACK (Akan diganti oleh update_sidebar.py) -->
+    
+    <!-- Sidebar Internal Holding -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Holding Internal</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-building text-slate-600"></i> Portal Internal
                 </div>
                 <div class="space-y-1">
-                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i><span class="text-sm font-medium">Dashboard Direksi</span>
                     </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
-                    </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
-                    </a>
-                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
-                    </a>
-                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
-                    </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
-                    </a>
-                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
-                    </a>
-                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
-                    </a>
-                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
-                    </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
-                    </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
-                    </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
                     <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-sky-700 text-white shadow-md shadow-sky-900/20">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
+                        <i class="fas fa-tv w-5 text-center"></i><span class="text-sm font-medium">Command Center</span>
                     </a>
                     <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
+                        <i class="fas fa-wallet w-5 text-center"></i><span class="text-sm font-medium">Finance & Pembayaran</span>
                     </a>
                     <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                        <i class="fas fa-shield-halved w-5 text-center"></i><span class="text-sm font-medium">SPI & Audit</span>
                     </a>
                     <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                        <i class="fas fa-scale-balanced w-5 text-center"></i><span class="text-sm font-medium">Legal & Kontrak</span>
                     </a>
                     <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-emerald-500 transition-colors">
+                        <i class="fas fa-box w-5 text-center"></i><span class="text-sm font-medium">Bagian Umum (IMT -> PP)</span>
                     </a>
                 </div>
             </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
-                    </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
                     <i class="fas fa-robot text-slate-600"></i> Lapisan AI
                 </div>
                 <div class="space-y-1">
                     <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                        <i class="fas fa-shield-alt w-5 text-center"></i><span class="text-sm font-medium">AI Penjaga SOP</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<div class="p-4 border-t border-slate-800 bg-[#0F172A]">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div>
-                    <p class="text-sm font-bold text-white">Kasim Ganteng</p>
-                    <p class="text-[10px] text-slate-500">Kasie Pengadaan Barang</p>
-                </div>
-            </div>
-        </div>
-</aside>
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col h-full relative overflow-hidden">
-        
+
         <!-- Header -->
         <header class="bg-[#0F172A] border-b border-slate-800 px-6 py-4 shrink-0 flex items-center justify-between z-10 shadow-md">
             <div class="flex items-center gap-4">
@@ -188,23 +82,258 @@
                 </h2>
             </div>
             <div class="flex items-center gap-4">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition text-sm flex items-center gap-2">
-                    <i class="fas fa-plus"></i> Buat PP (Permintaan Pembelian)
-                </button>
+                <!-- Tab Navigation -->
+                <div class="flex bg-slate-800 rounded-lg p-1 gap-1">
+                    <button onclick="switchTab('pp-pipeline')" id="tab-pp-pipeline"
+                        class="tab-btn px-4 py-1.5 rounded text-xs font-bold text-white bg-blue-600 transition">
+                        <i class="fas fa-clipboard-list mr-1"></i> PP Pipeline
+                    </button>
+                    <button onclick="switchTab('switching')" id="tab-switching"
+                        class="tab-btn px-4 py-1.5 rounded text-xs font-bold text-slate-400 hover:text-white transition">
+                        <i class="fas fa-code-branch mr-1"></i> Switching RKAP
+                    </button>
+                    <button onclick="switchTab('operasional')" id="tab-operasional"
+                        class="tab-btn px-4 py-1.5 rounded text-xs font-bold text-slate-400 hover:text-white transition">
+                        <i class="fas fa-tools mr-1"></i> GA Operasional
+                    </button>
+                </div>
             </div>
         </header>
 
         <main class="flex-1 overflow-y-auto p-6 bg-[#0B1120]">
-            <div class="max-w-7xl mx-auto space-y-6">
+            <div class="max-w-7xl mx-auto space-y-5">
 
-                <!-- Alert Information -->
+            <!-- ================= TAB: PP PIPELINE ================= -->
+            <div id="content-pp-pipeline">
+
+                <!-- Alur info -->
+                <div class="bg-slate-800 rounded-xl px-5 py-3 flex items-center gap-2 text-xs text-white flex-wrap">
+                    <div class="flex items-center gap-1.5 text-slate-400"><i class="fas fa-hospital text-slate-500"></i> SBU ajukan kebutuhan</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 font-bold text-sky-400 bg-sky-900/40 px-2 py-1 rounded"><i class="fas fa-building"></i> Bagian Umum ubah IMT jd PP</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 text-slate-400"><i class="fas fa-user-tie text-slate-500"></i> GM Ops setujui</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 text-slate-400"><i class="fas fa-wallet text-slate-500"></i> Keuangan konfirmasi dana</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 text-emerald-400 font-bold"><i class="fas fa-inbox"></i> Masuk PP Final Pengadaan</div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="grid grid-cols-5 gap-3">
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+                        <p class="text-2xl font-black text-white">8</p>
+                        <p class="text-[10px] text-slate-400 mt-1 uppercase">IMT Baru dari SBU</p>
+                    </div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+                        <p class="text-2xl font-black text-amber-400">3</p>
+                        <p class="text-[10px] text-slate-400 mt-1 uppercase">Menunggu GM Ops</p>
+                    </div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+                        <p class="text-2xl font-black text-blue-400">2</p>
+                        <p class="text-[10px] text-slate-400 mt-1 uppercase">Menunggu Keuangan</p>
+                    </div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 text-center">
+                        <p class="text-2xl font-black text-emerald-400">3</p>
+                        <p class="text-[10px] text-slate-400 mt-1 uppercase">Cleared → Pengadaan</p>
+                    </div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center justify-center">
+                        <button onclick="alert('Form Buat PP')"
+                            class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-2 transition">
+                            <i class="fas fa-plus"></i> Buat PP Baru
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PP List Table -->
+                <div class="bg-[#1e293b] border border-slate-700 rounded-xl overflow-hidden">
+                    <div class="bg-slate-800 border-b border-slate-700 px-5 py-3 flex justify-between items-center">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <i class="fas fa-clipboard-list text-blue-400"></i> Daftar PP Aktif — Bulan Ini
+                        </h3>
+                        <span class="text-[10px] text-slate-400">Klik Status untuk update</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-[10px] uppercase text-slate-500 tracking-wider bg-slate-800/50">
+                                    <th class="p-4">No. PP / Judul</th>
+                                    <th class="p-4">Asal SBU</th>
+                                    <th class="p-4">Tipe</th>
+                                    <th class="p-4 text-right">Nilai</th>
+                                    <th class="p-4 text-center">Status Pipeline</th>
+                                    <th class="p-4 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-700 text-sm">
+                                <tr class="hover:bg-slate-800/30">
+                                    <td class="p-4">
+                                        <p class="font-bold text-white font-mono text-xs">PP-2026-FARM-0052</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Obat Formularium Triwulan III</p>
+                                    </td>
+                                    <td class="p-4 text-slate-300 text-xs">Instalasi Farmasi</td>
+                                    <td class="p-4"><span class="bg-blue-900/50 text-blue-300 text-[10px] px-2 py-0.5 rounded border border-blue-700/30">PP Barang</span></td>
+                                    <td class="p-4 text-right text-white font-mono text-xs">Rp 620 Jt</td>
+                                    <td class="p-4 text-center"><span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-1 rounded border border-emerald-700/30"><i class="fas fa-check mr-1"></i>Cleared — di Pengadaan</span></td>
+                                    <td class="p-4 text-center"><a href="fase3_imt_pp_sppj.html?pp=PP-2026-FARM-0052" class="text-blue-400 hover:text-blue-300 text-xs"><i class="fas fa-external-link-alt"></i></a></td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/30">
+                                    <td class="p-4">
+                                        <p class="font-bold text-white font-mono text-xs">IMT-2026-LAB-0018</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Hematology Analyzer Sysmex XN-550</p>
+                                    </td>
+                                    <td class="p-4 text-slate-300 text-xs">Laboratorium Klinik</td>
+                                    <td class="p-4"><span class="bg-violet-900/50 text-violet-300 text-[10px] px-2 py-0.5 rounded border border-violet-700/30">IMT Alkes</span></td>
+                                    <td class="p-4 text-right text-white font-mono text-xs">Rp 1.25 M</td>
+                                    <td class="p-4 text-center"><span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-1 rounded border border-emerald-700/30"><i class="fas fa-check mr-1"></i>Cleared — di Pengadaan</span></td>
+                                    <td class="p-4 text-center"><a href="fase3_imt_pp_sppj.html?pp=IMT-2026-LAB-0018" class="text-blue-400 hover:text-blue-300 text-xs"><i class="fas fa-external-link-alt"></i></a></td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/30 bg-blue-900/10">
+                                    <td class="p-4">
+                                        <p class="font-bold text-white font-mono text-xs">PP-2026-IPS-0021</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Genset Backup 200 KVA</p>
+                                    </td>
+                                    <td class="p-4 text-slate-300 text-xs">IPS / IPSRS</td>
+                                    <td class="p-4"><span class="bg-blue-900/50 text-blue-300 text-[10px] px-2 py-0.5 rounded border border-blue-700/30">PP Barang</span></td>
+                                    <td class="p-4 text-right text-white font-mono text-xs">Rp 480 Jt</td>
+                                    <td class="p-4 text-center">
+                                        <span class="bg-blue-900/50 text-blue-300 text-[10px] px-2 py-1 rounded border border-blue-700/30 animate-pulse">
+                                            <i class="fas fa-hourglass-half mr-1"></i>Menunggu Keuangan
+                                        </span>
+                                    </td>
+                                    <td class="p-4 text-center"><button onclick="forwardToKeuangan('PP-2026-IPS-0021')" class="text-blue-400 hover:text-blue-300 text-[10px] font-bold border border-blue-700/50 px-2 py-1 rounded">Ingatkan</button></td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/30 bg-amber-900/10">
+                                    <td class="p-4">
+                                        <p class="font-bold text-white font-mono text-xs">PP-2026-RAD-0015</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Digital X-Ray 500 mA</p>
+                                    </td>
+                                    <td class="p-4 text-slate-300 text-xs">Radiologi</td>
+                                    <td class="p-4"><span class="bg-violet-900/50 text-violet-300 text-[10px] px-2 py-0.5 rounded border border-violet-700/30">IMT Alkes</span></td>
+                                    <td class="p-4 text-right text-white font-mono text-xs">Rp 2.1 M</td>
+                                    <td class="p-4 text-center">
+                                        <span class="bg-amber-900/50 text-amber-300 text-[10px] px-2 py-1 rounded border border-amber-700/30 animate-pulse">
+                                            <i class="fas fa-user-tie mr-1"></i>Menunggu GM Ops
+                                        </span>
+                                    </td>
+                                    <td class="p-4 text-center"><button onclick="alert('Kirim reminder ke GM')" class="text-amber-400 hover:text-amber-300 text-[10px] font-bold border border-amber-700/50 px-2 py-1 rounded">Ingatkan</button></td>
+                                </tr>
+                                <tr class="hover:bg-slate-800/30">
+                                    <td class="p-4">
+                                        <p class="font-bold text-white font-mono text-xs">SPPJ-2026-IPS-0019</p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Jasa Pemeliharaan AC Sentral</p>
+                                    </td>
+                                    <td class="p-4 text-slate-300 text-xs">IPSRS</td>
+                                    <td class="p-4"><span class="bg-amber-900/50 text-amber-300 text-[10px] px-2 py-0.5 rounded border border-amber-700/30">SPPJ Jasa</span></td>
+                                    <td class="p-4 text-right text-white font-mono text-xs">Rp 75 Jt</td>
+                                    <td class="p-4 text-center"><span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-1 rounded border border-emerald-700/30"><i class="fas fa-check mr-1"></i>Cleared — di Pengadaan</span></td>
+                                    <td class="p-4 text-center"><a href="fase3_imt_pp_sppj.html?pp=SPPJ-2026-IPS-0019" class="text-blue-400 hover:text-blue-300 text-xs"><i class="fas fa-external-link-alt"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div><!-- /content-pp-pipeline -->
+
+            <!-- ================= TAB: SWITCHING RKAP ================= -->
+            <div id="content-switching" class="hidden space-y-4">
+
+                <!-- Alur Switching -->
+                <div class="bg-slate-800 rounded-xl px-5 py-3 flex items-center gap-2 text-xs text-white flex-wrap">
+                    <div class="flex items-center gap-1.5 text-slate-400"><i class="fas fa-hospital text-slate-500"></i> SBU usulkan switching ke Komite Anggaran</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 text-slate-400"><i class="fas fa-vote-yea text-slate-500"></i> Komite Anggaran setujui</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 font-bold text-sky-400 bg-sky-900/40 px-2 py-1 rounded"><i class="fas fa-building"></i> Bagian Umum proses PP baru</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="flex items-center gap-1.5 text-emerald-400 font-bold"><i class="fas fa-code-branch"></i> Masuk tab Switching di Proker Pengadaan</div>
+                </div>
+
+                <div class="bg-[#1e293b] border border-slate-700 rounded-xl overflow-hidden">
+                    <div class="bg-slate-800 border-b border-slate-700 px-5 py-3 flex justify-between items-center">
+                        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+                            <i class="fas fa-code-branch text-amber-400"></i> Inbox Usul Switching RKAP — Sudah Disetujui Komite Anggaran
+                        </h3>
+                        <span class="bg-amber-500/20 text-amber-400 text-[10px] px-2 py-1 rounded border border-amber-600/30 font-bold">2 Menunggu Proses</span>
+                    </div>
+                    <div class="p-5 space-y-4">
+
+                        <!-- Switching Item 1 -->
+                        <div class="bg-slate-800/50 border border-amber-600/30 rounded-xl p-4">
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 flex-wrap mb-2">
+                                        <span class="font-mono text-xs text-slate-400">SW-2026-FARM-009</span>
+                                        <span class="bg-amber-900/50 text-amber-300 text-[10px] px-2 py-0.5 rounded border border-amber-700/30">Switching Vendor</span>
+                                        <span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-700/30"><i class="fas fa-check-circle mr-1"></i>KA Approved 2 Jun 2026</span>
+                                    </div>
+                                    <p class="font-bold text-white">Obat Formularium Triwulan III — ganti ke PT Indofarma Global Medika</p>
+                                    <div class="flex gap-4 text-xs text-slate-400 mt-1 flex-wrap">
+                                        <span><i class="fas fa-building mr-1"></i>SBU Instalasi Farmasi</span>
+                                        <span><i class="fas fa-tag mr-1"></i>Rp 620.000.000</span>
+                                        <span><i class="fas fa-exchange-alt mr-1"></i>Menggantikan PP-2026-FARM-0041 (vendor lama: PT Kimia Farma)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-2 italic">Alasan switching: Harga lebih kompetitif 8%, ketersediaan stok lebih terjamin. Disetujui KA tgl 2 Jun 2026.</p>
+                                </div>
+                                <div class="flex flex-col gap-2 shrink-0">
+                                    <button onclick="prosesSwitch('SW-2026-FARM-009')"
+                                        class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
+                                        <i class="fas fa-file-alt"></i> Buat PP Baru
+                                    </button>
+                                    <button onclick="forwardToProker('SW-2026-FARM-009')"
+                                        class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
+                                        <i class="fas fa-share"></i> Teruskan ke Proker
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Switching Item 2 -->
+                        <div class="bg-slate-800/50 border border-amber-600/30 rounded-xl p-4">
+                            <div class="flex items-start justify-between gap-4">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 flex-wrap mb-2">
+                                        <span class="font-mono text-xs text-slate-400">SW-2026-IPS-011</span>
+                                        <span class="bg-orange-900/50 text-orange-300 text-[10px] px-2 py-0.5 rounded border border-orange-700/30">Reschedule</span>
+                                        <span class="bg-emerald-900/50 text-emerald-400 text-[10px] px-2 py-0.5 rounded border border-emerald-700/30"><i class="fas fa-check-circle mr-1"></i>KA Approved 8 Jun 2026</span>
+                                    </div>
+                                    <p class="font-bold text-white">Pemeliharaan AC Sentral — jadwal digeser dari Juni ke Agustus 2026</p>
+                                    <div class="flex gap-4 text-xs text-slate-400 mt-1 flex-wrap">
+                                        <span><i class="fas fa-building mr-1"></i>SBU IPSRS</span>
+                                        <span><i class="fas fa-tag mr-1"></i>Rp 75.000.000</span>
+                                        <span><i class="fas fa-calendar mr-1"></i>Target baru: Agustus 2026</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-2 italic">Alasan: Terkendala jadwal shutdown AC, koordinasi dengan kontraktor baru selesai Agustus.</p>
+                                </div>
+                                <div class="flex flex-col gap-2 shrink-0">
+                                    <button onclick="prosesSwitch('SW-2026-IPS-011')"
+                                        class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
+                                        <i class="fas fa-file-alt"></i> Buat PP Baru
+                                    </button>
+                                    <button onclick="forwardToProker('SW-2026-IPS-011')"
+                                        class="bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
+                                        <i class="fas fa-share"></i> Teruskan ke Proker
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- /content-switching -->
+
+            <!-- ================= TAB: GA OPERASIONAL ================= -->
+            <div id="content-operasional" class="hidden">
+                <!-- Info Alert lama -->
                 <div class="bg-blue-900/20 border border-blue-500/30 p-4 rounded-xl flex items-start gap-4">
                     <div class="bg-blue-500/20 text-blue-400 w-10 h-10 rounded-full flex items-center justify-center shrink-0">
                         <i class="fas fa-info-circle text-xl"></i>
                     </div>
                     <div>
                         <h3 class="text-white font-bold mb-1">Integrasi Lintas Departemen (Umum - Keuangan - Pengadaan)</h3>
-                        <p class="text-blue-200 text-sm">Setiap PP (Permintaan Pembelian) untuk renovasi, proyek, dan kendaraan harus melampirkan kelengkapan prosedur (BOQ/RAB). Pengajuan memerlukan pengecekan ketersediaan dana (Keuangan) dan persetujuan GM Ops sebelum diteruskan ke Pengadaan untuk diterbitkan PO.</p>
+                        <p class="text-blue-200 text-sm">PP untuk renovasi, proyek, dan kendaraan harus melampirkan BOQ/RAB. Setelah GM Ops setujui dan Keuangan konfirmasi, PP otomatis masuk ke portal Pengadaan.</p>
                     </div>
                 </div>
 
@@ -310,7 +439,7 @@
                             </div>
                             
                             <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg p-5">
-                                <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-wrench text-rose-500"></i> Maintenance Alkes</h3>
+                                <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-wrench text-rose-500"></i> Elektromedis & Maintenance Alkes</h3>
                                 <div class="space-y-3">
                                     <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700">
                                         <div>
@@ -331,8 +460,29 @@
                         </div>
                     </div>
 
-                    <!-- Right Column (Sewa Kendaraan & Quick Actions) -->
+                    <!-- Right Column (Gudang, Sewa Kendaraan & Quick Actions) -->
                     <div class="space-y-6">
+                        <!-- Manajemen Gudang Umum -->
+                        <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg p-5">
+                            <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-boxes text-blue-400"></i> Gudang Umum & ATK</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                    <div>
+                                        <p class="text-white text-sm font-bold">Kertas HVS A4</p>
+                                        <p class="text-xs text-amber-400">Stok Menipis (20 Box)</p>
+                                    </div>
+                                    <button class="text-emerald-400 hover:text-emerald-300 text-[10px] font-bold border border-emerald-700/50 px-2 py-1 rounded">Restock (PP)</button>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                    <div>
+                                        <p class="text-white text-sm font-bold">Tinta Printer Epson</p>
+                                        <p class="text-xs text-slate-400">Stok Aman (150 Botol)</p>
+                                    </div>
+                                    <button class="text-slate-400 hover:text-white text-[10px] font-bold border border-slate-600 px-2 py-1 rounded">Detail</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Manajemen Sewa Kendaraan -->
                         <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg p-5">
                             <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fas fa-car text-emerald-500"></i> Pengelola Sewa Kendaraan</h3>
@@ -346,22 +496,29 @@
                                 <div class="flex items-center gap-3">
                                     <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
                                     <div class="flex-1">
-                                        <p class="text-sm text-white font-medium">Ambulans Operasional (4 unit)</p>
-                                        <p class="text-xs text-slate-400">Kontrak aktif s.d 2027</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <div class="w-2 h-2 rounded-full bg-amber-500"></div>
-                                    <div class="flex-1">
-                                        <p class="text-sm text-white font-medium">Kendaraan Direksi (3 unit)</p>
-                                        <p class="text-xs text-amber-400">Jatuh tempo sewa bulan depan</p>
+                                        <p class="text-sm text-white font-medium">Innova Zenix 2.0 G (Direksi)</p>
+                                        <p class="text-xs text-slate-400">Vendor: PT. Buana | S.d Des 2026</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
                                     <div class="flex-1">
-                                        <p class="text-sm text-white font-medium">Mobil Pool Logistik (5 unit)</p>
-                                        <p class="text-xs text-slate-400">Kontrak aktif s.d 2028</p>
+                                        <p class="text-sm text-white font-medium">Hilux Double Cabin (Pool IPSRS)</p>
+                                        <p class="text-xs text-slate-400">Vendor: PT. KMG | S.d Ags 2028</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-amber-500"></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-white font-medium">Gran Max Ambulance (Klinik)</p>
+                                        <p class="text-xs text-amber-400">Vendor: Kopkar | S.d Jun 2026 (Segera Habis)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-white font-medium">Avanza 1.5 G (Marketing)</p>
+                                        <p class="text-xs text-slate-400">Vendor: PT. Buana | S.d Nov 2026</p>
                                     </div>
                                 </div>
                             </div>
@@ -402,9 +559,35 @@
 
                     </div>
                 </div>
-            </div>
+            </div><!-- /content-operasional -->
+
+            </div><!-- /max-w-7xl -->
         </main>
     </div>
 
+    <script>
+        function switchTab(name) {
+            ['pp-pipeline','switching','operasional'].forEach(t => {
+                document.getElementById('content-' + t).classList.add('hidden');
+                const btn = document.getElementById('tab-' + t);
+                btn.classList.remove('bg-blue-600','text-white');
+                btn.classList.add('text-slate-400');
+            });
+            document.getElementById('content-' + name).classList.remove('hidden');
+            const active = document.getElementById('tab-' + name);
+            active.classList.add('bg-blue-600','text-white');
+            active.classList.remove('text-slate-400');
+        }
+
+        function prosesSwitch(id) {
+            alert('Buat PP baru untuk: ' + id + '\nForm PP akan terhubung ke backend.');
+        }
+        function forwardToProker(id) {
+            window.location.href = 'proker_bulanan.html?switching=' + id;
+        }
+        function forwardToKeuangan(id) {
+            alert('Reminder dikirim ke Keuangan untuk: ' + id);
+        }
+    </script>
 </body>
 </html>

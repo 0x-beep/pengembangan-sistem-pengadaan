@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penawaran & Scoring - Pengadaan KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen font-sans flex">
+    
+    <aside class="w-64 bg-[#0a2540] text-white flex-shrink-0">
+        <div class="p-6">
+            <img src="logo_kmu.png" alt="KMU Logo" class="h-10 mb-8" onerror="this.src='https://via.placeholder.com/150x50?text=Logo+KMU'">
+            <h2 class="text-lg font-bold mb-6 text-emerald-400">Pengadaan Internal</h2>
+            <nav class="space-y-3">
+                <a href="admin_dashboard.html" class="flex items-center space-x-3 text-slate-300 hover:text-white"><i class="fas fa-home w-5"></i> <span>Dashboard</span></a>
+                <a href="e_katalog_internal.html" class="flex items-center space-x-3 text-slate-300 hover:text-white"><i class="fas fa-book-open w-5"></i> <span>E-Katalog Internal</span></a>
+                <a href="quotation_scoring.html" class="flex items-center space-x-3 text-white font-medium bg-white/10 rounded-lg p-2 -mx-2"><i class="fas fa-gavel w-5"></i> <span>Proses Penawaran & Scoring</span></a>
+                <a href="finance_simulation.html" class="flex items-center space-x-3 text-slate-300 hover:text-white"><i class="fas fa-chart-pie w-5"></i> <span>Simulasi Keuangan</span></a>
+            </nav>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-auto">
+        <header class="bg-white border-b px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800">Scoring & Pemilihan Pemenang</h1>
+                <p class="text-sm text-slate-500">Evaluasi presentasi vendor berdasarkan 5 Dimensi Penilaian</p>
+            </div>
+            <button onclick="fetchQuotations()" class="text-slate-500 hover:text-emerald-600"><i class="fas fa-sync-alt"></i> Segarkan</button>
+        </header>
+
+        <div class="p-8">
+            <div id="quotationContainer" class="space-y-6">
+                <!-- Quotations rendered here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Scoring -->
+    <div id="scoreModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-800 text-white">
+                <h3 class="font-bold text-lg">Scoring Presentasi Vendor</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6">
+                <div class="mb-4 bg-blue-50 p-3 rounded-lg border border-blue-100">
+                    <p class="text-sm text-blue-800 font-medium" id="modalVendorName">Nama Vendor</p>
+                    <p class="text-xs text-blue-600">Skala 1-5 (1=Terburuk, 5=Terbaik)</p>
+                </div>
+                
+                <form id="scoreForm" class="space-y-4">
+                    <input type="hidden" id="modalQuotId">
+                    <input type="hidden" id="modalBidId">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">1. Harga (Termurah = 5)</label>
+                        <input type="number" id="s_price" min="1" max="5" value="3" class="w-full border rounded p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">2. Kualitas Barang (Excellent = 5)</label>
+                        <input type="number" id="s_quality" min="1" max="5" value="3" class="w-full border rounded p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">3. Layanan & Garansi (Excellent = 5)</label>
+                        <input type="number" id="s_service" min="1" max="5" value="3" class="w-full border rounded p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">4. Kesesuaian Kebutuhan User (Exceeds = 5)</label>
+                        <input type="number" id="s_needs" min="1" max="5" value="3" class="w-full border rounded p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">5. Merk & Reputasi (Trusted = 5)</label>
+                        <input type="number" id="s_brand" min="1" max="5" value="3" class="w-full border rounded p-2">
+                    </div>
+                    <div class="pt-2 border-t flex items-center justify-between">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="is_winner" class="w-5 h-5 text-emerald-600 rounded">
+                            <span class="font-bold text-emerald-600">Tetapkan sebagai Pemenang!</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex justify-end space-x-3">
+                <button onclick="closeModal()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800">Batal</button>
+                <button onclick="submitScore()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium">Simpan Scoring</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:8000/api';
+
+        async function fetchQuotations() {
+            try {
+                const res = await fetch(`${API_URL}/quotations`);
+                const json = await res.json();
+                renderQuotations(json.data);
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        function renderQuotations(data) {
+            const container = document.getElementById('quotationContainer');
+            container.innerHTML = '';
+            
+            if(data.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-slate-400 bg-white rounded-xl shadow-sm border border-slate-100">Belum ada sesi permintaan penawaran aktif.</div>`;
+                return;
+            }
+
+            data.forEach(q => {
+                const isAwarded = q.status === 'awarded';
+                let statusBadge = isAwarded 
+                    ? `<span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-check-circle mr-1"></i> SELESAI (Pemenang: ${q.awarded_vendor})</span>`
+                    : `<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold"><i class="fas fa-clock mr-1"></i> DALAM PROSES</span>`;
+                
+                let bidsHtml = '';
+                if(q.bids && q.bids.length > 0) {
+                    bidsHtml = `
+                    <div class="mt-4 border border-slate-200 rounded-lg overflow-hidden">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-50 text-slate-600 border-b">
+                                <tr>
+                                    <th class="p-3">Vendor Terundang</th>
+                                    <th class="p-3 text-center">Hrg</th>
+                                    <th class="p-3 text-center">Klt</th>
+                                    <th class="p-3 text-center">Lyn</th>
+                                    <th class="p-3 text-center">Kbn</th>
+                                    <th class="p-3 text-center">Mrk</th>
+                                    <th class="p-3 text-center font-bold text-slate-800">TOTAL SCORE</th>
+                                    <th class="p-3 text-right">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                ${q.bids.map(b => {
+                                    const isWin = b.is_winner === 1 || b.is_winner === true;
+                                    const rowBg = isWin ? 'bg-emerald-50' : '';
+                                    const winBadge = isWin ? `<i class="fas fa-trophy text-amber-500 ml-2" title="Pemenang"></i>` : '';
+                                    
+                                    return `
+                                    <tr class="${rowBg}">
+                                        <td class="p-3 font-medium text-slate-700">${b.vendor_name} ${winBadge}</td>
+                                        <td class="p-3 text-center">${b.score_price}</td>
+                                        <td class="p-3 text-center">${b.score_quality}</td>
+                                        <td class="p-3 text-center">${b.score_service}</td>
+                                        <td class="p-3 text-center">${b.score_needs}</td>
+                                        <td class="p-3 text-center">${b.score_brand}</td>
+                                        <td class="p-3 text-center font-bold text-lg text-slate-800">${b.total_score}</td>
+                                        <td class="p-3 text-right">
+                                            ${!isAwarded ? `
+                                            <button onclick="openModal(${q.id}, ${b.id}, '${b.vendor_name}', ${b.score_price}, ${b.score_quality}, ${b.score_service}, ${b.score_needs}, ${b.score_brand})" class="bg-white border border-slate-300 text-slate-600 px-3 py-1.5 rounded hover:bg-slate-50 text-xs font-medium">
+                                                Input Score
+                                            </button>
+                                            ` : ''}
+                                        </td>
+                                    </tr>
+                                    `
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                    `;
+                } else {
+                    bidsHtml = `<p class="mt-4 text-sm text-slate-400 italic">Belum ada vendor diundang.</p>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-100 relative";
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono mb-1">${q.req_number}</div>
+                            <h3 class="text-lg font-bold text-slate-800">${q.item_name}</h3>
+                            <p class="text-sm text-slate-500 mt-1"><i class="far fa-calendar-alt mr-1"></i> Target Realisasi: ${q.target_realization_date}</p>
+                        </div>
+                        <div>${statusBadge}</div>
+                    </div>
+                    ${bidsHtml}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openModal(qId, bidId, vendorName, sp, sq, ss, sn, sb) {
+            document.getElementById('modalQuotId').value = qId;
+            document.getElementById('modalBidId').value = bidId;
+            document.getElementById('modalVendorName').innerText = vendorName;
+            
+            document.getElementById('s_price').value = sp || 3;
+            document.getElementById('s_quality').value = sq || 3;
+            document.getElementById('s_service').value = ss || 3;
+            document.getElementById('s_needs').value = sn || 3;
+            document.getElementById('s_brand').value = sb || 3;
+            document.getElementById('is_winner').checked = false;
+            
+            document.getElementById('scoreModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('scoreModal').classList.add('hidden');
+        }
+
+        async function submitScore() {
+            const qId = document.getElementById('modalQuotId').value;
+            const bidId = document.getElementById('modalBidId').value;
+            
+            const payload = {
+                score_price: parseInt(document.getElementById('s_price').value),
+                score_quality: parseInt(document.getElementById('s_quality').value),
+                score_service: parseInt(document.getElementById('s_service').value),
+                score_needs: parseInt(document.getElementById('s_needs').value),
+                score_brand: parseInt(document.getElementById('s_brand').value),
+                is_winner: document.getElementById('is_winner').checked
+            };
+
+            if(payload.is_winner) {
+                if(!confirm("Anda yakin menetapkan vendor ini sebagai pemenang? Sesi penawaran akan ditutup.")) return;
+            }
+
+            try {
+                const res = await fetch(`${API_URL}/quotations/${qId}/bids/${bidId}/score`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if(data.status !== 'success') throw new Error(data.detail);
+                
+                closeModal();
+                fetchQuotations(); // Refresh data
+            } catch(e) {
+                alert(e.message);
+            }
+        }
+
+        window.onload = fetchQuotations;
+    </script>
+</body>
+</html>

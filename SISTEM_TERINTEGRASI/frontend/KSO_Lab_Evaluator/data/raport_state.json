@@ -1,0 +1,48 @@
+{
+    "PT. BEM": {
+        "vendor": "PT. BEM",
+        "bulan": "Juni 2026",
+        "grade": "A",
+        "score": 98.0,
+        "status": "Aman / Lanjutkan",
+        "metrics": {
+            "kehadiran": "100.0%",
+            "reagen": "95.0%",
+            "telat_bayar": false,
+            "tarif_kontrak": "Rp 11.000",
+            "tarif_aktual": "Rp 11.000",
+            "anomali_harga": false,
+            "tagihan_ilegal": false,
+            "sla_rusak": false,
+            "volume_info": "1000.0 test (Utk Analisa Efisiensi)"
+        },
+        "scores": {
+            "teknisi": 40.0,
+            "reagen": 38.0,
+            "harga": 20
+        }
+    },
+    "PT. EH Syam": {
+        "vendor": "PT. EH Syam",
+        "bulan": "Juni 2026",
+        "grade": "D",
+        "score": 40.0,
+        "status": "Sangat Kritis (SP 2)",
+        "metrics": {
+            "kehadiran": "30.0%",
+            "reagen": "80.0%",
+            "telat_bayar": true,
+            "tarif_kontrak": "Rp 15.000",
+            "tarif_aktual": "Rp 15.000",
+            "anomali_harga": false,
+            "tagihan_ilegal": true,
+            "sla_rusak": true,
+            "volume_info": "5000.0 test (Utk Analisa Efisiensi)"
+        },
+        "scores": {
+            "teknisi": 0,
+            "reagen": 40.0,
+            "harga": 0
+        }
+    }
+}

@@ -30,124 +30,43 @@
 <body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
     <!-- SIDEBAR -->
-    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full">
-        <!-- Logo — klik untuk kembali ke portal utama -->
+    
+    <!-- Sidebar Portal Unit Bisnis (SBU) -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
-            <img src="logo_kmu.png" alt="KMU" class="h-10 object-contain">
+            <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">Unit Bisnis / SBU</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-clinic-medical text-slate-600"></i> Operasional Unit
                 </div>
                 <div class="space-y-1">
-                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
+                    <a href="rs_klinik_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Beranda SBU</span>
                     </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
+                    <a href="requisition_form.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-signature w-5 text-center"></i><span class="text-sm font-medium">Buat IMT Baru</span>
                     </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
-                    </a>
-                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
-                    </a>
-                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
-                    </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
-                    </a>
-                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
-                    </a>
-                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
-                    </a>
-                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
-                    </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
+                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-emerald-500 transition-colors">
+                        <i class="fas fa-calendar-check w-5 text-center"></i><span class="text-sm font-medium">Proker & Realisasi</span>
                     </a>
                     <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">Katalog Terpadu</span>
                     </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
+                    <a href="kso_management_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-microscope w-5 text-center"></i><span class="text-sm font-medium">Monitoring KSO</span>
                     </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
-                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
-                    </a>
-                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
-                    </a>
-                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
-                    </a>
-                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
-                    </a>
-                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="p-4 border-t border-slate-800">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div>
-                    <p class="text-sm font-bold text-white" id="user-name">Ahmad Fauzi</p>
-                    <p class="text-[10px] text-slate-500" id="user-role">Kasie Pengadaan Barang</p>
                 </div>
             </div>
         </div>
     </aside>
+
 
     <!-- MAIN -->
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -202,6 +121,9 @@
             <button class="tab-btn" onclick="switchTab('perubahan')" id="tab-perubahan">
                 <i class="fas fa-arrows-rotate mr-2"></i>Perubahan / Switching
                 <span class="ml-2 badge bg-red-100 text-red-600" id="badge-perubahan">0</span>
+            </button>
+            <button class="tab-btn" onclick="switchTab('program-berjalan'); if(!window._pbLoaded){loadProgramBerjalan();window._pbLoaded=true;}" id="tab-program-berjalan">
+                <i class="fas fa-play-circle mr-2"></i>Program Jasa Berjalan
             </button>
         </div>
 
@@ -528,6 +450,72 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ════ TAB 6: PROGRAM JASA BERJALAN ════ -->
+            <div id="content-program-berjalan" class="tab-content hidden space-y-5">
+
+                <div class="bg-teal-50 border border-teal-200 rounded-xl p-4 flex items-start gap-3">
+                    <i class="fas fa-info-circle text-teal-500 mt-0.5 shrink-0"></i>
+                    <div>
+                        <p class="text-sm font-semibold text-teal-800">Rencana Program Jasa yang Sedang Berjalan</p>
+                        <p class="text-xs text-teal-700 mt-1">Item di bawah adalah kontrak/SPK jasa aktif yang sedang berjalan — sudah ditetapkan, belum selesai, rencana pembayaran masih bergulir. Berbeda dengan Proker Bulanan yang merupakan rencana realisasi baru. Data ini beririsan dengan modul <strong>Legal</strong> (kontrak jasa non-rutin) dan <strong>KSU</strong> (kerjasama lab/KSO).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+                    <!-- Jasa Non Rutin → Legal -->
+                    <div class="bg-white border border-amber-200 rounded-xl shadow-sm overflow-hidden">
+                        <div class="bg-amber-50 border-b border-amber-200 px-4 py-3 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-briefcase text-amber-600"></i>
+                                <h3 class="font-bold text-amber-800 text-sm">Jasa Non Rutin</h3>
+                            </div>
+                            <a href="legal_dashboard.html" class="text-[10px] text-white bg-indigo-600 hover:bg-indigo-700 px-2 py-1 rounded font-bold transition flex items-center gap-1">
+                                <i class="fas fa-scale-balanced"></i> Legal
+                            </a>
+                        </div>
+                        <div id="pb-jasa-non-rutin" class="divide-y divide-amber-50 max-h-96 overflow-y-auto">
+                            <p class="text-center py-6 text-slate-400 text-sm">Memuat…</p>
+                        </div>
+                    </div>
+
+                    <!-- KSO Rutin → KSU -->
+                    <div class="bg-white border border-teal-200 rounded-xl shadow-sm overflow-hidden">
+                        <div class="bg-teal-50 border-b border-teal-200 px-4 py-3 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-handshake text-teal-600"></i>
+                                <h3 class="font-bold text-teal-800 text-sm">KSO Rutin</h3>
+                            </div>
+                            <a href="ksu_dashboard.html" class="text-[10px] text-white bg-teal-600 hover:bg-teal-700 px-2 py-1 rounded font-bold transition flex items-center gap-1">
+                                <i class="fas fa-handshake"></i> KSU
+                            </a>
+                        </div>
+                        <div id="pb-kso-rutin" class="divide-y divide-teal-50 max-h-96 overflow-y-auto">
+                            <p class="text-center py-6 text-slate-400 text-sm">Memuat…</p>
+                        </div>
+                    </div>
+
+                    <!-- Rental -->
+                    <div class="bg-white border border-orange-200 rounded-xl shadow-sm overflow-hidden">
+                        <div class="bg-orange-50 border-b border-orange-200 px-4 py-3 flex items-center gap-2">
+                            <i class="fas fa-car text-orange-600"></i>
+                            <h3 class="font-bold text-orange-800 text-sm">Rental</h3>
+                        </div>
+                        <div id="pb-rental" class="divide-y divide-orange-50 max-h-96 overflow-y-auto">
+                            <p class="text-center py-6 text-slate-400 text-sm">Memuat…</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <a href="finance_dashboard.html" class="text-xs text-slate-500 hover:text-slate-700 flex items-center gap-1.5 transition">
+                        <i class="fas fa-chart-line"></i> Lihat detail rencana pembayaran di Finance Dashboard
+                    </a>
+                </div>
+            </div>
+            <!-- /end Program Jasa Berjalan -->
+
         </div>
     </div>
 
@@ -851,6 +839,50 @@
             t.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i>${msg}`;
             document.body.appendChild(t);
             setTimeout(() => t.remove(), 4000);
+        }
+
+        // ─── Program Jasa Berjalan ──────────────────────────────────────────────────
+        window._pbLoaded = false;
+
+        async function loadProgramBerjalan() {
+            function fmtRpSm(n) {
+                if (!n) return 'Rp 0';
+                if (n >= 1e9) return 'Rp ' + (n / 1e9).toFixed(2) + ' M';
+                if (n >= 1e6) return 'Rp ' + (n / 1e6).toFixed(0) + ' jt';
+                return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+            }
+            function renderPbItems(list, containerId) {
+                const el = document.getElementById(containerId);
+                if (!el) return;
+                if (!list.length) {
+                    el.innerHTML = '<p class="text-center py-6 text-slate-400 text-sm">Tidak ada item.</p>';
+                    return;
+                }
+                el.innerHTML = list.map(function(r) {
+                    const stCls = r.status === 'URGENT' ? 'text-rose-600 font-bold'
+                                : r.status === 'DONE'   ? 'text-emerald-600'
+                                : 'text-amber-600';
+                    return '<div class="px-4 py-3 hover:bg-slate-50 transition">'
+                        + '<p class="font-semibold text-slate-800 text-xs truncate" title="' + (r.vendor||'') + '">' + (r.vendor||'-') + '</p>'
+                        + '<p class="text-[11px] text-slate-500 truncate mt-0.5">' + (r.keterangan||'-') + '</p>'
+                        + '<div class="flex justify-between items-center mt-1.5">'
+                        + '<span class="text-xs font-black text-slate-700">' + fmtRpSm(r.jumlah) + '</span>'
+                        + '<span class="text-[10px] ' + stCls + '">' + (r.status||'-') + '</span>'
+                        + '</div>'
+                        + '<p class="text-[10px] text-slate-400 mt-0.5">'
+                        + (r.periode||'') + (r.rencana_bayar ? ' · ' + r.rencana_bayar : '')
+                        + '</p>'
+                        + '</div>';
+                }).join('');
+            }
+            try {
+                const res  = await fetch('/api/finance/program-berjalan');
+                const json = await res.json();
+                const items = json.data || [];
+                renderPbItems(items.filter(function(i){ return i.kategori === 'jasa_non_rutin'; }), 'pb-jasa-non-rutin');
+                renderPbItems(items.filter(function(i){ return i.kategori === 'kso_rutin'; }),    'pb-kso-rutin');
+                renderPbItems(items.filter(function(i){ return i.kategori === 'rental'; }),       'pb-rental');
+            } catch(e) { console.error('loadProgramBerjalan', e); }
         }
 
         // ─── Init ──────────────────────────────────────────────────────────────────

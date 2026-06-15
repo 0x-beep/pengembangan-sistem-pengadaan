@@ -18,165 +18,59 @@
 <body class="antialiased flex h-screen overflow-hidden">
     
     <!-- SIDEBAR INJECTED BY PYTHON SCRIPT -->
+    
+    <!-- Sidebar Internal Holding -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Holding Internal</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-building text-slate-600"></i> Portal Internal
                 </div>
                 <div class="space-y-1">
-                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-emerald-500 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i><span class="text-sm font-medium">Dashboard Direksi</span>
                     </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
-                    </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
-                    </a>
-                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
-                    </a>
-                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
-                    </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
-                    </a>
-                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
-                    </a>
-                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
-                    </a>
-                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
-                    </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
-                    </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
-                    </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
                     <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
+                        <i class="fas fa-tv w-5 text-center"></i><span class="text-sm font-medium">Command Center</span>
                     </a>
                     <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
+                        <i class="fas fa-wallet w-5 text-center"></i><span class="text-sm font-medium">Finance & Pembayaran</span>
                     </a>
                     <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-sky-700 text-white shadow-md shadow-sky-900/20">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                        <i class="fas fa-shield-halved w-5 text-center"></i><span class="text-sm font-medium">SPI & Audit</span>
                     </a>
                     <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                        <i class="fas fa-scale-balanced w-5 text-center"></i><span class="text-sm font-medium">Legal & Kontrak</span>
                     </a>
                     <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box w-5 text-center"></i><span class="text-sm font-medium">Bagian Umum (IMT -> PP)</span>
                     </a>
                 </div>
             </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
-                    </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
                     <i class="fas fa-robot text-slate-600"></i> Lapisan AI
                 </div>
                 <div class="space-y-1">
                     <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                        <i class="fas fa-shield-alt w-5 text-center"></i><span class="text-sm font-medium">AI Penjaga SOP</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<div class="p-4 border-t border-slate-800 bg-[#0F172A]">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div>
-                    <p class="text-sm font-bold text-white">Kasim Ganteng</p>
-                    <p class="text-[10px] text-slate-500">Kasie Pengadaan Barang</p>
-                </div>
-            </div>
-        </div>
-</aside>
     
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden relative">
@@ -357,294 +251,180 @@
                           </div>
                       </div>
                       
-                      <div class="p-0 overflow-x-auto relative">
-                          <div class="min-w-[950px] flex flex-col relative bg-[#0f172a]/50">
-                              
-                              <!-- Background vertical lane borders -->
-                              <div class="absolute left-0 top-0 bottom-0 w-36 bg-slate-800 border-r border-slate-700 z-0"></div>
-
-                              <!-- ZONA 1: OPERASIONAL -->
-                              <div class="flex relative z-10 border-b border-slate-700/50">
-                                  <div class="w-36 flex-shrink-0 flex items-center justify-center border-l-4 border-blue-500 bg-slate-800/80 p-4">
-                                      <div class="text-center">
-                                        <i class="fas fa-boxes text-blue-400 text-lg mb-1"></i>
-                                        <p class="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Zona<br>Operasional</p>
-                                      </div>
-                                  </div>
-                                  <div class="flex-1 p-6 relative flex gap-12 items-start">
-                                      <!-- Route Line -->
-                                      <div class="absolute left-10 right-10 top-[44px] h-1 bg-slate-700 -translate-y-1/2 z-0 rounded-full"></div>
-                                      <div class="absolute left-10 w-[350px] top-[44px] h-1 bg-blue-500 -translate-y-1/2 z-0 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-                                      <i class="fas fa-chevron-right absolute left-[200px] top-[44px] -translate-y-1/2 text-blue-200 z-10 text-[10px]"></i>
-                                      <i class="fas fa-chevron-right absolute left-[350px] top-[44px] -translate-y-1/2 text-slate-500 z-10 text-[10px]"></i>
-                                      
-                                      <!-- Node 1 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-blue-500 flex items-center justify-center shadow-lg mb-2 z-10 text-blue-400 font-bold">1</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Gudang / Admin<br>(3-Way Match)</h4>
-                                          <div class="mt-2 text-center w-full">
-                                              <p class="text-xs font-black text-emerald-400">Rp 480jt</p>
-                                          </div>
-                                      </div>
-
-                                      <!-- Node 2 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-blue-500 flex items-center justify-center shadow-lg mb-2 z-10 text-blue-400 font-bold">2</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Manajer<br>Pengadaan</h4>
-                                          <div class="mt-2 text-center w-full">
-                                                <p class="text-xs font-black text-slate-400">Rp 0</p>
-                                            </div>
-                                      </div>
-
-                                      <!-- Node 3 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-blue-500 flex items-center justify-center shadow-lg mb-2 z-10 text-blue-400 font-bold">3</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">GM<br>Operasi</h4>
-                                          <div class="mt-2 text-center w-full">
-                                                <p class="text-xs font-black text-slate-400">Rp 0</p>
-                                            </div>
-                                      </div>
-                                      
-                                      <!-- Path going down to BOD -->
-                                      <div class="absolute right-32 top-[44px] w-1 h-full bg-slate-700 z-0"></div>
-                                      <i class="fas fa-chevron-down absolute right-[124px] bottom-[-10px] text-slate-500 z-10 text-[10px]"></i>
-                                  </div>
-                              </div>
-
-                              <!-- ZONA 2: DIREKSI -->
-                              <div class="flex relative z-10 border-b border-slate-700/50">
-                                  <div class="w-36 flex-shrink-0 flex items-center justify-center border-l-4 border-amber-500 bg-slate-800/80 p-4">
-                                      <div class="text-center">
-                                        <i class="fas fa-crown text-amber-400 text-lg mb-1"></i>
-                                        <p class="text-[10px] font-bold text-amber-400 uppercase tracking-widest">Zona<br>Direksi</p>
-                                      </div>
-                                  </div>
-                                  <div class="flex-1 p-6 relative flex gap-12 items-start justify-end pr-10">
-                                      <!-- Route Line -->
-                                      <div class="absolute left-64 right-[85px] top-[44px] h-1 bg-slate-700 -translate-y-1/2 z-0 rounded-full"></div>
-                                      <i class="fas fa-chevron-right absolute right-[250px] top-[44px] -translate-y-1/2 text-slate-500 z-10 text-[10px]"></i>
-                                      
-                                      <!-- Node 4 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10 mr-12">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-amber-500 flex items-center justify-center shadow-lg mb-2 z-10 text-amber-400 font-bold">4</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Direktur<br>Operasi</h4>
-                                          <div class="mt-2 text-center w-full">
-                                              <p class="text-xs font-black text-slate-500">Rp 0</p>
-                                          </div>
-                                      </div>
-
-                                      <!-- Node 5 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-amber-500 flex items-center justify-center shadow-lg mb-2 z-10 text-amber-400 font-bold">5</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Direktur<br>Utama (BOD)</h4>
-                                          <div class="mt-2 text-center w-full">
-                                              <p class="text-xs font-black text-slate-500">Rp 0</p>
-                                          </div>
-                                      </div>
-
-                                      <!-- Path going down to Finance -->
-                                      <div class="absolute right-[82px] top-[44px] w-1 h-full bg-slate-700 z-0"></div>
-                                      <i class="fas fa-chevron-down absolute right-[78px] bottom-[-10px] text-slate-500 z-10 text-[10px]"></i>
-                                  </div>
-                              </div>
-
-                              <!-- ZONA 3: KEUANGAN -->
-                              <div class="flex relative z-10">
-                                  <div class="w-36 flex-shrink-0 flex items-center justify-center border-l-4 border-emerald-500 bg-slate-800/80 p-4">
-                                      <div class="text-center">
-                                        <i class="fas fa-wallet text-emerald-400 text-lg mb-1"></i>
-                                        <p class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Zona<br>Keuangan</p>
-                                      </div>
-                                  </div>
-                                  <div class="flex-1 p-6 relative flex gap-12 items-start pl-10">
-                                      <!-- Route Line (Flows Left) -->
-                                      <div class="absolute left-24 right-[85px] top-[44px] h-1 bg-emerald-500/50 -translate-y-1/2 z-0 rounded-full"></div>
-                                      <div class="absolute left-24 w-[350px] top-[44px] h-1 bg-emerald-500 -translate-y-1/2 z-0 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
-                                      
-                                      <!-- Arrows pointing left -->
-                                      <i class="fas fa-chevron-left absolute left-[45%] top-[44px] -translate-y-1/2 text-emerald-200 z-10 text-[10px]"></i>
-                                      <i class="fas fa-chevron-left absolute left-[75%] top-[44px] -translate-y-1/2 text-emerald-500 z-10 text-[10px]"></i>
-
-                                      <!-- Node 8 (End) -->
-                                      <div class="flex flex-col items-center w-28 relative z-10 ml-8">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.5)] mb-2 z-10 text-emerald-400 font-bold"><i class="fas fa-check"></i></div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Kasir<br>(Eksekusi)</h4>
-                                          <div class="mt-2 text-center w-full">
-                                              <p class="text-xs font-black text-emerald-400">Rp 120jt</p>
-                                          </div>
-                                      </div>
-
-                                      <!-- Node 7 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10 ml-auto">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-emerald-500 flex items-center justify-center shadow-lg mb-2 z-10 text-emerald-400 font-bold">7</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Komite<br>Anggaran</h4>
-                                          <div class="mt-2 text-center w-full border border-rose-500/50 bg-rose-500/10 p-1.5 rounded relative animate-pulse">
-                                                <div class="absolute -top-1 -right-1 text-rose-500"><i class="fas fa-exclamation-circle bg-white rounded-full text-xs"></i></div>
-                                                <p class="text-xs font-black text-rose-500">Rp 1,2M</p>
-                                                <p class="text-[8px] font-bold text-rose-600 uppercase mt-0.5 leading-tight">Macet (12hr)<br><span class="text-[7px] text-rose-600/80 normal-case font-medium">Tunggu Pencairan BPJS</span></p>
-                                            </div>
-                                      </div>
-
-                                      <!-- Node 6 -->
-                                      <div class="flex flex-col items-center w-28 relative z-10 mr-10">
-                                          <div class="w-10 h-10 rounded-full bg-slate-900 border-2 border-emerald-500 flex items-center justify-center shadow-lg mb-2 z-10 text-emerald-400 font-bold">6</div>
-                                          <h4 class="text-[10px] font-bold text-slate-300 text-center leading-tight">Verifikasi<br>Pajak/Finance</h4>
-                                          <div class="mt-2 text-center w-full border border-amber-500/50 bg-amber-500/10 p-1.5 rounded relative">
-                                                <p class="text-xs font-black text-amber-500">Rp 210jt</p>
-                                                <p class="text-[8px] font-bold text-amber-600 uppercase mt-0.5 leading-tight">Tersendat<br><span class="text-[7px] text-amber-600/80 normal-case font-medium">Beda Nama Rekening</span></p>
-                                            </div>
-                                      </div>
-                                  </div>
-                              </div>
-
-                          </div>
-                      </div>
-                  </div>
-
-                  <!-- SECTION 4: Unified Alert Center (Grouped by Urgency) -->
-                  <!-- UNIFIED ALERT CENTER -->
-                  <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col mb-6">
-                      <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
-                          <h3 class="font-bold text-white"><i class="fas fa-bell text-rose-500 mr-2"></i>Unified Alert Center</h3>
-                          <span class="bg-rose-900/50 text-rose-400 border border-rose-700/50 text-xs font-bold px-2 py-1 rounded">Prioritas Urgensi</span>
-                      </div>
                       
-                      <div class="p-5 flex flex-col gap-6">
-                          <!-- 1. CRITICAL ALERTS -->
-                          <div>
-                              <h4 class="text-rose-500 font-bold text-sm mb-3 flex items-center gap-2"><i class="fas fa-radiation"></i> CRITICAL ALERTS (Sistem Terblokir)</h4>
-                              <div class="space-y-3">
-                                  <div class="bg-rose-900/20 border-l-4 border-rose-600 p-3 rounded-r-lg flex items-start gap-3">
-                                      <div class="mt-1"><i class="fas fa-exclamation-triangle text-rose-500"></i></div>
-                                      <div>
-                                          <div class="flex items-center gap-2 mb-1">
-                                            <span class="text-[10px] bg-rose-900 text-white px-2 py-0.5 rounded font-bold">INTEGRITAS KSO</span>
-                                            <h4 class="text-sm font-bold text-rose-400">Penyimpangan KSO: Alat Ilegal</h4>
-                                          </div>
-                                          <p class="text-xs text-slate-400">Sistem Otomatis (SPI) menahan tagihan PT. Rosche. Ditemukan 2 mesin beroperasi diam-diam di RS PKT Bontang tanpa adendum/izin Holding.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <!-- 2. HIGH ALERTS -->
-                          <div>
-                              <h4 class="text-amber-500 font-bold text-sm mb-3 flex items-center gap-2"><i class="fas fa-exclamation-circle"></i> HIGH ALERTS (Risiko Tinggi)</h4>
-                              <div class="space-y-3">
-                                  <div class="bg-amber-900/20 border-l-4 border-amber-600 p-3 rounded-r-lg flex items-start gap-3">
-                                      <div class="mt-1"><i class="fas fa-hand-holding-usd text-amber-500"></i></div>
-                                      <div>
-                                          <div class="flex items-center gap-2 mb-1">
-                                            <span class="text-[10px] bg-amber-900 text-white px-2 py-0.5 rounded font-bold">KEUANGAN</span>
-                                            <h4 class="text-sm font-bold text-amber-400">Aging Utang Vendor > 90 Hari</h4>
-                                          </div>
-                                          <p class="text-xs text-slate-400">Tagihan PT Alkes Indo (Rp 250 Juta) menunggak. Menghambat pengiriman batch BMHP berikutnya untuk RS PKT Bontang.</p>
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="bg-amber-900/20 border-l-4 border-amber-600 p-3 rounded-r-lg flex items-start gap-3">
-                                      <div class="mt-1"><i class="fas fa-stopwatch text-amber-500"></i></div>
-                                      <div>
-                                          <div class="flex items-center gap-2 mb-1">
-                                            <span class="text-[10px] bg-amber-900 text-white px-2 py-0.5 rounded font-bold">LEGAL KSO</span>
-                                            <h4 class="text-sm font-bold text-amber-400">KSO Mesin Auto-Analyzer Berakhir < 60 Hari</h4>
-                                          </div>
-                                          <p class="text-xs text-slate-400">Kontrak PT Medik Jaya (KSO Lab) berakhir di bulan depan. Belum ada draf Renewal di meja Legal. Risiko *downtime* layanan laboratorium.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <!-- 3. INFO / WARNING -->
-                          <div>
-                              <h4 class="text-blue-400 font-bold text-sm mb-3 flex items-center gap-2"><i class="fas fa-info-circle"></i> SYSTEM INFO / WARNING</h4>
-                              <div class="space-y-3">
-                                  <div class="bg-slate-800 border-l-4 border-blue-500 p-3 rounded-r-lg flex items-start gap-3">
-                                      <div class="mt-1"><i class="fas fa-file-invoice-dollar text-blue-400"></i></div>
-                                      <div>
-                                          <div class="flex items-center gap-2 mb-1">
-                                            <span class="text-[10px] bg-slate-700 text-white px-2 py-0.5 rounded font-bold">PENDAPATAN KSO</span>
-                                            <h4 class="text-sm font-bold text-white">Piutang KSO Asuransi Macet</h4>
-                                          </div>
-                                          <p class="text-xs text-slate-400">Pembayaran tagihan volume pemeriksaan KSO Laboratorium tertunda karena pencairan klaim dari pihak ke-3 (BPJS/Asuransi) tertahan di pusat.</p>
-                                      </div>
-                                  </div>
-                                  
-                                  <div class="bg-slate-800 border-l-4 border-blue-500 p-3 rounded-r-lg flex items-start gap-3">
-                                      <div class="mt-1"><i class="fas fa-chart-line text-blue-400"></i></div>
-                                      <div>
-                                          <div class="flex items-center gap-2 mb-1">
-                                            <span class="text-[10px] bg-slate-700 text-white px-2 py-0.5 rounded font-bold">EVALUASI SBU</span>
-                                            <h4 class="text-sm font-bold text-white">Target Pasien KSO Tidak Tercapai</h4>
-                                          </div>
-                                          <p class="text-xs text-slate-400">KSO Hemodialisa di Klinik Utama gagal mencapai target pasien harian. Perlu renegosiasi pembagian persentase dengan vendor terkait.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          
-                      </div>
-                  </div>
-
-                <!-- SECTION 4: High-Level Approvals -->
-                <div class="grid grid-cols-1 gap-6">
-                    <!-- High-Level Approvals (BOD Level) -->
-                    <div class="bg-[#1e293b] border border-slate-700 rounded-xl shadow-lg overflow-hidden flex flex-col">
-                        <div class="bg-slate-800 border-b border-slate-700 px-5 py-4 flex justify-between items-center">
-                            <h3 class="font-bold text-white"><i class="fas fa-signature text-emerald-500 mr-2"></i>Menunggu Persetujuan Direksi (> Rp 1 Miliar)</h3>
-                            <span class="bg-emerald-900/50 text-emerald-400 border border-emerald-700/50 text-xs font-bold px-2 py-1 rounded cursor-pointer hover:bg-emerald-800 transition">Lihat Semua</span>
-                        </div>
-                        <div class="p-5 flex-1 space-y-4">
-                            <div class="bg-slate-800/50 border border-slate-700 rounded-lg p-4 hover:border-blue-500 transition cursor-pointer">
-                                <div class="flex justify-between items-start mb-2">
-                                    <div>
-                                        <div class="flex items-center gap-2">
-                                            <h4 class="font-bold text-white text-lg">PKS-2026-004: KSO Lab Kimia Klinik (Auto-Analyzer)</h4>
-                                            <span class="bg-blue-900/50 text-blue-400 text-[10px] font-bold px-2 py-0.5 rounded border border-blue-700">CAPEX INVESTASI</span>
+                        
+                        
+                        
+                        <div class="p-4 w-full overflow-x-auto bg-[#0f172a]/80 rounded-b-xl border-t border-slate-700">
+                            
+                            <!-- Kanban Board Container -->
+                            <div class="flex gap-4 min-w-[1000px] h-[500px]">
+                                
+                                <!-- Column 1: Gudang & Pengadaan (Ops) -->
+                                <div class="flex-1 flex flex-col bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+                                    <div class="p-3 border-b border-slate-700 bg-blue-500/10">
+                                        <h4 class="font-bold text-sm text-blue-600 flex items-center justify-between">
+                                            <span><i class="fas fa-boxes mr-1"></i> Ops / Gudang</span>
+                                            <span class="bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full">2</span>
+                                        </h4>
+                                    </div>
+                                    <div class="p-3 flex-1 overflow-y-auto flex flex-col gap-3 custom-scrollbar">
+                                        
+                                        <!-- Card 1 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0992</span>
+                                                <span class="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><i class="fas fa-clock"></i> 1 Hari</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT BORNEO ETAM MANDIRI</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Alkes Kebutuhan Tahunan</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-blue-600">Rp 125.000.000</span>
+                                                <span class="text-[10px] text-blue-500 font-medium"><i class="fas fa-user-cog"></i> Admin 3WM</span>
+                                            </div>
                                         </div>
-                                        <p class="text-sm text-slate-400 mt-1">Vendor: PT Medik Jaya | SBU: RS PKT Bontang</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p class="text-xl font-bold text-emerald-400 font-mono">Rp 4.500.000.000</p>
-                                        <p class="text-xs text-slate-500">RAB: Rp 4.8M (Saving 6%)</p>
+
+                                        <!-- Card 2 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0985</span>
+                                                <span class="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><i class="fas fa-clock"></i> 2 Hari</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT Global Medik Persada</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Obat Farmasi Bulanan</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-blue-600">Rp 85.500.000</span>
+                                                <span class="text-[10px] text-blue-500 font-medium"><i class="fas fa-user-tie"></i> Manajer Pengadaan</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="flex gap-2 mt-4 pt-4 border-t border-slate-700">
-                                    <button class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded transition shadow-md shadow-emerald-900/20"><i class="fas fa-check mr-2"></i>Setujui Pengadaan</button>
-                                    <button class="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 rounded transition"><i class="fas fa-search mr-2"></i>Lihat Detail Evaluasi AI</button>
+
+                                <!-- Column 2: Approval Direksi (BOD) -->
+                                <div class="flex-1 flex flex-col bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+                                    <div class="p-3 border-b border-slate-700 bg-amber-500/10">
+                                        <h4 class="font-bold text-sm text-amber-600 flex items-center justify-between">
+                                            <span><i class="fas fa-crown mr-1"></i> BOD Approval</span>
+                                            <span class="bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded-full">3</span>
+                                        </h4>
+                                    </div>
+                                    <div class="p-3 flex-1 overflow-y-auto flex flex-col gap-3 custom-scrollbar">
+                                        
+                                        <!-- Card 3 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group border-l-4 border-l-rose-500">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0850</span>
+                                                <span class="text-[10px] font-bold text-rose-600 flex items-center gap-1 animate-pulse"><i class="fas fa-exclamation-triangle"></i> 14 Hari!</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT Transmedic Indonesia</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Pengadaan MRI Scanner</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-amber-600">Rp 2.500.000.000</span>
+                                                <span class="text-[10px] text-amber-600 font-medium"><i class="fas fa-user-shield"></i> Tunggu Dirut</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card 4 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group border-l-4 border-l-amber-500">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0910</span>
+                                                <span class="text-[10px] font-bold text-amber-600 flex items-center gap-1"><i class="fas fa-clock"></i> 5 Hari</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT BTL Indonesia</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Maintenance CT Scan</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-amber-600">Rp 450.000.000</span>
+                                                <span class="text-[10px] text-amber-600 font-medium"><i class="fas fa-user-shield"></i> Dir Operasi</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Card 5 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0935</span>
+                                                <span class="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><i class="fas fa-clock"></i> 2 Hari</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">CV Akar Sakti</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Renovasi Ruang Rawat Inap</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-amber-600">Rp 150.000.000</span>
+                                                <span class="text-[10px] text-amber-600 font-medium"><i class="fas fa-user-shield"></i> Dir Keuangan</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
+
+                                <!-- Column 3: Verifikasi Finance -->
+                                <div class="flex-1 flex flex-col bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+                                    <div class="p-3 border-b border-slate-700 bg-emerald-500/10">
+                                        <h4 class="font-bold text-sm text-emerald-600 flex items-center justify-between">
+                                            <span><i class="fas fa-search-dollar mr-1"></i> Verifikasi Finance</span>
+                                            <span class="bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-full">1</span>
+                                        </h4>
+                                    </div>
+                                    <div class="p-3 flex-1 overflow-y-auto flex flex-col gap-3 custom-scrollbar">
+                                        
+                                        <!-- Card 6 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group border-l-4 border-l-amber-500">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0901</span>
+                                                <span class="text-[10px] font-bold text-amber-600 flex items-center gap-1"><i class="fas fa-clock"></i> 6 Hari</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT Enseval Putera Megatrading</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Suplai Infus & APD</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-emerald-600">Rp 75.200.000</span>
+                                                <span class="text-[10px] text-emerald-500 font-medium"><i class="fas fa-file-invoice"></i> Verifikasi Pajak</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Column 4: Menunggu Pencairan -->
+                                <div class="flex-1 flex flex-col bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden shadow-sm">
+                                    <div class="p-3 border-b border-slate-700 bg-teal-500/10">
+                                        <h4 class="font-bold text-sm text-teal-600 flex items-center justify-between">
+                                            <span><i class="fas fa-money-check-alt mr-1"></i> Siap Bayar / Komite</span>
+                                            <span class="bg-teal-500 text-white text-[10px] px-2 py-0.5 rounded-full">2</span>
+                                        </h4>
+                                    </div>
+                                    <div class="p-3 flex-1 overflow-y-auto flex flex-col gap-3 custom-scrollbar">
+                                        
+                                        <!-- Card 7 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group border-l-4 border-l-rose-500">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0805</span>
+                                                <span class="text-[10px] font-bold text-rose-600 flex items-center gap-1 animate-pulse"><i class="fas fa-exclamation-triangle"></i> 21 Hari!</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT Capricorn Mulia</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Pengadaan Genset RS</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-teal-600">Rp 1.200.000.000</span>
+                                                <span class="text-[10px] text-rose-500 font-bold bg-rose-500/10 px-1.5 py-0.5 rounded">Dana Macet (BPJS)</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card 8 -->
+                                        <div class="bg-slate-900 border-slate-700 hover:border-slate-600 border rounded-lg p-3 shadow-sm transition cursor-pointer relative group">
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-[10px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-800 px-2 py-0.5 rounded">INV-0955</span>
+                                                <span class="text-[10px] font-bold text-emerald-600 flex items-center gap-1"><i class="fas fa-clock"></i> 1 Hari</span>
+                                            </div>
+                                            <h5 class="font-bold text-xs text-slate-200 mb-1">PT Sumber Rejeki Medika Jaya</h5>
+                                            <p class="text-[11px] text-slate-400 mb-2">Obat Sirup Anak</p>
+                                            <div class="flex justify-between items-center mt-2 pt-2 border-t border-slate-700">
+                                                <span class="text-xs font-black text-teal-600">Rp 45.000.000</span>
+                                                <span class="text-[10px] text-teal-500 font-medium"><i class="fas fa-check-circle"></i> Dijadwalkan Besok</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </main>
-    </div>
-
-    <script>
-        async function checkFinanceAlerts() {
-            try {
-                const res = await fetch('http://127.0.0.1:8000/api/finance/pending-schedules');
-                const json = await res.json();
-                const data = json.data;
-                
-                let pendingCount = 0;
-                data.forEach(po => {
-                    if (!po.dp_planned_date && !po.remaining_planned_date) {
-                        pendingCount++;
-                    }
-                });
-
-                if (pendingCount > 0) {
-                    document.getElementById('dirFinanceCount').textContent = pendingCount;
-                    document.getElementById('dirFinanceAlert').classList.remove('hidden');
-                }
-            } catch (e) {
-                console.error("Failed to fetch finance alerts", e);
-            }
-        }
-        window.onload = checkFinanceAlerts;
-    </script>
-</body>
-</html>
+                                             
+                            </div>
+                        </div>

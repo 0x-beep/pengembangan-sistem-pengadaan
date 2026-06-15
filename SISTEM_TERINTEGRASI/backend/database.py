@@ -141,6 +141,22 @@ def init_db():
     )
     ''')
 
+    # Create KSO Contracts Table (Fase 5)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS kso_contracts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        contract_number TEXT UNIQUE,
+        vendor_id TEXT,
+        vendor_name TEXT,
+        object_name TEXT,
+        start_date TEXT,
+        end_date TEXT,
+        billing_type TEXT,
+        status TEXT DEFAULT 'BERJALAN',
+        FOREIGN KEY (vendor_id) REFERENCES vendors (vendor_id)
+    )
+    ''')
+
     # Create KSO Financial Metrics Table (Phase 5)
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS kso_metrics (
@@ -185,6 +201,71 @@ def init_db():
         notes TEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
+    # Create Internal Catalogs (E-Katalog)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS internal_catalogs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        vendor_name TEXT,
+        item_name TEXT NOT NULL,
+        unit TEXT,
+        sbu_name TEXT,
+        price REAL,
+        brand TEXT,
+        availability_status TEXT,
+        year INTEGER,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
+    # Create Quotation Requests (Minta Penawaran)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS quotation_requests (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        req_number TEXT UNIQUE,
+        item_name TEXT NOT NULL,
+        target_realization_date TEXT,
+        status TEXT DEFAULT 'open',
+        awarded_vendor TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
+    # Create Quotation Bids (Nilai Scoring Vendor)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS quotation_bids (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        quotation_id INTEGER,
+        vendor_name TEXT,
+        bid_price REAL,
+        score_price INTEGER DEFAULT 0,
+        score_quality INTEGER DEFAULT 0,
+        score_service INTEGER DEFAULT 0,
+        score_needs INTEGER DEFAULT 0,
+        score_brand INTEGER DEFAULT 0,
+        total_score INTEGER DEFAULT 0,
+        is_winner BOOLEAN DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (quotation_id) REFERENCES quotation_requests (id)
+    )
+    ''')
+
+    # Create MLM Price Comparisons
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS mlm_price_comparisons (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        po_number TEXT,
+        item_name TEXT,
+        qty_satuan TEXT,
+        harga_mandiri REAL,
+        vendor_mandiri TEXT,
+        harga_mlm REAL,
+        selisih REAL,
+        merk TEXT,
+        keterangan TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
     ''')
 
@@ -282,6 +363,110 @@ def init_db():
         status TEXT DEFAULT 'draft',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (po_number) REFERENCES purchase_orders (po_number)
+    )
+    ''')
+
+    # Gudang Arsip Digital (Dokumen Upload)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS documents (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        file_name TEXT NOT NULL,
+        file_path TEXT NOT NULL,
+        category TEXT DEFAULT 'Uncategorized',
+        uploaded_by TEXT DEFAULT 'System',
+        uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        metadata_json TEXT
+    )
+    ''')
+
+    # Invoices (Fase 7 - 3-Way Match)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS invoices (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        inv_number TEXT UNIQUE NOT NULL,
+        po_number TEXT NOT NULL,
+        bapb_number TEXT,
+        vendor_id TEXT,
+        inv_date TEXT,
+        inv_due_date TEXT,
+        amount REAL NOT NULL,
+        notes TEXT,
+        status TEXT DEFAULT 'pending',
+        match_po BOOLEAN DEFAULT 0,
+        match_bapb BOOLEAN DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (po_number) REFERENCES purchase_orders (po_number)
+    )
+    ''')
+
+    # RKAP SBU Allocations
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS rkap_sbu (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        sbu_name TEXT NOT NULL,
+        sbu_code TEXT UNIQUE NOT NULL,
+        budget_allocated REAL,
+        budget_realized REAL DEFAULT 0,
+        year INTEGER DEFAULT 2026
+    )
+    ''')
+
+    # RKAP Category Allocations
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS rkap_categories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        category_name TEXT NOT NULL,
+        category_type TEXT NOT NULL,
+        budget_allocated REAL,
+        budget_realized REAL DEFAULT 0,
+        year INTEGER DEFAULT 2026
+    )
+    ''')
+
+    # Rencana Pembayaran Vendor — dari laporan Finance (Barang + Jasa + KSO + Rental)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS rencana_pembayaran (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        periode TEXT NOT NULL,
+        kategori TEXT NOT NULL,
+        no_referensi TEXT,
+        tanggal_ke_keuangan TEXT,
+        vendor TEXT,
+        no_po_spk TEXT,
+        keterangan TEXT,
+        jumlah REAL,
+        unit_sbu TEXT,
+        status TEXT DEFAULT 'rencana',
+        metabisnis TEXT,
+        term_of_payment TEXT,
+        rencana_bayar TEXT,
+        tanggal_transfer TEXT,
+        link_legal INTEGER DEFAULT 0,
+        link_ksu INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+    ''')
+
+    # RUP Items — dari DataRUP (247 item investasi RKAP 2026)
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS rup_items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        no_item INTEGER,
+        kode TEXT,
+        trimester INTEGER,
+        bulan_target TEXT,
+        metabisnis TEXT,
+        item_name TEXT NOT NULL,
+        kategori TEXT,
+        qty REAL,
+        satuan TEXT,
+        harga_satuan REAL,
+        nilai_total REAL,
+        unit_dept TEXT,
+        switching_flag INTEGER DEFAULT 0,
+        status_realisasi TEXT DEFAULT 'belum',
+        year INTEGER DEFAULT 2026,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
     ''')
 

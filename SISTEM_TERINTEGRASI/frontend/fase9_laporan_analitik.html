@@ -18,163 +18,77 @@
 <body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
+    
+    <!-- Sidebar Portal Pengadaan -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
+                </div>
+                <div class="space-y-1">
+                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
+                    </a>
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-inbox w-5 text-center relative"><span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span></i><span class="text-sm font-medium">Inbox Approval</span>
+                    </a>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
                 </div>
                 <div class="space-y-1">
                     <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
-                    </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
                     </a>
                     <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
+                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
                     </a>
                     <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
+                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
                     </a>
                     <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
+                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
                     </a>
                     <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">5. KSO & Kontrak</span>
                     </a>
                     <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
+                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
                     </a>
                     <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
+                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
                     </a>
                     <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
+                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
                     </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-blue-500 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
                     </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
-                    </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
-                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
-                    </a>
-                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
-                    </a>
-                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
-                    </a>
-                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
-                    </a>
-                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
-                    </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
-                </div>
-                <div class="space-y-1">
-                    <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
+                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<div class="pt-2 border-t border-slate-800 mt-2"></div>
-            <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider px-2 mb-2">LAPISAN KHUSUS</p>
-            <a href="command_center.html" class="sidebar-link">🖥️ Command Center</a>
-            <a href="ai_guardian.html" class="sidebar-link">🤖 AI Penjaga SPO</a>
-            <a href="admin_dashboard.html" class="sidebar-link">⚙️ Admin & Vendor DB</a>
-            <a href="director_dashboard.html" class="sidebar-link">👔 Dashboard Direksi</a>
-            <a href="spi_audit_dashboard.html" class="sidebar-link">🔍 SPI Audit Trail</a>
-            <a href="finance_dashboard.html" class="sidebar-link">💰 Finance Dashboard</a>
-        </nav>
-</aside>
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -197,25 +111,25 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
                     <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Total Efisiensi Cost</div>
-                    <div class="text-2xl font-black text-emerald-600">Rp 1.2M <span class="text-sm font-normal text-slate-400">YTD</span></div>
-                    <p class="text-[10px] text-emerald-600 mt-2"><i class="fas fa-arrow-down"></i> 8.5% dari RKAP Awal</p>
+                    <div class="text-2xl font-black text-emerald-600"><span id="stat-efisiensi">—</span> <span class="text-sm font-normal text-slate-400">YTD</span></div>
+                    <p id="stat-efisiensi-pct" class="text-[10px] text-emerald-600 mt-2"><i class="fas fa-arrow-down"></i> —</p>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
                     <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Avg Lead Time Pengadaan</div>
-                    <div class="text-2xl font-black text-blue-600">14 <span class="text-sm font-normal text-slate-400">Hari</span></div>
+                    <div class="text-2xl font-black text-blue-600"><span id="stat-leadtime">—</span> <span class="text-sm font-normal text-slate-400">Hari</span></div>
                     <p class="text-[10px] text-emerald-600 mt-2"><i class="fas fa-arrow-down"></i> Lebih cepat 3 hari dari target</p>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
                     <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Realisasi Anggaran</div>
-                    <div class="text-2xl font-black text-slate-800">65% <span class="text-sm font-normal text-slate-400">Terserap</span></div>
+                    <div class="text-2xl font-black text-slate-800"><span id="stat-realisasi-pct">—</span> <span class="text-sm font-normal text-slate-400">Terserap</span></div>
                     <div class="w-full bg-slate-100 rounded-full h-1.5 mt-2.5">
-                        <div class="bg-slate-800 h-1.5 rounded-full" style="width: 65%"></div>
+                        <div id="stat-realisasi-bar" class="bg-slate-800 h-1.5 rounded-full transition-all duration-700" style="width: 0%"></div>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
                     <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Total PO Diterbitkan</div>
-                    <div class="text-2xl font-black text-purple-600">342 <span class="text-sm font-normal text-slate-400">Dokumen</span></div>
-                    <p class="text-[10px] text-slate-500 mt-2">12 dalam proses BAPB</p>
+                    <div class="text-2xl font-black text-purple-600"><span id="stat-total-po">—</span> <span class="text-sm font-normal text-slate-400">Dokumen</span></div>
+                    <p id="stat-realisasi-juni" class="text-[10px] text-slate-500 mt-2">—</p>
                 </div>
             </div>
 
@@ -238,28 +152,83 @@
     </div>
 
     <script>
-        const ctxAnggaran = document.getElementById('chartAnggaran').getContext('2d');
-        new Chart(ctxAnggaran, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
-                datasets: [
-                    { label: 'Anggaran (RKAP)', data: [500, 600, 550, 700, 650, 800], backgroundColor: '#e2e8f0', borderRadius: 4 },
-                    { label: 'Realisasi', data: [450, 580, 500, 650, 600, 750], backgroundColor: '#3b82f6', borderRadius: 4 }
-                ]
-            },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } }, scales: { y: { beginAtZero: true, grid: { borderDash: [4, 4] } } } }
-        });
+        const API = 'http://127.0.0.1:8000';
+        let _chartAnggaran, _chartKategori;
 
-        const ctxKategori = document.getElementById('chartKategori').getContext('2d');
-        new Chart(ctxKategori, {
-            type: 'doughnut',
-            data: {
-                labels: ['Alat Kesehatan / KSO', 'Obat & Farmasi', 'IT & Infrastruktur', 'Umum & Jasa'],
-                datasets: [{ data: [45, 25, 15, 15], backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'], borderWidth: 0 }]
-            },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } } } }
-        });
+        function fmtRp(val) {
+            if (val >= 1e9) return 'Rp ' + (val / 1e9).toFixed(1) + 'M';
+            if (val >= 1e6) return 'Rp ' + (val / 1e6).toFixed(0) + 'Jt';
+            return 'Rp ' + Number(val).toLocaleString('id-ID');
+        }
+
+        async function loadDashboard() {
+            try {
+                const res = await fetch(`${API}/api/analytics/dashboard`);
+                const json = await res.json();
+                const d = json.data;
+                const m = d.metrics;
+
+                // Metric cards
+                document.getElementById('stat-efisiensi').textContent = fmtRp(m.total_efficiency);
+                document.getElementById('stat-efisiensi-pct').innerHTML =
+                    `<i class="fas fa-arrow-down"></i> ${m.efficiency_pct}% dari RKAP Awal`;
+                document.getElementById('stat-leadtime').textContent = m.avg_lead_time;
+                document.getElementById('stat-realisasi-pct').textContent = m.budget_realized_pct + '%';
+                document.getElementById('stat-realisasi-bar').style.width = m.budget_realized_pct + '%';
+                document.getElementById('stat-total-po').textContent = Number(m.total_po).toLocaleString('id-ID');
+                document.getElementById('stat-realisasi-juni').textContent =
+                    'Dibayar Juni 2026: ' + fmtRp(m.realisasi_pembayaran_juni);
+
+                // Chart: Tren Anggaran vs Realisasi
+                if (_chartAnggaran) _chartAnggaran.destroy();
+                _chartAnggaran = new Chart(
+                    document.getElementById('chartAnggaran').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: d.chartAnggaran.labels,
+                        datasets: [
+                            { label: 'Anggaran (RKAP)', data: d.chartAnggaran.anggaran, backgroundColor: '#e2e8f0', borderRadius: 4 },
+                            { label: 'Realisasi', data: d.chartAnggaran.realisasi, backgroundColor: '#3b82f6', borderRadius: 4 }
+                        ]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { borderDash: [4, 4] },
+                                ticks: { callback: v => 'Rp ' + v + 'M' }
+                            }
+                        }
+                    }
+                });
+
+                // Chart: Distribusi Kategori
+                if (_chartKategori) _chartKategori.destroy();
+                _chartKategori = new Chart(
+                    document.getElementById('chartKategori').getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: d.chartKategori.labels,
+                        datasets: [{
+                            data: d.chartKategori.data,
+                            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#ef4444', '#06b6d4'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, cutout: '70%',
+                        plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } } }
+                    }
+                });
+
+            } catch (e) {
+                console.error('loadDashboard error:', e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadDashboard);
     </script>
 </body>
 </html>

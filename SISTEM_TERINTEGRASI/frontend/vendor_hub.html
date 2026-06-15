@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Vendor B2B — PT KMU</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -64,7 +65,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
             <!-- 1. KSO Laboratorium -->
-            <a href="vendor_kso_lab_portal.html" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
+            <a href="javascript:void(0)" onclick="openLogin('Login KSO Laboratorium', 'PT_PRODIA', 'vendor_kso_lab_portal.html')" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
                 <div class="glow-effect" style="background: radial-gradient(circle, rgba(6,182,212,0.5) 0%, transparent 70%);"></div>
                 <div class="relative z-10">
                     <div class="flex items-start justify-between mb-5">
@@ -88,7 +89,7 @@
             </a>
 
             <!-- 2. KSO Farmasi -->
-            <a href="vendor_portal.html" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
+            <a href="javascript:void(0)" onclick="openLogin('Login Vendor Farmasi', 'PT_KIMIA_FARMA', 'vendor_portal.html')" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
                 <div class="glow-effect" style="background: radial-gradient(circle, rgba(168,85,247,0.5) 0%, transparent 70%);"></div>
                 <div class="relative z-10">
                     <div class="flex items-start justify-between mb-5">
@@ -111,8 +112,8 @@
                 </div>
             </a>
 
-            <!-- 3. KSO BMHP -->
-            <a href="vendor_kso_dashboard.html" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
+            <!-- 3. BMHP -->
+            <a href="javascript:void(0)" onclick="openLogin('Login BMHP', 'PT_MEDIK_JAYA', 'vendor_kso_dashboard.html')" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
                 <div class="glow-effect" style="background: radial-gradient(circle, rgba(34,197,94,0.5) 0%, transparent 70%);"></div>
                 <div class="relative z-10">
                     <div class="flex items-start justify-between mb-5">
@@ -121,7 +122,7 @@
                         </div>
                         <span class="badge bg-emerald-900/30 text-emerald-400 border border-emerald-700/30">KSO</span>
                     </div>
-                    <h3 class="font-outfit font-bold text-xl text-white mb-2">KSO BMHP</h3>
+                    <h3 class="font-outfit font-bold text-xl text-white mb-2">BMHP</h3>
                     <p class="text-slate-400 text-sm mb-5 leading-relaxed">Barang Medis Habis Pakai dengan skema <strong class="text-emerald-300">Revenue Sharing</strong>. Kelola kontrak utilisasi, laporkan pemakaian bulanan, dan pantau raport kinerja alat.</p>
                     <div class="flex flex-wrap gap-1.5">
                         <span class="badge bg-slate-800 text-slate-300">Reagen</span>
@@ -136,7 +137,7 @@
             </a>
 
             <!-- 4. Vendor Alkes Non-KSO -->
-            <a href="vendor_portal.html" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
+            <a href="javascript:void(0)" onclick="openLogin('Login Vendor Alkes', 'PT_ALKES_INDO', 'vendor_portal.html')" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
                 <div class="glow-effect" style="background: radial-gradient(circle, rgba(245,158,11,0.5) 0%, transparent 70%);"></div>
                 <div class="relative z-10">
                     <div class="flex items-start justify-between mb-5">
@@ -160,7 +161,7 @@
             </a>
 
             <!-- 5. Vendor Umum -->
-            <a href="vendor_portal.html" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
+            <a href="javascript:void(0)" onclick="openLogin('Login Vendor Umum', 'CV_ATK_BERKAH', 'vendor_portal.html')" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
                 <div class="glow-effect" style="background: radial-gradient(circle, rgba(99,102,241,0.5) 0%, transparent 70%);"></div>
                 <div class="relative z-10">
                     <div class="flex items-start justify-between mb-5">
@@ -184,7 +185,7 @@
             </a>
 
             <!-- 6. Vendor Jasa -->
-            <a href="vendor_portal.html" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
+            <a href="javascript:void(0)" onclick="openLogin('Login Vendor Jasa', 'PT_CLEANING_SERVICE', 'vendor_portal.html')" class="glass-card rounded-2xl p-7 relative overflow-hidden group block">
                 <div class="glow-effect" style="background: radial-gradient(circle, rgba(239,68,68,0.5) 0%, transparent 70%);"></div>
                 <div class="relative z-10">
                     <div class="flex items-start justify-between mb-5">
@@ -221,6 +222,145 @@
         </div>
 
     </main>
+
+
+    <!-- Auth Overlay -->
+    <div id="authOverlay" class="fixed inset-0 bg-slate-950/95 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-10 max-w-sm w-full shadow-2xl text-center">
+            <div class="w-14 h-14 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-3xl mx-auto mb-5">
+                <i class="fas fa-handshake"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white mb-1">Portal Vendor B2B</h2>
+            <p class="text-slate-400 text-sm mb-2">PT Kaltim Medika Utama</p>
+            <p class="text-slate-500 text-xs mb-8">Masuk menggunakan email yang terdaftar sebagai kontak vendor KMU.</p>
+            <div id="google-signin-btn" class="flex justify-center mb-4"></div>
+            <div id="authError" class="hidden mt-4 p-3 rounded-lg bg-rose-900/30 border border-rose-700/30 text-rose-300 text-xs"></div>
+            <!-- Fallback: masuk dengan Vendor ID -->
+            <div class="mt-6 pt-5 border-t border-slate-800">
+                <p class="text-slate-500 text-xs mb-3">Atau masuk dengan Vendor ID (VND-XXX)</p>
+                <div class="flex gap-2">
+                    <input type="text" id="vendorIdInput" placeholder="VND-001" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-amber-500 uppercase">
+                    <button onclick="loginByVendorId()" class="bg-amber-500 hover:bg-amber-400 text-black font-bold px-4 py-2 rounded-lg text-sm transition-colors">Masuk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User badge -->
+    <div id="userBadge" class="hidden fixed top-4 right-6 z-40 flex items-center gap-2 bg-slate-800/90 border border-slate-700 rounded-full px-3 py-1.5 backdrop-blur">
+        <img id="userAvatar" src="" alt="" class="w-7 h-7 rounded-full object-cover">
+        <span id="userName" class="text-sm font-medium text-white max-w-[140px] truncate"></span>
+        <button onclick="kmuSignOut()" class="text-slate-400 hover:text-white text-xs ml-1 transition-colors" title="Keluar"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+
+    <script>
+        // ============================================================
+        // GOOGLE AUTH CONFIG — GANTI CLIENT_ID DI BAWAH
+        // Buat di: console.cloud.google.com → APIs & Services → Credentials
+        // Authorized JS Origins: http://localhost (dev) / domain prod
+        // ============================================================
+        const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE';
+        const API = 'http://127.0.0.1:8000';
+
+        let pendingTargetUrl = '';
+
+        function openLogin(title, defaultUser, url) {
+            pendingTargetUrl = url;
+            const session = localStorage.getItem('kmu_vendor_auth');
+            if (session) {
+                window.location.href = url;
+                return;
+            }
+            document.getElementById('authOverlay').classList.remove('hidden');
+        }
+
+        function kmuSignOut() {
+            localStorage.removeItem('kmu_vendor_auth');
+            if (window.google) google.accounts.id.disableAutoSelect();
+            document.getElementById('authOverlay').classList.remove('hidden');
+            document.getElementById('userBadge').classList.add('hidden');
+        }
+
+        function showUser(user) {
+            document.getElementById('authOverlay').classList.add('hidden');
+            document.getElementById('userBadge').classList.remove('hidden');
+            document.getElementById('userAvatar').src = user.picture || '';
+            document.getElementById('userName').textContent = user.name || user.email;
+        }
+
+        function showAuthError(msg) {
+            const el = document.getElementById('authError');
+            el.textContent = msg;
+            el.classList.remove('hidden');
+        }
+
+        async function handleGoogleResponse(response) {
+            document.getElementById('authError').classList.add('hidden');
+            try {
+                const res = await fetch(`${API}/api/auth/google`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ credential: response.credential, check_vendor: true })
+                });
+                const data = await res.json();
+                if (data.status !== 'success') throw new Error(data.detail || 'Gagal');
+
+                if (!data.vendor) {
+                    showAuthError(`Email ${data.user.email} tidak terdaftar sebagai vendor KMU. Hubungi Dept. Pengadaan atau gunakan Vendor ID di bawah.`);
+                    return;
+                }
+                if (data.vendor.vendor_status !== 'approved') {
+                    showAuthError(`Status akun Anda: ${data.vendor.vendor_status}. Tunggu persetujuan dari Dept. Pengadaan.`);
+                    return;
+                }
+
+                const session = { ...data.user, vendor_id: data.vendor.vendor_id, company_name: data.vendor.company_name };
+                localStorage.setItem('kmu_vendor_auth', JSON.stringify(session));
+                showUser(session);
+                if (pendingTargetUrl) window.location.href = pendingTargetUrl;
+
+            } catch (e) {
+                showAuthError('Tidak dapat terhubung ke server. Coba lagi.');
+                console.error(e);
+            }
+        }
+
+        async function loginByVendorId() {
+            const vid = document.getElementById('vendorIdInput').value.trim().toUpperCase();
+            if (!vid) return;
+            document.getElementById('authError').classList.add('hidden');
+            try {
+                const res = await fetch(`${API}/api/vendors/verify/${vid}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    const session = { email: '', name: data.data.company_name, picture: '', vendor_id: vid, company_name: data.data.company_name };
+                    localStorage.setItem('kmu_vendor_auth', JSON.stringify(session));
+                    showUser(session);
+                    if (pendingTargetUrl) window.location.href = pendingTargetUrl;
+                } else {
+                    const err = await res.json();
+                    showAuthError(err.detail || 'Vendor ID tidak valid.');
+                }
+            } catch (e) {
+                showAuthError('Tidak dapat terhubung ke server.');
+            }
+        }
+
+        window.onGoogleLibraryLoad = function () {
+            google.accounts.id.initialize({
+                client_id: GOOGLE_CLIENT_ID,
+                callback: handleGoogleResponse,
+                auto_select: false
+            });
+            google.accounts.id.renderButton(
+                document.getElementById('google-signin-btn'),
+                { theme: 'filled_blue', size: 'large', text: 'sign_in_with', shape: 'rectangular', width: 260 }
+            );
+        };
+
+        const existingSession = localStorage.getItem('kmu_vendor_auth');
+        if (existingSession) showUser(JSON.parse(existingSession));
+    </script>
 
 </body>
 </html>

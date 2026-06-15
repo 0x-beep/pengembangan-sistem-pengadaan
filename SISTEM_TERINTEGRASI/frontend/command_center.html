@@ -53,166 +53,59 @@
 <body class="antialiased flex h-screen overflow-hidden">
 
     <!-- Sidebar (Hidden on ultra-large screens if needed, but we keep it for consistency) -->
+    
+    <!-- Sidebar Internal Holding -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Holding Internal</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-building text-slate-600"></i> Portal Internal
                 </div>
                 <div class="space-y-1">
-                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
+                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-user-tie w-5 text-center"></i><span class="text-sm font-medium">Dashboard Direksi</span>
                     </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
-                    </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
-                    </a>
-                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
-                    </a>
-                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
-                    </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
-                    </a>
-                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
-                    </a>
-                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
-                    </a>
-                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
-                    </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
-                    </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
-                    </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
-                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-sky-700 text-white shadow-md shadow-sky-900/20">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
+                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-emerald-500 transition-colors">
+                        <i class="fas fa-tv w-5 text-center"></i><span class="text-sm font-medium">Command Center</span>
                     </a>
                     <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
+                        <i class="fas fa-wallet w-5 text-center"></i><span class="text-sm font-medium">Finance & Pembayaran</span>
                     </a>
                     <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                        <i class="fas fa-shield-halved w-5 text-center"></i><span class="text-sm font-medium">SPI & Audit</span>
                     </a>
                     <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                        <i class="fas fa-scale-balanced w-5 text-center"></i><span class="text-sm font-medium">Legal & Kontrak</span>
                     </a>
                     <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    </a>
+                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box w-5 text-center"></i><span class="text-sm font-medium">Bagian Umum (IMT -> PP)</span>
                     </a>
                 </div>
             </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
-                    </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
                     <i class="fas fa-robot text-slate-600"></i> Lapisan AI
                 </div>
                 <div class="space-y-1">
                     <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                        <i class="fas fa-shield-alt w-5 text-center"></i><span class="text-sm font-medium">AI Penjaga SOP</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<!-- User Profile -->
-        <div class="p-4 border-t border-slate-800 bg-[#0F172A]">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 border border-slate-700">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div>
-                    <p class="text-sm font-bold text-white">Kasim Ganteng</p>
-                    <p class="text-[10px] text-slate-500">Kasie Pengadaan Barang</p>
-                </div>
-            </div>
-        </div>
-</aside>
 
     <!-- Main Content: Full Grid Layout -->
     <div class="flex-1 flex flex-col overflow-hidden relative">
@@ -471,12 +364,20 @@
             }
         }
 
+        // --- UTILITY UNTUK MENCEGAH MEMORY LEAK TAILWIND CDN ---
+        function updateHTML(id, html) {
+            const el = document.getElementById(id);
+            if (el && el.innerHTML !== html) {
+                el.innerHTML = html;
+            }
+        }
+
         // --- RENDERERS ---
 
         function renderBox1and3and7(data) {
             const kpi = data.kpi;
             // BOX 1: KPI
-            document.getElementById('box1-kpi').innerHTML = `
+            updateHTML('box1-kpi', `
                 <div class="bg-slate-800/50 p-2 rounded-lg border border-slate-700/50">
                     <p class="text-[8px] text-slate-400 uppercase tracking-wider mb-0.5">Total PO Value</p>
                     <p class="text-xs font-bold text-emerald-400">Rp ${fmt(kpi.total_po_value)}</p>
@@ -493,7 +394,7 @@
                     <p class="text-[8px] text-slate-400 uppercase tracking-wider mb-0.5">Top Vendor</p>
                     <p class="text-[9px] font-bold text-blue-400 truncate" title="${kpi.top_vendor ? kpi.top_vendor.company_name : '-'}">${kpi.top_vendor ? kpi.top_vendor.company_name : '-'}</p>
                 </div>
-            `;
+            `);
 
             // BOX 3: Alerts & BOX 7: SLA Timers
             const alertsHtml = [];
@@ -503,8 +404,8 @@
             if(!kpi.sla_alerts || kpi.sla_alerts.length === 0) {
                 // Hardcode example cross-unit alerts
                 kpi.sla_alerts = [
-                    { days_elapsed: 15, req_number: "KSO-2026-003", title: "Keuangan: Pembayaran tertunda/jatuh tempo untuk PT. EH Syam" },
-                    { days_elapsed: 14, req_number: "KSO-2026-008", title: "Holding: Kontrak KSO PT. BEM (Borneo Etam Mandiri) berakhir dalam 60 hari" },
+                    { days_elapsed: 15, req_number: "KSO-2026-003", title: "Keuangan: Pembayaran tertunda/jatuh tempo untuk PT. Global Medika" },
+                    { days_elapsed: 14, req_number: "KSO-2026-008", title: "SPI/Legal: Deviasi Aset & Inefisiensi Harga terdeteksi pada PT. EH Syam (HOLD BAYAR)" },
                     { days_elapsed: 13, req_number: "PO-2026-004", title: "Keuangan: Jadwal Pembayaran belum diisi untuk PO KSO (SOP H+2)" },
                     { days_elapsed: 14, req_number: "TND-2026-001", title: "Legal: Review Draft Kontrak Vendor Melebihi Batas Waktu" },
                     { days_elapsed: 11, req_number: "REQ-2026-003", title: "SPI: Temuan Ketidaksesuaian BAPB vs Fisik Barang" }
@@ -512,7 +413,7 @@
             }
             
             if(kpi.sla_alerts && kpi.sla_alerts.length > 0) {
-                kpi.sla_alerts.forEach(a => {
+                kpi.sla_alerts.slice(0, 5).forEach(a => {
                     const daysRemaining = 14 - a.days_elapsed;
                     const isUrgent = daysRemaining <= 2;
                     
@@ -549,8 +450,8 @@
                 });
             }
 
-            document.getElementById('box3-alerts').innerHTML = alertsHtml.join('') || '<div class="text-[10px] text-slate-500 text-center py-4">No critical alerts</div>';
-            document.getElementById('box7-sla').innerHTML = slaHtml.join('') || '<div class="text-[10px] text-slate-500 text-center py-4">All SLAs on track</div>';
+            updateHTML('box3-alerts', alertsHtml.join('') || '<div class="text-[10px] text-slate-500 text-center py-4">No critical alerts</div>');
+            updateHTML('box7-sla', slaHtml.join('') || '<div class="text-[10px] text-slate-500 text-center py-4">All SLAs on track</div>');
             document.getElementById('alertCount').textContent = criticalCount;
         }
 
@@ -580,12 +481,12 @@
                     <td class="py-1.5 px-2 text-[9px] text-center font-bold">${statusMap[t.status] || t.status}</td>
                 </tr>
             `).join('');
-            document.getElementById('box2-tenders').innerHTML = rows;
+            updateHTML('box2-tenders', rows);
         }
 
         function renderBox4(data) {
             const d = data.data;
-            document.getElementById('box4-payment').innerHTML = `
+            updateHTML('box4-payment', `
                 <div class="bg-slate-800/50 rounded p-1.5 text-[9px] border border-slate-700/50">
                     <div class="text-[8px] text-slate-400 uppercase mb-1">Awaiting Approval</div>
                     ${d.awaiting_approval.slice(0,2).map(inv => `
@@ -606,7 +507,7 @@
                         <span class="text-emerald-400">Cash: ${fmtM(d.cashflow.current_cash)} ✓</span>
                     </div>
                 </div>
-            `;
+            `);
         }
 
         function renderBox5(data) {
@@ -635,12 +536,12 @@
                     </tr>
                 `;
             }).join('');
-            document.getElementById('box5-vendor').innerHTML = html;
+            updateHTML('box5-vendor', html);
         }
 
         function renderBox6(data) {
             const d = data.data;
-            let breakdownHtml = d.breakdown.map(b => `
+            let breakdownHtml = d.breakdown.slice(0, 4).map(b => `
                 <div class="mb-1.5 last:mb-0">
                     <div class="flex justify-between text-[8px] mb-0.5">
                         <span class="text-slate-300 font-bold">${b.category}</span>
@@ -656,7 +557,7 @@
                 </div>
             `).join('');
 
-            document.getElementById('box6-budget').innerHTML = `
+            updateHTML('box6-budget', `
                 <div>
                     <div class="flex justify-between text-[10px] mb-1">
                         <span class="text-slate-400">Total Korporat FY:</span>
@@ -674,13 +575,11 @@
                     <div class="text-[8px] text-slate-500 uppercase font-bold tracking-widest mb-1.5">Rincian per SBU</div>
                     ${breakdownHtml}
                 </div>
-            `;
+            `);
         }
 
         function renderBox8(data) {
             if(!data.data) return;
-            const target = document.getElementById('box8-logs');
-            target.innerHTML = ''; // clear before re-render
             const html = data.data.slice(0, 10).map(log => `
                 <div class="flex gap-2">
                     <span class="text-slate-500">${log.time}</span>
@@ -688,7 +587,7 @@
                     <span class="text-slate-300 truncate">${log.action}</span>
                 </div>
             `).join('');
-            target.innerHTML = html;
+            updateHTML('box8-logs', html);
         }
 
         function renderBox9(data) {
@@ -702,7 +601,7 @@
                     </span>
                 </div>
             `;
-            document.getElementById('box9-system').innerHTML = `
+            updateHTML('box9-system', `
                 <div class="bg-slate-800/30 rounded p-2 mb-2 border border-slate-700/50">
                     ${mkRow('Main System', d.procurement_system)}
                     ${mkRow('DB_KMU', d.database)}
@@ -712,7 +611,7 @@
                     ${mkRow('WebSocket', d.websocket)}
                     ${mkRow('GL Sync', d.gl_integration)}
                 </div>
-            `;
+            `);
         }
 
         function renderBox11(data) {
@@ -737,13 +636,11 @@
                 </tr>
                 `;
             }).join('');
-            document.getElementById('box11-contracts').innerHTML = rows;
+            updateHTML('box11-contracts', rows);
         }
 
         function renderBox10(data) {
             if(!data.data) return;
-            const target = document.getElementById('box10-communications');
-            target.innerHTML = ''; // clear before re-render
             const rows = data.data.slice(0, 10).map(log => {
                 return `
                 <tr class="hover:bg-slate-800/50 transition">
@@ -761,12 +658,33 @@
                 </tr>
                 `;
             }).join('');
-            target.innerHTML = rows;
+            updateHTML('box10-communications', rows);
         }
 
-        // Auto Refresh Engine
-        fetchAll(); // initial
-        setInterval(fetchAll, 5000); // refresh every 5 seconds for live feel, optimized to reduce load
+        // Refresh engine: polling 15s, berhenti saat tab disembunyikan
+        let _refreshTimer = null;
+
+        function scheduleRefresh() {
+            if (_refreshTimer) clearTimeout(_refreshTimer);
+            _refreshTimer = setTimeout(() => {
+                if (document.visibilityState === 'visible') fetchAll();
+                scheduleRefresh();
+            }, 15000);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            const statusEl = document.getElementById('systemStatusHeader');
+            if (document.visibilityState === 'visible') {
+                fetchAll();
+                scheduleRefresh();
+            } else if (statusEl) {
+                statusEl.className = 'text-slate-500 flex items-center gap-1.5';
+                statusEl.innerHTML = '<div class="w-2 h-2 rounded-full bg-slate-500"></div> PAUSED';
+            }
+        });
+
+        fetchAll(); // initial load
+        scheduleRefresh();
 
     </script>
 </body>

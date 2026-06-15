@@ -22,163 +22,77 @@
 <body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
+    
+    <!-- Sidebar Portal Pengadaan -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
                 </div>
                 <div class="space-y-1">
-                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
-                    </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
-                    </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
-                    </a>
-                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
-                    </a>
-                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
-                    </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
-                    </a>
-                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
-                    </a>
-                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
-                    </a>
-                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
-                    </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
-                    </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
+                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
                     </a>
                     <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
+                        <i class="fas fa-inbox w-5 text-center relative"><span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span></i><span class="text-sm font-medium">Inbox Approval</span>
+                    </a>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
                     </a>
                 </div>
             </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
+                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
                 </div>
                 <div class="space-y-1">
-                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-blue-500 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
                     </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
                     </a>
-                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
                     </a>
-                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
                     </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">5. KSO & Kontrak</span>
                     </a>
-                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
                     </a>
-                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
                     </a>
-                </div>
-            </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
                     </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
                     </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
-                </div>
-                <div class="space-y-1">
-                    <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
+                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<div class="p-4 border-t border-slate-800">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-sky-600 flex items-center justify-center text-xs font-bold">DR</div>
-                <div>
-                    <p class="text-sm font-medium">Direktorat Perencanaan</p>
-                    <p class="text-xs text-slate-400">Admin RKAP</p>
-                </div>
-            </div>
-        </div>
-</aside>
 
     <!-- Main -->
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -201,7 +115,7 @@
         <main class="flex-1 overflow-y-auto p-8">
 
             <!-- KPI Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" id="kpi-container">
                 <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
                     <p class="text-xs text-gray-500 font-medium">Total Anggaran (RKAP 2026)</p>
                     <p class="text-3xl font-bold text-gray-900 mt-1">Rp 120 M</p>
@@ -230,6 +144,7 @@
                     <button class="tab-btn active" id="tab-btn-dashboard" onclick="switchTab('dashboard')">📈 Dashboard Realisasi</button>
                     <button class="tab-btn" id="tab-btn-sbu" onclick="switchTab('sbu')">🏢 Alokasi per SBU</button>
                     <button class="tab-btn" id="tab-btn-kategori" onclick="switchTab('kategori')">📦 Alokasi per Kategori</button>
+                    <button class="tab-btn" id="tab-btn-kpi" onclick="switchTab('kpi')">🎯 Laporan KPI Pengadaan</button>
                 </div>
 
                 <!-- Tab: Dashboard -->
@@ -291,95 +206,17 @@
                                     <th class="py-3 px-4 rounded-tr-lg">Status</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-100 text-sm">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-semibold text-gray-900">RS KMU Pusat</td>
-                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">SBU-RS-01</td>
-                                    <td class="py-3 px-4 text-right">Rp 65.000.000.000</td>
-                                    <td class="py-3 px-4 text-right text-gray-600">Rp 25.000.000.000</td>
-                                    <td class="py-3 px-4 text-right font-semibold text-emerald-600">Rp 40.000.000.000</td>
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-sky-500 h-1.5 rounded-full" style="width: 38%"></div></div>
-                                            <span class="text-xs">38%</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4"><span class="badge bg-emerald-100 text-emerald-700">Aman</span></td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-semibold text-gray-900">Klinik KMU Cab. Utama</td>
-                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">SBU-KL-01</td>
-                                    <td class="py-3 px-4 text-right">Rp 15.000.000.000</td>
-                                    <td class="py-3 px-4 text-right text-gray-600">Rp 13.800.000.000</td>
-                                    <td class="py-3 px-4 text-right font-semibold text-rose-600">Rp 1.200.000.000</td>
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-rose-500 h-1.5 rounded-full" style="width: 92%"></div></div>
-                                            <span class="text-xs font-bold text-rose-600">92%</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4"><span class="badge bg-rose-100 text-rose-700">Warning</span></td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-semibold text-gray-900">Lab KMU Biomedik</td>
-                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">SBU-LB-01</td>
-                                    <td class="py-3 px-4 text-right">Rp 20.000.000.000</td>
-                                    <td class="py-3 px-4 text-right text-gray-600">Rp 19.000.000.000</td>
-                                    <td class="py-3 px-4 text-right font-semibold text-rose-600">Rp 1.000.000.000</td>
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-rose-500 h-1.5 rounded-full" style="width: 95%"></div></div>
-                                            <span class="text-xs font-bold text-rose-600">95%</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4"><span class="badge bg-rose-100 text-rose-700">Warning</span></td>
-                                </tr>
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 font-semibold text-gray-900">Kantor Pusat KMU</td>
-                                    <td class="py-3 px-4 font-mono text-xs text-gray-500">HO-001</td>
-                                    <td class="py-3 px-4 text-right">Rp 20.000.000.000</td>
-                                    <td class="py-3 px-4 text-right text-gray-600">Rp 4.000.000.000</td>
-                                    <td class="py-3 px-4 text-right font-semibold text-emerald-600">Rp 16.000.000.000</td>
-                                    <td class="py-3 px-4">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="bg-sky-500 h-1.5 rounded-full" style="width: 20%"></div></div>
-                                            <span class="text-xs">20%</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-3 px-4"><span class="badge bg-emerald-100 text-emerald-700">Aman</span></td>
-                                </tr>
-                            </tbody>
-                            <tfoot class="bg-gray-50 font-bold border-t border-gray-200">
-                                <tr>
-                                    <td colspan="2" class="py-3 px-4">TOTAL</td>
-                                    <td class="py-3 px-4 text-right">Rp 120.000.000.000</td>
-                                    <td class="py-3 px-4 text-right">Rp 61.800.000.000</td>
-                                    <td class="py-3 px-4 text-right text-sky-700">Rp 58.200.000.000</td>
-                                    <td class="py-3 px-4">51.5%</td>
-                                    <td></td>
-                                </tr>
-                            </tfoot>
+                            <tbody id="sbu-tbody" class="divide-y divide-gray-100 text-sm"></tbody>
+                            <tfoot id="sbu-tfoot" class="bg-gray-50 font-bold border-t border-gray-200"></tfoot>
                         </table>
                     </div>
                 </div>
 
                 <!-- Tab: Alokasi per Kategori -->
                 <div id="tab-kategori" class="p-6 hidden">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <!-- Card: Alat Medis -->
-                        <div class="border border-gray-200 rounded-xl p-5 hover:border-sky-300 transition">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600 text-xl">⚕️</div>
-                                <span class="badge bg-sky-100 text-sky-700">Capex</span>
-                            </div>
-                            <h4 class="font-bold text-gray-900">Alat Medis & KSO</h4>
-                            <div class="mt-4 space-y-2 text-sm">
-                                <div class="flex justify-between"><span class="text-gray-500">Anggaran:</span> <span class="font-semibold">Rp 50 M</span></div>
-                                <div class="flex justify-between"><span class="text-gray-500">Realisasi:</span> <span>Rp 25 M</span></div>
-                                <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-500">Sisa:</span> <span class="font-bold text-emerald-600">Rp 25 M</span></div>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4"><div class="bg-sky-500 h-1.5 rounded-full" style="width: 50%"></div></div>
-                        </div>
+                    <div id="kategori-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+                </div>
+            </div>
 
                         <!-- Card: Obat -->
                         <div class="border border-gray-200 rounded-xl p-5 hover:border-emerald-300 transition">
@@ -427,6 +264,43 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Tab: KPI Pengadaan -->
+                <div id="tab-kpi" class="p-6 hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900">Laporan KPI (Key Performance Indicator) Pengadaan</h3>
+                            <p class="text-sm text-gray-500">Analisis jumlah item direncanakan vs direalisasikan dan identifikasi bottleneck per departemen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" id="kpi-summary-cards">
+                        <!-- Filled by JS -->
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
+                            <h4 class="font-bold text-gray-800">Daftar Keterlambatan Realisasi Investasi (Bottleneck)</h4>
+                            <span class="badge bg-rose-100 text-rose-700">Sistem Pembelaan Data</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead>
+                                    <tr class="text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200 bg-gray-50">
+                                        <th class="py-3 px-6">No PO / SPK</th>
+                                        <th class="py-3 px-6">Nama Pekerjaan / Barang</th>
+                                        <th class="py-3 px-6">Target Bayar DP</th>
+                                        <th class="py-3 px-6">Aktual Bayar DP</th>
+                                        <th class="py-3 px-6 rounded-tr-lg">Akar Masalah (Delay Reason)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="kpi-delay-tbody" class="divide-y divide-gray-100 text-sm">
+                                    <!-- Filled by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
@@ -447,10 +321,11 @@
                 </div>
                 <div>
                     <label class="text-xs font-semibold text-gray-600 block mb-1.5">File RKAP (Excel / CSV)</label>
-                    <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition cursor-pointer">
+                    <input type="file" id="rkap-file" accept=".csv" class="hidden" onchange="document.getElementById('file-name').innerText = this.files[0].name">
+                    <div onclick="document.getElementById('rkap-file').click()" class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:bg-gray-50 transition cursor-pointer">
                         <div class="text-3xl mb-2 text-gray-400">📄</div>
-                        <p class="text-sm font-medium text-gray-700">Klik untuk upload atau drag & drop</p>
-                        <p class="text-xs text-gray-500 mt-1">Format: .xlsx, .xls, .csv (Max 10MB)</p>
+                        <p id="file-name" class="text-sm font-medium text-gray-700">Klik untuk upload atau drag & drop</p>
+                        <p class="text-xs text-gray-500 mt-1">Format: .csv (Max 10MB)</p>
                     </div>
                 </div>
                 <div class="bg-sky-50 p-3 rounded-lg flex items-start gap-2 border border-sky-100">
@@ -475,9 +350,13 @@
 
     <script>
         function switchTab(tab) {
-            ['dashboard','sbu','kategori'].forEach(t => {
-                document.getElementById('tab-' + t).classList.add('hidden');
-                document.getElementById('tab-btn-' + t).classList.remove('active');
+            ['dashboard','sbu','kategori', 'kpi'].forEach(t => {
+                const tabEl = document.getElementById('tab-' + t);
+                const btnEl = document.getElementById('tab-btn-' + t);
+                if(tabEl && btnEl) {
+                    tabEl.classList.add('hidden');
+                    btnEl.classList.remove('active');
+                }
             });
             document.getElementById('tab-' + tab).classList.remove('hidden');
             document.getElementById('tab-btn-' + tab).classList.add('active');
@@ -493,14 +372,249 @@
             setTimeout(() => t.classList.add('hidden'), 3000);
         }
 
-        function uploadRkap() {
-            closeRkapModal();
-            // Simulate processing
-            setTimeout(() => { showToast('Sedang memvalidasi baris data...'); }, 500);
-            setTimeout(() => { showToast('RKAP 2027 berhasil di-import & plafon diupdate!'); }, 2500);
+        async function uploadRkap() {
+            const fileInput = document.getElementById('rkap-file');
+            if (!fileInput.files.length) {
+                showToast('Pilih file CSV terlebih dahulu!');
+                return;
+            }
+            
+            showToast('Sedang memvalidasi dan meng-upload baris data...');
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            try {
+                const response = await fetch('/api/rkap/import-csv', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                closeRkapModal();
+                if(response.ok) {
+                    showToast(result.message || 'RKAP 2027 berhasil di-import & plafon diupdate!');
+                } else {
+                    showToast('Gagal meng-upload: ' + result.detail);
+                }
+            } catch (error) {
+                showToast('Terjadi kesalahan koneksi ke server.');
+                closeRkapModal();
+            }
         }
 
+        
+        // Fetch data from backend
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/api/rkap/dashboard');
+                const result = await response.json();
+                if(result.status === 'success') {
+                    renderDashboard(result.data);
+                }
+            } catch (err) {
+                console.error("Failed to load dashboard data", err);
+            }
+            loadKpiData();
+        }
+
+        async function loadKpiData() {
+            try {
+                const response = await fetch('/api/procurement/kpi-report');
+                const result = await response.json();
+                if(result.status === 'success') {
+                    renderKpi(result.data);
+                }
+            } catch (err) {
+                console.error("Failed to load KPI data", err);
+            }
+        }
+        
+        function renderKpi(data) {
+            const summaryContainer = document.getElementById('kpi-summary-cards');
+            let successRate = data.total_planned > 0 ? (data.total_realized / data.total_planned * 100).toFixed(1) : 0;
+            
+            summaryContainer.innerHTML = `
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center text-sky-600 text-xl"><i class="fas fa-boxes"></i></div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Item Direncanakan</p>
+                            <p class="text-2xl font-bold text-gray-900">${data.total_planned}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 text-xl"><i class="fas fa-check-circle"></i></div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Item Berhasil Terealisasi</p>
+                            <p class="text-2xl font-bold text-emerald-600">${data.total_realized} <span class="text-xs font-normal text-emerald-500">(${successRate}%)</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white border border-rose-200 bg-rose-50 rounded-xl p-5 shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-rose-200 rounded-full flex items-center justify-center text-rose-700 text-xl"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div>
+                            <p class="text-sm font-medium text-rose-800">Item Terhambat (Bottleneck DP)</p>
+                            <p class="text-2xl font-bold text-rose-600">${data.total_delayed}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const tbody = document.getElementById('kpi-delay-tbody');
+            tbody.innerHTML = '';
+            
+            if(data.delayed_items.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="py-6 text-center text-gray-500">Tidak ada data keterlambatan</td></tr>';
+                return;
+            }
+            
+            data.delayed_items.forEach(item => {
+                let badgeClass = item.reason.includes('Keuangan') ? 'bg-rose-100 text-rose-700 border border-rose-200' : 'bg-amber-100 text-amber-700 border border-amber-200';
+                tbody.innerHTML += \`
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-6 font-medium text-gray-900">\${item.po}</td>
+                        <td class="py-3 px-6 text-gray-600 truncate max-w-xs" title="\${item.item}">\${item.item}</td>
+                        <td class="py-3 px-6 text-gray-600">\${item.planned_date}</td>
+                        <td class="py-3 px-6 text-gray-600">\${item.realized_date}</td>
+                        <td class="py-3 px-6">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium \${badgeClass}">
+                                \${item.reason}
+                            </span>
+                        </td>
+                    </tr>
+                \`;
+            });
+        }
+
+        
+        function formatRp(value) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(value);
+        }
+        
+        function renderDashboard(data) {
+            // Calculate KPI
+            let totalAnggaran = 0;
+            let totalRealisasi = 0;
+            let warningCount = 0;
+            
+            const tbody = document.getElementById('sbu-tbody');
+            tbody.innerHTML = '';
+            
+            data.sbu.forEach(item => {
+                totalAnggaran += item.budget_allocated;
+                totalRealisasi += item.budget_realized;
+                let sisa = item.budget_allocated - item.budget_realized;
+                let serapan = (item.budget_realized / item.budget_allocated) * 100;
+                
+                let statusBadge = '';
+                let bgClass = '';
+                let warningCls = '';
+                if(serapan > 90) {
+                    warningCount++;
+                    statusBadge = '<span class="badge bg-rose-100 text-rose-700">Warning</span>';
+                    warningCls = 'text-rose-600 font-bold';
+                    bgClass = 'bg-rose-500';
+                } else {
+                    statusBadge = '<span class="badge bg-emerald-100 text-emerald-700">Aman</span>';
+                    warningCls = '';
+                    bgClass = 'bg-sky-500';
+                }
+                
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4 font-semibold text-gray-900">${item.sbu_name}</td>
+                        <td class="py-3 px-4 font-mono text-xs text-gray-500">${item.sbu_code}</td>
+                        <td class="py-3 px-4 text-right">${formatRp(item.budget_allocated)}</td>
+                        <td class="py-3 px-4 text-right text-gray-600">${formatRp(item.budget_realized)}</td>
+                        <td class="py-3 px-4 text-right font-semibold ${serapan > 90 ? 'text-rose-600' : 'text-emerald-600'}">${formatRp(sisa)}</td>
+                        <td class="py-3 px-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-full bg-gray-200 rounded-full h-1.5"><div class="${bgClass} h-1.5 rounded-full" style="width: ${serapan.toFixed(1)}%"></div></div>
+                                <span class="text-xs ${warningCls}">${serapan.toFixed(1)}%</span>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4">${statusBadge}</td>
+                    </tr>
+                `;
+            });
+            
+            let totalSisa = totalAnggaran - totalRealisasi;
+            let totalSerapan = (totalRealisasi / totalAnggaran) * 100;
+            
+            document.getElementById('sbu-tfoot').innerHTML = `
+                <tr>
+                    <td colspan="2" class="py-3 px-4">TOTAL</td>
+                    <td class="py-3 px-4 text-right">${formatRp(totalAnggaran)}</td>
+                    <td class="py-3 px-4 text-right">${formatRp(totalRealisasi)}</td>
+                    <td class="py-3 px-4 text-right text-sky-700">${formatRp(totalSisa)}</td>
+                    <td class="py-3 px-4">${totalSerapan.toFixed(1)}%</td>
+                    <td></td>
+                </tr>
+            `;
+            
+            // KPI Update
+            document.getElementById('kpi-container').innerHTML = `
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Total Anggaran (RKAP 2026)</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-1">${formatRp(totalAnggaran)}</p>
+                    <p class="text-xs text-gray-400 mt-1">Disetujui BOD</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Realisasi (YTD)</p>
+                    <p class="text-3xl font-bold text-sky-600 mt-1">${formatRp(totalRealisasi)}</p>
+                    <p class="text-xs text-gray-400 mt-1">${totalSerapan.toFixed(1)}% dari Anggaran</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+                    <p class="text-xs text-gray-500 font-medium">Sisa Anggaran</p>
+                    <p class="text-3xl font-bold text-emerald-500 mt-1">${formatRp(totalSisa)}</p>
+                    <p class="text-xs text-gray-400 mt-1">Tersedia untuk Pengadaan</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 bg-gradient-to-br from-rose-50 to-red-50 border-rose-100">
+                    <p class="text-xs text-rose-700 font-medium">Overbudget Warning</p>
+                    <p class="text-3xl font-bold text-rose-600 mt-1">${warningCount} SBU</p>
+                    <p class="text-xs text-rose-500 mt-1">Mendekati limit >90%</p>
+                </div>
+            `;
+            
+            // Categories
+            const catContainer = document.getElementById('kategori-container');
+            catContainer.innerHTML = '';
+            
+            const icons = ["⚕️", "💊", "🧪", "🏢"];
+            const colors = ["sky", "emerald", "violet", "amber"];
+            
+            data.categories.forEach((cat, idx) => {
+                let c = colors[idx % colors.length];
+                let i = icons[idx % icons.length];
+                let sisa = cat.budget_allocated - cat.budget_realized;
+                let pct = (cat.budget_realized / cat.budget_allocated) * 100;
+                
+                catContainer.innerHTML += `
+                    <div class="border border-gray-200 rounded-xl p-5 hover:border-${c}-300 transition">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-${c}-100 flex items-center justify-center text-${c}-600 text-xl">${i}</div>
+                            <span class="badge bg-${c}-100 text-${c}-700">${cat.category_type}</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900">${cat.category_name}</h4>
+                        <div class="mt-4 space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-gray-500">Anggaran:</span> <span class="font-semibold">${formatRp(cat.budget_allocated)}</span></div>
+                            <div class="flex justify-between"><span class="text-gray-500">Realisasi:</span> <span>${formatRp(cat.budget_realized)}</span></div>
+                            <div class="flex justify-between border-t border-gray-100 pt-2"><span class="text-gray-500">Sisa:</span> <span class="font-bold text-${sisa < 0 ? 'rose' : 'emerald'}-600">${formatRp(sisa)}</span></div>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-4"><div class="bg-${c}-500 h-1.5 rounded-full" style="width: ${pct}%"></div></div>
+                    </div>
+                `;
+            });
+        }
+
+
         // Initialize Chart
+        loadDashboardData();
+
         window.addEventListener('DOMContentLoaded', () => {
             const ctx = document.getElementById('budgetChart').getContext('2d');
             new Chart(ctx, {

@@ -1,0 +1,48 @@
+{
+    "last_update": "2026-06-14 23:03:13",
+    "total_vendors": 2,
+    "alarms": [
+        {
+            "type": "WARNING",
+            "title": "Inefisiensi Distribusi Volume: PT. EH Syam di RS KMU Bontang",
+            "desc": "Cabang RS KMU Bontang memakai alat PT. EH Syam lebih banyak (5000.0 test) padahal tarif PT. BEM lebih murah untuk pemeriksaan Imunologi. Perlu penjelasan dari Kasie Lab RS KMU Bontang."
+        },
+        {
+            "type": "WARNING",
+            "title": "Kehadiran Teknisi Rendah: PT. EH Syam",
+            "desc": "Teknisi PT. EH Syam jarang melakukan kontrol alat (hanya 30.0% kehadiran)."
+        },
+        {
+            "type": "INFO",
+            "title": "Stok Reagen Rendah (Dimaklumi): PT. EH Syam",
+            "desc": "Ketersediaan reagen PT. EH Syam menurun (80.0%), namun ini akibat keterlambatan pembayaran dari pihak KMU."
+        },
+        {
+            "type": "CRITICAL",
+            "title": "Tagihan Alat Ilegal Terdeteksi: PT. EH Syam",
+            "desc": "Ditemukan tagihan untuk alat yang belum terdaftar di kontrak PKS KSO. Butuh investigasi Legal & SPI."
+        },
+        {
+            "type": "CRITICAL",
+            "title": "Pelanggaran SLA Perbaikan: PT. EH Syam",
+            "desc": "Alat rusak lebih dari 2x24 jam tanpa solusi perbaikan yang jelas. Operasional terganggu!"
+        }
+    ],
+    "resolved_logs": [],
+    "vendors_overview": [
+        {
+            "vendor": "PT. BEM",
+            "info_kehadiran": "Teknisi: 100.0%",
+            "info_reagen": "Reagen: 95.0%",
+            "grade": "A",
+            "has_anomaly": false
+        },
+        {
+            "vendor": "PT. EH Syam",
+            "info_kehadiran": "Teknisi: 30.0%",
+            "info_reagen": "Reagen: 80.0%",
+            "grade": "D",
+            "has_anomaly": true
+        }
+    ]
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Katalog Internal - Pengadaan KMU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-50 min-h-screen font-sans flex">
+    
+    <!-- Sidebar Placeholder -->
+    
+    <!-- Sidebar Portal Pengadaan -->
+    <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
+        <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
+            <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
+                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
+            </div>
+            <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
+        </a>
+        <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
+                </div>
+                <div class="space-y-1">
+                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
+                    </a>
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-inbox w-5 text-center relative"><span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span></i><span class="text-sm font-medium">Inbox Approval</span>
+                    </a>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
+                </div>
+                <div class="space-y-1">
+                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
+                    </a>
+                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
+                    </a>
+                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
+                    </a>
+                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
+                    </a>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">5. KSO & Kontrak</span>
+                    </a>
+                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
+                    </a>
+                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
+                    </a>
+                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
+                    </a>
+                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
+                    </a>
+                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
+                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+
+    <main class="flex-1 overflow-auto">
+        <!-- Header -->
+        <header class="bg-white border-b px-8 py-4 flex justify-between items-center sticky top-0 z-10">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800">Direktori E-Katalog Internal</h1>
+                <p class="text-sm text-slate-500">Database master harga dan ketersediaan barang dari seluruh vendor terdaftar</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-3 top-3 text-slate-400"></i>
+                    <input type="text" id="searchInput" placeholder="Cari nama barang..." class="pl-10 pr-4 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-emerald-500 w-64">
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="p-8">
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                    <h3 class="font-semibold text-slate-700">Daftar Item Katalog (2026)</h3>
+                    <button onclick="startQuotation()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm">
+                        <i class="fas fa-file-invoice-dollar mr-2"></i> Minta Penawaran (Quotation)
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-50 text-slate-600 border-b">
+                            <tr>
+                                <th class="p-4 font-semibold w-10">Pilih</th>
+                                <th class="p-4 font-semibold">Nama Barang</th>
+                                <th class="p-4 font-semibold">Vendor</th>
+                                <th class="p-4 font-semibold">Unit & SBU</th>
+                                <th class="p-4 font-semibold text-right">Harga Katalog</th>
+                                <th class="p-4 font-semibold">Merk</th>
+                                <th class="p-4 font-semibold">Ketersediaan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="catalogTableBody" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="7" class="p-8 text-center text-slate-400">Memuat data e-katalog...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Form Minta Penawaran -->
+    <div id="quotationModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center">
+                <h3 class="font-bold text-lg text-slate-800">Buat Sesi Permintaan Penawaran</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nama Barang yang Direalisasikan</label>
+                    <input type="text" id="reqItemName" readonly class="w-full border border-slate-200 rounded-lg p-2.5 bg-slate-50 text-slate-600">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Vendor Terpilih (Otomatis Diundang)</label>
+                    <div id="reqVendors" class="w-full border border-slate-200 rounded-lg p-2.5 bg-slate-50 text-sm text-slate-600 min-h-[60px]"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Target Tanggal Realisasi</label>
+                    <input type="date" id="reqTargetDate" class="w-full border border-slate-200 rounded-lg p-2.5">
+                </div>
+            </div>
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex justify-end space-x-3">
+                <button onclick="closeModal()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800">Batal</button>
+                <button onclick="submitQuotation()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium">Buat Sesi Penawaran</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://127.0.0.1:8000/api';
+        let rawData = [];
+        let selectedItemName = "";
+        let selectedVendors = [];
+
+        async function fetchCatalogs() {
+            try {
+                const res = await fetch(`${API_URL}/catalogs`);
+                const json = await res.json();
+                rawData = json.data;
+                renderTable(rawData);
+            } catch (err) {
+                console.error(err);
+                document.getElementById('catalogTableBody').innerHTML = `<tr><td colspan="7" class="p-4 text-center text-red-500">Gagal memuat data</td></tr>`;
+            }
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('catalogTableBody');
+            tbody.innerHTML = '';
+            
+            if(data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400">Tidak ada data katalog</td></tr>`;
+                return;
+            }
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-50/50 transition-colors";
+                
+                const fmtPrice = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.price);
+                
+                row.innerHTML = `
+                    <td class="p-4">
+                        <input type="checkbox" class="item-checkbox w-4 h-4 text-emerald-600 rounded border-slate-300" 
+                               data-item="${item.item_name}" data-vendor="${item.vendor_name}">
+                    </td>
+                    <td class="p-4 font-medium text-slate-800">${item.item_name}</td>
+                    <td class="p-4 text-slate-600"><span class="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-medium">${item.vendor_name}</span></td>
+                    <td class="p-4 text-slate-600">${item.unit} <br><span class="text-xs text-slate-400">${item.sbu_name}</span></td>
+                    <td class="p-4 text-right font-medium text-emerald-600">${fmtPrice}</td>
+                    <td class="p-4 text-slate-600">${item.brand || '-'}</td>
+                    <td class="p-4 text-slate-600 text-xs">${item.availability_status}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Search logic
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const filtered = rawData.filter(i => i.item_name.toLowerCase().includes(val) || i.vendor_name.toLowerCase().includes(val));
+            renderTable(filtered);
+        });
+
+        function startQuotation() {
+            const checkboxes = document.querySelectorAll('.item-checkbox:checked');
+            if(checkboxes.length === 0) {
+                alert("Pilih minimal 1 barang dari vendor yang ingin diundang penawaran.");
+                return;
+            }
+            
+            // Check if all selected items are of the same type
+            const items = new Set();
+            selectedVendors = [];
+            
+            checkboxes.forEach(cb => {
+                items.add(cb.dataset.item);
+                selectedVendors.push(cb.dataset.vendor);
+            });
+
+            if(items.size > 1) {
+                alert("Mohon pilih item barang yang sama persis (dari beberapa vendor berbeda) untuk membuat sesi penawaran komparasi.");
+                return;
+            }
+
+            selectedItemName = Array.from(items)[0];
+            
+            document.getElementById('reqItemName').value = selectedItemName;
+            document.getElementById('reqVendors').innerHTML = selectedVendors.map(v => `<span class="inline-block bg-slate-200 rounded px-2 py-1 text-xs mr-2 mb-2">${v}</span>`).join('');
+            
+            document.getElementById('quotationModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('quotationModal').classList.add('hidden');
+        }
+
+        async function submitQuotation() {
+            const tDate = document.getElementById('reqTargetDate').value;
+            if(!tDate) {
+                alert("Pilih target tanggal realisasi");
+                return;
+            }
+
+            try {
+                // 1. Create Quotation Request
+                const res = await fetch(`${API_URL}/quotations`, {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({item_name: selectedItemName, target_realization_date: tDate})
+                });
+                const qData = await res.json();
+                
+                if(qData.status !== 'success') throw new Error(qData.detail || "Gagal membuat sesi penawaran");
+                
+                const quotId = qData.quotation_id;
+
+                // 2. Add Bids for selected vendors
+                for(const vendor of selectedVendors) {
+                    await fetch(`${API_URL}/quotations/${quotId}/bids`, {
+                        method: 'POST',
+                        headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({vendor_name: vendor, bid_price: 0}) // Initial bid price 0
+                    });
+                }
+
+                alert(`Sesi Penawaran ${qData.req_number} berhasil dibuat! Undangan otomatis dikirim ke portal vendor.`);
+                window.location.href = 'quotation_scoring.html';
+                
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        window.onload = fetchCatalogs;
+    </script>
+</body>
+</html>

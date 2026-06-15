@@ -3,8 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manajemen KSO & Kontrak — Fase 5 PT. KMU</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Monev (Monitoring dan Evaluasi) — Fase 5 PT. KMU</title>
+    <script src="https://cdn.tailwindcss.com">
+        const API_URL = '/api';
+        
+        async function loadContracts() {
+            try {
+                const res = await fetch(API_URL + '/kso-contracts');
+                const result = await res.json();
+                if(result.status === 'success') {
+                    renderContracts(result.data);
+                }
+            } catch(e) {
+                document.getElementById('tbody-kso').innerHTML = '<tr><td colspan="6" class="text-center text-red-500 py-4">Gagal memuat data</td></tr>';
+            }
+        }
+        
+        function renderContracts(data) {
+            const tbody = document.getElementById('tbody-kso');
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-gray-500">Tidak ada kontrak KSO.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = data.map(c => {
+                let statusBadge = '';
+                if(c.status === 'BERJALAN') statusBadge = '<span class="badge bg-emerald-100 text-emerald-700 border border-emerald-200">BERJALAN</span>';
+                else statusBadge = '<span class="badge bg-amber-100 text-amber-700 border border-amber-200">RENEWAL PERIOD</span>';
+                
+                return `
+                <tr class="hover:bg-slate-50">
+                    <td class="px-6 py-4">
+                        <div class="font-mono text-xs text-gray-500">${c.contract_number}</div>
+                        <div class="font-bold text-gray-900">${c.object_name}</div>
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-700">${c.vendor_name}</td>
+                    <td class="px-6 py-4">
+                        <div class="text-gray-900 text-xs">${c.start_date} - ${c.end_date}</div>
+                    </td>
+                    <td class="px-6 py-4"><span class="badge bg-purple-50 text-purple-700 border border-purple-200">${c.billing_type}</span></td>
+                    <td class="px-6 py-4 text-center">${statusBadge}</td>
+                    <td class="px-6 py-4 text-right">
+                        <button class="text-blue-600 hover:bg-blue-50 px-2 py-1 rounded transition text-xs font-medium border border-blue-200">Lihat Detail</button>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+        
+        window.onload = loadContracts;
+
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -21,163 +70,77 @@
 <body class="antialiased text-gray-900 flex h-screen overflow-hidden">
 
     <!-- Sidebar -->
+    
+    <!-- Sidebar Portal Pengadaan -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
-
-        <!-- Logo — klik untuk kembali ke portal utama -->
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-orange-500 uppercase tracking-wider">Kaltim Medika Utama</span>
+                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
-
-
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
-            <!-- 1. INTERNAL PENGADAAN (Operasional Core) -->
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Pengadaan
+                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
+                </div>
+                <div class="space-y-1">
+                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
+                    </a>
+                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-inbox w-5 text-center relative"><span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span></i><span class="text-sm font-medium">Inbox Approval</span>
+                    </a>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    </a>
+                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
+                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
                 </div>
                 <div class="space-y-1">
                     <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="text-sm font-medium">RKAP & Anggaran</span>
-                    </a>
-                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-calendar-check w-5 text-center"></i>
-                        <span class="text-sm font-medium">Proker & Rencana Realisasi</span>
+                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
                     </a>
                     <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i>
-                        <span class="text-sm font-medium">Registrasi Vendor</span>
+                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
                     </a>
                     <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i>
-                        <span class="text-sm font-medium">Permintaan (PP)</span>
+                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
                     </a>
                     <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i>
-                        <span class="text-sm font-medium">Tender & Bidding</span>
+                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
                     </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-600 text-white shadow-md shadow-emerald-900/20">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSO & Kontrak</span>
+                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-blue-500 transition-colors">
+                        <i class="fas fa-chart-line w-5 text-center"></i><span class="text-sm font-medium">5. Monev (Evaluasi)</span>
                     </a>
                     <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i>
-                        <span class="text-sm font-medium">BAPB & Penerimaan</span>
+                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
                     </a>
                     <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i>
-                        <span class="text-sm font-medium">Invoice & Bayar</span>
+                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
                     </a>
                     <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star text-amber-400 w-5 text-center"></i>
-                        <span class="text-sm font-medium">Raport Vendor</span>
+                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
                     </a>
                     <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Laporan & Analitik</span>
+                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
                     </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i>
-                        <span class="text-sm font-medium">E-Katalog Internal</span>
-                    </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i>
-                        <span class="text-sm font-medium">Swakelola & Jasa</span>
-                    </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center"></i>
-                        <span class="text-sm font-medium">Inbox Sentralisasi</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 2. LINTAS DEPARTEMEN (Beririsan) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-building text-slate-600"></i> Lintas Departemen
-                </div>
-                <div class="space-y-1">
-                    <a href="command_center.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tv w-5 text-center"></i>
-                        <span class="text-sm font-medium">Command Center</span>
-                    </a>
-                    <a href="umum_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-building w-5 text-center"></i>
-                        <span class="text-sm font-medium">Bagian Umum</span>
-                    </a>
-                    <a href="finance_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-wallet w-5 text-center"></i>
-                        <span class="text-sm font-medium">Keuangan</span>
-                    </a>
-                    <a href="spi_audit_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-halved w-5 text-center"></i>
-                        <span class="text-sm font-medium">SPI & Audit</span>
-                    </a>
-                    <a href="director_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-user-tie w-5 text-center"></i>
-                        <span class="text-sm font-medium">Dashboard Direksi</span>
-                    </a>
-                    <a href="legal_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-scale-balanced w-5 text-center"></i>
-                        <span class="text-sm font-medium">Legal & Kontrak</span>
-                    </a>
-                    <a href="ksu_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i>
-                        <span class="text-sm font-medium">KSU (Kerjasama Usaha)</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 3. EKSTERNAL (UI Vendor) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-globe text-slate-600"></i> Eksternal
-                </div>
-                <div class="space-y-1">
-                    <a href="vendor_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-store w-5 text-center"></i>
-                        <span class="text-sm font-medium">Vendor Portal Umum</span>
-                    </a>
-                    <a href="vendor_kso_lab_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-flask w-5 text-center"></i>
-                        <span class="text-sm font-medium">Portal Vendor KSO</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 4. LAPISAN AI (Guardian) -->
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-robot text-slate-600"></i> Lapisan AI
-                </div>
-                <div class="space-y-1">
-                    <a href="ai_guardian.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-shield-alt w-5 text-center"></i>
-                        <span class="text-sm font-medium">AI Penjaga SOP</span>
-                    </a>
-                    <a href="admin_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-database w-5 text-center"></i>
-                        <span class="text-sm font-medium">Admin & Vendor DB</span>
+                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
+                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
                     </a>
                 </div>
             </div>
         </div>
+    </aside>
 
-<div class="p-4 border-t border-slate-800">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">L</div>
-                <div>
-                    <p class="text-sm font-medium">Seksi Legal & KSO</p>
-                    <p class="text-xs text-slate-400">Kontrak Manajemen</p>
-                </div>
-            </div>
-        </div>
-</aside>
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden">
@@ -185,8 +148,8 @@
         <!-- Header -->
         <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 flex-shrink-0 shadow-sm">
             <div>
-                <h2 class="text-lg font-bold text-gray-800">Manajemen Kontrak & KSO Operasional</h2>
-                <p class="text-xs text-gray-500">Fase 5: SLA Tracking, Tagihan Cost-per-Test, dan Pengelolaan Dokumen Kontrak</p>
+                <h2 class="text-lg font-bold text-gray-800">Monev (Monitoring dan Evaluasi)</h2>
+                <p class="text-xs text-gray-500">Fase 5: Monitoring KSO Lab dan Sewa Kendaraan Operasional lintas SBU</p>
             </div>
             <div class="flex items-center gap-3">
                 <button class="px-4 py-2 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition flex items-center gap-2 shadow-sm">
@@ -219,13 +182,79 @@
 
             <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-6">
                 <div class="border-b border-gray-200 px-6 flex gap-2 flex-wrap bg-gray-50">
-                    <button class="tab-btn active" id="tab-btn-kso" onclick="switchTab('kso')">Daftar Kontrak KSO</button>
-                    <button class="tab-btn" id="tab-btn-sla" onclick="switchTab('sla')">SLA Tracker & Denda</button>
-                    <button class="tab-btn" id="tab-btn-cost" onclick="switchTab('cost')">Integrasi LIS & Cost-per-Test</button>
+                    <button class="tab-btn active" id="tab-btn-lab" onclick="switchTab('lab')">KSO Lab</button>
+                    <button class="tab-btn" id="tab-btn-kendaraan" onclick="switchTab('kendaraan')">Sewa Kendaraan Operasional</button>
+                    <button class="tab-btn" id="tab-btn-kso" onclick="switchTab('kso')">Daftar Kontrak Lainnya</button>
+                </div>
+
+                <!-- Tab: KSO Lab Evaluator -->
+                <div id="tab-lab" class="p-0 h-[800px]">
+                    <iframe src="KSO_Lab_Evaluator/ui/dashboard.html?v=5" class="w-full h-full border-0"></iframe>
+                </div>
+
+                <!-- Tab: Sewa Kendaraan Operasional -->
+                <div id="tab-kendaraan" class="p-6 hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h3 class="font-bold text-gray-800">Monitoring Sewa Kendaraan Operasional</h3>
+                            <p class="text-xs text-gray-500">Integrasi pemantauan vendor kendaraan operasional dengan Bagian Umum, KSU, dan Legal.</p>
+                        </div>
+                        <button class="px-4 py-2 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"><i class="fas fa-plus"></i> Usulan Sewa Baru</button>
+                    </div>
+
+                    <table class="w-full text-left text-sm whitespace-nowrap border border-slate-200 rounded-lg overflow-hidden">
+                        <thead class="bg-slate-50 border-b border-slate-200 text-xs uppercase font-bold text-slate-500 tracking-wider">
+                            <tr>
+                                <th class="px-6 py-3">Merk / Tipe Mobil</th>
+                                <th class="px-6 py-3">Nopol</th>
+                                <th class="px-6 py-3">Vendor Penyedia</th>
+                                <th class="px-6 py-3">SBU / Bagian Pengguna</th>
+                                <th class="px-6 py-3">Masa Berlaku Kontrak</th>
+                                <th class="px-6 py-3 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 bg-white">
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4 font-bold text-gray-800">Toyota Innova Zenix 2.0 G</td>
+                                <td class="px-6 py-4 font-mono text-xs">KT 1234 BQ</td>
+                                <td class="px-6 py-4 font-bold text-emerald-700">PT. Buana</td>
+                                <td class="px-6 py-4 text-slate-600">Kendaraan Direksi</td>
+                                <td class="px-6 py-4"><span class="text-xs">S.d 31 Des 2026</span></td>
+                                <td class="px-6 py-4 text-center"><span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded">AKTIF</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4 font-bold text-gray-800">Toyota Hilux Double Cabin</td>
+                                <td class="px-6 py-4 font-mono text-xs">KT 8871 XY</td>
+                                <td class="px-6 py-4 font-bold text-blue-700">PT. KMG</td>
+                                <td class="px-6 py-4 text-slate-600">Pool Logistik / IPSRS</td>
+                                <td class="px-6 py-4"><span class="text-xs">S.d 15 Ags 2028</span></td>
+                                <td class="px-6 py-4 text-center"><span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded">AKTIF</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4 font-bold text-gray-800">Daihatsu Gran Max Ambulance</td>
+                                <td class="px-6 py-4 font-mono text-xs">KT 9091 XX</td>
+                                <td class="px-6 py-4 font-bold text-amber-700">Kopkar</td>
+                                <td class="px-6 py-4 text-slate-600">Ambulans Operasional (Klinik)</td>
+                                <td class="px-6 py-4">
+                                    <span class="text-xs">S.d 20 Jun 2026</span><br>
+                                    <span class="text-[10px] text-amber-600 font-bold"><i class="fas fa-exclamation-triangle"></i> Segera Berakhir</span>
+                                </td>
+                                <td class="px-6 py-4 text-center"><span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded">PERLU RENEWAL</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-6 py-4 font-bold text-gray-800">Toyota Avanza 1.5 G</td>
+                                <td class="px-6 py-4 font-mono text-xs">KT 5512 AB</td>
+                                <td class="px-6 py-4 font-bold text-emerald-700">PT. Buana</td>
+                                <td class="px-6 py-4 text-slate-600">Marketing & Sales</td>
+                                <td class="px-6 py-4"><span class="text-xs">S.d 10 Nov 2026</span></td>
+                                <td class="px-6 py-4 text-center"><span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded">AKTIF</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Tab 1: Daftar KSO -->
-                <div id="tab-kso" class="p-0">
+                <div id="tab-kso" class="p-0 hidden">
                     <table class="w-full text-left text-sm whitespace-nowrap">
                         <thead class="bg-slate-50 border-b border-gray-200 text-xs uppercase font-bold text-slate-500 tracking-wider">
                             <tr>
@@ -237,39 +266,8 @@
                                 <th class="px-6 py-3 text-right">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-6 py-4">
-                                    <div class="font-mono text-xs text-gray-500">KSO-2023-012</div>
-                                    <div class="font-bold text-gray-900">Alat Hematologi Sysmex XN-1000</div>
-                                </td>
-                                <td class="px-6 py-4 font-medium text-gray-700">PT. Borneo Etam Mandiri</td>
-                                <td class="px-6 py-4">
-                                    <div class="text-gray-900 text-xs">Jan 2024 - Des 2028 <span class="text-gray-400">(5 Tahun)</span></div>
-                                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">Sisa 2.5 Tahun</div>
-                                </td>
-                                <td class="px-6 py-4"><span class="badge bg-purple-50 text-purple-700 border border-purple-200">Cost-per-Test (Rp 35rb)</span></td>
-                                <td class="px-6 py-4 text-center"><span class="badge bg-emerald-100 text-emerald-700 border border-emerald-200">BERJALAN</span></td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="text-blue-600 hover:bg-blue-50 px-2 py-1 rounded transition text-xs font-medium border border-blue-200">Lihat Detail</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="px-6 py-4">
-                                    <div class="font-mono text-xs text-gray-500">KSO-2021-005</div>
-                                    <div class="font-bold text-gray-900">Mesin X-Ray Mobile</div>
-                                </td>
-                                <td class="px-6 py-4 font-medium text-gray-700">PT. Medikal Indo Sejahtera</td>
-                                <td class="px-6 py-4">
-                                    <div class="text-gray-900 text-xs">Sep 2021 - Agu 2026 <span class="text-gray-400">(5 Tahun)</span></div>
-                                    <div class="text-[10px] text-amber-600 font-bold mt-0.5"><i class="fas fa-exclamation-triangle"></i> Sisa 2 Bulan (Akan Habis)</div>
-                                </td>
-                                <td class="px-6 py-4"><span class="badge bg-blue-50 text-blue-700 border border-blue-200">Beli Putus / Cicilan Fix</span></td>
-                                <td class="px-6 py-4 text-center"><span class="badge bg-amber-100 text-amber-700 border border-amber-200">RENEWAL PERIOD</span></td>
-                                <td class="px-6 py-4 text-right">
-                                    <button class="text-amber-600 hover:bg-amber-50 px-2 py-1 rounded transition text-xs font-medium border border-amber-200">Evaluasi Perpanjangan</button>
-                                </td>
-                            </tr>
+                        <tbody class="divide-y divide-gray-100" id="tbody-kso">
+                            <tr><td colspan="6" class="py-4 text-center text-gray-500">Memuat data...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -330,41 +328,64 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- PT. BEM -->
-                        <div class="border border-gray-200 rounded-xl p-5">
+                        <div class="border border-gray-200 rounded-xl p-5 bg-white shadow-sm relative">
                             <div class="flex justify-between items-start border-b border-gray-100 pb-3 mb-3">
                                 <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">PT. Borneo Etam Mandiri</h4>
-                                    <p class="text-xs text-gray-500">Hematologi Sysmex XN-1000</p>
+                                    <h4 class="font-bold text-gray-900 text-sm">PT. BEM (Borneo Etam Mandiri)</h4>
+                                    <p class="text-xs text-gray-500">Hematologi Sysmex XN-1000 - <span class="font-bold text-emerald-600">Alat Baik (Uptime 100%)</span></p>
                                 </div>
                                 <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded">SYNCED HARI INI</span>
                             </div>
                             <div class="grid grid-cols-2 gap-4 text-center mb-4">
-                                <div class="bg-gray-50 rounded p-2">
-                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Volume (Bulan Ini)</p>
-                                    <p class="text-xl font-black text-gray-800">14,250</p>
+                                <div class="bg-gray-50 rounded p-2 border border-slate-100">
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Volume Tarikan LIS (Juni)</p>
+                                    <p class="text-xl font-black text-gray-800">1.214 Test</p>
                                 </div>
-                                <div class="bg-gray-50 rounded p-2">
+                                <div class="bg-gray-50 rounded p-2 border border-slate-100">
                                     <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Cost / Test</p>
-                                    <p class="text-xl font-black text-blue-600">Rp 35k</p>
+                                    <p class="text-xl font-black text-blue-600">Rp 11.000</p>
                                 </div>
                             </div>
-                            <div class="bg-blue-50 border border-blue-100 p-3 rounded-lg text-center">
-                                <p class="text-xs text-blue-800 font-medium mb-1">Estimasi Tagihan Sementara (Invoice blm terbit)</p>
-                                <p class="text-2xl font-black text-blue-900">Rp 498.750.000</p>
+                            <div class="bg-blue-50 border border-blue-100 p-3 rounded-lg text-center mb-4">
+                                <p class="text-xs text-blue-800 font-medium mb-1">Estimasi Tagihan (Cost-per-Test)</p>
+                                <p class="text-2xl font-black text-blue-900">Rp 13.354.000</p>
+                            </div>
+                            <div class="border-t border-dashed border-gray-200 pt-3 flex justify-between items-center">
+                                <div class="text-xs text-slate-500">Cabang: <span class="font-bold text-slate-700">RS PKT Bontang</span></div>
+                                <button class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded transition flex items-center gap-1">
+                                    <i class="fas fa-check-double"></i> Konfirmasi Kasie Lab
+                                </button>
                             </div>
                         </div>
                         
-                        <!-- PT. Indo Sehat -->
-                        <div class="border border-gray-200 rounded-xl p-5 opacity-75">
+                        <!-- PT. EH Syam -->
+                        <div class="border border-gray-200 rounded-xl p-5 bg-white shadow-sm relative">
                             <div class="flex justify-between items-start border-b border-gray-100 pb-3 mb-3">
                                 <div>
-                                    <h4 class="font-bold text-gray-900 text-sm">PT. Indo Sehat</h4>
-                                    <p class="text-xs text-gray-500">Imunologi Cobas e411</p>
+                                    <h4 class="font-bold text-gray-900 text-sm">PT. EH Syam</h4>
+                                    <p class="text-xs text-gray-500">Imunologi Cobas e411 - <span class="font-bold text-red-600">Rusak (> 2x24 Jam)</span></p>
                                 </div>
-                                <span class="bg-gray-200 text-gray-600 text-[10px] font-bold px-2 py-1 rounded">PENDING SYNC</span>
+                                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-1 rounded">SYNCED HARI INI</span>
                             </div>
-                            <div class="text-center py-6 text-sm text-gray-500">
-                                Data belum ditarik dari mesin.
+                            <div class="grid grid-cols-2 gap-4 text-center mb-4">
+                                <div class="bg-gray-50 rounded p-2 border border-slate-100">
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Volume Tarikan LIS (Juni)</p>
+                                    <p class="text-xl font-black text-gray-800">4.821 Test</p>
+                                </div>
+                                <div class="bg-gray-50 rounded p-2 border border-slate-100">
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-1">Cost / Test</p>
+                                    <p class="text-xl font-black text-blue-600">Rp 15.000</p>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-100 p-3 rounded-lg text-center mb-4">
+                                <p class="text-xs text-blue-800 font-medium mb-1">Estimasi Tagihan (Cost-per-Test)</p>
+                                <p class="text-2xl font-black text-blue-900">Rp 72.315.000</p>
+                            </div>
+                            <div class="border-t border-dashed border-gray-200 pt-3 flex justify-between items-center">
+                                <div class="text-xs text-slate-500">Cabang: <span class="font-bold text-slate-700">RS PKT Bontang</span></div>
+                                <button class="bg-amber-100 hover:bg-amber-200 text-amber-800 border border-amber-300 text-xs font-bold px-3 py-1.5 rounded transition flex items-center gap-1">
+                                    <i class="fas fa-clock"></i> Menunggu Konfirmasi Lab
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -377,13 +398,66 @@
 
     <script>
         function switchTab(tab) {
-            ['kso','sla','cost'].forEach(t => {
-                document.getElementById('tab-' + t).classList.add('hidden');
-                document.getElementById('tab-btn-' + t).classList.remove('active');
+            ['lab', 'kendaraan', 'kso', 'sla', 'cost'].forEach(t => {
+                const tabEl = document.getElementById('tab-' + t);
+                const btnEl = document.getElementById('tab-btn-' + t);
+                if (tabEl) tabEl.classList.add('hidden');
+                if (btnEl) btnEl.classList.remove('active');
             });
-            document.getElementById('tab-' + tab).classList.remove('hidden');
-            document.getElementById('tab-btn-' + tab).classList.add('active');
+            const activeTab = document.getElementById('tab-' + tab);
+            const activeBtn = document.getElementById('tab-btn-' + tab);
+            if (activeTab) activeTab.classList.remove('hidden');
+            if (activeBtn) activeBtn.classList.add('active');
         }
+    
+        const API_URL = '/api';
+        
+        async function loadContracts() {
+            try {
+                const res = await fetch(API_URL + '/kso-contracts');
+                const result = await res.json();
+                if(result.status === 'success') {
+                    renderContracts(result.data);
+                }
+            } catch(e) {
+                document.getElementById('tbody-kso').innerHTML = '<tr><td colspan="6" class="text-center text-red-500 py-4">Gagal memuat data</td></tr>';
+            }
+        }
+        
+        function renderContracts(data) {
+            const tbody = document.getElementById('tbody-kso');
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-gray-500">Tidak ada kontrak KSO.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = data.map(c => {
+                let statusBadge = '';
+                if(c.status === 'BERJALAN') statusBadge = '<span class="badge bg-emerald-100 text-emerald-700 border border-emerald-200">BERJALAN</span>';
+                else statusBadge = '<span class="badge bg-amber-100 text-amber-700 border border-amber-200">RENEWAL PERIOD</span>';
+                
+                return `
+                <tr class="hover:bg-slate-50">
+                    <td class="px-6 py-4">
+                        <div class="font-mono text-xs text-gray-500">${c.contract_number}</div>
+                        <div class="font-bold text-gray-900">${c.object_name}</div>
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-700">${c.vendor_name}</td>
+                    <td class="px-6 py-4">
+                        <div class="text-gray-900 text-xs">${c.start_date} - ${c.end_date}</div>
+                    </td>
+                    <td class="px-6 py-4"><span class="badge bg-purple-50 text-purple-700 border border-purple-200">${c.billing_type}</span></td>
+                    <td class="px-6 py-4 text-center">${statusBadge}</td>
+                    <td class="px-6 py-4 text-right">
+                        <button class="text-blue-600 hover:bg-blue-50 px-2 py-1 rounded transition text-xs font-medium border border-blue-200">Lihat Detail</button>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+        
+        window.onload = loadContracts;
+
     </script>
 </body>
 </html>
