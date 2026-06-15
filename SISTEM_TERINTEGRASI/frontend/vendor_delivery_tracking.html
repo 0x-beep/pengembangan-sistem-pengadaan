@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Pengiriman & Instalasi — KMU Vendor Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #334155; }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: #f1f5f9; } ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+        .step-node { width: 2.5rem; height: 2.5rem; border-radius: 9999px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8rem; flex-shrink:0; transition: all .3s; }
+        .step-done    { background:#10b981; color:#fff; }
+        .step-active  { background:#f59e0b; color:#fff; box-shadow:0 0 0 4px #fde68a; }
+        .step-locked  { background:#e2e8f0; color:#94a3b8; }
+        .step-line    { height:3px; flex:1; transition: background .3s; }
+        .line-done    { background:#10b981; }
+        .line-pending { background:#e2e8f0; }
+
+        .panel { background:#fff; border-radius:1rem; border:1px solid #e2e8f0; box-shadow:0 1px 3px rgba(0,0,0,.06); margin-bottom:.75rem; overflow:hidden; }
+        .panel-header { padding:1rem 1.25rem; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+        .panel-body { padding:0 1.25rem 1.25rem; border-top:1px solid #f1f5f9; }
+
+        .upload-zone { border:2px dashed #cbd5e1; border-radius:.75rem; padding:1.25rem; text-align:center; transition:border-color .2s, background .2s; cursor:pointer; }
+        .upload-zone:hover { border-color:#3b82f6; background:#eff6ff; }
+        .upload-zone.has-file { border-color:#10b981; background:#f0fdf4; }
+        .upload-zone input[type="file"] { display:none; }
+
+        .raport-tag { display:inline-flex; align-items:center; gap:.25rem; font-size:.65rem; font-weight:700; padding:.2rem .5rem; border-radius:999px; }
+        .mandatory-badge { font-size:.6rem; font-weight:800; padding:.15rem .4rem; border-radius:999px; background:#fee2e2; color:#dc2626; text-transform:uppercase; letter-spacing:.05em; }
+
+        .btn-primary { background:#0f172a; color:#fff; font-weight:700; padding:.5rem 1.25rem; border-radius:.5rem; font-size:.8rem; transition:background .2s; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:.4rem; }
+        .btn-primary:hover { background:#1e293b; }
+        .btn-submit { background:#10b981; color:#fff; font-weight:700; padding:.6rem 1.5rem; border-radius:.5rem; font-size:.85rem; transition:background .2s; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:.5rem; }
+        .btn-submit:hover { background:#059669; }
+        .btn-confirm { background:#3b82f6; color:#fff; font-weight:700; padding:.6rem 1.5rem; border-radius:.5rem; font-size:.85rem; transition:background .2s; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:.5rem; }
+        .btn-confirm:hover { background:#2563eb; }
+
+        input[type="text"], input[type="date"], input[type="tel"], input[type="number"], select, textarea {
+            width:100%; border:1px solid #e2e8f0; border-radius:.5rem; padding:.5rem .75rem; font-size:.8rem; font-family:'Inter',sans-serif; outline:none; transition:border-color .2s;
+        }
+        input:focus, select:focus, textarea:focus { border-color:#3b82f6; box-shadow:0 0 0 2px #dbeafe; }
+        label { font-size:.75rem; font-weight:700; color:#475569; display:block; margin-bottom:.3rem; }
+        .required-star { color:#dc2626; margin-left:.1rem; }
+
+        .score-pill { display:inline-flex; align-items:center; gap:.35rem; font-size:.75rem; font-weight:700; padding:.3rem .75rem; border-radius:999px; }
+        .toast { position:fixed; bottom:1.5rem; right:1.5rem; background:#0f172a; color:#fff; padding:.75rem 1.25rem; border-radius:.75rem; font-size:.8rem; font-weight:600; z-index:9999; opacity:0; transform:translateY(.5rem); transition:all .3s; pointer-events:none; }
+        .toast.show { opacity:1; transform:translateY(0); }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+<!-- ── HEADER ───────────────────────────────────────────────────────── -->
+<header class="bg-white border-b border-slate-200 px-6 py-3 flex justify-between items-center shadow-sm sticky top-0 z-30">
+    <div class="flex items-center gap-4">
+        <div class="bg-slate-900 text-white w-9 h-9 rounded-lg flex items-center justify-center font-black text-lg">K</div>
+        <div>
+            <h1 class="font-black text-slate-800 text-base leading-none">KMU Vendor Portal</h1>
+            <p class="text-[10px] text-slate-400 mt-0.5">Tracking Pengiriman & Instalasi</p>
+        </div>
+    </div>
+    <div class="flex items-center gap-3">
+        <!-- Role switcher (simulasi) -->
+        <div class="flex items-center gap-2 bg-slate-100 rounded-lg p-1">
+            <button onclick="setRole('vendor')" id="role-vendor" class="role-btn text-xs font-bold px-3 py-1.5 rounded-md bg-slate-900 text-white transition">
+                <i class="fas fa-truck mr-1"></i>Vendor
+            </button>
+            <button onclick="setRole('gudang')" id="role-gudang" class="role-btn text-xs font-bold px-3 py-1.5 rounded-md text-slate-500 hover:bg-white transition">
+                <i class="fas fa-warehouse mr-1"></i>Gudang KMU/SBU
+            </button>
+            <button onclick="setRole('internal')" id="role-internal" class="role-btn text-xs font-bold px-3 py-1.5 rounded-md text-slate-500 hover:bg-white transition">
+                <i class="fas fa-eye mr-1"></i>Tim Pengadaan
+            </button>
+        </div>
+        <a href="vendor_portal.html" class="text-xs text-slate-500 hover:text-slate-800"><i class="fas fa-arrow-left mr-1"></i>Kembali</a>
+    </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-4 py-6 space-y-5">
+
+    <!-- ── PO INFO CARD ───────────────────────────────────────────── -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+            <div class="space-y-1">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Purchase Order</p>
+                <h2 class="text-xl font-black text-slate-800">PO-2026-0047</h2>
+                <p class="text-sm font-semibold text-slate-600">USG 4D Color Doppler — 2 Unit</p>
+                <p class="text-xs text-slate-400">Vendor: <strong class="text-slate-600">PT. Medika Sejahtera Abadi</strong> &nbsp;|&nbsp; SBU Penerima: RS PKT Bontang</p>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+                <span class="bg-blue-100 text-blue-700 font-black px-3 py-1 rounded-lg text-sm">Rp 1.240.000.000</span>
+                <span id="po-status-badge" class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-amber-100 text-amber-700">Step 3: Dalam Pengiriman</span>
+            </div>
+        </div>
+        <!-- Raport impact note -->
+        <div class="mt-4 bg-red-50 border border-red-200 rounded-xl px-4 py-3 flex items-start gap-3">
+            <i class="fas fa-chart-bar text-red-500 mt-0.5 text-sm"></i>
+            <p class="text-xs text-red-700"><strong>Seluruh step wajib diisi.</strong> Keterlambatan atau kelengkapan dokumen mempengaruhi <strong>Raport Vendor</strong> secara langsung — skor ketepatan waktu, kualitas pengiriman, dan dukungan purna jual dihitung otomatis dari data yang Anda input di halaman ini.</p>
+        </div>
+    </div>
+
+    <!-- ── PAYMENT BLOCK STATUS ─────────────────────────────────── -->
+    <div id="payment-block-card" class="rounded-2xl border shadow-sm p-4 border-red-300 bg-red-50">
+        <div class="flex items-start justify-between gap-4 flex-wrap">
+            <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-red-200 text-red-700 flex items-center justify-center shrink-0">
+                    <i class="fas fa-ban text-xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <h3 class="font-black text-red-700 text-sm">TAGIHAN TERBLOKIR OTOMATIS</h3>
+                        <span id="block-step-badge" class="text-[10px] font-bold bg-red-200 text-red-800 px-2 py-0.5 rounded-full">Menunggu Step 3–4</span>
+                    </div>
+                    <p class="text-xs text-red-600 mt-1" id="block-reason">Pengiriman belum selesai. Termin 1 (DP) tidak dapat dicairkan hingga penerimaan gudang (BAPB) dikonfirmasi.</p>
+                    <div class="flex gap-2 mt-2 flex-wrap" id="block-alerts-row">
+                        <span class="text-[10px] font-bold bg-red-100 text-red-600 border border-red-200 px-2 py-0.5 rounded-full"><i class="fas fa-bell mr-1"></i>Alert → Keuangan</span>
+                        <span class="text-[10px] font-bold bg-red-100 text-red-600 border border-red-200 px-2 py-0.5 rounded-full"><i class="fas fa-bell mr-1"></i>Alert → Tim Pengadaan</span>
+                        <span class="text-[10px] font-bold bg-red-100 text-red-600 border border-red-200 px-2 py-0.5 rounded-full"><i class="fas fa-bell mr-1"></i>Alert → Direktur RS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right shrink-0">
+                <p class="text-[10px] text-red-500 font-semibold uppercase tracking-wider">Status Tagihan</p>
+                <p class="text-lg font-black text-red-700 mt-0.5" id="block-payment-label">Termin 1: BLOKIR</p>
+                <p class="text-xs text-red-400 mt-0.5" id="block-payment-sub">Termin 2: BLOKIR</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PROGRESS STEPPER ──────────────────────────────────────── -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm px-6 py-5">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Progress Pelaksanaan PO</p>
+        <div class="flex items-start gap-0" id="stepper">
+            <!-- Diisi JS -->
+        </div>
+    </div>
+
+    <!-- ── STEP PANELS ───────────────────────────────────────────── -->
+    <div id="panels-container" class="space-y-3">
+        <!-- Diisi JS -->
+    </div>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ─── State ───────────────────────────────────────────────────────────────────
+let currentRole = 'vendor';
+let currentActiveStep = 2; // 0-indexed, step 3 sedang aktif
+
+const STEPS = [
+    {
+        id: 'konfirmasi_po',
+        label: 'Konfirmasi PO',
+        icon: 'fa-file-signature',
+        actor: 'vendor',
+        raportKpi: 'Responsivitas',
+        raportColor: 'bg-blue-100 text-blue-700',
+        bobot: '10%',
+        status: 'done',
+        desc: 'Vendor mengkonfirmasi penerimaan PO dengan dokumen resmi',
+        fields: [
+            { type:'upload', id:'f_po_doc', label:'Dokumen PO ber-stempel & tanda tangan vendor', hint:'PDF / Foto, maks 5MB' },
+            { type:'text', id:'f_po_catatan', label:'Catatan konfirmasi (opsional)', placeholder:'mis. PO diterima baik, siap diproses' }
+        ],
+        doneData: { f_po_doc: 'PO_2026_0047_signed.pdf', f_po_catatan: 'PO diterima dan dipahami. Proses produksi dimulai.' }
+    },
+    {
+        id: 'persiapan_packing',
+        label: 'Persiapan & Packing',
+        icon: 'fa-boxes-stacking',
+        actor: 'vendor',
+        raportKpi: 'Dokumentasi',
+        raportColor: 'bg-purple-100 text-purple-700',
+        bobot: '10%',
+        status: 'done',
+        desc: 'Vendor mendokumentasikan proses persiapan dan pengemasan barang',
+        fields: [
+            { type:'upload', id:'f_pack_foto1', label:'Foto packing barang (tampak depan/keseluruhan)', hint:'Min. 1 foto, maks 5MB' },
+            { type:'upload', id:'f_pack_foto2', label:'Foto seri/plat nomor unit (bukti identitas barang)', hint:'Foto close-up serial number' },
+            { type:'date', id:'f_eta_kirim', label:'Rencana tanggal pengiriman (ETA berangkat)', placeholder:'' },
+            { type:'text', id:'f_pack_ekspedisi', label:'Nama ekspedisi / armada pengiriman', placeholder:'mis. JNE Cargo, Armada Sendiri' }
+        ],
+        doneData: { f_pack_foto1: 'packing_01.jpg', f_pack_foto2: 'serial_USG.jpg', f_eta_kirim: '2026-06-10', f_pack_ekspedisi: 'Armada Sendiri' }
+    },
+    {
+        id: 'pengiriman',
+        label: 'Pengiriman',
+        icon: 'fa-truck-moving',
+        actor: 'vendor',
+        raportKpi: 'Ketepatan Waktu',
+        raportColor: 'bg-orange-100 text-orange-700',
+        bobot: '20%',
+        status: 'active',
+        desc: 'Vendor mengunggah surat jalan dan update posisi/ETA selama pengiriman',
+        fields: [
+            { type:'upload', id:'f_sj', label:'Surat Jalan / Delivery Order', hint:'PDF / Foto, maks 5MB' },
+            { type:'upload', id:'f_foto_muat', label:'Foto barang saat dimuat ke kendaraan', hint:'Foto fisik dalam kendaraan' },
+            { type:'text', id:'f_no_kend', label:'Nomor kendaraan / nomor resi ekspedisi', placeholder:'mis. KT 1234 AB / JNE-982341' },
+            { type:'date', id:'f_eta_tiba', label:'ETA tiba di gudang tujuan', placeholder:'' },
+            { type:'text', id:'f_kontak_sopir', label:'Nama & nomor HP pengantar', placeholder:'mis. Budi — 0812-3456-7890' }
+        ]
+    },
+    {
+        id: 'penerimaan_gudang',
+        label: 'Terima Gudang',
+        icon: 'fa-warehouse',
+        actor: 'gudang',
+        raportKpi: 'Kualitas Pengiriman',
+        raportColor: 'bg-teal-100 text-teal-700',
+        bobot: '20%',
+        status: 'locked',
+        desc: 'Petugas gudang KMU/SBU mengkonfirmasi penerimaan fisik dan kondisi barang',
+        fields: [
+            { type:'upload', id:'f_bapb', label:'BAPB — Berita Acara Penerimaan Barang', hint:'PDF / Foto BAPB ber-tanda tangan' },
+            { type:'upload', id:'f_foto_tiba', label:'Foto fisik barang saat tiba (sebelum dibongkar)', hint:'Min. 2 sudut pandang' },
+            { type:'select', id:'f_kondisi', label:'Kondisi barang saat diterima', options:['— Pilih Kondisi —','Baik / Lengkap sesuai PO','Ada kerusakan kemasan (isi ok)','Barang rusak sebagian','Barang rusak total / tidak sesuai'] },
+            { type:'text', id:'f_catatan_gudang', label:'Catatan penerima gudang', placeholder:'mis. 2 unit tiba lengkap, kondisi baik' },
+            { type:'text', id:'f_nama_penerima', label:'Nama & jabatan penerima', placeholder:'mis. Ahmad — Staff Gudang RS PKT' }
+        ]
+    },
+    {
+        id: 'instalasi',
+        label: 'Instalasi',
+        icon: 'fa-screwdriver-wrench',
+        actor: 'vendor',
+        raportKpi: 'Purna Jual',
+        raportColor: 'bg-indigo-100 text-indigo-700',
+        bobot: '15%',
+        status: 'locked',
+        desc: 'Vendor menjadwalkan dan mendokumentasikan proses instalasi oleh teknisi',
+        fields: [
+            { type:'date', id:'f_tgl_teknisi', label:'Rencana kedatangan teknisi instalasi', placeholder:'' },
+            { type:'text', id:'f_nama_teknisi', label:'Nama teknisi & nomor sertifikat kompetensi', placeholder:'mis. Rudi — Sertifikat No. BNSP-2024-0312' },
+            { type:'tel', id:'f_hp_teknisi', label:'Nomor HP teknisi (aktif selama proses)', placeholder:'mis. 0812-9988-7766' },
+            { type:'upload', id:'f_foto_inst1', label:'Foto proses instalasi (in-progress)', hint:'Minimal 2 foto tahap pemasangan' },
+            { type:'upload', id:'f_foto_inst2', label:'Foto alat setelah terpasang (selesai instalasi)', hint:'Tampak keseluruhan, label terbaca' },
+            { type:'upload', id:'f_checklist_inst', label:'Checklist instalasi (ber-tanda tangan teknisi & user)', hint:'PDF / Foto dokumen' }
+        ]
+    },
+    {
+        id: 'commissioning',
+        label: 'Commissioning',
+        icon: 'fa-microscope',
+        actor: 'vendor',
+        raportKpi: 'Kualitas Produk',
+        raportColor: 'bg-rose-100 text-rose-700',
+        bobot: '15%',
+        status: 'locked',
+        desc: 'Uji fungsi bersama antara vendor dan user internal (dual-sign)',
+        fields: [
+            { type:'date', id:'f_tgl_com', label:'Tanggal pelaksanaan commissioning', placeholder:'' },
+            { type:'select', id:'f_hasil_com', label:'Hasil uji fungsi (commissioning)', options:['— Pilih Hasil —','Lulus — Semua fungsi normal','Lulus bersyarat — Ada catatan minor','Tidak lulus — Perlu perbaikan'] },
+            { type:'upload', id:'f_foto_com', label:'Foto proses uji fungsi (alat menyala & dioperasikan)', hint:'Min. 2 foto, tampak layar hasil' },
+            { type:'upload', id:'f_ba_com', label:'Berita Acara Commissioning (ber-tanda tangan kedua pihak)', hint:'PDF ber-stempel & tanda tangan' },
+            { type:'text', id:'f_catatan_com', label:'Catatan hasil commissioning', placeholder:'mis. Semua mode operasi berfungsi normal, QC selesai' }
+        ]
+    },
+    {
+        id: 'pelatihan',
+        label: 'Pelatihan',
+        icon: 'fa-chalkboard-user',
+        actor: 'vendor',
+        raportKpi: 'Dukungan Pelatihan',
+        raportColor: 'bg-emerald-100 text-emerald-700',
+        bobot: '5%',
+        status: 'locked',
+        desc: 'Vendor menyelenggarakan pelatihan operasional & keselamatan untuk user',
+        fields: [
+            { type:'date', id:'f_tgl_latih', label:'Tanggal pelaksanaan pelatihan', placeholder:'' },
+            { type:'text', id:'f_trainer', label:'Nama trainer & sertifikasi trainer', placeholder:'mis. dr. Surya — Certified Trainer USG Siemens' },
+            { type:'number', id:'f_jml_peserta', label:'Jumlah peserta pelatihan', placeholder:'mis. 8' },
+            { type:'upload', id:'f_daftar_hadir', label:'Daftar hadir peserta (ber-tanda tangan)', hint:'PDF / Foto daftar hadir' },
+            { type:'upload', id:'f_foto_latih', label:'Foto suasana pelatihan', hint:'Minimal 2 foto (kelas & praktek)' },
+            { type:'upload', id:'f_materi_latih', label:'Materi pelatihan / user manual (PDF)', hint:'Dokumen panduan operasional' }
+        ]
+    },
+    {
+        id: 'bast',
+        label: 'BAST',
+        icon: 'fa-file-circle-check',
+        actor: 'both',
+        raportKpi: 'Penyelesaian',
+        raportColor: 'bg-slate-100 text-slate-700',
+        bobot: '5%',
+        status: 'locked',
+        desc: 'Berita Acara Serah Terima — penutup resmi seluruh kewajiban vendor dalam PO ini',
+        fields: [
+            { type:'upload', id:'f_bast_doc', label:'Dokumen BAST final (ber-tanda tangan & stempel kedua pihak)', hint:'PDF, wajib ada tanda tangan Direktur RS & perwakilan vendor' },
+            { type:'date', id:'f_tgl_bast', label:'Tanggal penandatanganan BAST', placeholder:'' },
+            { type:'text', id:'f_no_bast', label:'Nomor dokumen BAST', placeholder:'mis. BAST/RS-PKT/2026/0047' }
+        ]
+    }
+];
+
+// ─── Render stepper ───────────────────────────────────────────────────────────
+function renderStepper() {
+    const container = document.getElementById('stepper');
+    const stepStatuses = STEPS.map(s => s.status);
+
+    container.innerHTML = STEPS.map((s, i) => {
+        const isLast = i === STEPS.length - 1;
+        const cls = s.status === 'done' ? 'step-done' : s.status === 'active' ? 'step-active' : 'step-locked';
+        const lineCls = s.status === 'done' ? 'line-done' : 'line-pending';
+        const icon = s.status === 'done' ? '<i class="fas fa-check text-xs"></i>' : s.status === 'active' ? '<i class="fas ' + s.icon + ' text-xs"></i>' : (i + 1);
+        return '<div class="flex flex-col items-center" style="flex:' + (isLast ? '0 0 auto' : '1') + '">'
+            + '<div class="flex items-center w-full">'
+            + '<div class="step-node ' + cls + '" onclick="scrollToStep(' + i + ')">' + icon + '</div>'
+            + (!isLast ? '<div class="step-line ' + lineCls + '"></div>' : '')
+            + '</div>'
+            + '<p class="text-[9px] font-bold mt-1.5 text-center w-16 leading-tight ' + (s.status === 'active' ? 'text-amber-600' : s.status === 'done' ? 'text-emerald-600' : 'text-slate-400') + '">' + s.label + '</p>'
+            + '</div>';
+    }).join('');
+}
+
+// ─── Render panels ────────────────────────────────────────────────────────────
+function renderPanels() {
+    const container = document.getElementById('panels-container');
+    container.innerHTML = STEPS.map((s, i) => buildPanel(s, i)).join('');
+}
+
+function buildPanel(s, i) {
+    const isDone   = s.status === 'done';
+    const isActive = s.status === 'active';
+    const isLocked = s.status === 'locked';
+
+    // Actor visibility
+    const isVendorStep  = s.actor === 'vendor' || s.actor === 'both';
+    const isGudangStep  = s.actor === 'gudang' || s.actor === 'both';
+
+    const headerBg  = isDone ? 'bg-emerald-50' : isActive ? 'bg-amber-50' : 'bg-white';
+    const borderCls = isDone ? 'border-emerald-200' : isActive ? 'border-amber-300' : 'border-slate-200';
+    const statusTag = isDone
+        ? '<span class="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full"><i class="fas fa-check mr-1"></i>Selesai</span>'
+        : isActive
+            ? '<span class="text-[10px] font-bold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full"><i class="fas fa-circle-dot mr-1"></i>Sedang Berjalan</span>'
+            : '<span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"><i class="fas fa-lock mr-1"></i>Menunggu Step Sebelumnya</span>';
+
+    const actorTag = s.actor === 'vendor' ? '<span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full"><i class="fas fa-truck mr-1"></i>Vendor</span>'
+        : s.actor === 'gudang' ? '<span class="text-[10px] font-bold text-teal-600 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded-full"><i class="fas fa-warehouse mr-1"></i>Gudang KMU/SBU</span>'
+        : '<span class="text-[10px] font-bold text-slate-600 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full"><i class="fas fa-handshake mr-1"></i>Vendor + Gudang</span>';
+
+    let bodyHtml = '';
+
+    if (isDone) {
+        // Show completed summary
+        bodyHtml = '<div class="pt-4">'
+            + '<div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start gap-3">'
+            + '<i class="fas fa-circle-check text-emerald-500 mt-0.5"></i>'
+            + '<div class="text-xs text-emerald-700 space-y-1">';
+        if (s.doneData) {
+            Object.entries(s.doneData).forEach(([k, v]) => {
+                bodyHtml += '<p><strong>' + k.replace('f_','').replace(/_/g,' ') + ':</strong> ' + v + '</p>';
+            });
+        }
+        bodyHtml += '</div></div>'
+            + '<div class="mt-3 flex items-center justify-between">'
+            + '<p class="text-[10px] text-emerald-600 font-semibold"><i class="fas fa-check-circle mr-1"></i>Data telah terverifikasi & direkam ke sistem raport</p>'
+            + '<button class="text-[10px] text-slate-400 hover:text-slate-600 font-medium">Lihat detail <i class="fas fa-chevron-right ml-1"></i></button>'
+            + '</div></div>';
+    } else if (isActive || (isLocked && currentRole !== 'vendor')) {
+        // Form inputs
+        const canEdit = isActive || (!isLocked);
+        const isCurrentActorAllowed = (s.actor === 'vendor' && currentRole === 'vendor')
+            || (s.actor === 'gudang' && currentRole === 'gudang')
+            || (s.actor === 'both')
+            || currentRole === 'internal';
+
+        bodyHtml = '<div class="pt-4 space-y-4">';
+
+        // Raport impact warning
+        bodyHtml += '<div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 flex items-center justify-between">'
+            + '<div class="flex items-center gap-2">'
+            + '<i class="fas fa-chart-bar text-slate-500 text-sm"></i>'
+            + '<div>'
+            + '<p class="text-[10px] text-slate-500 font-semibold">Dampak ke Raport Vendor</p>'
+            + '<p class="text-xs font-bold text-slate-700">KPI: ' + s.raportKpi + ' &nbsp;|&nbsp; Bobot: ' + s.bobot + '</p>'
+            + '</div></div>'
+            + '<span class="raport-tag ' + s.raportColor + '"><i class="fas fa-star text-[8px]"></i>' + s.raportKpi + '</span>'
+            + '</div>';
+
+        if (isLocked) {
+            bodyHtml += '<div class="bg-slate-100 border border-slate-200 rounded-xl p-4 text-center">'
+                + '<i class="fas fa-lock text-slate-400 text-2xl mb-2 block"></i>'
+                + '<p class="text-sm font-semibold text-slate-500">Step ini terkunci</p>'
+                + '<p class="text-xs text-slate-400 mt-1">Selesaikan step sebelumnya terlebih dahulu untuk membuka tahap ini</p>'
+                + '</div>';
+        } else {
+            // Render fields
+            s.fields.forEach(f => {
+                bodyHtml += '<div>';
+                bodyHtml += '<label>' + f.label + '<span class="required-star">*</span> <span class="mandatory-badge">Wajib</span></label>';
+                if (f.type === 'upload') {
+                    bodyHtml += '<div class="upload-zone" id="zone_' + f.id + '" onclick="triggerUpload(\'' + f.id + '\')">'
+                        + '<input type="file" id="' + f.id + '" onchange="handleFile(\'' + f.id + '\')" accept="image/*,.pdf">'
+                        + '<div id="zone_preview_' + f.id + '">'
+                        + '<i class="fas fa-cloud-arrow-up text-slate-400 text-xl mb-1 block"></i>'
+                        + '<p class="text-xs font-semibold text-slate-500">Klik untuk unggah</p>'
+                        + '<p class="text-[10px] text-slate-400 mt-0.5">' + (f.hint || '') + '</p>'
+                        + '</div></div>';
+                } else if (f.type === 'select') {
+                    bodyHtml += '<select id="' + f.id + '"><option>' + (f.options || []).map(o => '<option>' + o + '</option>').join('') + '</select>';
+                } else if (f.type === 'textarea') {
+                    bodyHtml += '<textarea id="' + f.id + '" rows="3" placeholder="' + (f.placeholder || '') + '"></textarea>';
+                } else {
+                    bodyHtml += '<input type="' + f.type + '" id="' + f.id + '" placeholder="' + (f.placeholder || '') + '">';
+                }
+                bodyHtml += '</div>';
+            });
+
+            // Submit button
+            const isGudangActor = s.actor === 'gudang';
+            const btnLabel = isGudangActor ? 'Konfirmasi Penerimaan Gudang' : 'Submit & Lanjut ke Step Berikutnya';
+            const btnCls   = isGudangActor ? 'btn-confirm' : 'btn-submit';
+            const btnIcon  = isGudangActor ? 'fa-check-double' : 'fa-paper-plane';
+
+            if (!isCurrentActorAllowed && currentRole !== 'internal') {
+                bodyHtml += '<div class="bg-slate-100 rounded-xl p-3 text-center text-xs text-slate-400"><i class="fas fa-eye-slash mr-1"></i>Hanya ' + (isGudangActor ? 'petugas Gudang KMU/SBU' : 'Vendor') + ' yang dapat mengisi form ini</div>';
+            } else if (currentRole !== 'internal') {
+                bodyHtml += '<div class="flex justify-end pt-2">'
+                    + '<button class="' + btnCls + '" onclick="submitStep(' + i + ')"><i class="fas ' + btnIcon + '"></i>' + btnLabel + '</button>'
+                    + '</div>';
+            }
+        }
+
+        bodyHtml += '</div>';
+    } else {
+        // Locked for vendor view
+        bodyHtml = '<div class="pt-4"><div class="bg-slate-50 rounded-xl p-4 text-center">'
+            + '<i class="fas fa-lock text-slate-300 text-2xl mb-2 block"></i>'
+            + '<p class="text-xs text-slate-400">Terkunci — selesaikan step sebelumnya</p>'
+            + '</div></div>';
+    }
+
+    const isOpen = isActive;
+    return '<div class="panel border ' + borderCls + '" id="panel_' + i + '">'
+        + '<div class="panel-header ' + headerBg + '" onclick="togglePanel(' + i + ')">'
+        + '<div class="flex items-center gap-3">'
+        + '<div class="step-node ' + (isDone ? 'step-done' : isActive ? 'step-active' : 'step-locked') + ' !w-8 !h-8 text-xs">'
+        + (isDone ? '<i class="fas fa-check"></i>' : '<i class="fas ' + s.icon + '"></i>') + '</div>'
+        + '<div>'
+        + '<div class="flex items-center gap-2 flex-wrap">'
+        + '<h3 class="font-bold text-slate-800 text-sm">Step ' + (i + 1) + ': ' + s.label + '</h3>'
+        + actorTag + statusTag
+        + '</div>'
+        + '<p class="text-[10px] text-slate-400 mt-0.5">' + s.desc + '</p>'
+        + '</div></div>'
+        + '<div class="flex items-center gap-2">'
+        + '<span class="raport-tag ' + s.raportColor + ' text-[10px]"><i class="fas fa-star mr-0.5 text-[8px]"></i>' + s.raportKpi + ' <span class="font-black">' + s.bobot + '</span></span>'
+        + '<i class="fas fa-chevron-' + (isOpen ? 'up' : 'down') + ' text-slate-400 text-xs" id="chev_' + i + '"></i>'
+        + '</div></div>'
+        + '<div class="panel-body" id="body_' + i + '" style="display:' + (isOpen ? 'block' : 'none') + '">'
+        + bodyHtml
+        + '</div></div>';
+}
+
+// ─── Interactions ─────────────────────────────────────────────────────────────
+function togglePanel(i) {
+    const body = document.getElementById('body_' + i);
+    const chev = document.getElementById('chev_' + i);
+    const isHidden = body.style.display === 'none';
+    body.style.display = isHidden ? 'block' : 'none';
+    chev.className = 'fas fa-chevron-' + (isHidden ? 'up' : 'down') + ' text-slate-400 text-xs';
+}
+
+function scrollToStep(i) {
+    const el = document.getElementById('panel_' + i);
+    if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (STEPS[i].status !== 'locked') { const body = document.getElementById('body_' + i); body.style.display = 'block'; document.getElementById('chev_' + i).className = 'fas fa-chevron-up text-slate-400 text-xs'; } }
+}
+
+function triggerUpload(id) { document.getElementById(id).click(); }
+
+function handleFile(id) {
+    const file = document.getElementById(id).files[0];
+    if (!file) return;
+    const zone = document.getElementById('zone_' + id);
+    const preview = document.getElementById('zone_preview_' + id);
+    zone.classList.add('has-file');
+    if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            preview.innerHTML = '<img src="' + e.target.result + '" class="h-20 mx-auto rounded-lg object-cover mb-1">'
+                + '<p class="text-[10px] font-bold text-emerald-600">' + file.name + '</p>'
+                + '<p class="text-[9px] text-slate-400">' + (file.size/1024).toFixed(0) + ' KB — klik untuk ganti</p>';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.innerHTML = '<i class="fas fa-file-pdf text-red-500 text-2xl mb-1 block"></i>'
+            + '<p class="text-[10px] font-bold text-emerald-600">' + file.name + '</p>'
+            + '<p class="text-[9px] text-slate-400">' + (file.size/1024).toFixed(0) + ' KB — klik untuk ganti</p>';
+    }
+}
+
+function submitStep(idx) {
+    const s = STEPS[idx];
+    // Validate all required fields
+    let missing = [];
+    s.fields.forEach(f => {
+        if (f.type === 'upload') {
+            const input = document.getElementById(f.id);
+            if (!input || !input.files || !input.files.length) missing.push(f.label.split(' (')[0]);
+        } else if (f.type === 'select') {
+            const el = document.getElementById(f.id);
+            if (!el || el.selectedIndex === 0) missing.push(f.label.split(' (')[0]);
+        } else {
+            const el = document.getElementById(f.id);
+            if (!el || !el.value.trim()) missing.push(f.label.split(' (')[0]);
+        }
+    });
+
+    if (missing.length > 0) {
+        showToast('Wajib diisi: ' + missing[0] + (missing.length > 1 ? ' (+' + (missing.length - 1) + ' lainnya)' : ''), 'error');
+        return;
+    }
+
+    // Mark current step done, unlock next
+    STEPS[idx].status = 'done';
+    if (idx + 1 < STEPS.length) {
+        STEPS[idx + 1].status = 'active';
+        currentActiveStep = idx + 1;
+    }
+
+    // Update badge
+    document.getElementById('po-status-badge').textContent = idx + 2 <= STEPS.length
+        ? 'Step ' + (idx + 2) + ': ' + STEPS[idx + 1]?.label
+        : 'Selesai — BAST Ditandatangani';
+
+    showToast('Step ' + (idx + 1) + ' berhasil disimpan. Raport vendor diperbarui.', 'success');
+    renderStepper();
+    renderPanels();
+    updatePaymentBlock();
+    setTimeout(() => scrollToStep(idx + 1), 400);
+}
+
+function setRole(role) {
+    currentRole = role;
+    document.querySelectorAll('.role-btn').forEach(b => {
+        b.className = 'role-btn text-xs font-bold px-3 py-1.5 rounded-md text-slate-500 hover:bg-white transition';
+    });
+    document.getElementById('role-' + role).className = 'role-btn text-xs font-bold px-3 py-1.5 rounded-md bg-slate-900 text-white transition';
+    renderPanels();
+}
+
+function showToast(msg, type) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = type === 'error' ? '#dc2626' : '#0f172a';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── Payment block logic ──────────────────────────────────────────────────────
+// Aturan:
+//   Termin 1 (DP)      → butuh step 0-3 (konfirmasi s/d penerimaan gudang) = DONE
+//   Termin 2 (Pelunasan) → butuh step 0-7 semua DONE (termasuk BAST)
+const TERMIN1_STEPS = [0, 1, 2, 3]; // konfirmasi, packing, kirim, gudang
+const TERMIN2_STEPS = [0, 1, 2, 3, 4, 5, 6, 7]; // semua step
+
+function updatePaymentBlock() {
+    const card   = document.getElementById('payment-block-card');
+    const badge  = document.getElementById('block-step-badge');
+    const reason = document.getElementById('block-reason');
+    const label  = document.getElementById('block-payment-label');
+    const sub    = document.getElementById('block-payment-sub');
+    const alerts = document.getElementById('block-alerts-row');
+
+    const t1Done = TERMIN1_STEPS.every(i => STEPS[i].status === 'done');
+    const t2Done = TERMIN2_STEPS.every(i => STEPS[i].status === 'done');
+
+    if (t2Done) {
+        // Semua selesai - BAST sudah tanda tangan
+        card.className = 'rounded-2xl border shadow-sm p-4 border-emerald-300 bg-emerald-50';
+        card.querySelector('.fa-ban').className = 'fas fa-circle-check text-xl';
+        card.querySelector('.fa-ban').parentElement.className = 'w-10 h-10 rounded-xl bg-emerald-200 text-emerald-700 flex items-center justify-center shrink-0';
+        card.querySelector('h3').textContent = 'SEMUA TAGIHAN DAPAT DICAIRKAN';
+        card.querySelector('h3').className = 'font-black text-emerald-700 text-sm';
+        badge.textContent = 'BAST Selesai';
+        badge.className = 'text-[10px] font-bold bg-emerald-200 text-emerald-800 px-2 py-0.5 rounded-full';
+        reason.textContent = 'Seluruh kewajiban vendor telah dipenuhi. Termin 1 & Termin 2 diizinkan untuk dicairkan oleh Keuangan.';
+        reason.className = 'text-xs text-emerald-600 mt-1';
+        label.textContent = 'Termin 1: CAIR';
+        label.className = 'text-lg font-black text-emerald-700 mt-0.5';
+        sub.textContent = 'Termin 2: CAIR';
+        sub.className = 'text-xs text-emerald-500 mt-0.5';
+        alerts.innerHTML = '<span class="text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full"><i class="fas fa-check-circle mr-1"></i>Keuangan dinotifikasi — tagihan siap diproses</span>';
+    } else if (t1Done) {
+        // Termin 1 bisa cair, Termin 2 masih blokir
+        card.className = 'rounded-2xl border shadow-sm p-4 border-amber-300 bg-amber-50';
+        card.querySelector('h3').textContent = 'TERMIN 1 DAPAT DICAIRKAN — TERMIN 2 MASIH BLOKIR';
+        card.querySelector('h3').className = 'font-black text-amber-700 text-sm';
+        badge.textContent = 'Menunggu Step 5–8';
+        badge.className = 'text-[10px] font-bold bg-amber-200 text-amber-800 px-2 py-0.5 rounded-full';
+
+        const nextPending = TERMIN2_STEPS.find(i => STEPS[i].status !== 'done');
+        reason.textContent = 'Termin 1 sudah terbuka. Termin 2 (pelunasan) menunggu: ' + (nextPending !== undefined ? 'Step ' + (nextPending + 1) + ' (' + STEPS[nextPending].label + ')' : '-');
+        reason.className = 'text-xs text-amber-700 mt-1';
+        label.textContent = 'Termin 1: CAIR';
+        label.className = 'text-lg font-black text-emerald-600 mt-0.5';
+        sub.textContent = 'Termin 2: BLOKIR';
+        sub.className = 'text-xs text-red-500 font-bold mt-0.5';
+        alerts.innerHTML = '<span class="text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full"><i class="fas fa-check mr-1"></i>Keuangan: Termin 1 diizinkan</span>'
+            + '<span class="text-[10px] font-bold bg-amber-100 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full"><i class="fas fa-bell mr-1"></i>Alert → Keuangan: Termin 2 masih blokir</span>'
+            + '<span class="text-[10px] font-bold bg-amber-100 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full"><i class="fas fa-bell mr-1"></i>Alert → Tim Pengadaan</span>';
+    } else {
+        // Keduanya masih blokir
+        const nextPending = TERMIN1_STEPS.find(i => STEPS[i].status !== 'done');
+        badge.textContent = 'Menunggu Step ' + (nextPending !== undefined ? (nextPending + 1) + '–4' : '');
+        reason.textContent = 'Menunggu: Step ' + (nextPending !== undefined ? (nextPending + 1) + ' (' + STEPS[nextPending].label + ')' : '-') + '. Termin 1 tidak dapat dicairkan hingga penerimaan gudang (BAPB) dikonfirmasi.';
+        label.textContent = 'Termin 1: BLOKIR';
+        sub.textContent = 'Termin 2: BLOKIR';
+    }
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+renderStepper();
+renderPanels();
+updatePaymentBlock();
+</script>
+</body>
+</html>

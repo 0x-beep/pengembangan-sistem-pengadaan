@@ -79,10 +79,13 @@
     <div id="authOverlay" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#0f172a]/95 backdrop-blur-sm hidden">
         <div class="bg-slate-900 border border-slate-700 rounded-2xl p-10 max-w-sm w-full shadow-2xl text-center">
             <img src="logo_kmu.png" alt="KMU" class="h-14 mx-auto mb-6 object-contain bg-white rounded-xl p-2">
-            <h2 class="text-2xl font-bold text-white mb-1">KMU Ecosystem</h2>
+            <h2 class="text-2xl font-bold text-white mb-1">Sistem Terintegrasi</h2>
             <p class="text-slate-400 text-sm mb-8">Masuk menggunakan akun Google organisasi Anda untuk melanjutkan.</p>
             <div id="google-signin-btn" class="flex justify-center mb-6"></div>
             <p class="text-slate-600 text-xs">Hanya akun yang terdaftar dan diotorisasi yang dapat mengakses sistem ini.</p>
+            <button onclick="devBypassHub()" class="mt-4 w-full text-xs text-slate-600 hover:text-slate-400 py-2 rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center gap-1.5">
+                <i class="fas fa-flask text-[10px]"></i> Masuk sebagai Demo Internal (dev only)
+            </button>
         </div>
     </div>
 
@@ -283,6 +286,12 @@
                 { theme: 'filled_blue', size: 'large', text: 'sign_in_with', shape: 'rectangular', width: 260 }
             );
         };
+
+        function devBypassHub() {
+            const mockUser = { name: 'Demo Internal (Dev)', email: 'dev@kmu.id', picture: '' };
+            localStorage.setItem('kmu_auth', JSON.stringify(mockUser));
+            showApp(mockUser);
+        }
 
         // Cek session yang sudah ada
         const existingAuth = localStorage.getItem('kmu_auth');

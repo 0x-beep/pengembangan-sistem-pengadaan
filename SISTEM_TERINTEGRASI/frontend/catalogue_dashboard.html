@@ -39,72 +39,36 @@
 </head>
 <body class="antialiased flex h-screen overflow-hidden">
     
-    <!-- SIDEBAR INJECTED BY PYTHON SCRIPT -->
-    
-    <!-- Sidebar Portal Pengadaan -->
+    <!-- Sidebar Portal Unit Bisnis (SBU) -->
     <aside class="w-64 bg-[#0F172A] border-r border-slate-800 flex flex-col z-20 shrink-0 h-full relative">
         <a href="portal_hub.html" class="p-4 border-b border-slate-800 shrink-0 bg-white flex items-center gap-3 hover:bg-slate-50 transition group">
             <img src="logo_kmu.png" alt="Logo KMU" class="h-10 object-contain drop-shadow-sm">
             <div class="flex flex-col">
                 <span class="text-lg leading-none tracking-tight text-emerald-700 font-black">KMU</span>
-                <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Portal Pengadaan</span>
+                <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-wider">Unit Bisnis / SBU</span>
             </div>
             <i class="fas fa-home text-slate-300 group-hover:text-slate-500 text-xs ml-auto transition"></i>
         </a>
         <div class="flex-1 overflow-y-auto py-6 px-4 space-y-6">
             <div>
                 <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-tasks text-slate-600"></i> Meja Kerja
+                    <i class="fas fa-clinic-medical text-slate-600"></i> Operasional Unit
                 </div>
                 <div class="space-y-1">
-                    <a href="pengadaan_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Papan Kanban</span>
+                    <a href="rs_klinik_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-desktop w-5 text-center"></i><span class="text-sm font-medium">Beranda SBU</span>
                     </a>
-                    <a href="approval_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-inbox w-5 text-center relative"><span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span></i><span class="text-sm font-medium">Inbox Approval</span>
+                    <a href="form_imt.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-file-signature w-5 text-center"></i><span class="text-sm font-medium">Buat IMT Baru</span>
                     </a>
-                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-blue-500 transition-colors">
-                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">E-Katalog Internal</span>
+                    <a href="proker_bulanan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-calendar-check w-5 text-center"></i><span class="text-sm font-medium">Proker & Realisasi</span>
                     </a>
-                    <a href="swakelola_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-tools w-5 text-center"></i><span class="text-sm font-medium">Swakelola & Jasa</span>
+                    <a href="catalogue_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-slate-800 text-white border-l-4 border-emerald-500 transition-colors">
+                        <i class="fas fa-bookmark w-5 text-center"></i><span class="text-sm font-medium">Katalog Terpadu</span>
                     </a>
-                </div>
-            </div>
-            <div>
-                <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 px-2 flex items-center gap-2">
-                    <i class="fas fa-boxes text-slate-600"></i> Siklus Pengadaan
-                </div>
-                <div class="space-y-1">
-                    <a href="fase1_rkap_anggaran.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice-dollar w-5 text-center"></i><span class="text-sm font-medium">1. RKAP & Anggaran</span>
-                    </a>
-                    <a href="fase2_vendor_database.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-users w-5 text-center"></i><span class="text-sm font-medium">2. Registrasi Vendor</span>
-                    </a>
-                    <a href="fase3_imt_pp_sppj.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-clipboard-list w-5 text-center"></i><span class="text-sm font-medium">3. PP Final</span>
-                    </a>
-                    <a href="fase4_tender.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-gavel w-5 text-center"></i><span class="text-sm font-medium">4. Tender & Bidding</span>
-                    </a>
-                    <a href="fase5_kso_portal.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-handshake w-5 text-center"></i><span class="text-sm font-medium">5. KSO & Kontrak</span>
-                    </a>
-                    <a href="fase6_bapb_penerimaan.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-box-open w-5 text-center"></i><span class="text-sm font-medium">6. BAPB & Penerimaan</span>
-                    </a>
-                    <a href="fase7_invoice_3waymatch.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-file-invoice w-5 text-center"></i><span class="text-sm font-medium">7. Invoice & Bayar</span>
-                    </a>
-                    <a href="fase8_raport_vendor.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-star w-5 text-center"></i><span class="text-sm font-medium">8. Raport Vendor</span>
-                    </a>
-                    <a href="fase9_laporan_analitik.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
-                        <i class="fas fa-chart-pie w-5 text-center"></i><span class="text-sm font-medium">9. Laporan & Analitik</span>
-                    </a>
-                    <a href="vendor_blacklist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-400 hover:text-white hover:bg-rose-900 transition-colors">
-                        <i class="fas fa-ban w-5 text-center"></i><span class="text-sm font-medium">Daftar Blacklist</span>
+                    <a href="kso_management_dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+                        <i class="fas fa-microscope w-5 text-center"></i><span class="text-sm font-medium">Monitoring KSO</span>
                     </a>
                 </div>
             </div>
@@ -145,11 +109,14 @@
             <button onclick="switchTab('rencana')" id="tab-btn-rencana" class="tab-link border-b-2 border-transparent px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">
                 <i class="fas fa-calendar-alt mr-1.5"></i> Rencana Belanja Realisasi Investasi Bulanan
             </button>
-            <button onclick="switchTab('pemilihan')" id="tab-btn-pemilihan" class="tab-link border-b-2 border-transparent px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">
-                <i class="fas fa-check-double mr-1.5"></i> Proses Pemilihan Vendor
+            <button onclick="switchTab('spesifikasi')" id="tab-btn-spesifikasi" class="tab-link border-b-2 border-transparent px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">
+                <i class="fas fa-file-medical-alt mr-1.5"></i> Ajukan Spesifikasi & TOR
             </button>
             <button onclick="switchTab('keuangan')" id="tab-btn-keuangan" class="tab-link border-b-2 border-transparent px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">
                 <i class="fas fa-wallet mr-1.5"></i> Laporan Realisasi & Pembayaran Keuangan
+            </button>
+            <button onclick="switchTab('monitor')" id="tab-btn-monitor" class="tab-link border-b-2 border-transparent px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-800 transition-colors">
+                <i class="fas fa-tasks mr-1.5"></i> Monitor Investasi
             </button>
         </div>
 
@@ -255,34 +222,290 @@
                 </div>
             </div>
 
-            <!-- TAB 4: PROSES PEMILIHAN -->
-            <div id="view-pemilihan" class="tab-content max-w-7xl mx-auto hidden h-full flex gap-6">
-                <!-- Left: List of Kebutuhan -->
-                <div class="w-1/3 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm max-h-[70vh]">
-                    <div class="p-4 border-b border-slate-200 bg-slate-50 rounded-t-xl">
-                        <h3 class="font-bold text-slate-800"><i class="fas fa-list text-blue-600 mr-2"></i>Daftar Kebutuhan (RKAP)</h3>
-                    </div>
-                    <div id="pemilihan-list" class="flex-1 overflow-y-auto p-2 space-y-2">
-                        <!-- Loaded via JS -->
+            <!-- TAB 4: PENGAJUAN SPESIFIKASI & TOR -->
+            <div id="view-spesifikasi" class="tab-content max-w-5xl mx-auto space-y-6 hidden">
+
+                <!-- Info kebijakan SBU -->
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start gap-4">
+                    <div class="text-emerald-600 text-xl mt-0.5"><i class="fas fa-info-circle"></i></div>
+                    <div>
+                        <h4 class="font-bold text-emerald-900 text-sm">Kebijakan Pengajuan SBU</h4>
+                        <p class="text-xs text-emerald-800 mt-1">SBU <strong>hanya menyampaikan spesifikasi teknis dan kebutuhan</strong>. Setiap pengajuan <strong>wajib</strong> melampirkan TOR (Term of Reference) dan analisis Cost & Benefit.</p>
                     </div>
                 </div>
 
-                <!-- Right: Vendor Selection -->
-                <div class="w-2/3 bg-white border border-slate-200 rounded-xl flex flex-col shadow-sm max-h-[70vh]">
-                    <div class="p-4 border-b border-slate-200 bg-slate-50 rounded-t-xl flex justify-between items-center">
-                        <h3 class="font-bold text-slate-800"><i class="fas fa-store text-emerald-600 mr-2"></i>Penawaran Vendor</h3>
-                        <span id="selected-item-title" class="text-xs font-bold bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Pilih item di kiri</span>
+                <!-- Header & tombol -->
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800"><i class="fas fa-file-medical-alt mr-1.5 text-emerald-600"></i>Daftar Pengajuan Spesifikasi & TOR</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Kebutuhan yang sudah diajukan — Tim Pengadaan akan menindaklanjuti</p>
                     </div>
-                    <div id="pemilihan-vendors" class="flex-1 overflow-y-auto p-6 bg-slate-50/50">
-                        <div class="flex flex-col items-center justify-center h-full text-slate-400">
-                            <i class="fas fa-mouse-pointer text-4xl mb-3"></i>
-                            <p>Silakan klik salah satu item kebutuhan untuk melihat daftar vendor yang menawarkan.</p>
-                        </div>
+                    <button onclick="openSpesModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i> Buat Pengajuan Baru
+                    </button>
+                </div>
+
+                <!-- Tabel daftar pengajuan -->
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 uppercase font-bold border-b border-slate-200">
+                                <th class="px-4 py-3">No. Pengajuan</th>
+                                <th class="px-4 py-3">Nama Alat / Kebutuhan</th>
+                                <th class="px-4 py-3">Kategori</th>
+                                <th class="px-4 py-3">Estimasi Biaya</th>
+                                <th class="px-4 py-3 text-center">TOR</th>
+                                <th class="px-4 py-3 text-center">Cost-Benefit</th>
+                                <th class="px-4 py-3 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="spesifikasiTable" class="divide-y divide-slate-100">
+                            <tr><td colspan="7" class="px-4 py-8 text-center text-slate-400"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 5: MONITOR INVESTASI -->
+            <div id="view-monitor" class="tab-content max-w-6xl mx-auto space-y-5 hidden">
+
+                <!-- Summary cards -->
+                <div class="grid grid-cols-4 gap-4" id="monitor-summary">
+                    <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-sm text-center">
+                        <p class="text-2xl font-black text-slate-800" id="mon-total">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Total Pengajuan</p>
+                    </div>
+                    <div class="bg-amber-50 rounded-xl border border-amber-200 p-4 shadow-sm text-center">
+                        <p class="text-2xl font-black text-amber-600" id="mon-pending">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Menunggu Approval</p>
+                    </div>
+                    <div class="bg-blue-50 rounded-xl border border-blue-200 p-4 shadow-sm text-center">
+                        <p class="text-2xl font-black text-blue-600" id="mon-diproses">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Di Tim Pengadaan</p>
+                    </div>
+                    <div class="bg-emerald-50 rounded-xl border border-emerald-200 p-4 shadow-sm text-center">
+                        <p class="text-2xl font-black text-emerald-600" id="mon-selesai">—</p>
+                        <p class="text-xs text-slate-500 mt-1">Selesai / Terealisasi</p>
+                    </div>
+                </div>
+
+                <!-- Filter pills -->
+                <div class="flex gap-2 flex-wrap" id="monitor-filter-row">
+                    <button onclick="filterMonitor('Semua')" class="mon-filter-btn active-filter text-xs font-bold px-3 py-1.5 rounded-full border border-slate-300 bg-slate-800 text-white transition">Semua</button>
+                    <button onclick="filterMonitor('Barang Medis')" class="mon-filter-btn text-xs font-bold px-3 py-1.5 rounded-full border border-teal-300 text-teal-700 bg-teal-50 hover:bg-teal-100 transition"><i class="fas fa-stethoscope mr-1"></i>Barang Medis</button>
+                    <button onclick="filterMonitor('Barang Umum')" class="mon-filter-btn text-xs font-bold px-3 py-1.5 rounded-full border border-orange-300 text-orange-700 bg-orange-50 hover:bg-orange-100 transition"><i class="fas fa-box mr-1"></i>Barang Umum</button>
+                    <button onclick="filterMonitor('Jasa')" class="mon-filter-btn text-xs font-bold px-3 py-1.5 rounded-full border border-violet-300 text-violet-700 bg-violet-50 hover:bg-violet-100 transition"><i class="fas fa-handshake mr-1"></i>Jasa</button>
+                </div>
+
+                <!-- Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 uppercase tracking-wider font-bold border-b border-slate-200">
+                                    <th class="px-4 py-3">No. Pengajuan</th>
+                                    <th class="px-4 py-3">Kebutuhan</th>
+                                    <th class="px-4 py-3 text-center">Kategori</th>
+                                    <th class="px-4 py-3 text-right">Nilai Estimasi</th>
+                                    <th class="px-4 py-3 text-center" style="min-width:220px">Progress Approval</th>
+                                    <th class="px-4 py-3 text-center">Tgl Ajuan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="monitorTable" class="divide-y divide-slate-100">
+                                <tr><td colspan="6" class="px-4 py-8 text-center text-slate-400">Memuat data...</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
         </main>
+    </div>
+
+    <!-- MODAL: PENGAJUAN SPESIFIKASI & TOR (SBU) -->
+    <div id="spesModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col max-h-[92vh]">
+
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800"><i class="fas fa-file-medical-alt text-emerald-600 mr-2"></i>Pengajuan Spesifikasi Kebutuhan</h3>
+                    <p class="text-xs text-slate-500 mt-0.5">Pemilihan vendor dilakukan sepenuhnya oleh Tim Pengadaan</p>
+                </div>
+                <button onclick="closeSpesModal()" class="text-slate-400 hover:text-slate-700 text-xl"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="overflow-y-auto p-6 space-y-6">
+
+                <!-- BAGIAN 1: Identitas Kebutuhan -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs font-bold flex items-center justify-center">1</div>
+                        <h4 class="font-bold text-slate-800">Identitas Kebutuhan</h4>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Nama Alat / Jenis Kebutuhan <span class="text-red-500">*</span></label>
+                            <input type="text" id="sp_nama_alat" placeholder="contoh: USG 4D Color Doppler, Ventilator ICU" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Kategori <span class="text-red-500">*</span></label>
+                            <select id="sp_kategori" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                                <option value="">-- Pilih Kategori --</option>
+                                <option value="Alkes">Alkes (Alat Kesehatan)</option>
+                                <option value="BMHP">BMHP (Bahan Medis Habis Pakai)</option>
+                                <option value="Farmasi">Farmasi / Obat-obatan</option>
+                                <option value="Umum">Umum / Non-Medis</option>
+                                <option value="Jasa">Jasa / Layanan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Jumlah Unit <span class="text-red-500">*</span></label>
+                            <input type="number" id="sp_jumlah" min="1" value="1" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Unit / Departemen Pemohon <span class="text-red-500">*</span></label>
+                            <input type="text" id="sp_unit" placeholder="contoh: IGD, Lab Klinik, Radiologi" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Target Realisasi <span class="text-red-500">*</span></label>
+                            <select id="sp_bulan" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-emerald-500">
+                                <option value="Jul 2026">Juli 2026</option>
+                                <option value="Agt 2026">Agustus 2026</option>
+                                <option value="Sep 2026">September 2026</option>
+                                <option value="Okt 2026">Oktober 2026</option>
+                                <option value="Nov 2026">November 2026</option>
+                                <option value="Des 2026">Desember 2026</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN 2: Spesifikasi Teknis -->
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">2</div>
+                        <h4 class="font-bold text-slate-800">Spesifikasi Teknis</h4>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Spesifikasi Teknis Utama <span class="text-red-500">*</span></label>
+                            <textarea id="sp_spesifikasi" rows="4" placeholder="Deskripsikan spesifikasi teknis secara detail&#10;contoh: Kapasitas X-Ray 500mA, resolusi ≥1024x1024, bobot ≤80kg, tegangan 220V/50Hz, memiliki sertifikat BPFK..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500 resize-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Standar / Sertifikasi yang Dibutuhkan</label>
+                            <input type="text" id="sp_sertifikasi" placeholder="contoh: BPFK, ISO 13485, CE Mark, FDA Cleared" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN 3: TOR -->
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-6 h-6 rounded-full bg-amber-500 text-white text-xs font-bold flex items-center justify-center">3</div>
+                        <h4 class="font-bold text-slate-800">Term of Reference (TOR) <span class="text-red-500 text-xs font-normal">— wajib diisi</span></h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4 ml-8">Dokumen TOR menjelaskan latar belakang, tujuan, dan cakupan kebutuhan kepada Tim Pengadaan.</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Latar Belakang & Urgensi Kebutuhan <span class="text-red-500">*</span></label>
+                            <textarea id="sp_tor_latar" rows="3" placeholder="Jelaskan kondisi saat ini, mengapa alat/kebutuhan ini diperlukan, dan dampak jika tidak dipenuhi..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500 resize-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tujuan Pengadaan <span class="text-red-500">*</span></label>
+                            <textarea id="sp_tor_tujuan" rows="2" placeholder="contoh: Meningkatkan kapasitas diagnostik, mengurangi ketergantungan rujukan luar, mendukung akreditasi JCI..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500 resize-none"></textarea>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Output / Deliverable yang Diharapkan <span class="text-red-500">*</span></label>
+                                <textarea id="sp_tor_output" rows="2" placeholder="contoh: 1 unit alat terpasang & teruji fungsi, training 3 operator, garansi 2 tahun..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500 resize-none"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Garansi / Purna Jual yang Dibutuhkan</label>
+                                <textarea id="sp_tor_garansi" rows="2" placeholder="contoh: Garansi minimal 2 tahun, suku cadang tersedia min 5 tahun, respon servis ≤24 jam..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500 resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN 4: Cost & Benefit -->
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center gap-2 mb-1">
+                        <div class="w-6 h-6 rounded-full bg-rose-600 text-white text-xs font-bold flex items-center justify-center">4</div>
+                        <h4 class="font-bold text-slate-800">Analisis Cost & Benefit <span class="text-red-500 text-xs font-normal">— wajib diisi</span></h4>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4 ml-8">Justifikasi finansial pengadaan — diverifikasi oleh Keuangan sebelum diteruskan ke Tim Pengadaan.</p>
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Estimasi Biaya Investasi (Rp) <span class="text-red-500">*</span></label>
+                                <input type="number" id="sp_biaya" oninput="hitungROI()" placeholder="0" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-rose-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Estimasi Payback (bulan)</label>
+                                <input type="number" id="sp_payback" placeholder="24" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-rose-500">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Manfaat Kuantitatif <span class="text-red-500">*</span></label>
+                                <textarea id="sp_benefit_kuantitatif" rows="3" placeholder="contoh: Estimasi tambahan pendapatan Rp 500jt/tahun dari layanan MRI, penghematan biaya rujukan Rp 200jt/tahun..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-rose-500 resize-none"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Manfaat Kualitatif <span class="text-red-500">*</span></label>
+                                <textarea id="sp_benefit_kualitatif" rows="3" placeholder="contoh: Meningkatkan kualitas pelayanan pasien, mendukung program akreditasi, mengurangi antrian rujukan..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-rose-500 resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN 5: Jalur Persetujuan SBU -->
+                <div class="border-t border-slate-100 pt-6">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 rounded-full bg-slate-600 text-white text-xs font-bold flex items-center justify-center">5</div>
+                        <h4 class="font-bold text-slate-800">Jalur Persetujuan Internal SBU</h4>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                            <i class="fas fa-user text-emerald-600 text-lg mb-1"></i>
+                            <p class="text-xs font-bold text-slate-700">Kasie</p>
+                            <p class="text-[10px] text-slate-400">Pengusul</p>
+                        </div>
+                        <i class="fas fa-arrow-right text-slate-400"></i>
+                        <div class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                            <i class="fas fa-user-tie text-blue-600 text-lg mb-1"></i>
+                            <p class="text-xs font-bold text-slate-700">Manager</p>
+                            <p class="text-[10px] text-slate-400">Verifikasi</p>
+                        </div>
+                        <i class="fas fa-arrow-right text-slate-400"></i>
+                        <div class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">
+                            <i class="fas fa-user-md text-rose-600 text-lg mb-1"></i>
+                            <p class="text-xs font-bold text-slate-700">Direktur RS</p>
+                            <p class="text-[10px] text-slate-400">Persetujuan Final</p>
+                        </div>
+                        <i class="fas fa-arrow-right text-slate-400"></i>
+                        <div class="flex-1 bg-emerald-50 border border-emerald-300 rounded-lg p-3 text-center">
+                            <i class="fas fa-inbox text-emerald-600 text-lg mb-1"></i>
+                            <p class="text-xs font-bold text-emerald-700">Tim Pengadaan</p>
+                            <p class="text-[10px] text-emerald-500">Tindak Lanjut</p>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-2 text-center">Pengajuan akan diteruskan ke Tim Pengadaan setelah mendapat persetujuan Direktur RS</p>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex justify-between items-center rounded-b-2xl shrink-0">
+                <p class="text-xs text-slate-400"><i class="fas fa-lock mr-1"></i> Pemilihan vendor dilakukan Tim Pengadaan — SBU tidak dapat menentukan vendor</p>
+                <div class="flex gap-3">
+                    <button onclick="closeSpesModal()" class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition">Batal</button>
+                    <button onclick="submitSpesifikasi()" class="px-5 py-2 text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow transition">
+                        <i class="fas fa-paper-plane mr-1.5"></i> Kirim Pengajuan
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- CREATE SPENDING PLAN MODAL -->
@@ -394,6 +617,10 @@
                 loadSpendingPlans();
             } else if (tabId === 'keuangan') {
                 loadFinanceReports();
+            } else if (tabId === 'spesifikasi') {
+                loadSpesifikasiList();
+            } else if (tabId === 'monitor') {
+                loadMonitorInvestasi();
             }
         }
 
@@ -571,40 +798,228 @@
 
         let globalCatalogGroups = {};
 
-        function renderPemilihanVendors(itemName) {
-            const container = document.getElementById('pemilihan-vendors');
-            document.getElementById('selected-item-title').textContent = itemName;
-            
-            const vendors = globalCatalogGroups[itemName] || [];
-            if (vendors.length === 0) {
-                container.innerHTML = '<p class="text-center text-slate-500 mt-10">Tidak ada vendor yang menawarkan item ini.</p>';
+        // ── SPESIFIKASI & TOR (SBU) ────────────────────────────────
+        function openSpesModal(itemName) {
+            document.getElementById('spesModal').classList.remove('hidden');
+            if (itemName) {
+                const el = document.getElementById('sp_nama_alat');
+                if (el) el.value = itemName;
+            }
+        }
+        function closeSpesModal() {
+            document.getElementById('spesModal').classList.add('hidden');
+            ['sp_nama_alat','sp_kategori','sp_jumlah','sp_unit','sp_bulan','sp_spesifikasi',
+             'sp_sertifikasi','sp_tor_latar','sp_tor_tujuan','sp_tor_output',
+             'sp_tor_garansi','sp_biaya','sp_payback','sp_benefit_kuantitatif',
+             'sp_benefit_kualitatif'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = el.tagName === 'SELECT' ? el.options[0].value : '';
+            });
+        }
+
+        function hitungROI() {
+            // placeholder — bisa dikembangkan kalau ada target revenue field
+        }
+
+        async function submitSpesifikasi() {
+            const namaAlat = document.getElementById('sp_nama_alat').value.trim();
+            const kategori = document.getElementById('sp_kategori').value;
+            const jumlah   = document.getElementById('sp_jumlah').value;
+            const unit     = document.getElementById('sp_unit').value.trim();
+            const spek     = document.getElementById('sp_spesifikasi').value.trim();
+            const torLatar = document.getElementById('sp_tor_latar').value.trim();
+            const torTujuan= document.getElementById('sp_tor_tujuan').value.trim();
+            const torOutput= document.getElementById('sp_tor_output').value.trim();
+            const biaya    = parseFloat(document.getElementById('sp_biaya').value) || 0;
+            const bKuant   = document.getElementById('sp_benefit_kuantitatif').value.trim();
+            const bKual    = document.getElementById('sp_benefit_kualitatif').value.trim();
+
+            if (!namaAlat || !kategori || !unit || !spek || !torLatar || !torTujuan || !torOutput || !biaya || !bKuant || !bKual) {
+                alert('Harap lengkapi semua field yang wajib (*).\n\nTOR dan Cost & Benefit wajib diisi sebelum pengajuan dapat diproses.');
                 return;
             }
 
-            // Sort by price ascending
-            vendors.sort((a, b) => a.price - b.price);
+            const sertifikasi = document.getElementById('sp_sertifikasi').value.trim();
+            const torGaransi  = document.getElementById('sp_tor_garansi').value.trim();
+            const payback     = document.getElementById('sp_payback').value;
+            const bulan       = document.getElementById('sp_bulan').value;
 
-            container.innerHTML = `<div class="grid grid-cols-1 gap-4">
-                ${vendors.map((v, idx) => `
-                    <div class="bg-white border ${idx === 0 ? 'border-emerald-400 shadow-md ring-1 ring-emerald-400' : 'border-slate-200 shadow-sm'} rounded-xl p-4 flex justify-between items-center transition hover:border-blue-400">
-                        <div class="flex gap-4 items-center">
-                            <div class="w-12 h-12 rounded-full ${idx === 0 ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-500'} flex items-center justify-center text-xl shrink-0">
-                                <i class="fas ${idx === 0 ? 'fa-trophy' : 'fa-store'}"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-800 text-base">${v.vendor_name}</h4>
-                                <p class="text-xs text-slate-500 mt-0.5"><i class="fas fa-tag mr-1"></i> Merk: ${v.brand || '-'}</p>
-                            </div>
-                        </div>
-                        <div class="text-right flex flex-col items-end gap-2">
-                            <span class="text-lg font-black text-slate-800">${fmtRp(v.price)}</span>
-                            <button onclick="alert('Vendor ${v.vendor_name} terpilih untuk ${itemName}!')" class="text-xs font-bold px-4 py-1.5 rounded-lg ${idx === 0 ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300'} transition shadow-sm">
-                                <i class="fas fa-check mr-1"></i> Pilih Vendor
-                            </button>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>`;
+            const descriptionObj = {
+                spesifikasi_teknis: spek,
+                sertifikasi: sertifikasi,
+                tor: {
+                    latar_belakang: torLatar,
+                    tujuan: torTujuan,
+                    output: torOutput,
+                    garansi: torGaransi
+                },
+                cost_benefit: {
+                    estimasi_biaya: biaya,
+                    payback_bulan: payback,
+                    manfaat_kuantitatif: bKuant,
+                    manfaat_kualitatif: bKual
+                },
+                jumlah_unit: jumlah,
+                target_realisasi: bulan
+            };
+
+            const payload = {
+                req_type: 'SPEC',
+                title: `[SPEK] ${namaAlat} — ${jumlah} unit`,
+                sbu_name: unit,
+                description: JSON.stringify(descriptionObj),
+                budget_code: kategori,
+                total_amount: biaya,
+                created_by: unit
+            };
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/requisitions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const json = await res.json();
+                if (res.ok) {
+                    closeSpesModal();
+                    alert(`Pengajuan berhasil dikirim!\nNomor: ${json.req_number}\n\nPengajuan akan diproses melalui jalur: Kasie → Manager → Direktur RS → Tim Pengadaan.`);
+                    loadSpesifikasiList();
+                } else {
+                    alert('Gagal mengirim pengajuan: ' + (json.detail || 'Server error'));
+                }
+            } catch (err) {
+                alert('Gagal menghubungi server.');
+            }
+        }
+
+        async function loadSpesifikasiList() {
+            const tbody = document.getElementById('spesifikasiTable');
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/requisitions');
+                const json = await res.json();
+                const items = (json.data || []).filter(r => r.req_type === 'SPEC');
+
+                if (items.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-400"><i class="fas fa-inbox text-2xl mb-2 block"></i>Belum ada pengajuan spesifikasi. Klik "Buat Pengajuan Baru" untuk memulai.</td></tr>`;
+                    return;
+                }
+
+                const statusMap = {
+                    baru:    '<span class="bg-amber-100 text-amber-700 font-bold px-2 py-0.5 rounded text-[10px]">Menunggu Kasie</span>',
+                    proses:  '<span class="bg-blue-100 text-blue-700 font-bold px-2 py-0.5 rounded text-[10px]">Diproses</span>',
+                    selesai: '<span class="bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded text-[10px]">Diteruskan ke Pengadaan</span>'
+                };
+
+                tbody.innerHTML = items.map(r => {
+                    let desc = {};
+                    try { desc = JSON.parse(r.description || '{}'); } catch(e) {}
+                    const hasTor = !!(desc.tor && desc.tor.latar_belakang);
+                    const hasCnB = !!(desc.cost_benefit && desc.cost_benefit.manfaat_kuantitatif);
+                    return `
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="px-4 py-3 font-mono font-bold text-slate-700 text-[11px]">${r.req_number}</td>
+                        <td class="px-4 py-3 font-semibold text-slate-800">${r.title.replace('[SPEK] ','')}</td>
+                        <td class="px-4 py-3"><span class="bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded text-[10px]">${r.budget_code || '-'}</span></td>
+                        <td class="px-4 py-3 font-semibold text-slate-700">${fmtRp(r.total_amount)}</td>
+                        <td class="px-4 py-3 text-center">${hasTor ? '<i class="fas fa-check-circle text-emerald-500"></i>' : '<i class="fas fa-times-circle text-red-400"></i>'}</td>
+                        <td class="px-4 py-3 text-center">${hasCnB ? '<i class="fas fa-check-circle text-emerald-500"></i>' : '<i class="fas fa-times-circle text-red-400"></i>'}</td>
+                        <td class="px-4 py-3 text-center">${statusMap[r.status] || r.status}</td>
+                    </tr>`;
+                }).join('');
+            } catch(e) {
+                tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-6 text-center text-red-400">Gagal memuat data.</td></tr>`;
+            }
+        }
+
+        // ── MONITOR INVESTASI ─────────────────────────────────────────────────────
+        let _monitorData = [];
+        let _activeMonitorFilter = 'Semua';
+
+        const KATEGORI_GRUP = {
+            Alkes: 'Barang Medis', BMHP: 'Barang Medis', Farmasi: 'Barang Medis',
+            Umum: 'Barang Umum',
+            Jasa: 'Jasa'
+        };
+        const KATEGORI_BADGE = {
+            'Barang Medis': 'bg-teal-100 text-teal-700 border-teal-200',
+            'Barang Umum':  'bg-orange-100 text-orange-700 border-orange-200',
+            'Jasa':         'bg-violet-100 text-violet-700 border-violet-200',
+        };
+        const STEPS_SBU = ['Kasie', 'Manager', 'Dir. RS', 'Pengadaan'];
+        const STATUS_STEP = { baru: 0, review: 1, direktur: 2, proses: 3, selesai: 4 };
+
+        function monitorProgressBar(status) {
+            const step = STATUS_STEP[status] ?? 0;
+            return '<div class="flex items-center gap-0.5">' + STEPS_SBU.map((s, i) => {
+                const done = i < step;
+                const active = i === step;
+                return '<div class="flex items-center gap-0.5">'
+                    + (i > 0 ? '<div class="w-3 h-px ' + (done ? 'bg-emerald-400' : 'bg-slate-200') + '"></div>' : '')
+                    + '<div class="flex flex-col items-center">'
+                    + '<div class="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold '
+                    + (done ? 'bg-emerald-500 text-white' : active ? 'bg-amber-400 text-white ring-2 ring-amber-200' : 'bg-slate-100 text-slate-400')
+                    + '">' + (done ? '<i class="fas fa-check"></i>' : (i + 1)) + '</div>'
+                    + '<span class="text-[8px] mt-0.5 ' + (done ? 'text-emerald-600' : active ? 'text-amber-600 font-bold' : 'text-slate-400') + '">' + s + '</span>'
+                    + '</div></div>';
+            }).join('') + '</div>';
+        }
+
+        function renderMonitorTable(data) {
+            const tbody = document.getElementById('monitorTable');
+            if (!data.length) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-10 text-center text-slate-400"><i class="fas fa-inbox text-2xl mb-2 block"></i>Belum ada pengajuan investasi.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.map(r => {
+                const grup = KATEGORI_GRUP[r.budget_code] || 'Barang Umum';
+                const badgeCls = KATEGORI_BADGE[grup] || '';
+                const tgl = r.created_at ? r.created_at.split('T')[0] : '-';
+                return '<tr class="hover:bg-slate-50 transition">'
+                    + '<td class="px-4 py-3 font-mono font-bold text-slate-600 text-[11px]">' + r.req_number + '</td>'
+                    + '<td class="px-4 py-3"><p class="font-semibold text-slate-800 text-xs leading-snug">' + r.title.replace('[SPEK] ','') + '</p>'
+                    + '<p class="text-[10px] text-slate-400 mt-0.5">' + (r.sbu_name || '-') + '</p></td>'
+                    + '<td class="px-4 py-3 text-center"><span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ' + badgeCls + '">' + grup + '</span></td>'
+                    + '<td class="px-4 py-3 text-right font-semibold text-slate-700">' + fmtRp(r.total_amount) + '</td>'
+                    + '<td class="px-4 py-3">' + monitorProgressBar(r.status) + '</td>'
+                    + '<td class="px-4 py-3 text-center text-slate-500">' + tgl + '</td>'
+                    + '</tr>';
+            }).join('');
+        }
+
+        function filterMonitor(grup) {
+            _activeMonitorFilter = grup;
+            document.querySelectorAll('.mon-filter-btn').forEach(b => {
+                const isActive = b.textContent.trim().replace(/^\S+\s*/,'').startsWith(grup) || (grup === 'Semua' && b.textContent.trim() === 'Semua');
+                b.classList.toggle('bg-slate-800', isActive && grup === 'Semua');
+                b.classList.toggle('text-white', isActive && grup === 'Semua');
+                b.classList.toggle('border-slate-300', isActive && grup === 'Semua');
+            });
+            const filtered = grup === 'Semua' ? _monitorData : _monitorData.filter(r => (KATEGORI_GRUP[r.budget_code] || 'Barang Umum') === grup);
+            renderMonitorTable(filtered);
+        }
+
+        async function loadMonitorInvestasi() {
+            const tbody = document.getElementById('monitorTable');
+            tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-8 text-center text-slate-400"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data...</td></tr>';
+            try {
+                const res = await fetch('http://127.0.0.1:8000/api/requisitions');
+                const json = await res.json();
+                _monitorData = (json.data || []).filter(r => r.req_type === 'SPEC');
+
+                const total    = _monitorData.length;
+                const pending  = _monitorData.filter(r => ['baru','review','direktur'].includes(r.status)).length;
+                const diproses = _monitorData.filter(r => r.status === 'proses').length;
+                const selesai  = _monitorData.filter(r => r.status === 'selesai').length;
+
+                document.getElementById('mon-total').textContent    = total;
+                document.getElementById('mon-pending').textContent  = pending;
+                document.getElementById('mon-diproses').textContent = diproses;
+                document.getElementById('mon-selesai').textContent  = selesai;
+
+                renderMonitorTable(_monitorData);
+            } catch(e) {
+                tbody.innerHTML = '<tr><td colspan="6" class="px-4 py-6 text-center text-red-400">Gagal memuat data.</td></tr>';
+            }
         }
 
         let currentCategory = 'Semua';
@@ -678,11 +1093,9 @@
 
         function renderKatalogGrid() {
             const grid = document.getElementById('catalogGrid');
-            const pemList = document.getElementById('pemilihan-list');
-            if (!grid || !pemList) return;
+            if (!grid) return;
 
             grid.innerHTML = '';
-            pemList.innerHTML = '';
 
             const searchQ = (document.getElementById('search-katalog')?.value || '').toLowerCase().trim();
             let hasItems = false;
@@ -717,7 +1130,7 @@
 
                 grid.innerHTML += `
                 <div class="glass-card rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col group border border-slate-200 cursor-pointer"
-                     onclick="switchTab('pemilihan'); renderPemilihanVendors(${JSON.stringify(itemName)})">
+                     onclick="openSpesModal(${JSON.stringify(itemName)}); switchTab('spesifikasi')">
                     <div class="h-1.5 bg-gradient-to-r ${cfg.barCls}"></div>
                     <div class="p-4 flex-1 flex flex-col gap-3">
 
@@ -748,31 +1161,17 @@
                                 ${uniqueVendors} vendor bersaing
                                 ${vendorsCount > uniqueVendors ? '(' + vendorsCount + ' penawaran)' : ''}
                             </span>
-                            <span class="text-[10px] font-bold text-blue-600 flex items-center gap-1">
-                                Bandingkan <i class="fas fa-arrow-right text-[9px]"></i>
+                            <span class="text-[10px] font-bold text-emerald-600 flex items-center gap-1">
+                                Ajukan Spek <i class="fas fa-arrow-right text-[9px]"></i>
                             </span>
                         </div>
                     </div>
                 </div>`;
 
-                pemList.innerHTML += `
-                <button onclick="renderPemilihanVendors(${JSON.stringify(itemName)})"
-                    class="w-full text-left p-3 rounded-lg border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 transition group flex flex-col gap-1 outline-none">
-                    <div class="flex items-center justify-between gap-2">
-                        <h4 class="font-bold text-slate-700 text-sm group-hover:text-blue-700 leading-tight truncate flex-1">${itemName}</h4>
-                        <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border shrink-0 ${cfg.badgeCls}">${itemCategory}</span>
-                    </div>
-                    <div class="flex justify-between text-[10px] mt-0.5">
-                        <span class="text-slate-500 truncate"><i class="fas fa-building mr-0.5 text-slate-400"></i>${sbuLabel}</span>
-                        <span class="text-emerald-600 font-bold shrink-0 ml-2">${uniqueVendors} vendor</span>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mt-0.5">Terbaik: ${bestPrice}</p>
-                </button>`;
             });
 
             if (!hasItems) {
                 grid.innerHTML = '<p class="col-span-3 text-center text-slate-500">Tidak ada item di kategori ini.</p>';
-                pemList.innerHTML = '<p class="text-center p-4 text-slate-500 text-xs">Belum ada data.</p>';
             }
         }
 
@@ -794,9 +1193,7 @@
                     renderKatalogGrid();
                 } else {
                     const grid = document.getElementById('catalogGrid');
-                    const pemList = document.getElementById('pemilihan-list');
                     if(grid) grid.innerHTML = '<p class="col-span-3 text-center text-slate-500">Tidak ada data kebutuhan RKAP.</p>';
-                    if(pemList) pemList.innerHTML = '<p class="text-center p-4 text-slate-500 text-xs">Belum ada data.</p>';
                 }
             } catch (e) {
                 console.error(e);
